@@ -1,0 +1,1 @@
+FILE_PATH = "data/source/assets.csv"
