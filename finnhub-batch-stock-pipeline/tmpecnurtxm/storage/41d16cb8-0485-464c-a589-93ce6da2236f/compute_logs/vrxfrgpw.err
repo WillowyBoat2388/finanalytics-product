@@ -1,7 +1,0 @@
-[32m2024-02-29 19:30:16 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 41d16cb8-0485-464c-a589-93ce6da2236f - 46957 - LOGS_CAPTURED - Started capturing logs in process (pid: 46957).
-[32m2024-02-29 19:30:16 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 41d16cb8-0485-464c-a589-93ce6da2236f - 46957 - finnhub_stocks - STEP_START - Started execution of step "finnhub_stocks".
-[32m2024-02-29 19:31:54 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 41d16cb8-0485-464c-a589-93ce6da2236f - 46957 - finnhub_stocks - STEP_OUTPUT - Yielded output "result" of type "[Any]". (Type check passed).
-[32m2024-02-29 19:31:54 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 41d16cb8-0485-464c-a589-93ce6da2236f - finnhub_stocks - Writing file at: /workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/tmpecnurtxm/storage/finnhub_stocks using PickledObjectFilesystemIOManager...
-[32m2024-02-29 19:31:54 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 41d16cb8-0485-464c-a589-93ce6da2236f - 46957 - finnhub_stocks - ASSET_MATERIALIZATION - Materialized value finnhub_stocks.
-[32m2024-02-29 19:31:54 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 41d16cb8-0485-464c-a589-93ce6da2236f - 46957 - finnhub_stocks - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
-[32m2024-02-29 19:31:54 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 41d16cb8-0485-464c-a589-93ce6da2236f - 46957 - finnhub_stocks - STEP_SUCCESS - Finished execution of step "finnhub_stocks" in 1m38s.
