@@ -1,0 +1,10 @@
+dagster
+dagster-cloud
+pyspark
+pandas
+requests
+pyarrow
+
+[dev]
+dagster-webserver
+pytest

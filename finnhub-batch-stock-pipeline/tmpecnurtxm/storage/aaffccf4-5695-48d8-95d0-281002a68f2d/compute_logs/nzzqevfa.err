@@ -1,0 +1,7 @@
+[32m2024-02-29 19:38:30 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - aaffccf4-5695-48d8-95d0-281002a68f2d - 60351 - LOGS_CAPTURED - Started capturing logs in process (pid: 60351).
+[32m2024-02-29 19:38:30 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - aaffccf4-5695-48d8-95d0-281002a68f2d - 60351 - finnhub_stocks_US - STEP_START - Started execution of step "finnhub_stocks_US".
+[32m2024-02-29 19:38:30 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - aaffccf4-5695-48d8-95d0-281002a68f2d - 60351 - finnhub_stocks_US - STEP_OUTPUT - Yielded output "result" of type "dict". (Type check passed).
+[32m2024-02-29 19:38:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - aaffccf4-5695-48d8-95d0-281002a68f2d - finnhub_stocks_US - Writing S3 object at: s3://dagster-api/source/finnhub_stocks_US/AAU
+[32m2024-02-29 19:38:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - aaffccf4-5695-48d8-95d0-281002a68f2d - 60351 - finnhub_stocks_US - ASSET_MATERIALIZATION - Materialized value finnhub_stocks_US.
+[32m2024-02-29 19:38:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - aaffccf4-5695-48d8-95d0-281002a68f2d - 60351 - finnhub_stocks_US - HANDLED_OUTPUT - Handled output "result" using IO manager "s3_json_io_manager"
+[32m2024-02-29 19:38:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - aaffccf4-5695-48d8-95d0-281002a68f2d - 60351 - finnhub_stocks_US - STEP_SUCCESS - Finished execution of step "finnhub_stocks_US" in 1.06s.
