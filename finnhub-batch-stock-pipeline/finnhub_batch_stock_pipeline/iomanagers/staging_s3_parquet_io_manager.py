@@ -49,7 +49,8 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
             
             # s3_obj = io.BytesIO(self.s3.get_object(Bucket=self.bucket, Key=str(path))["Body"].read())
             # return pd.read_parquet(s3_obj)
-            return self.pyspark.load_s3(path.as_posix())
+            pathe = self._uri_for_path(path)
+            return self.pyspark.load_s3(pathe)
         except self.s3.exceptions.NoSuchKey:
             raise FileNotFoundError(f"Could not find file {path} in S3 bucket {self.bucket}")
 
@@ -58,8 +59,8 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
             context.log.warning(f"Removing existing S3 object: {path}")
             self.unlink(path)
 
-        
-        obj.write.format("delta").mode('overwrite').save(path.as_posix())
+        pathe = self._uri_for_path(path)
+        obj.write.format("delta").mode('overwrite').save(pathe)
 
     def path_exists(self, path: UPath) -> bool:
         try:

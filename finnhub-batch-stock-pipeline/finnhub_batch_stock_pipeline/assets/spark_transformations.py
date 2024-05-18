@@ -273,16 +273,12 @@ def merge_and_analyze(context, df_list):
     metric = []
     series = []
     # Create an empty schema
-    columns = StructType([])
-
-    # Create an empty dataframe with empty schema
-    mrgd_df_mtrc = pyspark.spark.createDataFrame(data = [],
-                           schema = columns)
-    mrgd_df_srs = pyspark.spark.createDataFrame(data = [],
-                           schema = columns)
+    # columns = StructType([])
+    # mtrcschema = None
+    # srsschema = None
 
     for item in df_list:
-        if "series" in item["type"]:
+        if "series" in item.select("type").collect():
 
             mtrc = item.filter(item["type"] == "metric")
             srs = item.filter(item["type"] == "series")
@@ -301,13 +297,22 @@ def merge_and_analyze(context, df_list):
             mtrc = mtrc.select(*[f"`{value}`" for value in mtrccolumns_to_keep])
             srs = srs.select(*[f"`{value}`" for value in srscolumns_to_keep])
 
+            srs = srs.drop("type")
+            mtrcschema = mtrc.schema
+            srsschema = srs.schema
             metric.append(mtrc)
             
-            series.append(srs.drop("type"))
+            series.append(srs)
         else:
             mtrc = item.filter(item["type"] == "metric").drop("type")
             metric.append(mtrc)
 
+    # Create an empty dataframe with empty schema
+    mrgd_df_mtrc = pyspark.spark.createDataFrame(data = [],
+                           schema = mtrcschema)
+    mrgd_df_srs = pyspark.spark.createDataFrame(data = [],
+                           schema = srsschema)
+    
     for value in metric:
         mrgd_df_mtrc = mrgd_df_mtrc.union(value)
 
