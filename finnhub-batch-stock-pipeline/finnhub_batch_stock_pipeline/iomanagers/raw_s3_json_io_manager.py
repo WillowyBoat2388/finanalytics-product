@@ -139,6 +139,7 @@ class JSONObjectS3IOManager(UPathIOManager):
         all_metadata.update(custom_metadata)  # type: ignore
         all_metadata.update(date_metadata)
         
+        # print(context.asset_info.items())
         context.add_output_metadata(all_metadata)
 
     def dump_to_path(self, context: OutputContext, obj: Any, path: UPath) -> None:
@@ -150,6 +151,9 @@ class JSONObjectS3IOManager(UPathIOManager):
         json_obj = json.dumps(obj)
         # Write to a file and upload that
         self.s3.put_object(Bucket=self.bucket, Key=path.as_posix(), Body=json_obj)
+        
+        # json_buffer = io.BytesIO(json_obj)
+        # self.s3.upload_fileobj(json_buffer, self.bucket, str(path))
 
     def path_exists(self, path: UPath) -> bool:
         try:

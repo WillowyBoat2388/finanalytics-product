@@ -2,6 +2,26 @@
 
 This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/getting-started/create-new-project).
 
+### Description
+    This repository contains a data engineering pipeline, that is used to fetch data from FinnHub API for a batch of stocks before it is then transformed and loaded into a Data Warehouse. After the ETL process is completed, the transformed data is then to be used to create insights in the form of a dashboard.
+
+### Infrastructure
+#### Tools & Services:
+- Dagster
+- Kubernetes
+- Python
+- AWS
+- Pyspark
+
+#### Code Quality
+- Unit Tests (Python): Pytest
+- Linter: Flake8, Black
+- Quality  Assurance: Great Expectations
+
+
+    
+
+
 ## Getting started
 
 First, install your Dagster code location as a Python package. By using the --editable flag, pip will install your Python package in ["editable mode"](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) so that as you develop, local code changes will automatically apply.
@@ -39,9 +59,3 @@ pytest finnhub_batch_stock_pipeline_tests
 If you want to enable Dagster [Schedules](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) or [Sensors](https://docs.dagster.io/concepts/partitions-schedules-sensors/sensors) for your jobs, the [Dagster Daemon](https://docs.dagster.io/deployment/dagster-daemon) process must be running. This is done automatically when you run `dagster dev`.
 
 Once your Dagster Daemon is running, you can start turning on schedules and sensors for your jobs.
-
-## Deploy on Dagster Cloud
-
-The easiest way to deploy your Dagster project is to use Dagster Cloud.
-
-Check out the [Dagster Cloud Documentation](https://docs.dagster.cloud) to learn more.

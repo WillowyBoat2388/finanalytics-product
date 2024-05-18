@@ -17,21 +17,23 @@ from upath import UPath
 from dagster_aws.s3 import S3Resource
 from pydantic import Field
 from dagster._utils.cached_method import cached_method
-
+from ..resources import MyPysparkResource
 
 class S3PandasParquetIOInternalManager(UPathIOManager):
     def __init__(
         self,
+        pyspark: MyPysparkResource,
         s3_bucket: str,
         s3_session: Any,
         s3_prefix: Optional[str] = None,
-        extension: Optional[str] = None,
+        # extension: Optional[str] = None,
     ):
         self.bucket = check.str_param(s3_bucket, "s3_bucket")
         check.opt_str_param(s3_prefix, "s3_prefix")
         self.s3 = s3_session
         self.s3.list_objects(Bucket=s3_bucket, Prefix=s3_prefix, MaxKeys=1)
-        self.extension = extension
+        # self.extension = extension
+        self.pyspark = pyspark
         base_path = UPath(s3_prefix) if s3_prefix else None
         super().__init__(base_path=base_path)
 
@@ -45,8 +47,9 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
     def load_from_path(self, context: InputContext, path: UPath) -> pd.DataFrame:
         try:
             
-            s3_obj = io.BytesIO(self.s3.get_object(Bucket=self.bucket, Key=str(path))["Body"].read())
-            return pd.read_parquet(s3_obj)
+            # s3_obj = io.BytesIO(self.s3.get_object(Bucket=self.bucket, Key=str(path))["Body"].read())
+            # return pd.read_parquet(s3_obj)
+            return self.pyspark.load_s3(path.as_posix())
         except self.s3.exceptions.NoSuchKey:
             raise FileNotFoundError(f"Could not find file {path} in S3 bucket {self.bucket}")
 
@@ -56,14 +59,12 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
             self.unlink(path)
 
         
-        parquet_buffer = io.BytesIO()
-        obj.to_parquet(parquet_buffer, engine="pyarrow")
-        parquet_buffer.seek(0) # can use put_object instead of upload_fileobj? 
-        self.s3.upload_fileobj(parquet_buffer, self.bucket, str(path))
+        obj.write.format("delta").mode('overwrite').save(path.as_posix())
 
     def path_exists(self, path: UPath) -> bool:
         try:
-            self.s3.get_object(Bucket=self.bucket, Key=str(path))
+            # self.s3.get_object(Bucket=self.bucket, Key=str(path))
+            self.s3.list_objects(Bucket=self.bucket, Prefix=str(path), MaxKeys=1)
         except self.s3.exceptions.NoSuchKey:
             return False
         return True
@@ -75,7 +76,8 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
         return f"Writing S3 object at: {self._uri_for_path(path)}"
 
     def unlink(self, path: UPath) -> None:
-        self.s3.delete_object(Bucket=self.bucket, Key=str(path))
+        for  key in self.s3.list_objects(Bucket=self.bucket, Prefix=str(path)):
+            self.s3.delete_object(Bucket=self.bucket, Key=str(key))
 
     def make_directory(self, path: UPath) -> None:
         # It is not necessary to create directories in S3
@@ -89,22 +91,23 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
         return UPath("storage", super().get_op_output_relative_path(context))
 
     def _uri_for_path(self, path: UPath) -> str:
-        return f"s3://{self.bucket}/{path}"
+        return f"s3a://{self.bucket}/{path}"
     
     
     
     
 
 class S3PandasParquetIOManager(ConfigurableIOManager):
-
+    pyspark: ResourceDependency[MyPysparkResource]
     s3_resource: ResourceDependency[S3Resource]
     s3_bucket: str = Field(description="S3 bucket to use for the file manager.")
     s3_prefix: str = Field(
         default="dagster", description="Prefix to use for the S3 bucket for this file manager."
     )
-    s3_suffix: str = Field(
-        default=".parquet", description="Suffix to use for the S3 bucket for this file manager."
-    )
+
+    # s3_suffix: str = Field(
+    #     default=".parquet", description="Suffix to use for the S3 bucket for this file manager."
+    # )
 
     @classmethod
     def _is_dagster_maintained(cls) -> bool:
@@ -113,10 +116,11 @@ class S3PandasParquetIOManager(ConfigurableIOManager):
     @cached_method
     def inner_io_manager(self) -> S3PandasParquetIOInternalManager:
         return S3PandasParquetIOInternalManager(
+            pyspark=self.pyspark,
             s3_bucket=self.s3_bucket,
             s3_session=self.s3_resource.get_client(),
             s3_prefix=self.s3_prefix,
-            extension=self.s3_suffix
+            # extension=self.s3_suffix
         )
 
     def load_input(self, context: InputContext) -> Any:

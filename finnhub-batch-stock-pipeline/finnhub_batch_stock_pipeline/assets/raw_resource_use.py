@@ -142,11 +142,11 @@ def finnhub_US_stocks_json(finnhub_stocks: list, my_conn: MyConnectionResource, 
 
         json_object = json.dumps(stock_data)
         json_buffer = io.BytesIO(json_object)
-        # series_parquet_buffer.seek(0)
+        # json_buffer.seek(0)
 
 
         stock_paths[stock] = path
-        s3.get_client().upload_fileobj(json_object, Bucket=bucket, Key=path)
+        s3.get_client().upload_fileobj(json_buffer, Bucket=bucket, Key=path)
         count += 1
         if count == 500: break
 
