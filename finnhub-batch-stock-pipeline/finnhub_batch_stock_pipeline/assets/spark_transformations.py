@@ -1,8 +1,5 @@
-from dagster import (graph_asset,
-                    graph,
+from dagster import (
                     graph_multi_asset,
-                    multi_asset,
-                    asset,
                     AssetOut,
                     AssetKey,
                     In,
@@ -10,15 +7,15 @@ from dagster import (graph_asset,
                     op,
                     DynamicOut,
                     DynamicOutput,
-                    Output,
-                    InputContext,
-                    OpExecutionContext
+                    OpExecutionContext,
+                    RetryPolicy,
+                    Backoff,
+                    Jitter
                 )
 from typing import Dict, List
 from dagster_deltalake import DeltaLakePyarrowIOManager, S3Config
 from ..resources import MyPysparkResource
 from datetime import datetime as dt
-import time
 import json
 from pyspark.sql import DataFrame, Row
 from pyspark.sql.types import *
@@ -41,7 +38,7 @@ def stock_tables(context, stock_data):
         i += 1
 
 @op()
-def get_result_dataframe(dataframe, symbol, pyspark):
+def get_result_dataframe(dataframe, symbol, spark):
     # Repartition the DataFrames to have the same number of partitions
     num_partitions = max(dataframe.rdd.getNumPartitions(), symbol.rdd.getNumPartitions())
     df = dataframe.repartition(num_partitions)
@@ -50,7 +47,7 @@ def get_result_dataframe(dataframe, symbol, pyspark):
     
     df1df2 = df.rdd.zip(df_s.rdd).map(lambda x: x[0]+x[1])
     
-    return pyspark.spark.createDataFrame(df1df2, schema)
+    return spark.createDataFrame(df1df2, schema)
 
 @op()
 def get_array_names_in_struct(schema, parent_name=''):
@@ -100,12 +97,20 @@ def get_array_element_names(schema, parent_name=''):
 
 @op(
     required_resource_keys= {"pyspark": MyPysparkResource()},
-    out={'metric_and_series': Out(io_manager_key="s3_prqt_io_manager"),
+    out={'metric_and_series': Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
         },
+    retry_policy=RetryPolicy(
+        max_retries=3,
+        delay=0.2,  # 200ms
+        backoff=Backoff.EXPONENTIAL,
+        jitter=Jitter.PLUS_MINUS,
     )
+)
 def create_stock_tables(context:OpExecutionContext, input_fn):
   
     pyspark = context.resources.pyspark
+    spark = pyspark.spark
+    sc = pyspark.sc
     metric_and_series_list = []
     mtrc_and_srs = []
     symbols = []
@@ -121,7 +126,7 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
             "allowSingleQuotes": True
         }
         if key == 'metric':
-            df = pyspark.spark.read.options(**read_options).json(pyspark.sc.parallelize([json.dumps(value)]))
+            df = spark.read.options(**read_options).json(sc.parallelize([json.dumps(value)]))
             
             mtrc_and_srs.append(df)
             
@@ -132,7 +137,7 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
             # break
         
         elif key == 'series' and value:
-            df = pyspark.spark.read.options(**read_options).json(pyspark.sc.parallelize([json.dumps(value)]))
+            df = spark.read.options(**read_options).json(sc.parallelize([json.dumps(value)]))
             
             annual_schema = df.schema["annual"].dataType
             quarterly_schema = df.schema["quarterly"].dataType
@@ -220,14 +225,14 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
     
     if len(mtrc_and_srs) == 2:
         mtrc = mtrc_and_srs[0]
-        mtrcsymbol = pyspark.spark.createDataFrame(pyspark.sc.parallelize(symbols[0]), schema)
+        mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
         srs = mtrc_and_srs[1]
-        srssymbol = pyspark.spark.createDataFrame(pyspark.sc.parallelize(symbols[-1]), schema)
+        srssymbol = spark.createDataFrame(sc.parallelize(symbols[-1]), schema)
         
-        metric = get_result_dataframe(mtrc, mtrcsymbol, pyspark)
-        context.log.info(srs.count())
-        context.log.info(srssymbol.count())
-        series = get_result_dataframe(srs, srssymbol, pyspark)
+        metric = get_result_dataframe(mtrc, mtrcsymbol, spark)
+        # context.log.info(srs.count())
+        # context.log.info(srssymbol.count())
+        series = get_result_dataframe(srs, srssymbol, spark)
     
         # Add a distinguishing column to each DataFrame
         df1_with_marker = metric.withColumn("type", F.lit("metric"))
@@ -236,6 +241,7 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
         # Get the list of all columns in both DataFrames
         metric_columns = df1_with_marker.columns
         series_columns = df2_with_marker.columns
+        all_columns = metric_columns + [item for item in series_columns if item not in metric_columns]
 
         df1 = df1_with_marker
         df2 = df2_with_marker
@@ -247,22 +253,34 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
         for col in series_columns:
             if col not in metric_columns:
                 df1 = df1.withColumn(col, F.lit(None).cast(StringType()))
+        
+        # Ensure the columns are in the same order
+        df1 = df1.select(*[f"`{col}`" for col in all_columns])
+        df2 = df2.select(*[f"`{col}`" for col in all_columns])
 
         # Union the DataFrames together
         chained_df = df1.unionByName(df2)
     else:
         mtrc = mtrc_and_srs[0]
-        mtrcsymbol = pyspark.spark.createDataFrame(pyspark.sc.parallelize(symbols[0]), schema)
-        metric = get_result_dataframe(mtrc, mtrcsymbol, pyspark)
+        mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
+        metric = get_result_dataframe(mtrc, mtrcsymbol, spark)
 
         chained_df = metric.withColumn("type", F.lit("metric"))
 
-    # context.
+    # context.get_step_execution_context().step.key(f"create_tables_stock_{symbol}")
     return chained_df
 
 @op(
     required_resource_keys= {"pyspark": MyPysparkResource()},
-    out=Out(io_manager_key="s3_prqt_io_manager"),
+    out={"metric": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
+         "series": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager")
+    },
+    retry_policy=RetryPolicy(
+        max_retries=2,
+        delay=0.2,  # 200ms
+        backoff=Backoff.EXPONENTIAL,
+        jitter=Jitter.PLUS_MINUS,
+    )
 )
 def merge_and_analyze(context, df_list):
 
@@ -272,14 +290,17 @@ def merge_and_analyze(context, df_list):
     pyspark = context.resources.pyspark
     metric = []
     series = []
+    
     # Create an empty schema
-    # columns = StructType([])
-    # mtrcschema = None
-    # srsschema = None
+    schemas = {}
 
+    mtrcschema = None
+    srsschema = None
+    
+    
     for item in df_list:
-        if "series" in item.select("type").collect():
-
+        if item.filter(item.type == "series").count() > 0:
+            
             mtrc = item.filter(item["type"] == "metric")
             srs = item.filter(item["type"] == "series")
 
@@ -291,41 +312,60 @@ def merge_and_analyze(context, df_list):
             
             # Slice the list of columns to keep only the column to keep and its surrounding columns
             srscolumns_to_keep = all_columns[keep_column_index - 1:-1]
-            mtrccolumns_to_keep = all_columns[:keep_column_index - 1]
+            mtrccolumns_to_keep = all_columns[:keep_column_index]
             
             # Select only the columns to keep
             mtrc = mtrc.select(*[f"`{value}`" for value in mtrccolumns_to_keep])
             srs = srs.select(*[f"`{value}`" for value in srscolumns_to_keep])
 
             srs = srs.drop("type")
+
+            schemas['mtrc'] = mtrc.schema
             mtrcschema = mtrc.schema
+
+
+            schemas['srs'] = srs.schema
             srsschema = srs.schema
+
             metric.append(mtrc)
             
             series.append(srs)
-        else:
+
+            context.log.info(f"srsmetric_col_len:    {len(mtrc.columns)}")
+            context.log.info(item.head())
+        elif item.filter(item.type == "series").count() == 0:
             mtrc = item.filter(item["type"] == "metric").drop("type")
+            # schemas['mtrc'] = mtrc.schema
             metric.append(mtrc)
+            context.log.info(f"metric_col_len:    {len(mtrc.columns)}")
+            context.log.info(item.head())
+        else:
+            context.log.info(item.head())
 
     # Create an empty dataframe with empty schema
     mrgd_df_mtrc = pyspark.spark.createDataFrame(data = [],
-                           schema = mtrcschema)
+                           schema = schemas['mtrc'])
     mrgd_df_srs = pyspark.spark.createDataFrame(data = [],
-                           schema = srsschema)
+                           schema = schemas['srs'])
     
     for value in metric:
-        mrgd_df_mtrc = mrgd_df_mtrc.union(value)
+        mrgd_df_mtrc = mrgd_df_mtrc.unionByName(value, allowMissingColumns=True)
 
     for value in series:
-        mrgd_df_srs = mrgd_df_srs.union(value)
+        mrgd_df_srs = mrgd_df_srs.unionByName(value, allowMissingColumns=True)
 
     
     return mrgd_df_mtrc, mrgd_df_srs
 
 
 
-@graph_asset()
-def pyspark_operator_3(finnhub_US_stocks: List): #-> tuple[DataFrame, DataFrame]:
+@graph_multi_asset(
+    group_name="staging",
+    outs={"metric": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
+         "series": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager")
+    }
+)
+def spark_operator(finnhub_US_stocks: List) -> tuple[DataFrame, DataFrame]:
     """
     Graph asset to map and collect transformation steps for each stock 
     into series and metric dataframes.
@@ -334,7 +374,8 @@ def pyspark_operator_3(finnhub_US_stocks: List): #-> tuple[DataFrame, DataFrame]
     mapped = stock_tables(finnhub_US_stocks)
     
     collected = mapped.map(create_stock_tables)
-    # collection = 
+    # metric, series = merge_and_analyze(collected.collect())
+    # return metric, series
     return merge_and_analyze(collected.collect())
     
     # return 1

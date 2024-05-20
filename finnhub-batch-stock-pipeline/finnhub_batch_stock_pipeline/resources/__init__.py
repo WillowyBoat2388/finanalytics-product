@@ -6,6 +6,8 @@ from dagster import ConfigurableResource, EnvVar
 from pyspark.sql import SparkSession
 from pyspark import SparkConf, SparkContext
 from delta import *
+import pyarrow
+import pyarrow.parquet as pq
 
 
 
@@ -13,8 +15,9 @@ class MyPysparkResource():
     def __init__(self) -> None:
         builder = SparkSession.builder.appName("Dagster_FinnHub") \
             .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
-            .config("spark.hadoop.fs.s3a.endpoint", "http://127.0.0.1:9000") \
-            .config("spark.hadoop.fs.s3a.endpoint.region", 'eu-west-1') \
+            .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
+            .config("spark.hadoop.fs.s3a.endpoint", os.getenv("AWS_ENDPOINT")) \
+            .config("spark.hadoop.fs.s3a.endpoint.region", os.getenv('AWS_REGION')) \
             .config("spark.hadoop.fs.s3a.connection.ssl.enabled", "true") \
             .config("spark.hadoop.fs.s3a.path.style.access", "true") \
             .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \

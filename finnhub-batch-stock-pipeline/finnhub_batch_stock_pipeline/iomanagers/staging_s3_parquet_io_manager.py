@@ -42,7 +42,26 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
     # def _get_path(self, context: InputContext):
     #     return super()._get_path(context).with_suffix(".parquet")
 
+    def _get_path_without_extension(self, context: Union[InputContext, OutputContext]) -> "UPath":
+        if context.has_asset_key:
+            context_path = self.get_asset_relative_path(context)
+        else:
+            # we are dealing with an op output
+            context_path = self.get_op_output_relative_path(context)
 
+        # context.log.info(context_path)
+        if "/" in context_path.as_posix():
+            context_path = context_path.as_posix().split("/")[1:]
+            context_path =  UPath(*context_path)
+            
+
+        if type(context) == OutputContext:
+            date = context.metadata.get('date')
+        else:
+            date = context.upstream_output.metadata.get('date')
+        
+        context_path = UPath(date, context_path)
+        return self._base_path.joinpath(context_path)
 
     def load_from_path(self, context: InputContext, path: UPath) -> pd.DataFrame:
         try:
@@ -88,8 +107,8 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
         path = self._get_path(context)
         return {"uri": MetadataValue.path(self._uri_for_path(path))}
 
-    def get_op_output_relative_path(self, context: Union[InputContext, OutputContext]) -> UPath:
-        return UPath("storage", super().get_op_output_relative_path(context))
+    # def get_op_output_relative_path(self, context: Union[InputContext, OutputContext]) -> UPath:
+    #     return UPath("storage", super().get_op_output_relative_path(context))
 
     def _uri_for_path(self, path: UPath) -> str:
         return f"s3a://{self.bucket}/{path}"

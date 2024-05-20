@@ -56,7 +56,7 @@ def import_stocks_data(input_list, my_conn: MyConnectionResource):
     
     
 @graph_asset(
-    group_name="raw_og",
+    group_name="raw",
 )
 def finnhub_US_stocks() -> Dict:
     """
