@@ -10,12 +10,19 @@ from .resources import MyConnectionResource, s3_rsrce, MyPysparkResource
 from .assets import (spark_transformations, 
                     graph_raw, warehouse_tables
                     )
+import os
 # from .sensors import stocks_sensor
 
 all_assets = load_assets_from_modules([spark_transformations, graph_raw, warehouse_tables])
 # all_sensors = [stocks_sensor]
 
 # config = S3Config(endpoint=EnvVar("AWS_ENDPOINT"), allow_unsafe_rename=True)
+config = S3Config(provider="s3", access_key_id=os.getenv("AWS_ACCESS_KEY_ID"), 
+                                     secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"), region=os.getenv("AWS_REGION"), 
+                                     endpoint=os.getenv("AWS_ENDPOINT"),
+                                     bucket=os.getenv("AWS_BUCKET"),
+                                     imdsv1_fallback=True,
+                                     allow_unsafe_rename=True)
 
 defs = Definitions(
     assets= all_assets,
@@ -32,20 +39,12 @@ defs = Definitions(
         ),
         "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
             root_uri="dagster-api",  # required
-            storage_options=S3Config(access_key_id=EnvVar("AWS_ACCESS_KEY_ID"), 
-                                     secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY"), region=EnvVar("AWS_REGION"), 
-                                     endpoint=EnvVar("AWS_ENDPOINT"),
-                                     bucket=EnvVar("AWS_BUCKET"),
-                                     allow_unsafe_rename=True),  # required
+            storage_options=config,  # required
             schema="core",  # optional, defaults to "public"
         ),
         "delta_lake_io_manager": DeltaLakePandasIOManager(
             root_uri="dagster-api",  # required
-            storage_options=S3Config(access_key_id=EnvVar("AWS_ACCESS_KEY_ID"), 
-                                     secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY"), region=EnvVar("AWS_REGION"), 
-                                     endpoint=EnvVar("AWS_ENDPOINT"),
-                                     bucket=EnvVar("AWS_BUCKET"),
-                                     allow_unsafe_rename=True), #LocalConfig(),  # required
+            storage_options=config, #LocalConfig(),  # required
             schema="core",  # optional, defaults to "public"
         ),
         "warehouse_io_manager": SnowflakePySparkIOManager(

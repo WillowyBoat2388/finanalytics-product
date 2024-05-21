@@ -27,18 +27,17 @@ date = dt.now().strftime("%Y-%m-%d")
            "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
     outs = {"metric_dim": AssetOut(metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
             "series_dim": AssetOut(metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
-            "metric_dim_wrh": AssetOut(is_required=False, metadata={ "mode": "append"}, io_manager_key="warehouse_io_manager"),
-            "series_dim_wrh": AssetOut(is_required=False, metadata={ "mode": "append"}, io_manager_key="warehouse_io_manager")
+            # "metric_dim_wrh": AssetOut(metadata={ "mode": "append"}, io_manager_key="warehouse_io_manager"),
+            # "series_dim_wrh": AssetOut(metadata={ "mode": "append"}, io_manager_key="warehouse_io_manager")
     },
     internal_asset_deps={
         "metric_dim": {AssetKey(["metric"])},
         "series_dim": {AssetKey(["series"])},
-        "metric_dim_wrh": {AssetKey(["metric"])},
-        "series_dim_wrh": {AssetKey(["series"])}
-    },
-    can_subset=True
+        # "metric_dim_wrh": {AssetKey(["metric"])},
+        # "series_dim_wrh": {AssetKey(["series"])}
+    }
 )
-def dimension_tables(metric, series) -> tuple[pa.Table, pa.Table, DataFrame, DataFrame]:
+def dimension_tables(metric, series) -> tuple[pa.Table, pa.Table]:#, DataFrame, DataFrame]:
     
 
     metric_dim = metric._collect_as_arrow()
@@ -49,7 +48,7 @@ def dimension_tables(metric, series) -> tuple[pa.Table, pa.Table, DataFrame, Dat
     series_dim = pa.Table.from_batches(series_dim)
     series_dim_wrh = series.toPandas()
     
-    return metric_dim, series_dim, metric, series
+    return metric_dim, series_dim#, metric, series
 
 
 # @multi_asset(
