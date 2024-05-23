@@ -40,7 +40,7 @@ def stock_tables(context, stock_data):
 @op()
 def get_result_dataframe(dataframe, symbol, spark):
     # Repartition the DataFrames to have the same number of partitions
-    num_partitions = max(dataframe.rdd.getNumPartitions(), symbol.rdd.getNumPartitions())
+    num_partitions = min(dataframe.rdd.getNumPartitions(), symbol.rdd.getNumPartitions())
     df = dataframe.repartition(num_partitions)
     df_s = symbol.repartition(num_partitions)
     schema = StructType(dataframe.schema.fields + symbol.schema.fields)
@@ -116,9 +116,6 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
     symbols = []
     dct = {}
     for key,value in input_fn.items():
-        # if key == 'metric':
-        #     df = spark.read.json(sc.parallelize([value]))
-        #     break
         read_options = {
             "multiline": True,
             "mode": "PERMISSIVE",

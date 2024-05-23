@@ -3,7 +3,7 @@ pip3 install minio
 
 wget https://dl.min.io/server/minio/release/linux-amd64/minio
 chmod +x minio
-./minio server ../data --console-address :9001 
+./minio server ../data --console-address :9001
 # > echo $! > minio.txt
 
 wget https://dl.min.io/client/mc/release/linux-amd64/mc

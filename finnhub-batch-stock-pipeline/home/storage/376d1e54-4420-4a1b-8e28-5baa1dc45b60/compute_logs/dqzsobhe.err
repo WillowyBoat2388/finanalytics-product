@@ -1,0 +1,51 @@
+[32m2024-05-23 09:31:12 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - LOGS_CAPTURED - Started capturing logs in process (pid: 261992).
+[32m2024-05-23 09:31:12 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - dimension_tables - STEP_START - Started execution of step "dimension_tables".
+[32m2024-05-23 09:31:12 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - dimension_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-23/metric
+[32m2024-05-23 09:31:20 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - dimension_tables - LOADED_INPUT - Loaded input "metric" using input manager "s3_prqt_io_manager"
+[32m2024-05-23 09:31:20 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - dimension_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-23/series
+[32m2024-05-23 09:31:20 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - dimension_tables - LOADED_INPUT - Loaded input "series" using input manager "s3_prqt_io_manager"
+[32m2024-05-23 09:31:20 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - dimension_tables - STEP_INPUT - Got input "metric" of type "Any". (Type check passed).
+[32m2024-05-23 09:31:20 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - dimension_tables - STEP_INPUT - Got input "series" of type "Any". (Type check passed).
+[32m2024-05-23 09:31:34 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - dimension_tables - STEP_OUTPUT - Yielded output "metric_dim" of type "Table". (Type check passed).
+[32m2024-05-23 09:31:34 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - dimension_tables - IO manager mode overridden with the asset metadata mode, overwrite -> append
+[32m2024-05-23 09:31:34 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - dimension_tables - Writing with mode: append
+thread '<unnamed>' panicked at /home/runner/work/delta-rs/delta-rs/crates/core/src/table/builder.rs:166:48:
+The specified table_uri is not valid: InvalidTableLocation("Unknown scheme: http")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+[32m2024-05-23 09:31:34 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 376d1e54-4420-4a1b-8e28-5baa1dc45b60 - 261992 - dimension_tables - STEP_FAILURE - Execution of step "dimension_tables" failed.
+
+pyo3_runtime.PanicException: The specified table_uri is not valid: InvalidTableLocation("Unknown scheme: http")
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
+    for evt in _store_output(step_context, step_output_handle, output):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
+    for elt in iterate_with_context(
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/db_io_manager.py", line 147, in handle_output
+    handler_metadata = self._handlers_by_type[obj_type].handle_output(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster_deltalake/handler.py", line 95, in handle_output
+    write_deltalake(  # type: ignore
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/deltalake/writer.py", line 251, in write_deltalake
+    table, table_uri = try_get_table_and_table_uri(table_or_uri, storage_options)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/deltalake/writer.py", line 622, in try_get_table_and_table_uri
+    table = try_get_deltatable(table_or_uri, storage_options)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/deltalake/writer.py", line 635, in try_get_deltatable
+    return DeltaTable(table_uri, storage_options=storage_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/deltalake/table.py", line 401, in __init__
+    self._table = RawDeltaTable(
+                  ^^^^^^^^^^^^^^
+[0m

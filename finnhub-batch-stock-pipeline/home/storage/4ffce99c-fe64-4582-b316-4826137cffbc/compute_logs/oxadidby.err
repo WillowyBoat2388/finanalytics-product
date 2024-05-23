@@ -1,0 +1,34 @@
+[32m2024-05-23 13:10:17 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - LOGS_CAPTURED - Started capturing logs in process (pid: 431993).
+[32m2024-05-23 13:10:17 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - dimension_tables - STEP_START - Started execution of step "dimension_tables".
+[32m2024-05-23 13:10:17 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - dimension_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-23/metric
+[32m2024-05-23 13:10:22 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - dimension_tables - LOADED_INPUT - Loaded input "metric" using input manager "s3_prqt_io_manager", from output "metric" of step "spark_operator.merge_and_analyze"
+[32m2024-05-23 13:10:22 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - dimension_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-23/series
+[32m2024-05-23 13:10:22 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - dimension_tables - LOADED_INPUT - Loaded input "series" using input manager "s3_prqt_io_manager", from output "series" of step "spark_operator.merge_and_analyze"
+[32m2024-05-23 13:10:22 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - dimension_tables - STEP_INPUT - Got input "metric" of type "Any". (Type check passed).
+[32m2024-05-23 13:10:22 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - dimension_tables - STEP_INPUT - Got input "series" of type "Any". (Type check passed).
+[32m2024-05-23 13:10:30 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - dimension_tables - STEP_OUTPUT - Yielded output "metric_dim" of type "Table". (Type check passed).
+[32m2024-05-23 13:10:30 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - dimension_tables - IO manager mode overridden with the asset metadata mode, overwrite -> append
+[32m2024-05-23 13:10:30 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - dimension_tables - Writing with mode: append
+[32m2024-05-23 13:10:30 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 4ffce99c-fe64-4582-b316-4826137cffbc - 431993 - dimension_tables - STEP_FAILURE - Execution of step "dimension_tables" failed.
+
+dagster._core.errors.DagsterExecutionHandleOutputError: Error occurred while handling output "metric_dim" of step "dimension_tables"::
+
+_internal.DeltaProtocolError: Atomic rename requires a LockClient for S3 backends. Either configure the LockClient, or set AWS_S3_ALLOW_UNSAFE_RENAME=true to opt out of support for concurrent writers.
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/db_io_manager.py", line 147, in handle_output
+    handler_metadata = self._handlers_by_type[obj_type].handle_output(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster_deltalake/handler.py", line 95, in handle_output
+    write_deltalake(  # type: ignore
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/deltalake/writer.py", line 492, in write_deltalake
+    write_deltalake_pyarrow(
+[0m

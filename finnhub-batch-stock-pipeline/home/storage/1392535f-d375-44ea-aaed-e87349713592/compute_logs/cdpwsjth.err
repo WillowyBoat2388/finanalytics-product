@@ -1,0 +1,169 @@
+[32m2024-05-23 08:25:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - 22390 - LOGS_CAPTURED - Started capturing logs in process (pid: 22390).
+[32m2024-05-23 08:25:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - 22390 - spark_operator.create_stock_tables[stock_A] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_A]".
+[32m2024-05-23 08:25:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - spark_operator.create_stock_tables[stock_A] - Loading file from: /workspace/practical-data-engineering/finnhub-batch-stock-pipeline/home/storage/1392535f-d375-44ea-aaed-e87349713592/spark_operator.stock_tables/result/stock_A using PickledObjectFilesystemIOManager...
+[32m2024-05-23 08:25:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - 22390 - spark_operator.create_stock_tables[stock_A] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-05-23 08:25:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - 22390 - spark_operator.create_stock_tables[stock_A] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+[32m2024-05-23 08:25:39 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - spark_operator.create_stock_tables[stock_A] - Row(10DayAverageTradingVolume=0.45358, 13WeekPriceReturnDaily=12.9609, 26WeekPriceReturnDaily=34.5687, 3MonthADReturnStd=23.721786, 3MonthAverageTradingVolume=0.50945, 52WeekHigh=155.21, 52WeekHighDate='2024-05-17', 52WeekLow=97.12, 52WeekLowDate='2023-10-30', 52WeekPriceReturnDaily=18.8355, 5DayPriceReturnDaily=-0.9332, assetTurnoverAnnual=0.6349, assetTurnoverTTM=0.6239, beta=1.3476642, bookValuePerShareAnnual=20.0087, bookValuePerShareQuarterly=21.1164, bookValueShareGrowth5Y=6.86, capexCagr5Y=10.98, cashFlowPerShareAnnual=5.0458, cashFlowPerShareQuarterly=5.6272, cashFlowPerShareTTM=5.11337, cashPerSharePerShareAnnual=5.4429, cashPerSharePerShareQuarterly=5.965, currentDividendYieldTTM=0.5928, currentEv/freeCashFlowAnnual=31.1056, currentEv/freeCashFlowTTM=27.8045, currentRatioAnnual=2.6114, currentRatioQuarterly=2.6827, dividendGrowthRate5Y=8.62, dividendPerShareAnnual=0.9027, dividendPerShareTTM=0.9066, dividendYieldIndicatedAnnual=0.6143034, ebitdPerShareAnnual=5.6689, ebitdPerShareTTM=5.489, ebitdaCagr5Y=6.95, ebitdaInterimCagr5Y=7.71, enterpriseValue=45849.594, epsAnnual=4.1892, epsBasicExclExtraItemsAnnual=4.1892, epsBasicExclExtraItemsTTM=4.1815, epsExclExtraItemsAnnual=4.1892, epsExclExtraItemsTTM=4.1815, epsGrowth3Y=22.04, epsGrowth5Y=33.93, epsGrowthQuarterlyYoy=-0.13, epsGrowthTTMYoy=-5.71, epsInclExtraItemsAnnual=4.1892, epsInclExtraItemsTTM=4.1815, epsNormalizedAnnual=4.1892, epsTTM=4.1815, focfCagr5Y=10.13, grossMargin5Y=53.35, grossMarginAnnual=50.87, grossMarginTTM=54.76, inventoryTurnoverAnnual=3.245, inventoryTurnoverTTM=3.1063, longTermDebt/equityAnnual=0.4679, longTermDebt/equityQuarterly=0.4129, marketCapitalization=45042.594, monthToDatePriceReturnDaily=11.5514, netIncomeEmployeeAnnual=0.0685, netIncomeEmployeeTTM=0.0683, netInterestCoverageAnnual=31.4318, netInterestCoverageTTM=20.6912, netMarginGrowth5Y=23.06, netProfitMargin5Y=17.96, netProfitMarginAnnual=18.15, netProfitMarginTTM=20.99, operatingMargin5Y=19.85, operatingMarginAnnual=20.39, operatingMarginTTM=23.16, payoutRatioAnnual=21.37, payoutRatioTTM=21.6, pbAnnual=5.1663, pbQuarterly=6.161, pcfShareAnnual=25.4191, pcfShareTTM=22.9692, peAnnual=36.3247, peBasicExclExtraTTM=36.4422, peExclExtraAnnual=30.22541, peExclExtraTTM=36.4422, peInclExtraTTM=36.4422, peNormalizedAnnual=36.3247, peTTM=36.4422, pfcfShareAnnual=30.5581, pfcfShareTTM=27.3151, pretaxMargin5Y=19.33, pretaxMarginAnnual=19.6, pretaxMarginTTM=24.31, priceRelativeToS&P50013Week=6.4003, priceRelativeToS&P50026Week=16.7449, priceRelativeToS&P5004Week=6.8679, priceRelativeToS&P50052Week=-9.1149, priceRelativeToS&P500Ytd=-1.5157, psAnnual=6.5919, psTTM=6.6878, ptbvAnnual=5.6232, ptbvQuarterly=6.6361, quickRatioAnnual=1.9682, quickRatioQuarterly=2.0439, receivablesTurnoverAnnual=5.069, receivablesTurnoverTTM=4.8911, revenueEmployeeAnnual=0.3775, revenueEmployeeTTM=0.3721, revenueGrowth3Y=8.57, revenueGrowth5Y=6.82, revenueGrowthQuarterlyYoy=-5.58, revenueGrowthTTMYoy=-2.81, revenuePerShareAnnual=23.0845, revenuePerShareTTM=22.9082, revenueShareGrowth5Y=8.83, roa5Y=10.71, roaRfy=11.52, roaTTM=11.450000000000001, roe5Y=20.92, roeRfy=21.21, roeTTM=21.15, roi5Y=13.96, roiAnnual=14.45, roiTTM=14.46, tangibleBookValuePerShareAnnual=18.3827, tangibleBookValuePerShareQuarterly=19.6047, tbvCagr5Y=5.67, totalDebt/totalEquityAnnual=0.4679, totalDebt/totalEquityQuarterly=0.4129, yearToDatePriceReturnDaily=9.9547)
+[32m2024-05-23 08:26:28 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - spark_operator.create_stock_tables[stock_A] - Row(date='1994-10-31', quarterly.assetTurnoverTTM=None, quarterly.bookValue=None, quarterly.cashRatio=None, quarterly.currentRatio=None, quarterly.ebitPerShare=None, quarterly.eps=None, quarterly.ev=None, quarterly.fcfMargin=None, quarterly.fcfPerShareTTM=None, quarterly.grossMargin=None, quarterly.inventoryTurnoverTTM=None, quarterly.longtermDebtTotalAsset=None, quarterly.longtermDebtTotalCapital=None, quarterly.longtermDebtTotalEquity=None, quarterly.netDebtToTotalCapital=None, quarterly.netDebtToTotalEquity=None, quarterly.netMargin=None, quarterly.operatingMargin=None, quarterly.payoutRatioTTM=None, quarterly.pb=None, quarterly.peTTM=None, quarterly.pfcfTTM=None, quarterly.pretaxMargin=None, quarterly.psTTM=None, quarterly.ptbv=None, quarterly.quickRatio=None, quarterly.receivablesTurnoverTTM=None, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.rotcTTM=None, quarterly.salesPerShare=None, quarterly.sgaToSale=None, quarterly.tangibleBookValue=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.bookValue=None, annual.cashRatio=None, annual.currentRatio=None, annual.ebitPerShare=1.3711, annual.eps=0.7421, annual.ev=None, annual.fcfMargin=None, annual.grossMargin=0.4843, annual.inventoryTurnover=None, annual.longtermDebtTotalAsset=None, annual.longtermDebtTotalCapital=None, annual.longtermDebtTotalEquity=None, annual.netDebtToTotalCapital=None, annual.netDebtToTotalEquity=None, annual.netMargin=0.0508, annual.operatingMargin=0.0939, annual.payoutRatio=None, annual.pb=None, annual.pe=None, annual.pfcf=None, annual.pretaxMargin=0.0783, annual.ps=None, annual.ptbv=None, annual.quickRatio=None, annual.receivablesTurnover=None, annual.roa=None, annual.roe=None, annual.roic=None, annual.rotc=None, annual.salesPerShare=14.5947, annual.sgaToSale=0.5157, annual.tangibleBookValue=None, annual.totalDebtToEquity=None, annual.totalDebtToTotalAsset=None, annual.totalDebtToTotalCapital=None, annual.totalRatio=None)
+[32m2024-05-23 08:27:44 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - 22390 - spark_operator.create_stock_tables[stock_A] - STEP_OUTPUT - Yielded output "metric_and_series" of type "Any". (Type check passed).
+[32m2024-05-23 08:27:52 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - spark_operator.create_stock_tables[stock_A] - Writing S3 object at: s3a://dagster-api/staging/2024-05-23/spark_operator.create_stock_tables[stock_A]/metric_and_series
+[32m2024-05-23 08:27:52 +0000[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - spark_operator.create_stock_tables[stock_A] - Removing existing S3 object: staging/2024-05-23/spark_operator.create_stock_tables[stock_A]/metric_and_series
+[32m2024-05-23 08:28:03 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1392535f-d375-44ea-aaed-e87349713592 - 22390 - spark_operator.create_stock_tables[stock_A] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_A]" failed and has requested a retry in 0.3559658771337443 seconds.
+
+dagster._core.execution.plan.utils.RetryRequestedFromPolicy
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
+    for evt in _store_output(step_context, step_output_handle, output):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
+    for elt in iterate_with_context(
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/home/gitpod/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
+    raise RetryRequestedFromPolicy(
+
+The above exception was caused by the following exception:
+py4j.protocol.Py4JJavaError: An error occurred while calling o2822.save.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 20 in stage 38.0 failed 1 times, most recent failure: Lost task 20.0 in stage 38.0 (TID 250) (10.0.5.2 executor driver): org.apache.spark.SparkException: Can only zip RDDs with same number of elements in each partition
+	at org.apache.spark.errors.SparkCoreErrors$.canOnlyZipRDDsWithSamePartitionSizeError(SparkCoreErrors.scala:142)
+	at org.apache.spark.rdd.RDD$$anon$3.hasNext(RDD.scala:974)
+	at scala.collection.Iterator.foreach(Iterator.scala:943)
+	at scala.collection.Iterator.foreach$(Iterator.scala:943)
+	at org.apache.spark.rdd.RDD$$anon$3.foreach(RDD.scala:970)
+	at org.apache.spark.api.python.PythonRDD$.writeIteratorToStream(PythonRDD.scala:322)
+	at org.apache.spark.api.python.PythonRunner$$anon$2.writeIteratorToStream(PythonRunner.scala:751)
+	at org.apache.spark.api.python.BasePythonRunner$WriterThread.$anonfun$run$1(PythonRunner.scala:451)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.api.python.BasePythonRunner$WriterThread.run(PythonRunner.scala:282)
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3060)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:989)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2398)
+	at org.apache.spark.sql.delta.files.DeltaFileFormatWriter$.$anonfun$executeWrite$1(DeltaFileFormatWriter.scala:263)
+	at org.apache.spark.sql.delta.files.DeltaFileFormatWriter$.writeAndCommit(DeltaFileFormatWriter.scala:295)
+	at org.apache.spark.sql.delta.files.DeltaFileFormatWriter$.executeWrite(DeltaFileFormatWriter.scala:234)
+	at org.apache.spark.sql.delta.files.DeltaFileFormatWriter$.write(DeltaFileFormatWriter.scala:214)
+	at org.apache.spark.sql.delta.files.TransactionalWrite.$anonfun$writeFiles$1(TransactionalWrite.scala:433)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+	at org.apache.spark.sql.delta.files.TransactionalWrite.writeFiles(TransactionalWrite.scala:391)
+	at org.apache.spark.sql.delta.files.TransactionalWrite.writeFiles$(TransactionalWrite.scala:364)
+	at org.apache.spark.sql.delta.OptimisticTransaction.writeFiles(OptimisticTransaction.scala:142)
+	at org.apache.spark.sql.delta.files.TransactionalWrite.writeFiles(TransactionalWrite.scala:239)
+	at org.apache.spark.sql.delta.files.TransactionalWrite.writeFiles$(TransactionalWrite.scala:235)
+	at org.apache.spark.sql.delta.OptimisticTransaction.writeFiles(OptimisticTransaction.scala:142)
+	at org.apache.spark.sql.delta.files.TransactionalWrite.writeFiles(TransactionalWrite.scala:228)
+	at org.apache.spark.sql.delta.files.TransactionalWrite.writeFiles$(TransactionalWrite.scala:225)
+	at org.apache.spark.sql.delta.OptimisticTransaction.writeFiles(OptimisticTransaction.scala:142)
+	at org.apache.spark.sql.delta.commands.WriteIntoDelta.writeFiles(WriteIntoDelta.scala:341)
+	at org.apache.spark.sql.delta.commands.WriteIntoDelta.write(WriteIntoDelta.scala:292)
+	at org.apache.spark.sql.delta.commands.WriteIntoDelta.$anonfun$run$1(WriteIntoDelta.scala:105)
+	at org.apache.spark.sql.delta.commands.WriteIntoDelta.$anonfun$run$1$adapted(WriteIntoDelta.scala:100)
+	at org.apache.spark.sql.delta.DeltaLog.withNewTransaction(DeltaLog.scala:223)
+	at org.apache.spark.sql.delta.commands.WriteIntoDelta.run(WriteIntoDelta.scala:100)
+	at org.apache.spark.sql.delta.sources.DeltaDataSource.createRelation(DeltaDataSource.scala:201)
+	at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:48)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:75)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:73)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.executeCollect(commands.scala:84)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:859)
+	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:388)
+	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:304)
+	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:240)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: org.apache.spark.SparkException: Can only zip RDDs with same number of elements in each partition
+	at org.apache.spark.errors.SparkCoreErrors$.canOnlyZipRDDsWithSamePartitionSizeError(SparkCoreErrors.scala:142)
+	at org.apache.spark.rdd.RDD$$anon$3.hasNext(RDD.scala:974)
+	at scala.collection.Iterator.foreach(Iterator.scala:943)
+	at scala.collection.Iterator.foreach$(Iterator.scala:943)
+	at org.apache.spark.rdd.RDD$$anon$3.foreach(RDD.scala:970)
+	at org.apache.spark.api.python.PythonRDD$.writeIteratorToStream(PythonRDD.scala:322)
+	at org.apache.spark.api.python.PythonRunner$$anon$2.writeIteratorToStream(PythonRunner.scala:751)
+	at org.apache.spark.api.python.BasePythonRunner$WriterThread.$anonfun$run$1(PythonRunner.scala:451)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.api.python.BasePythonRunner$WriterThread.run(PythonRunner.scala:282)
+
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 150, in handle_output
+    return self.inner_io_manager().handle_output(context, obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/upath_io_manager.py", line 446, in handle_output
+    self.dump_to_path(context=context, obj=obj, path=path)
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 82, in dump_to_path
+    obj.write.format("delta").mode('overwrite').save(pathe)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/sql/readwriter.py", line 1463, in save
+    self._jwrite.save(path)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+

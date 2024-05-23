@@ -161,7 +161,7 @@ python-json-logger==2.0.7
 pytz==2024.1
 PyYAML==6.0.1
 pyzmq==25.1.2
-questionary==2.0.1
+questionary
 referencing==0.33.0
 requests==2.31.0
 requests-toolbelt==1.0.0

@@ -13,6 +13,8 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 from pyspark.sql import DataFrame
+from pyspark.sql.types import *
+from pyspark.sql import functions as F
 
 date = dt.now().strftime("%Y-%m-%d")
 
@@ -22,55 +24,73 @@ date = dt.now().strftime("%Y-%m-%d")
 
 
 @multi_asset(
-    group_name = "dim",
+    group_name = "fact_lake",
     ins = {"metric": AssetIn(key = AssetKey("metric"), input_manager_key="s3_prqt_io_manager"),
            "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
-    outs = {"metric_dim": AssetOut(metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
-            "series_dim": AssetOut(metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
-            # "metric_dim_wrh": AssetOut(metadata={ "mode": "append"}, io_manager_key="warehouse_io_manager"),
-            # "series_dim_wrh": AssetOut(metadata={ "mode": "append"}, io_manager_key="warehouse_io_manager")
+    outs = {"metric_fact": AssetOut(metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "series_fact": AssetOut(metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager")
     },
     internal_asset_deps={
-        "metric_dim": {AssetKey(["metric"])},
-        "series_dim": {AssetKey(["series"])},
-        # "metric_dim_wrh": {AssetKey(["metric"])},
-        # "series_dim_wrh": {AssetKey(["series"])}
+        "metric_fact": {AssetKey(["metric"])},
+        "series_fact": {AssetKey(["series"])}
     }
 )
-def dimension_tables(metric, series) -> tuple[pa.Table, pa.Table]:#, DataFrame, DataFrame]:
+def fact_tables(metric, series) -> tuple[pa.Table, pa.Table]:
+    for cols in series.columns:
+        if cols == "date":
+            series =  series.withColumn(cols, F.col(cols).cast(DateType()))
+        elif cols == "symbol":
+            series = series.withColumn(cols, F.cast(StringType(), F.col(cols)))
+        else:
+            series = series.withColumn(cols, F.col(f"`{cols}`").cast(FloatType()))
+    for cols in metric.columns:
+        if cols == "symbol":
+            metric = metric.withColumn(cols, F.cast(StringType(), F.col(cols)))
+        else:
+            metric = metric.withColumn(cols, F.col(cols).cast(FloatType()))
+
+
+    metric_fact = metric._collect_as_arrow()
+    metric_fact = pa.Table.from_batches(metric_fact)
+
+    series_fact = series._collect_as_arrow()
+    series_fact = pa.Table.from_batches(series_fact)
     
-
-    metric_dim = metric._collect_as_arrow()
-    metric_dim = pa.Table.from_batches(metric_dim)
-    metric_dim_wrh = metric.toPandas()
-
-    series_dim = series._collect_as_arrow()
-    series_dim = pa.Table.from_batches(series_dim)
-    series_dim_wrh = series.toPandas()
-    
-    return metric_dim, series_dim#, metric, series
+    return metric_fact, series_fact
 
 
-# @multi_asset(
-#     group_name= "dim",
-#     ins = {"metric": AssetIn(key = AssetKey("metric"), input_manager_key="s3_prqt_io_manager"),
-#            "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
-#     outs = {"metric_visual": AssetOut(io_manager_key="warehouse_io_manager"),
-#             "series_visual": AssetOut(io_manager_key="warehouse_io_manager")
-#     },
-#     internal_asset_deps={
-#         "metric_dim": {AssetKey(["metric"])},
-#         "series_dim": {AssetKey(["series"])},
-#     }
-# )
-# def dimension_wrh_tables(metric_dim, series_dim) -> tuple[pd.DataFrame, pd.DataFrame]:
-    
+@multi_asset(
+    group_name= "fact_warehouse",
+    ins = {"metric": AssetIn(key = AssetKey("metric"), input_manager_key="s3_prqt_io_manager"),
+           "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
+    outs = {"metric_fact_wrh": AssetOut(io_manager_key="warehouse_io_manager"),
+            "series_fact_wrh": AssetOut(io_manager_key="warehouse_io_manager")
+    },
+    internal_asset_deps={
+        "metric_fact_wrh": {AssetKey(["metric"])},
+        "series_fact_wrh": {AssetKey(["series"])},
+    }
+)
+def fact_wrh_tables(metric, series) -> tuple[DataFrame, DataFrame]:
 
-#     metric_dim = metric.toPandas()
+    for cols in series.columns:
+        if cols == "date":
+            series =  series.withColumn(cols, F.col(cols).cast(DateType()))
+        elif cols == "symbol":
+            series = series.withColumn(cols, F.cast(StringType(), F.col(cols)))
+        else:
+            series = series.withColumn(cols, F.col(f"`{cols}`").cast(FloatType()))
+    for cols in metric.columns:
+        if cols == "symbol":
+            metric = metric.withColumn(cols, F.cast(StringType(), F.col(cols)))
+        else:
+            metric = metric.withColumn(cols, F.col(cols).cast(FloatType()))    
 
-#     series_dim = series.toPandas()
+    metric_fact_wrh = metric
 
-#     return metric_dim, series_dim
+    series_fact_wrh = series
+
+    return metric_fact_wrh, series_fact_wrh
 
 
 
