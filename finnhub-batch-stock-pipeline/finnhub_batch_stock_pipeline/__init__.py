@@ -10,12 +10,12 @@ from .iomanagers import (raw_s3_json_io_manager as s3j,
                          staging_s3_parquet_io_manager as s3p,)
 from .resources import MyConnectionResource, s3_rsrce, MyPysparkResource
 from .assets import (spark_transformations, 
-                    graph_raw, warehouse_tables
+                    graph_raw, fact_tables,
                     )
 import os
 # from .sensors import stocks_sensor
 
-all_assets = load_assets_from_modules([spark_transformations, graph_raw, warehouse_tables])
+all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw])
 # all_sensors = [stocks_sensor]
 
 # config = S3Config(endpoint=EnvVar("AWS_ENDPOINT"), allow_unsafe_rename=True)
@@ -25,6 +25,7 @@ config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
                                     bucket=os.getenv("AWS_BUCKET"),
                                     allow_unsafe_rename=True)
 client_config = ClientConfig(allow_http=True)
+
 deployment_resources = {
        "prod":  {
         "my_conn": MyConnectionResource(access_token=EnvVar("FINNHUBAPIKEY")),
@@ -69,6 +70,12 @@ deployment_resources = {
             s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="raw"
         ),
         "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
+            root_uri="s3://dagster-api",  # required
+            storage_options=config,  # required
+            client_options=client_config,
+            schema="core",  # optional, defaults to "public"
+        ),
+        "delta_lake_io_manager": DeltaLakePandasIOManager(
             root_uri=EnvVar("S3_URI"),  # required
             storage_options=config,  # required
             client_options=client_config,
@@ -80,6 +87,7 @@ deployment_resources = {
     }
 }
 deployment_name = os.getenv("DAGSTER_DEPLOYMENT", "local")
+
 
 defs = Definitions(
     assets= all_assets,

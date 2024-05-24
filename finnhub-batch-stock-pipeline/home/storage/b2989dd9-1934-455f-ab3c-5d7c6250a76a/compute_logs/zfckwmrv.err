@@ -1,0 +1,23 @@
+[32m2024-05-23 20:31:35 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - LOGS_CAPTURED - Started capturing logs in process (pid: 173649).
+[32m2024-05-23 20:31:35 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - fact_wrh_tables - STEP_START - Started execution of step "fact_wrh_tables".
+[32m2024-05-23 20:31:35 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - fact_wrh_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-23/metric
+[32m2024-05-23 20:31:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - fact_wrh_tables - LOADED_INPUT - Loaded input "metric" using input manager "s3_prqt_io_manager"
+[32m2024-05-23 20:31:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - fact_wrh_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-23/series
+[32m2024-05-23 20:31:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - fact_wrh_tables - LOADED_INPUT - Loaded input "series" using input manager "s3_prqt_io_manager"
+[32m2024-05-23 20:31:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - fact_wrh_tables - STEP_INPUT - Got input "metric" of type "Any". (Type check passed).
+[32m2024-05-23 20:31:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - fact_wrh_tables - STEP_INPUT - Got input "series" of type "Any". (Type check passed).
+[32m2024-05-23 20:31:53 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - fact_wrh_tables - STEP_OUTPUT - Yielded output "metric_fact_wrh" of type "DataFrame". Warning! Type check failed.
+[32m2024-05-23 20:31:53 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - b2989dd9-1934-455f-ab3c-5d7c6250a76a - 173649 - fact_wrh_tables - STEP_FAILURE - Execution of step "fact_wrh_tables" failed.
+
+dagster._core.errors.DagsterTypeCheckDidNotPass: Type check failed for step output "metric_fact_wrh" - expected type "DataFrame". Description: Value of type <class 'pyarrow.lib.Table'> failed type check for Dagster type DataFrame, expected value to be of Python type pyspark.sql.dataframe.DataFrame.
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 584, in _type_check_and_store_output
+    for output_event in _type_check_output(step_context, step_output_handle, output, version):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 450, in _type_check_output
+    raise DagsterTypeCheckDidNotPass(
+[0m

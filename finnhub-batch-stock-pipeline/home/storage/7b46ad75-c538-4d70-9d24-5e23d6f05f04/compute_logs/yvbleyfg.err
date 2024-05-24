@@ -1,0 +1,50 @@
+[32m2024-05-23 20:16:58 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b46ad75-c538-4d70-9d24-5e23d6f05f04 - 126984 - LOGS_CAPTURED - Started capturing logs in process (pid: 126984).
+[32m2024-05-23 20:16:58 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b46ad75-c538-4d70-9d24-5e23d6f05f04 - 126984 - trial - STEP_START - Started execution of step "trial".
+[32m2024-05-23 20:16:58 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b46ad75-c538-4d70-9d24-5e23d6f05f04 - trial - Loading S3 object from: s3a://dagster-api/staging/2024-05-23/metric
+[32m2024-05-23 20:17:01 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 7b46ad75-c538-4d70-9d24-5e23d6f05f04 - 126984 - trial - STEP_FAILURE - Execution of step "trial" failed.
+
+dagster._core.errors.DagsterExecutionInterruptedError
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 491, in core_dagster_event_sequence_for_step
+    for event_or_input_value in step_input.source.load_input_object(
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/inputs.py", line 189, in load_input_object
+    yield from _load_input_with_input_manager(loader, load_input_context)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/inputs.py", line 846, in _load_input_with_input_manager
+    value = input_manager.load_input(context)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 147, in load_input
+    return self.inner_io_manager().load_input(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/upath_io_manager.py", line 405, in load_input
+    return self._load_single_input(path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/upath_io_manager.py", line 272, in _load_single_input
+    obj = self.load_from_path(context=context, path=path)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 72, in load_from_path
+    return self.pyspark.load_s3(pathe)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/resources/__init__.py", line 37, in load_s3
+    return self.spark.read.format("delta").load(path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/sql/readwriter.py", line 307, in load
+    return self._df(self._jreader.load(path))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1321, in __call__
+    answer = self.gateway_client.send_command(command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gitpod/.pyenv/versions/3.12.3/lib/python3.12/socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/interrupts.py", line 82, in _new_signal_handler
+    raise error_cls()
+[0m
