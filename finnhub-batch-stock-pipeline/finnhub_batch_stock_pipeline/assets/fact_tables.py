@@ -16,19 +16,20 @@ from pyspark.sql import functions as F
 @multi_asset(
     ins = {"metric": AssetIn(key = AssetKey("metric"), input_manager_key="s3_prqt_io_manager"),
            "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
-    outs = {"metric_fact": AssetOut(group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
-            "series_fact": AssetOut(group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
-            "metric_fact_wrh": AssetOut(group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
-            "series_fact_wrh": AssetOut(group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
+    outs = {"metric_fact": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "series_fact": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "metric_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
+            "series_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
     },
     internal_asset_deps={
         "metric_fact": {AssetKey(["metric"])},
         "series_fact": {AssetKey(["series"])},
         "metric_fact_wrh": {AssetKey(["metric"])},
         "series_fact_wrh": {AssetKey(["series"])},
-    }
+    },
+    can_subset=True
 )
-def fact_wrh_tables(metric, series) -> tuple[pa.Table, pa.Table, DataFrame, DataFrame]:
+def fact_tables(context, metric, series) -> tuple[pa.Table, pa.Table, DataFrame, DataFrame]:
 
     for cols in series.columns:
         if cols == "date":
@@ -42,15 +43,23 @@ def fact_wrh_tables(metric, series) -> tuple[pa.Table, pa.Table, DataFrame, Data
             metric_fact = metric.withColumn(cols, F.cast(StringType(), F.col(cols)))
         else:
             metric_fact = metric.withColumn(cols, F.col(cols).cast(FloatType())) 
+    
+    metric_fact_cols = list(metric_fact.columns)
+
+    metric_fact_cols.remove("symbol")
+    metric_fact_cols.append("symbol")
+
+    metric_fact = metric_fact.select(*metric_fact_cols)
+
 
     metric_fact_wrh = metric_fact
 
     series_fact_wrh = series_fact
 
-    metric_fact = metric_fact._collect_as_arrow()
-    metric_fact = pa.Table.from_batches(metric_fact)
+    metric_fact_lake = metric_fact._collect_as_arrow()
+    metric_fact_lake = pa.Table.from_batches(metric_fact_lake)
 
-    series_fact = series_fact._collect_as_arrow()
-    series_fact = pa.Table.from_batches(series_fact)
+    series_fact_lake = series_fact._collect_as_arrow()
+    series_fact_lake = pa.Table.from_batches(series_fact_lake)
 
-    return metric_fact, series_fact, metric_fact_wrh, series_fact_wrh
+    return metric_fact_lake, series_fact_lake, metric_fact_wrh, series_fact_wrh

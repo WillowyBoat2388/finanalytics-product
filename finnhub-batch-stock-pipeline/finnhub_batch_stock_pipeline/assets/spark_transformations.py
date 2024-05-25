@@ -332,10 +332,10 @@ def merge_and_analyze(context, df_list):
             context.log.info(item.head())
         elif item.filter(item.type == "series").count() == 0:
             mtrc = item.filter(item["type"] == "metric").drop("type")
-            # schemas['mtrc'] = mtrc.schema
+            
             metric.append(mtrc)
             context.log.info(f"metric_col_len:    {len(mtrc.columns)}")
-            context.log.info(item.head())
+            # context.log.info(item.head())
         else:
             context.log.info(item.head())
 
