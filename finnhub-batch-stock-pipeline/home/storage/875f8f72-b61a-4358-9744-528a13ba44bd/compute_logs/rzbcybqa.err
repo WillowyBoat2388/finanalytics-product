@@ -1,0 +1,37 @@
+[32m2024-05-25 19:10:35 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - LOGS_CAPTURED - Started capturing logs in process (pid: 278924).
+[32m2024-05-25 19:10:35 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - STEP_START - Started execution of step "fact_tables".
+[32m2024-05-25 19:10:35 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-25/metric
+[32m2024-05-25 19:10:41 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - LOADED_INPUT - Loaded input "metric" using input manager "s3_prqt_io_manager", from output "metric" of step "spark_operator.merge_and_analyze"
+[32m2024-05-25 19:10:41 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-25/series
+[32m2024-05-25 19:10:41 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - LOADED_INPUT - Loaded input "series" using input manager "s3_prqt_io_manager", from output "series" of step "spark_operator.merge_and_analyze"
+[32m2024-05-25 19:10:41 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - STEP_INPUT - Got input "metric" of type "DataFrame". (Type check passed).
+[32m2024-05-25 19:10:41 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - STEP_INPUT - Got input "series" of type "DataFrame". (Type check passed).
+[32m2024-05-25 19:10:59 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - None
+[32m2024-05-25 19:11:04 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - None
+[32m2024-05-25 19:11:04 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - None
+[32m2024-05-25 19:11:04 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - None
+[32m2024-05-25 19:11:05 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - STEP_OUTPUT - Yielded output "metric_fact" of type "Table". (Type check passed).
+[32m2024-05-25 19:11:05 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - IO manager mode overridden with the asset metadata mode, overwrite -> append
+[32m2024-05-25 19:11:05 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - Writing with mode: append
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - ASSET_MATERIALIZATION - Materialized value metric_fact.
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - HANDLED_OUTPUT - Handled output "metric_fact" using IO manager "delta_lake_arrow_io_manager"
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - STEP_OUTPUT - Yielded output "series_fact" of type "Table". (Type check passed).
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - IO manager mode overridden with the asset metadata mode, overwrite -> append
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - fact_tables - Writing with mode: append
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - ASSET_MATERIALIZATION - Materialized value series_fact.
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - HANDLED_OUTPUT - Handled output "series_fact" using IO manager "delta_lake_arrow_io_manager"
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - STEP_OUTPUT - Yielded output "metric_fact_wrh" of type "DataFrame". Warning! Type check failed.
+[32m2024-05-25 19:11:06 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 875f8f72-b61a-4358-9744-528a13ba44bd - 278924 - fact_tables - STEP_FAILURE - Execution of step "fact_tables" failed.
+
+dagster._core.errors.DagsterTypeCheckDidNotPass: Type check failed for step output "metric_fact_wrh" - expected type "DataFrame". Description: Value of type <class 'NoneType'> failed type check for Dagster type DataFrame, expected value to be of Python type pyspark.sql.dataframe.DataFrame.
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 584, in _type_check_and_store_output
+    for output_event in _type_check_output(step_context, step_output_handle, output, version):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 450, in _type_check_output
+    raise DagsterTypeCheckDidNotPass(
+[0m

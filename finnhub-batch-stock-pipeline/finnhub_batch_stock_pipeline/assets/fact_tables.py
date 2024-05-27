@@ -44,6 +44,9 @@ def fact_tables(context, metric, series) -> tuple[pa.Table, pa.Table, DataFrame,
         else:
             metric_fact = metric.withColumn(cols, F.col(cols).cast(FloatType())) 
     
+    context.log.info(metric_fact.printSchema())
+    context.log.info(series_fact.printSchema())
+
     metric_fact_cols = list(metric_fact.columns)
 
     metric_fact_cols.remove("symbol")

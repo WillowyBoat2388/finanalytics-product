@@ -1,0 +1,27 @@
+[32m2024-05-25 18:35:25 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - LOGS_CAPTURED - Started capturing logs in process (pid: 167684).
+[32m2024-05-25 18:35:25 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - fact_tables - STEP_START - Started execution of step "fact_tables".
+[32m2024-05-25 18:35:25 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - fact_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-25/metric
+[32m2024-05-25 18:35:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - fact_tables - LOADED_INPUT - Loaded input "metric" using input manager "s3_prqt_io_manager", from output "metric" of step "spark_operator.merge_and_analyze"
+[32m2024-05-25 18:35:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - fact_tables - Loading S3 object from: s3a://dagster-api/staging/2024-05-25/series
+[32m2024-05-25 18:35:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - fact_tables - LOADED_INPUT - Loaded input "series" using input manager "s3_prqt_io_manager", from output "series" of step "spark_operator.merge_and_analyze"
+[32m2024-05-25 18:35:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - fact_tables - STEP_INPUT - Got input "metric" of type "Any". (Type check passed).
+[32m2024-05-25 18:35:31 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - fact_tables - STEP_INPUT - Got input "series" of type "Any". (Type check passed).
+[32m2024-05-25 18:35:50 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - fact_tables - None
+[32m2024-05-25 18:35:52 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - fact_tables - None
+[32m2024-05-25 18:35:52 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - fact_tables - None
+[32m2024-05-25 18:35:52 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - fact_tables - None
+[32m2024-05-25 18:35:54 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - fact_tables - STEP_OUTPUT - Yielded output "metric_fact" of type "Table". Warning! Type check failed.
+[32m2024-05-25 18:35:54 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 052613de-3eb9-4f31-96b9-b2fb6bce69c4 - 167684 - fact_tables - STEP_FAILURE - Execution of step "fact_tables" failed.
+
+dagster._core.errors.DagsterTypeCheckDidNotPass: Type check failed for step output "metric_fact" - expected type "Table". Description: Value of type <class 'NoneType'> failed type check for Dagster type Table, expected value to be of Python type pyarrow.lib.Table.
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 584, in _type_check_and_store_output
+    for output_event in _type_check_output(step_context, step_output_handle, output, version):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 450, in _type_check_output
+    raise DagsterTypeCheckDidNotPass(
+[0m
