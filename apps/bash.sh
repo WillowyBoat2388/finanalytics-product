@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt upgrade && apt-get install -y screen 
+sudo apt -y upgrade && sudo apt-get install -y screen 
 
 # Assign script directory path to variable
 SCRIPT_DIR=$(dirname "$BASH_SOURCE")
@@ -35,6 +35,7 @@ echo "Starting command: $minio_startcommand"
 
 # Create a new screen session named "minioscreen" and run the minio server command within it
 screen -dmS minioscreen bash -c "$minio_startcommand"
+sleep 10
 
 # assign the minio host port to alias:  minio
 $SCRIPT_DIR/mc alias set minio http://127.0.0.1:9000 minioadmin minioadmin
@@ -48,6 +49,17 @@ minikube_startcommand="minikube start"
 
 # Create a new screen session named "minikubescreen" and run a command
 screen -dmS minikubescreen bash -c "$minikube_startcommand"
+
+wait_for_screen() {
+    local screen_name=$1
+    while screen -list | grep -q "$screen_name"; do
+        echo "Waiting for the screen session '$screen_name' to complete..."
+        sleep 5
+    done
+}
+
+# Wait for the "minioscreen" to finish
+wait_for_screen "minikubescreen"
 
 # sudo apt install apache2-utils
 
