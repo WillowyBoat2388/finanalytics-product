@@ -61,7 +61,7 @@ resource "kubernetes_service" "finnhub_k8s" {
   }
 
   depends_on = [
-        "kubernetes_deployment.finnhub_k8s"
+        kubernetes_deployment.finnhub_k8s
   ]
   
   spec {

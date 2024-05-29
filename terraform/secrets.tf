@@ -5,7 +5,7 @@ resource "kubernetes_secret" "pipeline-secrets" {
   }
 
   depends_on = [
-        "kubernetes_namespace.pipeline-namespace"
+        kubernetes_namespace.pipeline-namespace
   ]
 
   data = {

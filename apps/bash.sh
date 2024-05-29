@@ -23,7 +23,7 @@ apt update && apt install terraform
 
 # sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-minio_startcommand="$SCRIPT_DIR/minio server ../data --console-address :9001"
+minio_startcommand="$SCRIPT_DIR/minio server $SCRIPT_DIR/../data --console-address :9001"
 
 echo "Starting command: $minio_startcommand"
 

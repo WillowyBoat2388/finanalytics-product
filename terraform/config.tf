@@ -11,7 +11,7 @@ resource "kubernetes_config_map" "pipeline-config" {
   }
 
   depends_on = [
-        "kubernetes_namespace.pipeline-namespace"
+        kubernetes_namespace.pipeline-namespace
   ]
 
   data = {
