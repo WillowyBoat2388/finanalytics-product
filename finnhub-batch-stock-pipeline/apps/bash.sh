@@ -34,14 +34,14 @@ minikube start
 
 eval $(minikube docker-env)
 
-docker build -t <image-tag> <my-docker-image>
+docker build -t fnhb-btch-stck-ppln .
 
-minikube cache add <my-docker-image>
+# minikube cache add <my-docker-image>
 
-minikube image load <image name>
+# minikube image load <image name>
 
 cd terraform
 
-terraform import kubernetes_secret.pipeline-secrets 
+# terraform import kubernetes_secret.pipeline-secrets 
 
-terraform apply
+# terraform apply
