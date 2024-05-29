@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt -y upgrade && sudo apt-get install -y screen 
+sudo apt update && sudo apt -y upgrade && sudo apt-get install -y screen 
 
 # Assign script directory path to variable
 SCRIPT_DIR=$(dirname "$BASH_SOURCE")
