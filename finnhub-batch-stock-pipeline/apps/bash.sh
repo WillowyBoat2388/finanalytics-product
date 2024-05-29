@@ -1,39 +1,6 @@
 #!/bin/bash
 
-# Function to detect the terminal emulator
-terminal_window() {
-
-# Check for common terminal emulators
-    if [ "$GNOME_TERMINAL_SCREEN" ]; then
-        echo "terminal found, script running begins"
-    elif [ "$KONSOLE_DBUS_SESSION" ]; then
-        echo "terminal found, script running begins"
-    elif [ "$TERM" == "xterm-256color" ]; then
-        echo "terminal found, script running begins"
-    else
-        echo "No compatible terminal emulator found!"
-        exit 1
-    fi
-}
-
-# Function to detect the terminal emulator and open a new terminal
-open_new_terminal() {
-    local command="$1"
-    
-    # Check for common terminal emulators
-    if [ "$GNOME_TERMINAL_SCREEN" ]; then
-        gnome-terminal -- bash -c "$command; exec bash"
-    elif [ "$KONSOLE_DBUS_SESSION" ]; then
-        konsole --noclose -e bash -c "$command; exec bash"
-    elif [ "$TERM" == "xterm-256color" ]; then
-        xterm -hold -e "$command; bash"
-    else
-        echo "No compatible terminal emulator found!"
-        exit 1
-    fi
-}
-
-terminal_window
+apt-get install -y screen 
 
 SCRIPT_DIR=$(dirname "$BASH_SOURCE")
 
@@ -56,18 +23,21 @@ apt update && apt install terraform
 
 # sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-minio_startcommand = "$SCRIPT_DIR/minio server ../data --console-address :9001"
+minio_startcommand="$SCRIPT_DIR/minio server ../data --console-address :9001"
 
-# xterm -hold -e "$minio_startcommand; bash"
+echo "Starting command: $minio_startcommand"
 
-open_new_terminal "$minio_startcommand"
+# Create a new screen session named "minioscreen" and run a command
+screen -dmS minioscreen bash -c "$minio_startcommand"
+
 $SCRIPT_DIR/mc alias set minio http://127.0.0.1:9000 minioadmin minioadmin
 $SCRIPT_DIR/mc admin info minio > minio.txt
 $SCRIPT_DIR/mc mb minio/dagster-api
 
-minikube_startcommand = "minikube start --force"
+minikube_startcommand="minikube start --force"
 
-open_new_terminal "minikube_startcommand"
+# Create a new screen session named "minikubescreen" and run a command
+screen -dmS minikubescreen bash -c "$minikube_startcommand"
 
 # sudo apt install apache2-utils
 
