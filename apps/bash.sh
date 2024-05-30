@@ -20,7 +20,7 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-a
 # download and install terraform
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update && apt install terraform
+sudo apt update && sudo apt install terraform
 
 # download docker-compose and make executable
 # sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
@@ -54,7 +54,7 @@ wait_for_screen() {
     local screen_name=$1
     while screen -list | grep -q "$screen_name"; do
         echo "Waiting for the screen session '$screen_name' to complete..."
-        sleep 5
+        sleep 30
     done
 }
 
