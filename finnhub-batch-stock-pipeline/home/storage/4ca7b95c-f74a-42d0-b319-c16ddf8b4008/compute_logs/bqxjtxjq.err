@@ -1,0 +1,30 @@
+[32m2024-05-31 12:27:18 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ca7b95c-f74a-42d0-b319-c16ddf8b4008 - 269720 - LOGS_CAPTURED - Started capturing logs in process (pid: 269720).
+[32m2024-05-31 12:27:18 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ca7b95c-f74a-42d0-b319-c16ddf8b4008 - 269720 - spark_operator.merge_and_analyze - STEP_RESTARTED - Started re-execution (attempt # 3) of step "spark_operator.merge_and_analyze".
+[32m2024-05-31 12:27:18 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4ca7b95c-f74a-42d0-b319-c16ddf8b4008 - spark_operator.merge_and_analyze - Loading S3 object from: s3a://dagster-api/staging/2024-05-31/spark_operator.create_stock_tables[stock_A]/metric_and_series
+[32m2024-05-31 12:27:18 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 4ca7b95c-f74a-42d0-b319-c16ddf8b4008 - 269720 - spark_operator.merge_and_analyze - STEP_FAILURE - Execution of step "spark_operator.merge_and_analyze" failed.
+
+Exceeded max_retries of 2:
+
+AttributeError: 'LazyPySparkResource' object has no attribute 'read'
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/inputs.py", line 846, in _load_input_with_input_manager
+    value = input_manager.load_input(context)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 148, in load_input
+    return self.inner_io_manager().load_input(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/upath_io_manager.py", line 405, in load_input
+    return self._load_single_input(path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/upath_io_manager.py", line 272, in _load_single_input
+    obj = self.load_from_path(context=context, path=path)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 73, in load_from_path
+    return self.pyspark.read.format("delta").load(pathe)
+           ^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pydantic/main.py", line 767, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+[0m

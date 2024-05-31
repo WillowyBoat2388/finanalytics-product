@@ -1,0 +1,38 @@
+[32m2024-05-31 12:00:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 238f027a-7bd6-45d9-bd3e-8ed6e9a894d5 - 95202 - LOGS_CAPTURED - Started capturing logs in process (pid: 95202).
+[32m2024-05-31 12:00:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 238f027a-7bd6-45d9-bd3e-8ed6e9a894d5 - 95202 - finnhub_US_stocks.import_stocks_data - STEP_START - Started execution of step "finnhub_US_stocks.import_stocks_data".
+[32m2024-05-31 12:00:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 238f027a-7bd6-45d9-bd3e-8ed6e9a894d5 - finnhub_US_stocks.import_stocks_data - Loading file from: /workspace/practical-data-engineering/finnhub-batch-stock-pipeline/home/storage/238f027a-7bd6-45d9-bd3e-8ed6e9a894d5/finnhub_US_stocks.import_stocks_def/result using PickledObjectFilesystemIOManager...
+[32m2024-05-31 12:00:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 238f027a-7bd6-45d9-bd3e-8ed6e9a894d5 - 95202 - finnhub_US_stocks.import_stocks_data - LOADED_INPUT - Loaded input "input_list" using input manager "io_manager", from output "result" of step "finnhub_US_stocks.import_stocks_def"
+[32m2024-05-31 12:00:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 238f027a-7bd6-45d9-bd3e-8ed6e9a894d5 - 95202 - finnhub_US_stocks.import_stocks_data - STEP_INPUT - Got input "input_list" of type "Any". (Type check passed).
+[32m2024-05-31 12:01:00 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 238f027a-7bd6-45d9-bd3e-8ed6e9a894d5 - 95202 - finnhub_US_stocks.import_stocks_data - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2024-05-31 12:01:00 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 238f027a-7bd6-45d9-bd3e-8ed6e9a894d5 - 95202 - finnhub_US_stocks.import_stocks_data - STEP_FAILURE - Execution of step "finnhub_US_stocks.import_stocks_data" failed.
+
+dagster._core.errors.DagsterExecutionHandleOutputError: Error occurred while handling output "result" of step "finnhub_US_stocks.import_stocks_data"::
+
+botocore.exceptions.ClientError: An error occurred (AccessDenied) when calling the ListObjects operation: Access Denied.
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/raw_s3_json_io_manager.py", line 266, in handle_output
+    return self.inner_io_manager().handle_output(context, obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/cached_method.py", line 104, in _cached_method_wrapper
+    result = method(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/raw_s3_json_io_manager.py", line 254, in inner_io_manager
+    return JSONObjectS3IOManager(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/raw_s3_json_io_manager.py", line 38, in __init__
+    self.s3.list_objects(Bucket=s3_bucket, Prefix=s3_prefix, MaxKeys=1)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/botocore/client.py", line 553, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/botocore/client.py", line 1009, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+[0m

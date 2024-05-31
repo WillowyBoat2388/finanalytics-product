@@ -1,0 +1,10 @@
+.env
+*.ipynb
+data/source/*.json
+/data
+/data/.minio.sys
+/apps/mc
+/apps/minio
+/finnhub-batch-stock-pipeline/data
+*.duckdb
+finnhub-batch-stock-pipeline/finance_db.duckdb
