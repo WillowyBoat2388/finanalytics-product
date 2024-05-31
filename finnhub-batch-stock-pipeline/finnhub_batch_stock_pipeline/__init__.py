@@ -21,7 +21,7 @@ all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph
 
 # config = S3Config(endpoint=EnvVar("AWS_ENDPOINT"), allow_unsafe_rename=True)
 config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"), 
-                                    secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"), region=os.getenv("AWS_REGION"), 
+                                    secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY"), region=os.getenv("AWS_REGION"), 
                                     endpoint=os.getenv("AWS_ENDPOINT"),
                                     bucket=os.getenv("AWS_BUCKET"),
                                     allow_unsafe_rename=True)
@@ -59,13 +59,6 @@ deployment_resources = {
         "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
             root_uri=EnvVar("S3_URI"),  # required
             storage_options=config,  # required
-            client_options=client_config,
-            schema="core",  # optional, defaults to "public"
-        ),
-        "delta_lake_io_manager": DeltaLakePandasIOManager(
-            root_uri=EnvVar("S3_URI"),  # required
-            storage_options=config, #LocalConfig(),  # required
-            client_options=client_config,
             schema="core",  # optional, defaults to "public"
         ),
         "warehouse_io_manager": SnowflakePySparkIOManager(
@@ -93,12 +86,6 @@ deployment_resources = {
         ),
         "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
             root_uri="s3://dagster-api",  # required
-            storage_options=config,  # required
-            client_options=client_config,
-            schema="core",  # optional, defaults to "public"
-        ),
-        "delta_lake_io_manager": DeltaLakePandasIOManager(
-            root_uri=EnvVar("S3_URI"),  # required
             storage_options=config,  # required
             client_options=client_config,
             schema="core",  # optional, defaults to "public"
