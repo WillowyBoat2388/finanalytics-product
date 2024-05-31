@@ -16,10 +16,10 @@ from pyspark.sql import functions as F
 @multi_asset(
     ins = {"metric": AssetIn(key = AssetKey("metric"), input_manager_key="s3_prqt_io_manager"),
            "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
-    outs = {"metric_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager", auto_materialize_policy=AutoMaterializePolicy.eager),
-            "series_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager", auto_materialize_policy=AutoMaterializePolicy.eager),
-            "metric_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager", auto_materialize_policy=AutoMaterializePolicy.eager),
-            "series_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager", auto_materialize_policy=AutoMaterializePolicy.eager),
+    outs = {"metric_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "series_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "metric_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
+            "series_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
     },
     internal_asset_deps={
         "metric_fact_lake": {AssetKey(["metric"])},

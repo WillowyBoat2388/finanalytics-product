@@ -1,6 +1,7 @@
 from dagster import (Definitions, 
                     load_assets_from_modules, 
-                    EnvVar)
+                    EnvVar,
+                    AutoMaterializePolicy)
 from dagster_duckdb_pyspark import DuckDBPySparkIOManager
 from dagster_pyspark import LazyPySparkResource
 from dagster_deltalake import S3Config, DeltaLakePyarrowIOManager
@@ -13,18 +14,18 @@ from .resources import MyConnectionResource, s3_rsrce#, MyPysparkResource
 from .assets import (spark_transformations, 
                     graph_raw, fact_tables,
                     )
-from .jobs import stock_retrieval_job, lake_update_job, warehouse_update_job
+from .jobs import stock_retrieval_job, lake_update_job, warehouse_update_job, spark_transformation_job
 from .schedules import stocks_update_schedule
 import os
 # from .sensors import stocks_sensor
 
-all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw], auto_materialize_policy=AutoMaterializePolicy.eager)
+all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw], auto_materialize_policy=AutoMaterializePolicy.eager())
 
 # all_sensors = [stocks_sensor]
 
-all_jobs = [stock_retrieval_job, lake_update_job, warehouse_update_job]
+all_jobs = [stock_retrieval_job, lake_update_job, warehouse_update_job, spark_transformation_job]
 
-all_schedules = [stock_update_schedule]
+all_schedules = [stocks_update_schedule]
 
 # config = S3Config(endpoint=EnvVar("AWS_ENDPOINT"), allow_unsafe_rename=True)
 config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"), 

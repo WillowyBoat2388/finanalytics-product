@@ -360,8 +360,8 @@ def merge_and_analyze(context, df_list):
 
 @graph_multi_asset(
     group_name="staging",
-    outs={"metric": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager", auto_materialize_policy=AutoMaterializePolicy.eager),
-         "series": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager", auto_materialize_policy=AutoMaterializePolicy.eager)
+    outs={"metric": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
+         "series": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager")
     }
 )
 def spark_operator(finnhub_US_stocks: List) -> tuple[DataFrame, DataFrame]:
