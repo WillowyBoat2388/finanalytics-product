@@ -13,11 +13,18 @@ from .resources import MyConnectionResource, s3_rsrce#, MyPysparkResource
 from .assets import (spark_transformations, 
                     graph_raw, fact_tables,
                     )
+from .jobs import stock_retrieval_job, lake_update_job, warehouse_update_job
+from .schedules import stocks_update_schedule
 import os
 # from .sensors import stocks_sensor
 
-all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw])
+all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw], auto_materialize_policy=AutoMaterializePolicy.eager)
+
 # all_sensors = [stocks_sensor]
+
+all_jobs = [stock_retrieval_job, lake_update_job, warehouse_update_job]
+
+all_schedules = [stock_update_schedule]
 
 # config = S3Config(endpoint=EnvVar("AWS_ENDPOINT"), allow_unsafe_rename=True)
 config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"), 
@@ -71,6 +78,32 @@ deployment_resources = {
             schema="core",  # optional, defaults to PUBLIC
         )
     },
+    "staging": {
+        "my_conn": MyConnectionResource(access_token=EnvVar("FINNHUBAPIKEY")),
+        "s3": s3_rsrce,
+        # "pyspark": MyPysparkResource(),
+        "pyspark": LazyPySparkResource(
+            spark_config=pyspark_config
+        ),
+        "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
+            pyspark=LazyPySparkResource(spark_config=pyspark_config), s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="staging"
+        ),
+        "s3_json_io_manager": s3j.S3JSONIOManager(
+            s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="raw"
+        ),
+        "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
+            root_uri="s3://dagster-api",  # required
+            storage_options=config,  # required
+            client_options=client_config,
+            schema="core",  # optional, defaults to "public"
+        ),
+        "warehouse_io_manager": SnowflakePySparkIOManager(
+            account=EnvVar("SNOWFLAKE_ACCOUNT"),  # required
+            user=EnvVar("SNOWFLAKE_USER"),  # required
+            password=EnvVar("SNOWFLAKE_PASSWORD"),  # password or private key required
+            database=EnvVar("SNOWFLAKE_DB"),  # required
+        )
+    },
     "local": {
         "my_conn": MyConnectionResource(access_token=EnvVar("FINNHUBAPIKEY")),
         "s3": s3_rsrce,
@@ -101,5 +134,7 @@ deployment_name = os.getenv("DAGSTER_DEPLOYMENT", "local")
 defs = Definitions(
     assets= all_assets,
     # sensors= all_sensors,
-    resources= deployment_resources[deployment_name]
+    resources= deployment_resources[deployment_name],
+    jobs=all_jobs,
+    schedules=all_schedules,
 )

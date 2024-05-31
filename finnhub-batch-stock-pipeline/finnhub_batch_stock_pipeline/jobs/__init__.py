@@ -1,13 +1,39 @@
-from dagster import define_asset_job, AssetSelection, job, load_assets_from_modules
-from ..assets.spark_transformations import stock_tables, create_stock_tables, pyspark_operator_3
-from ..assets.raw import finnhub_stocks
-from ..assets.raw_io_managers_use import finnhub_stocks_US
-from ..assets.graph_raw import finnhub_US_stocks
+from dagster import define_asset_job, AssetSelection, job, load_assets_from_modules, AutoMaterializePolicy
+from ..assets import spark_transformations, graph_raw, fact_tables 
 
+
+warehouse_tables = AssetSelection.assets("metric_fact_wrh", "series_fact_wrh")
+lake_tables = AssetSelection.assets("metric_fact_lake", "series_fact_lake")
+stock_retrieval_assets = load_assets_from_modules(modules=[graph_raw, spark_transformations])
+
+
+
+
+lake_update_job = define_asset_job(
+    name="lake_update_job",
+    selection=lake_tables
+)
+
+warehouse_update_job = define_asset_job(
+    name="warehouse_update_job",
+    selection=warehouse_tables
+)
+
+# stock_retrieval_job = define_asset_job(
+#     name="stock_retrieval_job",
+#     selection=stock_retrieval_assets
+# )
 
 
 @job
-def finnhub_transform_job():
+def stock_retrieval_job():
     stocks = finnhub_US_stocks()
-    dynamic_table = stock_tables(stocks)
-    collected = dynamic_table.map(create_stock_tables)
+    spark_operator()
+
+
+# @job
+# def lake_update_job():
+#     fact_tables._selected_asset_keys(["metric_fact_lake", "series_fact_lake"])
+# @job
+# def warehouse_update_job():
+#     fact_tables._selected_asset_keys(["metric_fact_wrh", "series_fact_wrh"])

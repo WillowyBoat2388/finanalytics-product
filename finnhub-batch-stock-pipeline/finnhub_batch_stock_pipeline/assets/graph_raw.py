@@ -57,6 +57,7 @@ def import_stocks_data(input_list, my_conn: MyConnectionResource):
     
 @graph_asset(
     group_name="raw",
+    # auto_materialize_policy=AutoMaterializePolicy.eager
 )
 def finnhub_US_stocks() -> Dict:
     """
