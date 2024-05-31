@@ -16,14 +16,14 @@ from pyspark.sql import functions as F
 @multi_asset(
     ins = {"metric": AssetIn(key = AssetKey("metric"), input_manager_key="s3_prqt_io_manager"),
            "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
-    outs = {"metric": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
-            "series": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+    outs = {"metric_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "series_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
             "metric_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
             "series_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
     },
     internal_asset_deps={
-        "metric": {AssetKey(["metric"])},
-        "series": {AssetKey(["series"])},
+        "metric_fact_lake": {AssetKey(["metric"])},
+        "series_fact_lake": {AssetKey(["series"])},
         "metric_fact_wrh": {AssetKey(["metric"])},
         "series_fact_wrh": {AssetKey(["series"])},
     },
@@ -53,12 +53,15 @@ def fact_tables(context, metric:DataFrame, series:DataFrame) -> tuple[pa.Table, 
     metric_fact_cols.remove("symbol")
     metric_fact_cols.append("symbol")
 
-    metric_fact = metric.select(*metric_fact_cols)
+    metric_fact = metric
 
+    metric_fact = metric_fact.select(*metric_fact_cols)
+
+    series_fact = series
 
     metric_fact_wrh = metric_fact
 
-    series_fact_wrh = series
+    series_fact_wrh = series_fact
 
     metric_fact_lake = metric._collect_as_arrow()
     metric_fact_lake = pa.Table.from_batches(metric_fact_lake)

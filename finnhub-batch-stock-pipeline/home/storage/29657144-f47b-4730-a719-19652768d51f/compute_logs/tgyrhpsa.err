@@ -1,0 +1,393 @@
+[32m2024-05-31 15:32:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 34825 - LOGS_CAPTURED - Started capturing logs in process (pid: 34825).
+[32m2024-05-31 15:32:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 34825 - spark_operator.create_stock_tables[stock_AAN_path] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AAN_path]".
+[32m2024-05-31 15:32:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_AAN_path] - Loading file from: /workspace/practical-data-engineering/finnhub-batch-stock-pipeline/home/storage/29657144-f47b-4730-a719-19652768d51f/spark_operator.stock_tables/result/stock_AAN_path using PickledObjectFilesystemIOManager...
+[32m2024-05-31 15:32:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 34825 - spark_operator.create_stock_tables[stock_AAN_path] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-05-31 15:32:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 34825 - spark_operator.create_stock_tables[stock_AAN_path] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/05/31 15:32:20 WARN Utils: Your hostname, willowyboat-practicalda-8yoi5et7ep7 resolves to a loopback address: 127.0.0.1; using 10.0.5.2 instead (on interface eth0)
+24/05/31 15:32:20 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Ivy Default Cache set to: /home/gitpod/.ivy2/cache
+The jars for the packages stored in: /home/gitpod/.ivy2/jars
+io.delta#delta-spark_2.12 added as a dependency
+org.apache.hadoop#hadoop-aws added as a dependency
+org.apache.hadoop#hadoop-common added as a dependency
+com.amazonaws#aws-java-sdk-bundle added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-35a50aa2-7c1b-4349-bee5-a8917aa2d438;1.0
+	confs: [default]
+	found io.delta#delta-spark_2.12;3.1.0 in spark-list
+	found io.delta#delta-storage;3.1.0 in central
+	found org.antlr#antlr4-runtime;4.9.3 in central
+	found org.apache.hadoop#hadoop-aws;3.3.4 in central
+	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in central
+	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+	found org.apache.hadoop#hadoop-common;3.3.4 in central
+	found org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 in central
+	found org.apache.hadoop#hadoop-annotations;3.3.4 in central
+	found org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 in spark-list
+	found com.google.guava#guava;27.0-jre in central
+	found com.google.guava#failureaccess;1.0 in central
+	found com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava in central
+	found com.google.code.findbugs#jsr305;3.0.2 in central
+	found org.checkerframework#checker-qual;2.5.2 in spark-list
+	found com.google.j2objc#j2objc-annotations;1.1 in spark-list
+	found org.codehaus.mojo#animal-sniffer-annotations;1.17 in central
+	found commons-cli#commons-cli;1.2 in central
+	found org.apache.commons#commons-math3;3.1.1 in central
+	found org.apache.httpcomponents#httpclient;4.5.13 in central
+	found org.apache.httpcomponents#httpcore;4.4.13 in central
+	found commons-logging#commons-logging;1.1.3 in central
+	found commons-codec#commons-codec;1.15 in central
+	found commons-io#commons-io;2.8.0 in central
+	found commons-net#commons-net;3.6 in central
+	found commons-collections#commons-collections;3.2.2 in central
+	found javax.servlet#javax.servlet-api;3.1.0 in central
+	found org.eclipse.jetty#jetty-server;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-http;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-util;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-io;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-security;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-xml;9.4.43.v20210629 in central
+	found com.sun.jersey#jersey-core;1.19 in central
+	found javax.ws.rs#jsr311-api;1.1.1 in central
+	found com.sun.jersey#jersey-servlet;1.19 in central
+	found com.sun.jersey#jersey-server;1.19 in central
+	found com.sun.jersey#jersey-json;1.19 in central
+	found org.codehaus.jettison#jettison;1.1 in spark-list
+	found com.sun.xml.bind#jaxb-impl;2.2.3-1 in central
+	found javax.xml.bind#jaxb-api;2.2.11 in central
+	found org.codehaus.jackson#jackson-core-asl;1.9.13 in spark-list
+	found org.codehaus.jackson#jackson-mapper-asl;1.9.13 in spark-list
+	found org.codehaus.jackson#jackson-jaxrs;1.9.13 in central
+	found org.codehaus.jackson#jackson-xc;1.9.13 in central
+	found ch.qos.reload4j#reload4j;1.2.22 in central
+	found commons-beanutils#commons-beanutils;1.9.4 in central
+	found org.apache.commons#commons-configuration2;2.1.1 in central
+	found org.apache.commons#commons-lang3;3.12.0 in central
+	found org.apache.commons#commons-text;1.4 in central
+	found org.slf4j#slf4j-api;1.7.36 in central
+	found org.slf4j#slf4j-reload4j;1.7.36 in spark-list
+	found org.apache.avro#avro;1.7.7 in central
+	found com.thoughtworks.paranamer#paranamer;2.3 in central
+	found org.xerial.snappy#snappy-java;1.1.8.2 in central
+	found org.apache.commons#commons-compress;1.21 in central
+	found com.google.re2j#re2j;1.1 in central
+	found com.google.protobuf#protobuf-java;2.5.0 in central
+	found com.google.code.gson#gson;2.8.9 in central
+	found org.apache.hadoop#hadoop-auth;3.3.4 in central
+	found com.nimbusds#nimbus-jose-jwt;9.8.1 in central
+	found com.github.stephenc.jcip#jcip-annotations;1.0-1 in central
+	found net.minidev#json-smart;2.4.7 in central
+	found net.minidev#accessors-smart;2.4.7 in central
+	found org.ow2.asm#asm;5.0.4 in central
+	found org.apache.zookeeper#zookeeper;3.5.6 in central
+	found org.apache.zookeeper#zookeeper-jute;3.5.6 in central
+	found org.apache.yetus#audience-annotations;0.5.0 in central
+	found org.apache.curator#curator-framework;4.2.0 in central
+	found org.apache.curator#curator-client;4.2.0 in central
+	found org.apache.kerby#kerb-simplekdc;1.0.1 in central
+	found org.apache.kerby#kerb-client;1.0.1 in central
+	found org.apache.kerby#kerby-config;1.0.1 in central
+	found org.apache.kerby#kerb-core;1.0.1 in central
+	found org.apache.kerby#kerby-pkix;1.0.1 in spark-list
+	found org.apache.kerby#kerby-asn1;1.0.1 in central
+	found org.apache.kerby#kerby-util;1.0.1 in central
+	found org.apache.kerby#kerb-common;1.0.1 in central
+	found org.apache.kerby#kerb-crypto;1.0.1 in central
+	found org.apache.kerby#kerb-util;1.0.1 in central
+	found org.apache.kerby#token-provider;1.0.1 in central
+	found org.apache.kerby#kerb-admin;1.0.1 in central
+	found org.apache.kerby#kerb-server;1.0.1 in central
+	found org.apache.kerby#kerb-identity;1.0.1 in central
+	found org.apache.kerby#kerby-xdr;1.0.1 in central
+	found com.jcraft#jsch;0.1.55 in central
+	found org.apache.curator#curator-recipes;4.2.0 in central
+	found com.fasterxml.jackson.core#jackson-databind;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-annotations;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-core;2.12.7 in spark-list
+	found org.codehaus.woodstox#stax2-api;4.2.1 in central
+	found com.fasterxml.woodstox#woodstox-core;5.3.0 in central
+	found dnsjava#dnsjava;2.1.7 in spark-list
+	found jakarta.activation#jakarta.activation-api;1.2.1 in central
+	found javax.servlet.jsp#jsp-api;2.1 in central
+:: resolution report :: resolve 37784ms :: artifacts dl 545ms
+	:: modules in use:
+	ch.qos.reload4j#reload4j;1.2.22 from central in [default]
+	com.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]
+	com.fasterxml.jackson.core#jackson-annotations;2.12.7 from central in [default]
+	com.fasterxml.jackson.core#jackson-core;2.12.7 from spark-list in [default]
+	com.fasterxml.jackson.core#jackson-databind;2.12.7 from central in [default]
+	com.fasterxml.woodstox#woodstox-core;5.3.0 from central in [default]
+	com.github.stephenc.jcip#jcip-annotations;1.0-1 from central in [default]
+	com.google.code.findbugs#jsr305;3.0.2 from central in [default]
+	com.google.code.gson#gson;2.8.9 from central in [default]
+	com.google.guava#failureaccess;1.0 from central in [default]
+	com.google.guava#guava;27.0-jre from central in [default]
+	com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava from central in [default]
+	com.google.j2objc#j2objc-annotations;1.1 from spark-list in [default]
+	com.google.protobuf#protobuf-java;2.5.0 from central in [default]
+	com.google.re2j#re2j;1.1 from central in [default]
+	com.jcraft#jsch;0.1.55 from central in [default]
+	com.nimbusds#nimbus-jose-jwt;9.8.1 from central in [default]
+	com.sun.jersey#jersey-core;1.19 from central in [default]
+	com.sun.jersey#jersey-json;1.19 from central in [default]
+	com.sun.jersey#jersey-server;1.19 from central in [default]
+	com.sun.jersey#jersey-servlet;1.19 from central in [default]
+	com.sun.xml.bind#jaxb-impl;2.2.3-1 from central in [default]
+	com.thoughtworks.paranamer#paranamer;2.3 from central in [default]
+	commons-beanutils#commons-beanutils;1.9.4 from central in [default]
+	commons-cli#commons-cli;1.2 from central in [default]
+	commons-codec#commons-codec;1.15 from central in [default]
+	commons-collections#commons-collections;3.2.2 from central in [default]
+	commons-io#commons-io;2.8.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	commons-net#commons-net;3.6 from central in [default]
+	dnsjava#dnsjava;2.1.7 from spark-list in [default]
+	io.delta#delta-spark_2.12;3.1.0 from spark-list in [default]
+	io.delta#delta-storage;3.1.0 from central in [default]
+	jakarta.activation#jakarta.activation-api;1.2.1 from central in [default]
+	javax.servlet#javax.servlet-api;3.1.0 from central in [default]
+	javax.servlet.jsp#jsp-api;2.1 from central in [default]
+	javax.ws.rs#jsr311-api;1.1.1 from central in [default]
+	javax.xml.bind#jaxb-api;2.2.11 from central in [default]
+	net.minidev#accessors-smart;2.4.7 from central in [default]
+	net.minidev#json-smart;2.4.7 from central in [default]
+	org.antlr#antlr4-runtime;4.9.3 from central in [default]
+	org.apache.avro#avro;1.7.7 from central in [default]
+	org.apache.commons#commons-compress;1.21 from central in [default]
+	org.apache.commons#commons-configuration2;2.1.1 from central in [default]
+	org.apache.commons#commons-lang3;3.12.0 from central in [default]
+	org.apache.commons#commons-math3;3.1.1 from central in [default]
+	org.apache.commons#commons-text;1.4 from central in [default]
+	org.apache.curator#curator-client;4.2.0 from central in [default]
+	org.apache.curator#curator-framework;4.2.0 from central in [default]
+	org.apache.curator#curator-recipes;4.2.0 from central in [default]
+	org.apache.hadoop#hadoop-annotations;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-auth;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-common;3.3.4 from central in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 from spark-list in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 from central in [default]
+	org.apache.httpcomponents#httpclient;4.5.13 from central in [default]
+	org.apache.httpcomponents#httpcore;4.4.13 from central in [default]
+	org.apache.kerby#kerb-admin;1.0.1 from central in [default]
+	org.apache.kerby#kerb-client;1.0.1 from central in [default]
+	org.apache.kerby#kerb-common;1.0.1 from central in [default]
+	org.apache.kerby#kerb-core;1.0.1 from central in [default]
+	org.apache.kerby#kerb-crypto;1.0.1 from central in [default]
+	org.apache.kerby#kerb-identity;1.0.1 from central in [default]
+	org.apache.kerby#kerb-server;1.0.1 from central in [default]
+	org.apache.kerby#kerb-simplekdc;1.0.1 from central in [default]
+	org.apache.kerby#kerb-util;1.0.1 from central in [default]
+	org.apache.kerby#kerby-asn1;1.0.1 from central in [default]
+	org.apache.kerby#kerby-config;1.0.1 from central in [default]
+	org.apache.kerby#kerby-pkix;1.0.1 from spark-list in [default]
+	org.apache.kerby#kerby-util;1.0.1 from central in [default]
+	org.apache.kerby#kerby-xdr;1.0.1 from central in [default]
+	org.apache.kerby#token-provider;1.0.1 from central in [default]
+	org.apache.yetus#audience-annotations;0.5.0 from central in [default]
+	org.apache.zookeeper#zookeeper;3.5.6 from central in [default]
+	org.apache.zookeeper#zookeeper-jute;3.5.6 from central in [default]
+	org.checkerframework#checker-qual;2.5.2 from spark-list in [default]
+	org.codehaus.jackson#jackson-core-asl;1.9.13 from spark-list in [default]
+	org.codehaus.jackson#jackson-jaxrs;1.9.13 from central in [default]
+	org.codehaus.jackson#jackson-mapper-asl;1.9.13 from spark-list in [default]
+	org.codehaus.jackson#jackson-xc;1.9.13 from central in [default]
+	org.codehaus.jettison#jettison;1.1 from spark-list in [default]
+	org.codehaus.mojo#animal-sniffer-annotations;1.17 from central in [default]
+	org.codehaus.woodstox#stax2-api;4.2.1 from central in [default]
+	org.eclipse.jetty#jetty-http;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-io;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-security;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-server;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-xml;9.4.43.v20210629 from central in [default]
+	org.ow2.asm#asm;5.0.4 from central in [default]
+	org.slf4j#slf4j-api;1.7.36 from central in [default]
+	org.slf4j#slf4j-reload4j;1.7.36 from spark-list in [default]
+	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+	org.xerial.snappy#snappy-java;1.1.8.2 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   98  |   0   |   0   |   0   ||   98  |   0   |
+	---------------------------------------------------------------------
+
+:: problems summary ::
+:::: ERRORS
+	unknown resolver null
+
+	unknown resolver null
+
+
+:: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+:: retrieving :: org.apache.spark#spark-submit-parent-35a50aa2-7c1b-4349-bee5-a8917aa2d438
+	confs: [default]
+	37 artifacts copied, 61 already retrieved (304260kB/5305ms)
+24/05/31 15:33:14 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4043. Attempting port 4044.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4044. Attempting port 4045.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4045. Attempting port 4046.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4046. Attempting port 4047.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4047. Attempting port 4048.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4048. Attempting port 4049.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4049. Attempting port 4050.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4050. Attempting port 4051.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4051. Attempting port 4052.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4052. Attempting port 4053.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4053. Attempting port 4054.
+24/05/31 15:33:23 WARN Utils: Service 'SparkUI' could not bind on port 4054. Attempting port 4055.
+[Stage 0:>                                                         (0 + 0) / 16][Stage 0:>                                                         (0 + 1) / 16][Stage 0:>                                                        (0 + 12) / 16][Stage 0:>                                                        (0 + 16) / 16][Stage 0:===>                                                     (1 + 15) / 16][Stage 0:================================>                         (9 + 7) / 16][Stage 0:===================================>                     (10 + 6) / 16][Stage 0:=======================================>                 (11 + 5) / 16][Stage 0:==========================================>              (12 + 4) / 16][Stage 0:==============================================>          (13 + 3) / 16][Stage 0:=================================================>       (14 + 2) / 16][Stage 0:=====================================================>   (15 + 1) / 16][Stage 0:=========================================================(16 + 0) / 16]                                                                                24/05/31 15:35:07 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+[Stage 1:>                                                         (0 + 0) / 16][Stage 1:>                                                        (0 + 16) / 16][Stage 1:=======>                                                 (2 + 14) / 16][Stage 1:=========================>                                (7 + 9) / 16][Stage 1:==============================================>          (13 + 3) / 16][Stage 1:=================================================>       (14 + 2) / 16][Stage 1:=====================================================>   (15 + 1) / 16][Stage 3:>                                                          (0 + 1) / 1]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 4) / 4][Stage 5:==============>                                            (1 + 3) / 4][Stage 5:=============================>                             (2 + 2) / 4][Stage 5:============================================>              (3 + 1) / 4]                                                                                [Stage 6:>                                                        (0 + 11) / 11][Stage 6:=====>                                                   (1 + 10) / 11][Stage 6:==========>                                               (2 + 9) / 11][Stage 6:===============>                                          (3 + 8) / 11][Stage 6:=====================>                                    (4 + 7) / 11][Stage 6:==========================>                               (5 + 6) / 11][Stage 6:===============================>                          (6 + 5) / 11][Stage 6:====================================>                     (7 + 4) / 11][Stage 6:==========================================>               (8 + 3) / 11][Stage 6:===============================================>          (9 + 2) / 11][Stage 6:===================================================>     (10 + 1) / 11]                                                                                [32m2024-05-31 15:36:22 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_AAN_path] - Row(10DayAverageTradingVolume=0.15159, 13WeekPriceReturnDaily=-15.1408, 26WeekPriceReturnDaily=-18.3051, 3MonthADReturnStd=52.88126, 3MonthAverageTradingVolume=0.24849, 52WeekHigh=16.16, 52WeekHighDate='2023-07-26', 52WeekLow=6.622, 52WeekLowDate='2024-05-07', 52WeekPriceReturnDaily=-42.3904, 5DayPriceReturnDaily=-2.4291, assetTurnoverAnnual=1.1715, assetTurnoverTTM=1.1616, beta=1.185315, bookValuePerShareAnnual=22.599, bookValuePerShareQuarterly=21.8947, capexCagr5Y=7.07, cashFlowPerShareAnnual=2.8325, cashFlowPerShareQuarterly=0.1867, cashFlowPerShareTTM=17.78305, cashPerSharePerShareAnnual=1.9444, cashPerSharePerShareQuarterly=1.3399, currentDividendYieldTTM=6.5157, currentEv/freeCashFlowAnnual=4.7442, currentEv/freeCashFlowTTM=71.3536, currentRatioAnnual=0.2949, currentRatioQuarterly=0.3005, dividendPerShareAnnual=0.4919, dividendPerShareTTM=0.5001, dividendYieldIndicatedAnnual=6.91563, ebitdPerShareAnnual=0.7974, ebitdPerShareTTM=-0.0122, ebitdaCagr5Y=-22.84, enterpriseValue=408, epsAnnual=0.0908, epsBasicExclExtraItemsAnnual=0.0908, epsBasicExclExtraItemsTTM=-0.7949999999999999, epsExclExtraItemsAnnual=0.0908, epsExclExtraItemsTTM=-0.7949999999999999, epsGrowth3Y=None, epsGrowth5Y=-42.93, epsGrowthQuarterlyYoy=None, epsGrowthTTMYoy=None, epsInclExtraItemsAnnual=0.0908, epsInclExtraItemsTTM=-0.7949999999999999, epsNormalizedAnnual=0.0908, epsTTM=-0.7949999999999999, focfCagr5Y=-6.35, grossMargin5Y=58.34, grossMarginAnnual=52.31, grossMarginTTM=53.55, inventoryTurnoverTTM=11.8072, longTermDebt/equityAnnual=0.2734, longTermDebt/equityQuarterly=0.3064, marketCapitalization=236.12299, monthToDatePriceReturnDaily=4.631, netIncomeEmployeeAnnual=0.0003, netIncomeEmployeeTTM=-0.0024, netInterestCoverageAnnual=-0.6737, netInterestCoverageTTM=0.9318, netMarginGrowth5Y=-45.96, netProfitMargin5Y=-1.58, netProfitMarginAnnual=0.13, netProfitMarginTTM=-2.77, operatingMargin5Y=-2.3, operatingMarginAnnual=0.59, operatingMarginTTM=-2.43, payoutRatioAnnual=531.14, payoutRatioTTM=37.82, pbAnnual=0.4809, pbQuarterly=0.3545, pcfShareAnnual=1.3088, pcfShareTTM=2.3408, peAnnual=83.6426, peBasicExclExtraTTM=None, peExclExtraTTM=None, peInclExtraTTM=None, peNormalizedAnnual=83.6426, peTTM=None, pfcfShareAnnual=2.7456, pfcfShareTTM=2.7456, pretaxMargin5Y=-2.76, pretaxMarginAnnual=-0.05, pretaxMarginTTM=-3.19, priceRelativeToS&P50013Week=-18.9224, priceRelativeToS&P50026Week=-34.3728, priceRelativeToS&P5004Week=1.4908, priceRelativeToS&P50052Week=-67.5986, priceRelativeToS&P500Ytd=-44.2335, psAnnual=0.1103, psTTM=0.1126, ptbvAnnual=0.5709, ptbvQuarterly=0.4208, quickRatioAnnual=0.1228, quickRatioQuarterly=0.1097, receivablesTurnoverAnnual=54.8816, receivablesTurnoverTTM=64.07, revenueEmployeeAnnual=0.2127, revenueEmployeeTTM=0.2085, revenueGrowth3Y=7.24, revenueGrowth5Y=3.58, revenueGrowthQuarterlyYoy=-7.74, revenueGrowthTTMYoy=-10.68, revenuePerShareAnnual=68.7957, revenuePerShareTTM=68.6396, revenueShareGrowth5Y=5.32, roa5Y=-2.14, roaRfy=0.15, roaTTM=-1.34, roe5Y=-3.82, roeRfy=0.41000000000000003, roeTTM=-3.49, roi5Y=-4.02, roiAnnual=0.32, roiTTM=-2.7199999999999998, tangibleBookValuePerShareAnnual=19.0367, tangibleBookValuePerShareQuarterly=18.4445, totalDebt/totalEquityAnnual=0.2827, totalDebt/totalEquityQuarterly=0.3175, yearToDatePriceReturnDaily=-33.5478)
+[Stage 7:>                                                        (0 + 16) / 16][Stage 7:===>                                                     (1 + 15) / 16][Stage 7:=======>                                                 (2 + 14) / 16][Stage 7:==========>                                              (3 + 13) / 16][Stage 7:==============>                                          (4 + 12) / 16][Stage 7:=================>                                       (5 + 11) / 16][Stage 7:=========================>                                (7 + 9) / 16][Stage 7:=============================>                            (8 + 8) / 16][Stage 7:===================================>                     (10 + 6) / 16][Stage 7:=======================================>                 (11 + 5) / 16][Stage 7:==========================================>              (12 + 4) / 16][Stage 7:==============================================>          (13 + 3) / 16][Stage 7:=====================================================>   (15 + 1) / 16]                                                                                [Stage 8:>                                                         (0 + 0) / 16][Stage 8:>                                                        (0 + 16) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 0) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 1) / 16][Stage 8:=>               (1 + 15) / 16][Stage 9:>                 (0 + 1) / 16][Stage 8:==>              (2 + 14) / 16][Stage 9:>                 (0 + 2) / 16][Stage 8:===>             (3 + 13) / 16][Stage 9:>                 (0 + 3) / 16][Stage 8:====>            (4 + 12) / 16][Stage 9:>                 (0 + 4) / 16][Stage 8:======>          (6 + 10) / 16][Stage 9:>                 (0 + 6) / 16][Stage 8:=========>        (8 + 8) / 16][Stage 9:=>                (1 + 8) / 16][Stage 8:=========>        (8 + 8) / 16][Stage 9:=>                (1 + 9) / 16][Stage 8:==========>       (9 + 7) / 16][Stage 9:=>                (1 + 9) / 16][Stage 8:==========>      (10 + 6) / 16][Stage 9:=>               (1 + 10) / 16][Stage 8:===========>     (11 + 5) / 16][Stage 9:=>               (1 + 11) / 16][Stage 8:============>    (12 + 4) / 16][Stage 9:=>               (1 + 13) / 16][Stage 8:=============>   (13 + 3) / 16][Stage 9:=>               (1 + 13) / 16][Stage 8:==============>  (14 + 2) / 16][Stage 9:==>              (2 + 14) / 16][Stage 8:==============>  (14 + 2) / 16][Stage 9:=====>           (5 + 11) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:======>          (6 + 10) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:=======>          (7 + 9) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:==========>      (10 + 6) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:===========>     (11 + 5) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:============>    (12 + 4) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:=============>   (13 + 3) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:===============> (15 + 1) / 16][Stage 8:=================(16 + 0) / 16][Stage 9:===============> (15 + 1) / 16][Stage 9:=====================================================>   (15 + 1) / 16][Stage 12:>                                                         (0 + 0) / 1][Stage 12:>                                                         (0 + 1) / 1]                                                                                [Stage 17:>                                                       (0 + 16) / 16][Stage 17:>               (0 + 16) / 16][Stage 18:>                (0 + 0) / 16][Stage 17:=>              (1 + 15) / 16][Stage 18:>                (0 + 1) / 16][Stage 17:==>             (2 + 14) / 16][Stage 18:>                (0 + 2) / 16][Stage 17:===>            (3 + 13) / 16][Stage 18:>                (0 + 3) / 16][Stage 17:====>           (4 + 12) / 16][Stage 18:>                (0 + 4) / 16][Stage 17:====>           (4 + 12) / 16][Stage 18:>                (0 + 6) / 16][Stage 17:====>           (4 + 12) / 16][Stage 18:>                (0 + 7) / 16][Stage 17:===========>    (11 + 5) / 16][Stage 18:>               (0 + 11) / 16][Stage 17:============>   (12 + 4) / 16][Stage 18:>               (0 + 12) / 16][Stage 17:===============>(15 + 1) / 16][Stage 18:>               (0 + 15) / 16][Stage 18:>                                                       (0 + 16) / 16][Stage 18:===>                                                    (1 + 15) / 16][Stage 18:=======>                                                (2 + 14) / 16][Stage 18:==========>                                             (3 + 13) / 16][Stage 18:==============>                                         (4 + 12) / 16][Stage 18:=================>                                      (5 + 11) / 16][Stage 18:=====================>                                  (6 + 10) / 16][Stage 18:========================>                                (7 + 9) / 16][Stage 18:============================>                            (8 + 8) / 16][Stage 18:================================>                        (9 + 7) / 16][Stage 18:===================================>                    (10 + 6) / 16][Stage 18:======================================>                 (11 + 5) / 16][Stage 18:==========================================>             (12 + 4) / 16][Stage 18:=============================================>          (13 + 3) / 16][Stage 18:=================================================>      (14 + 2) / 16][Stage 18:====================================================>   (15 + 1) / 16][Stage 21:>                                                         (0 + 1) / 1]                                                                                [32m2024-05-31 15:40:28 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_AAN_path] - Row(date='2015-12-31', quarterly.assetTurnoverTTM=None, quarterly.bookValue=None, quarterly.cashRatio=None, quarterly.currentRatio=None, quarterly.ebitPerShare=None, quarterly.eps=None, quarterly.ev=None, quarterly.fcfMargin=None, quarterly.fcfPerShareTTM=None, quarterly.grossMargin=None, quarterly.inventoryTurnoverTTM=None, quarterly.longtermDebtTotalAsset=None, quarterly.longtermDebtTotalCapital=None, quarterly.longtermDebtTotalEquity=None, quarterly.netDebtToTotalCapital=None, quarterly.netDebtToTotalEquity=None, quarterly.netMargin=None, quarterly.operatingMargin=None, quarterly.payoutRatioTTM=None, quarterly.pb=None, quarterly.peTTM=None, quarterly.pfcfTTM=None, quarterly.pretaxMargin=None, quarterly.psTTM=None, quarterly.ptbv=None, quarterly.quickRatio=None, quarterly.receivablesTurnoverTTM=None, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.rotcTTM=None, quarterly.salesPerShare=None, quarterly.sgaToSale=None, quarterly.tangibleBookValue=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.bookValue=None, annual.cashRatio=None, annual.currentRatio=None, annual.ebitPerShare=4.7899, annual.eps=2.6598, annual.ev=None, annual.fcfMargin=None, annual.grossMargin=0.5521, annual.longtermDebtTotalAsset=None, annual.longtermDebtTotalCapital=None, annual.longtermDebtTotalEquity=None, annual.netDebtToTotalCapital=None, annual.netDebtToTotalEquity=None, annual.netMargin=0.0423, annual.operatingMargin=0.0761, annual.payoutRatio=None, annual.pb=None, annual.pe=None, annual.pfcf=None, annual.pretaxMargin=0.0656, annual.ps=None, annual.ptbv=None, annual.quickRatio=None, annual.receivablesTurnover=None, annual.roa=None, annual.roe=None, annual.roic=None, annual.rotc=None, annual.salesPerShare=62.9349, annual.sgaToSale=0.4479, annual.tangibleBookValue=None, annual.totalDebtToEquity=None, annual.totalDebtToTotalAsset=None, annual.totalDebtToTotalCapital=None, annual.totalRatio=None)
+[Stage 22:>                                                       (0 + 16) / 16][Stage 22:=======>                                                (2 + 14) / 16][Stage 22:==========>                                             (3 + 13) / 16][Stage 22:==============>                                         (4 + 12) / 16][Stage 22:=================>                                      (5 + 11) / 16][Stage 22:=====================>                                  (6 + 10) / 16][Stage 22:========================>                                (7 + 9) / 16][Stage 22:============================>                            (8 + 8) / 16][Stage 22:================================>                        (9 + 7) / 16][Stage 22:===================================>                    (10 + 6) / 16][Stage 22:======================================>                 (11 + 5) / 16][Stage 22:==========================================>             (12 + 4) / 16][Stage 22:=============================================>          (13 + 3) / 16][Stage 22:=================================================>      (14 + 2) / 16][Stage 22:====================================================>   (15 + 1) / 16][Stage 23:>                                                       (0 + 16) / 16][Stage 23:==========>                                             (3 + 13) / 16][Stage 23:==============>                                         (4 + 12) / 16][Stage 23:=================>                                      (5 + 11) / 16][Stage 23:=====================>                                  (6 + 10) / 16][Stage 23:========================>                                (7 + 9) / 16][Stage 23:============================>                            (8 + 8) / 16][Stage 23:===================================>                    (10 + 6) / 16][Stage 23:======================================>                 (11 + 5) / 16][Stage 23:==========================================>             (12 + 4) / 16][Stage 23:=============================================>          (13 + 3) / 16][Stage 23:=================================================>      (14 + 2) / 16][Stage 23:====================================================>   (15 + 1) / 16][Stage 24:>                                                       (0 + 16) / 16][Stage 24:=>              (1 + 15) / 16][Stage 25:>                (0 + 1) / 16][Stage 24:==>             (2 + 14) / 16][Stage 25:>                (0 + 2) / 16][Stage 24:==>             (2 + 14) / 16][Stage 25:>                (0 + 3) / 16][Stage 24:====>           (4 + 12) / 16][Stage 25:>                (0 + 4) / 16][Stage 24:=====>          (5 + 11) / 16][Stage 25:>                (0 + 5) / 16][Stage 24:======>         (6 + 10) / 16][Stage 25:>                (0 + 6) / 16][Stage 24:========>        (8 + 8) / 16][Stage 25:>                (0 + 8) / 16][Stage 24:=========>       (9 + 7) / 16][Stage 25:>                (0 + 9) / 16][Stage 24:==========>     (10 + 6) / 16][Stage 25:>               (0 + 10) / 16][Stage 24:===========>    (11 + 5) / 16][Stage 25:>               (0 + 11) / 16][Stage 24:============>   (12 + 4) / 16][Stage 25:>               (0 + 12) / 16][Stage 24:============>   (12 + 4) / 16][Stage 25:>               (0 + 13) / 16][Stage 24:=============>  (13 + 3) / 16][Stage 25:>               (0 + 13) / 16][Stage 24:==============> (14 + 2) / 16][Stage 25:>               (0 + 14) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:>               (0 + 15) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:=>              (1 + 15) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:==>             (2 + 14) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:===>            (3 + 13) / 16][Stage 25:==========>                                             (3 + 13) / 16][Stage 25:==============>                                         (4 + 12) / 16][Stage 25:=================>                                      (5 + 11) / 16][Stage 25:=====================>                                  (6 + 10) / 16][Stage 25:========================>                                (7 + 9) / 16][Stage 25:============================>                            (8 + 8) / 16][Stage 25:================================>                        (9 + 7) / 16][Stage 25:===================================>                    (10 + 6) / 16][Stage 25:======================================>                 (11 + 5) / 16][Stage 25:==========================================>             (12 + 4) / 16][Stage 25:=================================================>      (14 + 2) / 16][Stage 25:====================================================>   (15 + 1) / 16][Stage 26:>                                                        (0 + 0) / 16][Stage 26:>                                                       (0 + 16) / 16][Stage 26:>               (0 + 16) / 16][Stage 27:>                (0 + 0) / 16][Stage 26:=>              (1 + 15) / 16][Stage 27:>                (0 + 1) / 16][Stage 26:==>             (2 + 14) / 16][Stage 27:>                (0 + 2) / 16][Stage 26:===>            (3 + 13) / 16][Stage 27:>                (0 + 3) / 16][Stage 26:====>           (4 + 12) / 16][Stage 27:>                (0 + 4) / 16][Stage 26:=====>          (5 + 11) / 16][Stage 27:>                (0 + 5) / 16][Stage 26:======>         (6 + 10) / 16][Stage 27:>                (0 + 6) / 16][Stage 26:=======>         (7 + 9) / 16][Stage 27:>                (0 + 7) / 16][Stage 26:===========>    (11 + 5) / 16][Stage 27:>               (0 + 11) / 16][Stage 26:============>   (12 + 4) / 16][Stage 27:>               (0 + 12) / 16][Stage 26:=============>  (13 + 3) / 16][Stage 27:>               (0 + 13) / 16][Stage 26:==============> (14 + 2) / 16][Stage 27:=>              (1 + 14) / 16][Stage 26:===============>(15 + 1) / 16][Stage 27:=>              (1 + 15) / 16][Stage 26:===============>(15 + 1) / 16][Stage 27:==>             (2 + 14) / 16][Stage 27:=======>                                                (2 + 14) / 16][Stage 27:==========>                                             (3 + 13) / 16][Stage 27:==============>                                         (4 + 12) / 16][Stage 27:=====================>                                  (6 + 10) / 16][Stage 27:============================>                            (8 + 8) / 16][Stage 27:================================>                        (9 + 7) / 16][Stage 27:===================================>                    (10 + 6) / 16][Stage 27:======================================>                 (11 + 5) / 16][Stage 27:==========================================>             (12 + 4) / 16][Stage 27:=============================================>          (13 + 3) / 16][Stage 27:=================================================>      (14 + 2) / 16][Stage 30:>                                                         (0 + 0) / 1][Stage 30:>                                                         (0 + 1) / 1][Stage 31:>                                                       (0 + 16) / 16][Stage 31:===>                                                    (1 + 15) / 16][Stage 31:=======>                                                (2 + 14) / 16][Stage 31:==========>                                             (3 + 13) / 16][Stage 31:==============>                                         (4 + 12) / 16][Stage 31:=================>                                      (5 + 11) / 16][Stage 31:=====================>                                  (6 + 10) / 16][Stage 31:========================>                                (7 + 9) / 16][Stage 31:============================>                            (8 + 8) / 16][Stage 31:================================>                        (9 + 7) / 16][Stage 31:===================================>                    (10 + 6) / 16][Stage 31:======================================>                 (11 + 5) / 16][Stage 31:==========================================>             (12 + 4) / 16][Stage 31:=============================================>          (13 + 3) / 16][Stage 31:====================================================>   (15 + 1) / 16][32m2024-05-31 15:46:21 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 34825 - spark_operator.create_stock_tables[stock_AAN_path] - STEP_OUTPUT - Yielded output "metric_and_series" of type "Any". (Type check passed).
+[32m2024-05-31 15:46:32 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_AAN_path] - Writing S3 object at: s3a://dagster-api/staging/2024-05-31/spark_operator.create_stock_tables[stock_AAN_path]/metric_and_series
+[32m2024-05-31 15:46:32 +0000[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_AAN_path] - Removing existing S3 object: staging/2024-05-31/spark_operator.create_stock_tables[stock_AAN_path]/metric_and_series
+24/05/31 15:46:37 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[32m2024-05-31 15:46:44 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 34825 - spark_operator.create_stock_tables[stock_AAN_path] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_AAN_path]" failed and has requested a retry in 0.036185052715071636 seconds.
+
+dagster._core.execution.plan.utils.RetryRequestedFromPolicy
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
+    for evt in _store_output(step_context, step_output_handle, output):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
+    for elt in iterate_with_context(
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/home/gitpod/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
+    raise RetryRequestedFromPolicy(
+
+The above exception was caused by the following exception:
+py4j.protocol.Py4JJavaError: An error occurred while calling o2735.save.
+: java.lang.NoClassDefFoundError: com/amazonaws/auth/AbstractAWSSigner
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1022)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/java.net.URLClassLoader.defineClass(URLClassLoader.java:555)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:458)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:452)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:451)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:594)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:527)
+	at com.amazonaws.services.s3.AmazonS3Client.<clinit>(AmazonS3Client.java:443)
+	at org.apache.hadoop.fs.s3a.DefaultS3ClientFactory.buildAmazonS3Client(DefaultS3ClientFactory.java:225)
+	at org.apache.hadoop.fs.s3a.DefaultS3ClientFactory.createS3Client(DefaultS3ClientFactory.java:145)
+	at org.apache.hadoop.fs.s3a.S3AFileSystem.bindAWSClient(S3AFileSystem.java:898)
+	at org.apache.hadoop.fs.s3a.S3AFileSystem.initialize(S3AFileSystem.java:534)
+	at org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:3469)
+	at org.apache.hadoop.fs.FileSystem.access$300(FileSystem.java:174)
+	at org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:3574)
+	at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:3521)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:540)
+	at org.apache.hadoop.fs.Path.getFileSystem(Path.java:365)
+	at org.apache.spark.sql.delta.DeltaLog$.apply(DeltaLog.scala:767)
+	at org.apache.spark.sql.delta.DeltaLog$.forTable(DeltaLog.scala:677)
+	at org.apache.spark.sql.delta.sources.DeltaDataSource.createRelation(DeltaDataSource.scala:189)
+	at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:48)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:75)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:73)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.executeCollect(commands.scala:84)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:859)
+	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:388)
+	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:304)
+	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:240)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.ClassNotFoundException: com.amazonaws.auth.AbstractAWSSigner
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:460)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:452)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:451)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:594)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:527)
+	... 65 more
+Caused by: java.io.EOFException
+	at java.base/java.io.RandomAccessFile.readFully(RandomAccessFile.java:472)
+	at java.base/java.util.zip.ZipFile$Source.readFullyAt(ZipFile.java:1508)
+	at java.base/java.util.zip.ZipFile$ZipFileInputStream.initDataOffset(ZipFile.java:1027)
+	at java.base/java.util.zip.ZipFile$ZipFileInputStream.read(ZipFile.java:1042)
+	at java.base/java.util.zip.ZipFile$ZipFileInflaterInputStream.fill(ZipFile.java:492)
+	at java.base/java.util.zip.InflaterInputStream.read(InflaterInputStream.java:159)
+	at java.base/jdk.internal.loader.Resource.getBytes(Resource.java:124)
+	at java.base/jdk.internal.loader.URLClassPath$JarLoader$2.getBytes(URLClassPath.java:897)
+	at java.base/java.net.URLClassLoader.defineClass(URLClassLoader.java:550)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:458)
+	... 70 more
+
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 151, in handle_output
+    return self.inner_io_manager().handle_output(context, obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/storage/upath_io_manager.py", line 446, in handle_output
+    self.dump_to_path(context=context, obj=obj, path=path)
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 83, in dump_to_path
+    obj.write.format("delta").mode('overwrite').save(pathe)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/sql/readwriter.py", line 1463, in save
+    self._jwrite.save(path)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+

@@ -1,0 +1,889 @@
+[32m2024-05-31 15:28:45 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 17173 - LOGS_CAPTURED - Started capturing logs in process (pid: 17173).
+[32m2024-05-31 15:28:45 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 17173 - spark_operator.create_stock_tables[stock_AAGH_path] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AAGH_path]".
+[32m2024-05-31 15:28:45 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_AAGH_path] - Loading file from: /workspace/practical-data-engineering/finnhub-batch-stock-pipeline/home/storage/29657144-f47b-4730-a719-19652768d51f/spark_operator.stock_tables/result/stock_AAGH_path using PickledObjectFilesystemIOManager...
+[32m2024-05-31 15:28:45 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 17173 - spark_operator.create_stock_tables[stock_AAGH_path] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-05-31 15:28:45 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 17173 - spark_operator.create_stock_tables[stock_AAGH_path] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/05/31 15:29:01 WARN Utils: Your hostname, willowyboat-practicalda-8yoi5et7ep7 resolves to a loopback address: 127.0.0.1; using 10.0.5.2 instead (on interface eth0)
+24/05/31 15:29:01 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Ivy Default Cache set to: /home/gitpod/.ivy2/cache
+The jars for the packages stored in: /home/gitpod/.ivy2/jars
+io.delta#delta-spark_2.12 added as a dependency
+org.apache.hadoop#hadoop-aws added as a dependency
+org.apache.hadoop#hadoop-common added as a dependency
+com.amazonaws#aws-java-sdk-bundle added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-f547583a-51a8-46c4-a92f-0f5fe76aef16;1.0
+	confs: [default]
+	found io.delta#delta-spark_2.12;3.1.0 in central
+	found io.delta#delta-storage;3.1.0 in central
+	found org.antlr#antlr4-runtime;4.9.3 in central
+	found org.apache.hadoop#hadoop-aws;3.3.4 in central
+	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in central
+	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+	found org.apache.hadoop#hadoop-common;3.3.4 in central
+	found org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 in central
+	found org.apache.hadoop#hadoop-annotations;3.3.4 in central
+	found org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 in spark-list
+	found com.google.guava#guava;27.0-jre in central
+	found com.google.guava#failureaccess;1.0 in central
+	found com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava in central
+	found com.google.code.findbugs#jsr305;3.0.2 in central
+	found org.checkerframework#checker-qual;2.5.2 in central
+	found com.google.j2objc#j2objc-annotations;1.1 in central
+	found org.codehaus.mojo#animal-sniffer-annotations;1.17 in central
+	found commons-cli#commons-cli;1.2 in central
+	found org.apache.commons#commons-math3;3.1.1 in central
+	found org.apache.httpcomponents#httpclient;4.5.13 in central
+	found org.apache.httpcomponents#httpcore;4.4.13 in central
+	found commons-logging#commons-logging;1.1.3 in central
+	found commons-io#commons-io;2.8.0 in central
+	found commons-net#commons-net;3.6 in central
+	found commons-collections#commons-collections;3.2.2 in central
+	found org.eclipse.jetty#jetty-server;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-http;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-util;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-io;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-security;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-xml;9.4.43.v20210629 in central
+	found com.sun.jersey#jersey-core;1.19 in central
+	found javax.ws.rs#jsr311-api;1.1.1 in central
+	found com.sun.jersey#jersey-servlet;1.19 in central
+	found com.sun.jersey#jersey-server;1.19 in central
+	found ch.qos.reload4j#reload4j;1.2.22 in central
+	found commons-beanutils#commons-beanutils;1.9.4 in central
+	found org.apache.commons#commons-configuration2;2.1.1 in central
+	found org.slf4j#slf4j-api;1.7.36 in central
+	found org.slf4j#slf4j-reload4j;1.7.36 in spark-list
+	found com.google.re2j#re2j;1.1 in central
+	found com.google.protobuf#protobuf-java;2.5.0 in central
+	found org.apache.hadoop#hadoop-auth;3.3.4 in central
+	found com.nimbusds#nimbus-jose-jwt;9.8.1 in central
+	found com.github.stephenc.jcip#jcip-annotations;1.0-1 in central
+	found net.minidev#json-smart;2.4.7 in central
+	found net.minidev#accessors-smart;2.4.7 in central
+	found org.ow2.asm#asm;5.0.4 in central
+	found org.apache.zookeeper#zookeeper;3.5.6 in central
+	found org.apache.zookeeper#zookeeper-jute;3.5.6 in central
+	found org.apache.yetus#audience-annotations;0.5.0 in central
+	found org.apache.curator#curator-framework;4.2.0 in central
+	found org.apache.curator#curator-client;4.2.0 in central
+	found org.apache.kerby#kerb-simplekdc;1.0.1 in central
+	found org.apache.kerby#kerb-client;1.0.1 in central
+	found org.apache.kerby#kerby-config;1.0.1 in central
+	found org.apache.kerby#kerb-core;1.0.1 in central
+	found org.apache.kerby#kerby-pkix;1.0.1 in central
+	found org.apache.kerby#kerby-asn1;1.0.1 in central
+	found org.apache.kerby#kerby-util;1.0.1 in central
+	found org.apache.kerby#kerb-common;1.0.1 in central
+	found org.apache.kerby#kerb-crypto;1.0.1 in central
+	found org.apache.kerby#kerb-util;1.0.1 in central
+	found org.apache.kerby#token-provider;1.0.1 in central
+	found org.apache.kerby#kerb-admin;1.0.1 in central
+	found org.apache.kerby#kerb-server;1.0.1 in central
+	found org.apache.kerby#kerb-identity;1.0.1 in central
+	found org.apache.kerby#kerby-xdr;1.0.1 in central
+	found com.jcraft#jsch;0.1.55 in central
+	found org.apache.curator#curator-recipes;4.2.0 in central
+	found org.apache.commons#commons-compress;1.21 in central
+	found com.fasterxml.jackson.core#jackson-databind;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-annotations;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-core;2.12.7 in spark-list
+	found org.codehaus.woodstox#stax2-api;4.2.1 in central
+	found dnsjava#dnsjava;2.1.7 in central
+	found org.xerial.snappy#snappy-java;1.1.8.2 in central
+	found jakarta.activation#jakarta.activation-api;1.2.1 in central
+	found javax.servlet.jsp#jsp-api;2.1 in central
+downloading https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar ...
+downloading https://repo1.maven.org/maven2/org/apache/hadoop/thirdparty/hadoop-shaded-guava/1.1.1/hadoop-shaded-guava-1.1.1.jar ...
+downloading https://repo1.maven.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar ...
+downloading https://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar ...
+downloading https://repo1.maven.org/maven2/commons-io/commons-io/2.8.0/commons-io-2.8.0.jar ...
+	[SUCCESSFUL ] commons-io#commons-io;2.8.0!commons-io.jar (805ms)
+downloading https://repo1.maven.org/maven2/commons-net/commons-net/3.6/commons-net-3.6.jar ...
+	[SUCCESSFUL ] commons-net#commons-net;3.6!commons-net.jar (516ms)
+downloading https://repo1.maven.org/maven2/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar ...
+	[SUCCESSFUL ] commons-collections#commons-collections;3.2.2!commons-collections.jar (394ms)
+downloading https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-server/9.4.43.v20210629/jetty-server-9.4.43.v20210629.jar ...
+downloading https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.43.v20210629/jetty-util-9.4.43.v20210629.jar ...
+downloading https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-servlet/9.4.43.v20210629/jetty-servlet-9.4.43.v20210629.jar ...
+downloading https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-webapp/9.4.43.v20210629/jetty-webapp-9.4.43.v20210629.jar ...
+downloading https://repo1.maven.org/maven2/com/sun/jersey/jersey-servlet/1.19/jersey-servlet-1.19.jar ...
+downloading https://repo1.maven.org/maven2/com/sun/jersey/jersey-server/1.19/jersey-server-1.19.jar ...
+downloading https://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar ...
+	[SUCCESSFUL ] commons-logging#commons-logging;1.1.3!commons-logging.jar (183ms)
+downloading https://repo1.maven.org/maven2/ch/qos/reload4j/reload4j/1.2.22/reload4j-1.2.22.jar ...
+downloading https://repo1.maven.org/maven2/org/apache/commons/commons-configuration2/2.1.1/commons-configuration2-2.1.1.jar ...
+downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar ...
+downloading https://repo1.maven.org/maven2/com/google/re2j/re2j/1.1/re2j-1.1.jar ...
+downloading https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-auth/3.3.4/hadoop-auth-3.3.4.jar ...
+	[SUCCESSFUL ] org.apache.hadoop#hadoop-auth;3.3.4!hadoop-auth.jar (97ms)
+downloading https://repo1.maven.org/maven2/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar ...
+downloading https://repo1.maven.org/maven2/org/apache/curator/curator-recipes/4.2.0/curator-recipes-4.2.0.jar ...
+downloading https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar ...
+	[SUCCESSFUL ] com.google.code.findbugs#jsr305;3.0.2!jsr305.jar (434ms)
+downloading https://repo1.maven.org/maven2/org/apache/zookeeper/zookeeper/3.5.6/zookeeper-3.5.6.jar ...
+downloading https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.21/commons-compress-1.21.jar ...
+downloading https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.12.7/jackson-databind-2.12.7.jar ...
+downloading https://repo1.maven.org/maven2/dnsjava/dnsjava/2.1.7/dnsjava-2.1.7.jar ...
+downloading https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.8.2/snappy-java-1.1.8.2.jar ...
+downloading https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar ...
+downloading https://repo1.maven.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar ...
+	[SUCCESSFUL ] com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava!listenablefuture.jar (17ms)
+downloading https://repo1.maven.org/maven2/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar ...
+downloading https://repo1.maven.org/maven2/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar ...
+	[SUCCESSFUL ] org.codehaus.mojo#animal-sniffer-annotations;1.17!animal-sniffer-annotations.jar (82ms)
+downloading https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.43.v20210629/jetty-io-9.4.43.v20210629.jar ...
+downloading https://repo1.maven.org/maven2/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar ...
+downloading https://repo1.maven.org/maven2/com/nimbusds/nimbus-jose-jwt/9.8.1/nimbus-jose-jwt-9.8.1.jar ...
+	[SUCCESSFUL ] com.nimbusds#nimbus-jose-jwt;9.8.1!nimbus-jose-jwt.jar (98ms)
+downloading https://repo1.maven.org/maven2/net/minidev/json-smart/2.4.7/json-smart-2.4.7.jar ...
+	[SUCCESSFUL ] net.minidev#json-smart;2.4.7!json-smart.jar(bundle) (97ms)
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerb-simplekdc/1.0.1/kerb-simplekdc-1.0.1.jar ...
+	[SUCCESSFUL ] org.apache.kerby#kerb-simplekdc;1.0.1!kerb-simplekdc.jar (97ms)
+downloading https://repo1.maven.org/maven2/com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.jar ...
+	[SUCCESSFUL ] com.github.stephenc.jcip#jcip-annotations;1.0-1!jcip-annotations.jar (243ms)
+downloading https://repo1.maven.org/maven2/net/minidev/accessors-smart/2.4.7/accessors-smart-2.4.7.jar ...
+	[SUCCESSFUL ] net.minidev#accessors-smart;2.4.7!accessors-smart.jar(bundle) (36ms)
+downloading https://repo1.maven.org/maven2/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar ...
+	[SUCCESSFUL ] org.ow2.asm#asm;5.0.4!asm.jar (25ms)
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerb-client/1.0.1/kerb-client-1.0.1.jar ...
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerb-admin/1.0.1/kerb-admin-1.0.1.jar ...
+	[SUCCESSFUL ] org.apache.kerby#kerb-admin;1.0.1!kerb-admin.jar (102ms)
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerby-config/1.0.1/kerby-config-1.0.1.jar ...
+	[SUCCESSFUL ] org.apache.kerby#kerby-config;1.0.1!kerby-config.jar (201ms)
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerb-util/1.0.1/kerb-util-1.0.1.jar ...
+	[SUCCESSFUL ] org.apache.kerby#kerb-util;1.0.1!kerb-util.jar (91ms)
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerb-server/1.0.1/kerb-server-1.0.1.jar ...
+	[SUCCESSFUL ] org.apache.kerby#kerb-server;1.0.1!kerb-server.jar (97ms)
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerby-xdr/1.0.1/kerby-xdr-1.0.1.jar ...
+	[SUCCESSFUL ] org.apache.kerby#kerby-xdr;1.0.1!kerby-xdr.jar (98ms)
+downloading https://repo1.maven.org/maven2/org/apache/kerby/kerb-identity/1.0.1/kerb-identity-1.0.1.jar ...
+	[SUCCESSFUL ] org.apache.kerby#kerb-identity;1.0.1!kerb-identity.jar (91ms)
+:: resolution report :: resolve 41792ms :: artifacts dl 119795ms
+	:: modules in use:
+	ch.qos.reload4j#reload4j;1.2.22 from central in [default]
+	com.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]
+	com.fasterxml.jackson.core#jackson-annotations;2.12.7 from central in [default]
+	com.fasterxml.jackson.core#jackson-core;2.12.7 from spark-list in [default]
+	com.fasterxml.jackson.core#jackson-databind;2.12.7 from central in [default]
+	com.github.stephenc.jcip#jcip-annotations;1.0-1 from central in [default]
+	com.google.code.findbugs#jsr305;3.0.2 from central in [default]
+	com.google.guava#failureaccess;1.0 from central in [default]
+	com.google.guava#guava;27.0-jre from central in [default]
+	com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava from central in [default]
+	com.google.j2objc#j2objc-annotations;1.1 from central in [default]
+	com.google.protobuf#protobuf-java;2.5.0 from central in [default]
+	com.google.re2j#re2j;1.1 from central in [default]
+	com.jcraft#jsch;0.1.55 from central in [default]
+	com.nimbusds#nimbus-jose-jwt;9.8.1 from central in [default]
+	com.sun.jersey#jersey-core;1.19 from central in [default]
+	com.sun.jersey#jersey-server;1.19 from central in [default]
+	com.sun.jersey#jersey-servlet;1.19 from central in [default]
+	commons-beanutils#commons-beanutils;1.9.4 from central in [default]
+	commons-cli#commons-cli;1.2 from central in [default]
+	commons-collections#commons-collections;3.2.2 from central in [default]
+	commons-io#commons-io;2.8.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	commons-net#commons-net;3.6 from central in [default]
+	dnsjava#dnsjava;2.1.7 from central in [default]
+	io.delta#delta-spark_2.12;3.1.0 from central in [default]
+	io.delta#delta-storage;3.1.0 from central in [default]
+	jakarta.activation#jakarta.activation-api;1.2.1 from central in [default]
+	javax.servlet.jsp#jsp-api;2.1 from central in [default]
+	javax.ws.rs#jsr311-api;1.1.1 from central in [default]
+	net.minidev#accessors-smart;2.4.7 from central in [default]
+	net.minidev#json-smart;2.4.7 from central in [default]
+	org.antlr#antlr4-runtime;4.9.3 from central in [default]
+	org.apache.commons#commons-compress;1.21 from central in [default]
+	org.apache.commons#commons-configuration2;2.1.1 from central in [default]
+	org.apache.commons#commons-math3;3.1.1 from central in [default]
+	org.apache.curator#curator-client;4.2.0 from central in [default]
+	org.apache.curator#curator-framework;4.2.0 from central in [default]
+	org.apache.curator#curator-recipes;4.2.0 from central in [default]
+	org.apache.hadoop#hadoop-annotations;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-auth;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-common;3.3.4 from central in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 from spark-list in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 from central in [default]
+	org.apache.httpcomponents#httpclient;4.5.13 from central in [default]
+	org.apache.httpcomponents#httpcore;4.4.13 from central in [default]
+	org.apache.kerby#kerb-admin;1.0.1 from central in [default]
+	org.apache.kerby#kerb-client;1.0.1 from central in [default]
+	org.apache.kerby#kerb-common;1.0.1 from central in [default]
+	org.apache.kerby#kerb-core;1.0.1 from central in [default]
+	org.apache.kerby#kerb-crypto;1.0.1 from central in [default]
+	org.apache.kerby#kerb-identity;1.0.1 from central in [default]
+	org.apache.kerby#kerb-server;1.0.1 from central in [default]
+	org.apache.kerby#kerb-simplekdc;1.0.1 from central in [default]
+	org.apache.kerby#kerb-util;1.0.1 from central in [default]
+	org.apache.kerby#kerby-asn1;1.0.1 from central in [default]
+	org.apache.kerby#kerby-config;1.0.1 from central in [default]
+	org.apache.kerby#kerby-pkix;1.0.1 from central in [default]
+	org.apache.kerby#kerby-util;1.0.1 from central in [default]
+	org.apache.kerby#kerby-xdr;1.0.1 from central in [default]
+	org.apache.kerby#token-provider;1.0.1 from central in [default]
+	org.apache.yetus#audience-annotations;0.5.0 from central in [default]
+	org.apache.zookeeper#zookeeper;3.5.6 from central in [default]
+	org.apache.zookeeper#zookeeper-jute;3.5.6 from central in [default]
+	org.checkerframework#checker-qual;2.5.2 from central in [default]
+	org.codehaus.mojo#animal-sniffer-annotations;1.17 from central in [default]
+	org.codehaus.woodstox#stax2-api;4.2.1 from central in [default]
+	org.eclipse.jetty#jetty-http;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-io;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-security;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-server;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-xml;9.4.43.v20210629 from central in [default]
+	org.ow2.asm#asm;5.0.4 from central in [default]
+	org.slf4j#slf4j-api;1.7.36 from central in [default]
+	org.slf4j#slf4j-reload4j;1.7.36 from spark-list in [default]
+	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+	org.xerial.snappy#snappy-java;1.1.8.2 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   90  |   21  |   19  |   0   ||   82  |   20  |
+	---------------------------------------------------------------------
+
+:: problems summary ::
+:::: WARNINGS
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/org/apache/commons/commons-parent/52/commons-parent-52.pom: size of source file /home/gitpod/.ivy2/cache/org.apache.commons/commons-parent/ivy-52.xml.original(79273) differs from size of dest file /home/gitpod/.ivy2/cache/org.apache.commons/commons-parent/ivy-52.xml.original.backup(0) - please retry (10ms)
+
+	io problem while parsing ivy file: https://repo1.maven.org/maven2/commons-codec/commons-codec/1.15/commons-codec-1.15.pom (java.io.IOException: Impossible to load parent for file:/home/gitpod/.ivy2/cache/commons-codec/commons-codec/ivy-1.15.xml.original. Parent=org.apache.commons#commons-parent;52)
+
+		module not found: commons-codec#commons-codec;1.15
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/org/apache/commons/commons-parent/52/commons-parent-52.pom
+
+	  -- artifact org.apache.commons#commons-parent;52!commons-parent.jar:
+
+	  file:/home/gitpod/.m2/repository/org/apache/commons/commons-parent/52/commons-parent-52.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/org.apache.commons/commons-parent/52/ivys/ivy.xml
+
+	  -- artifact org.apache.commons#commons-parent;52!commons-parent.jar:
+
+	  /home/gitpod/.ivy2/local/org.apache.commons/commons-parent/52/jars/commons-parent.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/commons/commons-parent/52/commons-parent-52.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/commons-codec/commons-codec/1.15/commons-codec-1.15.pom
+
+	  -- artifact commons-codec#commons-codec;1.15!commons-codec.jar:
+
+	  https://repos.spark-packages.org/commons-codec/commons-codec/1.15/commons-codec-1.15.jar
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom: size of source file /home/gitpod/.ivy2/cache/javax.servlet/javax.servlet-api/ivy-3.1.0.xml.original(13527) differs from size of dest file /home/gitpod/.ivy2/cache/javax.servlet/javax.servlet-api/ivy-3.1.0.xml.original.backup(0) - please retry (9ms)
+
+		module not found: javax.servlet#javax.servlet-api;3.1.0
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom
+
+	  -- artifact javax.servlet#javax.servlet-api;3.1.0!javax.servlet-api.jar:
+
+	  file:/home/gitpod/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/javax.servlet/javax.servlet-api/3.1.0/ivys/ivy.xml
+
+	  -- artifact javax.servlet#javax.servlet-api;3.1.0!javax.servlet-api.jar:
+
+	  /home/gitpod/.ivy2/local/javax.servlet/javax.servlet-api/3.1.0/jars/javax.servlet-api.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom
+
+	  -- artifact javax.servlet#javax.servlet-api;3.1.0!javax.servlet-api.jar:
+
+	  https://repos.spark-packages.org/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/com/sun/jersey/jersey-json/1.19/jersey-json-1.19.pom: size of source file /home/gitpod/.ivy2/cache/com.sun.jersey/jersey-json/ivy-1.19.xml.original(0) differs from size of dest file /home/gitpod/.ivy2/cache/com.sun.jersey/jersey-json/ivy-1.19.xml.original.backup(10276) - please retry (9ms)
+
+		module not found: com.sun.jersey#jersey-json;1.19
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/com/sun/jersey/jersey-json/1.19/jersey-json-1.19.pom
+
+	  -- artifact com.sun.jersey#jersey-json;1.19!jersey-json.jar:
+
+	  file:/home/gitpod/.m2/repository/com/sun/jersey/jersey-json/1.19/jersey-json-1.19.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/com.sun.jersey/jersey-json/1.19/ivys/ivy.xml
+
+	  -- artifact com.sun.jersey#jersey-json;1.19!jersey-json.jar:
+
+	  /home/gitpod/.ivy2/local/com.sun.jersey/jersey-json/1.19/jars/jersey-json.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/sun/jersey/jersey-json/1.19/jersey-json-1.19.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/com/sun/jersey/jersey-json/1.19/jersey-json-1.19.pom
+
+	  -- artifact com.sun.jersey#jersey-json;1.19!jersey-json.jar:
+
+	  https://repos.spark-packages.org/com/sun/jersey/jersey-json/1.19/jersey-json-1.19.jar
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.pom: Downloaded file size (0) doesn't match expected Content Length (30660) for https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.pom. Please retry. (198ms)
+
+		module not found: org.apache.commons#commons-lang3;3.12.0
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.pom
+
+	  -- artifact org.apache.commons#commons-lang3;3.12.0!commons-lang3.jar:
+
+	  file:/home/gitpod/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/org.apache.commons/commons-lang3/3.12.0/ivys/ivy.xml
+
+	  -- artifact org.apache.commons#commons-lang3;3.12.0!commons-lang3.jar:
+
+	  /home/gitpod/.ivy2/local/org.apache.commons/commons-lang3/3.12.0/jars/commons-lang3.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.pom
+
+	  -- artifact org.apache.commons#commons-lang3;3.12.0!commons-lang3.jar:
+
+	  https://repos.spark-packages.org/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/org/apache/commons/commons-text/1.4/commons-text-1.4.pom: Downloaded file size (0) doesn't match expected Content Length (16023) for https://repo1.maven.org/maven2/org/apache/commons/commons-text/1.4/commons-text-1.4.pom. Please retry. (12ms)
+
+		module not found: org.apache.commons#commons-text;1.4
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/org/apache/commons/commons-text/1.4/commons-text-1.4.pom
+
+	  -- artifact org.apache.commons#commons-text;1.4!commons-text.jar:
+
+	  file:/home/gitpod/.m2/repository/org/apache/commons/commons-text/1.4/commons-text-1.4.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/org.apache.commons/commons-text/1.4/ivys/ivy.xml
+
+	  -- artifact org.apache.commons#commons-text;1.4!commons-text.jar:
+
+	  /home/gitpod/.ivy2/local/org.apache.commons/commons-text/1.4/jars/commons-text.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/commons/commons-text/1.4/commons-text-1.4.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/org/apache/commons/commons-text/1.4/commons-text-1.4.pom
+
+	  -- artifact org.apache.commons#commons-text;1.4!commons-text.jar:
+
+	  https://repos.spark-packages.org/org/apache/commons/commons-text/1.4/commons-text-1.4.jar
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/org/apache/avro/avro/1.7.7/avro-1.7.7.pom: /home/gitpod/.ivy2/cache/org.apache.avro/avro/ivy-1.7.7.xml.original (No such file or directory) (0ms)
+
+		module not found: org.apache.avro#avro;1.7.7
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/org/apache/avro/avro/1.7.7/avro-1.7.7.pom
+
+	  -- artifact org.apache.avro#avro;1.7.7!avro.jar:
+
+	  file:/home/gitpod/.m2/repository/org/apache/avro/avro/1.7.7/avro-1.7.7.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/org.apache.avro/avro/1.7.7/ivys/ivy.xml
+
+	  -- artifact org.apache.avro#avro;1.7.7!avro.jar:
+
+	  /home/gitpod/.ivy2/local/org.apache.avro/avro/1.7.7/jars/avro.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/avro/avro/1.7.7/avro-1.7.7.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/org/apache/avro/avro/1.7.7/avro-1.7.7.pom
+
+	  -- artifact org.apache.avro#avro;1.7.7!avro.jar:
+
+	  https://repos.spark-packages.org/org/apache/avro/avro/1.7.7/avro-1.7.7.jar
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.9/gson-2.8.9.pom: Downloaded file size (0) doesn't match expected Content Length (6325) for https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.9/gson-2.8.9.pom. Please retry. (11ms)
+
+		module not found: com.google.code.gson#gson;2.8.9
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/com/google/code/gson/gson/2.8.9/gson-2.8.9.pom
+
+	  -- artifact com.google.code.gson#gson;2.8.9!gson.jar:
+
+	  file:/home/gitpod/.m2/repository/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/com.google.code.gson/gson/2.8.9/ivys/ivy.xml
+
+	  -- artifact com.google.code.gson#gson;2.8.9!gson.jar:
+
+	  /home/gitpod/.ivy2/local/com.google.code.gson/gson/2.8.9/jars/gson.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.9/gson-2.8.9.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/com/google/code/gson/gson/2.8.9/gson-2.8.9.pom
+
+	  -- artifact com.google.code.gson#gson;2.8.9!gson.jar:
+
+	  https://repos.spark-packages.org/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar
+
+	impossible to put metadata file in cache: https://repo1.maven.org/maven2/org/apache/kerby/kerb-identity/1.0.1/kerb-identity-1.0.1.pom (1.0.1) (java.io.FileNotFoundException: /home/gitpod/.ivy2/cache/org.apache.kerby/kerb-identity/ivy-1.0.1.xml.original (No such file or directory))
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/com/fasterxml/oss-parent/37/oss-parent-37.pom: Downloaded file size (0) doesn't match expected Content Length (22873) for https://repo1.maven.org/maven2/com/fasterxml/oss-parent/37/oss-parent-37.pom. Please retry. (7ms)
+
+	io problem while parsing ivy file: https://repo1.maven.org/maven2/com/fasterxml/woodstox/woodstox-core/5.3.0/woodstox-core-5.3.0.pom (java.io.IOException: Impossible to load parent for file:/home/gitpod/.ivy2/cache/com.fasterxml.woodstox/woodstox-core/ivy-5.3.0.xml.original. Parent=com.fasterxml#oss-parent;37)
+
+		module not found: com.fasterxml.woodstox#woodstox-core;5.3.0
+
+	==== local-m2-cache: tried
+
+	  file:/home/gitpod/.m2/repository/com/fasterxml/oss-parent/37/oss-parent-37.pom
+
+	  -- artifact com.fasterxml#oss-parent;37!oss-parent.jar:
+
+	  file:/home/gitpod/.m2/repository/com/fasterxml/oss-parent/37/oss-parent-37.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/gitpod/.ivy2/local/com.fasterxml/oss-parent/37/ivys/ivy.xml
+
+	  -- artifact com.fasterxml#oss-parent;37!oss-parent.jar:
+
+	  /home/gitpod/.ivy2/local/com.fasterxml/oss-parent/37/jars/oss-parent.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/fasterxml/oss-parent/37/oss-parent-37.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/com/fasterxml/woodstox/woodstox-core/5.3.0/woodstox-core-5.3.0.pom
+
+	  -- artifact com.fasterxml.woodstox#woodstox-core;5.3.0!woodstox-core.jar:
+
+	  https://repos.spark-packages.org/com/fasterxml/woodstox/woodstox-core/5.3.0/woodstox-core-5.3.0.jar
+
+		[FAILED     ] com.amazonaws#aws-java-sdk-bundle;1.12.262!aws-java-sdk-bundle.jar: Downloaded file size (0) doesn't match expected Content Length (280645251) for https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar. Please retry. (103882ms)
+
+		[FAILED     ] com.amazonaws#aws-java-sdk-bundle;1.12.262!aws-java-sdk-bundle.jar: Downloaded file size (0) doesn't match expected Content Length (280645251) for https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar. Please retry. (103882ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar
+
+		[FAILED     ] org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1!hadoop-shaded-guava.jar: Downloaded file size (0) doesn't match expected Content Length (3362359) for https://repo1.maven.org/maven2/org/apache/hadoop/thirdparty/hadoop-shaded-guava/1.1.1/hadoop-shaded-guava-1.1.1.jar. Please retry. (3204ms)
+
+		[FAILED     ] com.google.guava#guava;27.0-jre!guava.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (2747878) for https://repo1.maven.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar. Please retry. (2243ms)
+
+		[FAILED     ] com.google.guava#guava;27.0-jre!guava.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (2747878) for https://repo1.maven.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar. Please retry. (2243ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar
+
+		[FAILED     ] org.apache.httpcomponents#httpclient;4.5.13!httpclient.jar: Downloaded file size (94814) doesn't match expected Content Length (780321) for https://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar. Please retry. (1205ms)
+
+		[FAILED     ] org.apache.httpcomponents#httpclient;4.5.13!httpclient.jar: Downloaded file size (94814) doesn't match expected Content Length (780321) for https://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar. Please retry. (1205ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar
+
+		[FAILED     ] org.eclipse.jetty#jetty-server;9.4.43.v20210629!jetty-server.jar: Downloaded file size (0) doesn't match expected Content Length (716996) for https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-server/9.4.43.v20210629/jetty-server-9.4.43.v20210629.jar. Please retry. (412ms)
+
+		[FAILED     ] org.eclipse.jetty#jetty-server;9.4.43.v20210629!jetty-server.jar: Downloaded file size (0) doesn't match expected Content Length (716996) for https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-server/9.4.43.v20210629/jetty-server-9.4.43.v20210629.jar. Please retry. (412ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-server/9.4.43.v20210629/jetty-server-9.4.43.v20210629.jar
+
+		[FAILED     ] org.eclipse.jetty#jetty-util;9.4.43.v20210629!jetty-util.jar: Downloaded file size (0) doesn't match expected Content Length (575509) for https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.43.v20210629/jetty-util-9.4.43.v20210629.jar. Please retry. (356ms)
+
+		[FAILED     ] org.eclipse.jetty#jetty-util;9.4.43.v20210629!jetty-util.jar: Downloaded file size (0) doesn't match expected Content Length (575509) for https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.43.v20210629/jetty-util-9.4.43.v20210629.jar. Please retry. (356ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.43.v20210629/jetty-util-9.4.43.v20210629.jar
+
+		[FAILED     ] org.eclipse.jetty#jetty-servlet;9.4.43.v20210629!jetty-servlet.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-servlet/jars/jetty-servlet-9.4.43.v20210629.jar.part -> /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-servlet/jars/jetty-servlet-9.4.43.v20210629.jar (270ms)
+
+		[FAILED     ] org.eclipse.jetty#jetty-servlet;9.4.43.v20210629!jetty-servlet.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-servlet/jars/jetty-servlet-9.4.43.v20210629.jar.part -> /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-servlet/jars/jetty-servlet-9.4.43.v20210629.jar (270ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-servlet/9.4.43.v20210629/jetty-servlet-9.4.43.v20210629.jar
+
+		[FAILED     ] org.eclipse.jetty#jetty-webapp;9.4.43.v20210629!jetty-webapp.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-webapp/jars/jetty-webapp-9.4.43.v20210629.jar.part -> /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-webapp/jars/jetty-webapp-9.4.43.v20210629.jar (194ms)
+
+		[FAILED     ] org.eclipse.jetty#jetty-webapp;9.4.43.v20210629!jetty-webapp.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-webapp/jars/jetty-webapp-9.4.43.v20210629.jar.part -> /home/gitpod/.ivy2/cache/org.eclipse.jetty/jetty-webapp/jars/jetty-webapp-9.4.43.v20210629.jar (194ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-webapp/9.4.43.v20210629/jetty-webapp-9.4.43.v20210629.jar
+
+		[FAILED     ] com.sun.jersey#jersey-servlet;1.19!jersey-servlet.jar: Downloaded file size (0) doesn't match expected Content Length (128719) for https://repo1.maven.org/maven2/com/sun/jersey/jersey-servlet/1.19/jersey-servlet-1.19.jar. Please retry. (91ms)
+
+		[FAILED     ] com.sun.jersey#jersey-servlet;1.19!jersey-servlet.jar: Downloaded file size (0) doesn't match expected Content Length (128719) for https://repo1.maven.org/maven2/com/sun/jersey/jersey-servlet/1.19/jersey-servlet-1.19.jar. Please retry. (91ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/sun/jersey/jersey-servlet/1.19/jersey-servlet-1.19.jar
+
+		[FAILED     ] com.sun.jersey#jersey-server;1.19!jersey-server.jar: Downloaded file size (0) doesn't match expected Content Length (702882) for https://repo1.maven.org/maven2/com/sun/jersey/jersey-server/1.19/jersey-server-1.19.jar. Please retry. (120ms)
+
+		[FAILED     ] com.sun.jersey#jersey-server;1.19!jersey-server.jar: Downloaded file size (0) doesn't match expected Content Length (702882) for https://repo1.maven.org/maven2/com/sun/jersey/jersey-server/1.19/jersey-server-1.19.jar. Please retry. (120ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/sun/jersey/jersey-server/1.19/jersey-server-1.19.jar
+
+		[FAILED     ] ch.qos.reload4j#reload4j;1.2.22!reload4j.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/ch.qos.reload4j/reload4j/jars/reload4j-1.2.22.jar.part -> /home/gitpod/.ivy2/cache/ch.qos.reload4j/reload4j/jars/reload4j-1.2.22.jar (201ms)
+
+		[FAILED     ] ch.qos.reload4j#reload4j;1.2.22!reload4j.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/ch.qos.reload4j/reload4j/jars/reload4j-1.2.22.jar.part -> /home/gitpod/.ivy2/cache/ch.qos.reload4j/reload4j/jars/reload4j-1.2.22.jar (201ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/ch/qos/reload4j/reload4j/1.2.22/reload4j-1.2.22.jar
+
+		[FAILED     ] org.apache.commons#commons-configuration2;2.1.1!commons-configuration2.jar: Downloaded file size (0) doesn't match expected Content Length (616888) for https://repo1.maven.org/maven2/org/apache/commons/commons-configuration2/2.1.1/commons-configuration2-2.1.1.jar. Please retry. (110ms)
+
+		[FAILED     ] org.apache.commons#commons-configuration2;2.1.1!commons-configuration2.jar: Downloaded file size (0) doesn't match expected Content Length (616888) for https://repo1.maven.org/maven2/org/apache/commons/commons-configuration2/2.1.1/commons-configuration2-2.1.1.jar. Please retry. (110ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/commons/commons-configuration2/2.1.1/commons-configuration2-2.1.1.jar
+
+		[FAILED     ] org.slf4j#slf4j-api;1.7.36!slf4j-api.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.36.jar.part -> /home/gitpod/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.36.jar (180ms)
+
+		[FAILED     ] org.slf4j#slf4j-api;1.7.36!slf4j-api.jar: impossible to move part file to definitive one: /home/gitpod/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.36.jar.part -> /home/gitpod/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.36.jar (180ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar
+
+		[FAILED     ] com.google.re2j#re2j;1.1!re2j.jar: Downloaded file size (0) doesn't match expected Content Length (128414) for https://repo1.maven.org/maven2/com/google/re2j/re2j/1.1/re2j-1.1.jar. Please retry. (105ms)
+
+		[FAILED     ] com.google.re2j#re2j;1.1!re2j.jar: Downloaded file size (0) doesn't match expected Content Length (128414) for https://repo1.maven.org/maven2/com/google/re2j/re2j/1.1/re2j-1.1.jar. Please retry. (105ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/google/re2j/re2j/1.1/re2j-1.1.jar
+
+		[FAILED     ] com.jcraft#jsch;0.1.55!jsch.jar: Downloaded file size (0) doesn't match expected Content Length (282591) for https://repo1.maven.org/maven2/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar. Please retry. (200ms)
+
+		[FAILED     ] com.jcraft#jsch;0.1.55!jsch.jar: Downloaded file size (0) doesn't match expected Content Length (282591) for https://repo1.maven.org/maven2/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar. Please retry. (200ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar
+
+		[FAILED     ] org.apache.curator#curator-recipes;4.2.0!curator-recipes.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (295683) for https://repo1.maven.org/maven2/org/apache/curator/curator-recipes/4.2.0/curator-recipes-4.2.0.jar. Please retry. (187ms)
+
+		[FAILED     ] org.apache.curator#curator-recipes;4.2.0!curator-recipes.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (295683) for https://repo1.maven.org/maven2/org/apache/curator/curator-recipes/4.2.0/curator-recipes-4.2.0.jar. Please retry. (187ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/curator/curator-recipes/4.2.0/curator-recipes-4.2.0.jar
+
+		[FAILED     ] org.apache.zookeeper#zookeeper;3.5.6!zookeeper.jar: Downloaded file size (0) doesn't match expected Content Length (984810) for https://repo1.maven.org/maven2/org/apache/zookeeper/zookeeper/3.5.6/zookeeper-3.5.6.jar. Please retry. (244ms)
+
+		[FAILED     ] org.apache.zookeeper#zookeeper;3.5.6!zookeeper.jar: Downloaded file size (0) doesn't match expected Content Length (984810) for https://repo1.maven.org/maven2/org/apache/zookeeper/zookeeper/3.5.6/zookeeper-3.5.6.jar. Please retry. (244ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/zookeeper/zookeeper/3.5.6/zookeeper-3.5.6.jar
+
+		[FAILED     ] org.apache.commons#commons-compress;1.21!commons-compress.jar: Downloaded file size (0) doesn't match expected Content Length (1018316) for https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.21/commons-compress-1.21.jar. Please retry. (526ms)
+
+		[FAILED     ] org.apache.commons#commons-compress;1.21!commons-compress.jar: Downloaded file size (0) doesn't match expected Content Length (1018316) for https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.21/commons-compress-1.21.jar. Please retry. (526ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.21/commons-compress-1.21.jar
+
+		[FAILED     ] com.fasterxml.jackson.core#jackson-databind;2.12.7!jackson-databind.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (1517276) for https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.12.7/jackson-databind-2.12.7.jar. Please retry. (570ms)
+
+		[FAILED     ] com.fasterxml.jackson.core#jackson-databind;2.12.7!jackson-databind.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (1517276) for https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.12.7/jackson-databind-2.12.7.jar. Please retry. (570ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.12.7/jackson-databind-2.12.7.jar
+
+		[FAILED     ] dnsjava#dnsjava;2.1.7!dnsjava.jar: Downloaded file size (0) doesn't match expected Content Length (307637) for https://repo1.maven.org/maven2/dnsjava/dnsjava/2.1.7/dnsjava-2.1.7.jar. Please retry. (270ms)
+
+		[FAILED     ] dnsjava#dnsjava;2.1.7!dnsjava.jar: Downloaded file size (0) doesn't match expected Content Length (307637) for https://repo1.maven.org/maven2/dnsjava/dnsjava/2.1.7/dnsjava-2.1.7.jar. Please retry. (270ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/dnsjava/dnsjava/2.1.7/dnsjava-2.1.7.jar
+
+		[FAILED     ] org.xerial.snappy#snappy-java;1.1.8.2!snappy-java.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (1969177) for https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.8.2/snappy-java-1.1.8.2.jar. Please retry. (561ms)
+
+		[FAILED     ] org.xerial.snappy#snappy-java;1.1.8.2!snappy-java.jar(bundle): Downloaded file size (0) doesn't match expected Content Length (1969177) for https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.8.2/snappy-java-1.1.8.2.jar. Please retry. (561ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.8.2/snappy-java-1.1.8.2.jar
+
+		[FAILED     ] com.google.guava#failureaccess;1.0!failureaccess.jar: Downloaded file size (0) doesn't match expected Content Length (3727) for https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar. Please retry. (405ms)
+
+		[FAILED     ] com.google.guava#failureaccess;1.0!failureaccess.jar: Downloaded file size (0) doesn't match expected Content Length (3727) for https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar. Please retry. (405ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar
+
+		[FAILED     ] org.checkerframework#checker-qual;2.5.2!checker-qual.jar: Downloaded file size (0) doesn't match expected Content Length (193322) for https://repo1.maven.org/maven2/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar. Please retry. (79ms)
+
+		[FAILED     ] org.checkerframework#checker-qual;2.5.2!checker-qual.jar: Downloaded file size (0) doesn't match expected Content Length (193322) for https://repo1.maven.org/maven2/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar. Please retry. (79ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar
+
+		[FAILED     ] org.eclipse.jetty#jetty-io;9.4.43.v20210629!jetty-io.jar: Downloaded file size (0) doesn't match expected Content Length (178898) for https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.43.v20210629/jetty-io-9.4.43.v20210629.jar. Please retry. (102ms)
+
+		[FAILED     ] org.eclipse.jetty#jetty-io;9.4.43.v20210629!jetty-io.jar: Downloaded file size (0) doesn't match expected Content Length (178898) for https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.43.v20210629/jetty-io-9.4.43.v20210629.jar. Please retry. (102ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.43.v20210629/jetty-io-9.4.43.v20210629.jar
+
+		[FAILED     ] javax.ws.rs#jsr311-api;1.1.1!jsr311-api.jar: Downloaded file size (0) doesn't match expected Content Length (46367) for https://repo1.maven.org/maven2/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar. Please retry. (97ms)
+
+		[FAILED     ] javax.ws.rs#jsr311-api;1.1.1!jsr311-api.jar: Downloaded file size (0) doesn't match expected Content Length (46367) for https://repo1.maven.org/maven2/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar. Please retry. (97ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar
+
+		[FAILED     ] org.apache.kerby#kerb-client;1.0.1!kerb-client.jar: Downloaded file size (0) doesn't match expected Content Length (113017) for https://repo1.maven.org/maven2/org/apache/kerby/kerb-client/1.0.1/kerb-client-1.0.1.jar. Please retry. (98ms)
+
+		[FAILED     ] org.apache.kerby#kerb-client;1.0.1!kerb-client.jar: Downloaded file size (0) doesn't match expected Content Length (113017) for https://repo1.maven.org/maven2/org/apache/kerby/kerb-client/1.0.1/kerb-client-1.0.1.jar. Please retry. (98ms)
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/kerby/kerb-client/1.0.1/kerb-client-1.0.1.jar
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		::          UNRESOLVED DEPENDENCIES         ::
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		:: commons-codec#commons-codec;1.15: not found
+
+		:: javax.servlet#javax.servlet-api;3.1.0: not found
+
+		:: com.sun.jersey#jersey-json;1.19: not found
+
+		:: org.apache.commons#commons-lang3;3.12.0: not found
+
+		:: org.apache.commons#commons-text;1.4: not found
+
+		:: org.apache.avro#avro;1.7.7: not found
+
+		:: com.google.code.gson#gson;2.8.9: not found
+
+		:: com.fasterxml.woodstox#woodstox-core;5.3.0: not found
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		::              FAILED DOWNLOADS            ::
+
+		:: ^ see resolution messages for details  ^ ::
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		:: com.amazonaws#aws-java-sdk-bundle;1.12.262!aws-java-sdk-bundle.jar
+
+		:: com.google.guava#guava;27.0-jre!guava.jar(bundle)
+
+		:: com.google.guava#failureaccess;1.0!failureaccess.jar
+
+		:: org.checkerframework#checker-qual;2.5.2!checker-qual.jar
+
+		:: org.apache.httpcomponents#httpclient;4.5.13!httpclient.jar
+
+		:: org.eclipse.jetty#jetty-server;9.4.43.v20210629!jetty-server.jar
+
+		:: org.eclipse.jetty#jetty-util;9.4.43.v20210629!jetty-util.jar
+
+		:: org.eclipse.jetty#jetty-io;9.4.43.v20210629!jetty-io.jar
+
+		:: org.eclipse.jetty#jetty-servlet;9.4.43.v20210629!jetty-servlet.jar
+
+		:: org.eclipse.jetty#jetty-webapp;9.4.43.v20210629!jetty-webapp.jar
+
+		:: javax.ws.rs#jsr311-api;1.1.1!jsr311-api.jar
+
+		:: com.sun.jersey#jersey-servlet;1.19!jersey-servlet.jar
+
+		:: com.sun.jersey#jersey-server;1.19!jersey-server.jar
+
+		:: ch.qos.reload4j#reload4j;1.2.22!reload4j.jar
+
+		:: org.apache.commons#commons-configuration2;2.1.1!commons-configuration2.jar
+
+		:: org.slf4j#slf4j-api;1.7.36!slf4j-api.jar
+
+		:: com.google.re2j#re2j;1.1!re2j.jar
+
+		:: org.apache.zookeeper#zookeeper;3.5.6!zookeeper.jar
+
+		:: org.apache.kerby#kerb-client;1.0.1!kerb-client.jar
+
+		:: com.jcraft#jsch;0.1.55!jsch.jar
+
+		:: org.apache.curator#curator-recipes;4.2.0!curator-recipes.jar(bundle)
+
+		:: org.apache.commons#commons-compress;1.21!commons-compress.jar
+
+		:: com.fasterxml.jackson.core#jackson-databind;2.12.7!jackson-databind.jar(bundle)
+
+		:: dnsjava#dnsjava;2.1.7!dnsjava.jar
+
+		:: org.xerial.snappy#snappy-java;1.1.8.2!snappy-java.jar(bundle)
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+
+:::: ERRORS
+	unknown resolver null
+
+	unknown resolver null
+
+	unknown resolver null
+
+
+:: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+Exception in thread "main" java.lang.RuntimeException: [unresolved dependency: commons-codec#commons-codec;1.15: not found, unresolved dependency: javax.servlet#javax.servlet-api;3.1.0: not found, unresolved dependency: com.sun.jersey#jersey-json;1.19: not found, unresolved dependency: org.apache.commons#commons-lang3;3.12.0: not found, unresolved dependency: org.apache.commons#commons-text;1.4: not found, unresolved dependency: org.apache.avro#avro;1.7.7: not found, unresolved dependency: com.google.code.gson#gson;2.8.9: not found, unresolved dependency: com.fasterxml.woodstox#woodstox-core;5.3.0: not found, download failed: com.amazonaws#aws-java-sdk-bundle;1.12.262!aws-java-sdk-bundle.jar, download failed: com.google.guava#guava;27.0-jre!guava.jar(bundle), download failed: com.google.guava#failureaccess;1.0!failureaccess.jar, download failed: org.checkerframework#checker-qual;2.5.2!checker-qual.jar, download failed: org.apache.httpcomponents#httpclient;4.5.13!httpclient.jar, download failed: org.eclipse.jetty#jetty-server;9.4.43.v20210629!jetty-server.jar, download failed: org.eclipse.jetty#jetty-util;9.4.43.v20210629!jetty-util.jar, download failed: org.eclipse.jetty#jetty-io;9.4.43.v20210629!jetty-io.jar, download failed: org.eclipse.jetty#jetty-servlet;9.4.43.v20210629!jetty-servlet.jar, download failed: org.eclipse.jetty#jetty-webapp;9.4.43.v20210629!jetty-webapp.jar, download failed: javax.ws.rs#jsr311-api;1.1.1!jsr311-api.jar, download failed: com.sun.jersey#jersey-servlet;1.19!jersey-servlet.jar, download failed: com.sun.jersey#jersey-server;1.19!jersey-server.jar, download failed: ch.qos.reload4j#reload4j;1.2.22!reload4j.jar, download failed: org.apache.commons#commons-configuration2;2.1.1!commons-configuration2.jar, download failed: org.slf4j#slf4j-api;1.7.36!slf4j-api.jar, download failed: com.google.re2j#re2j;1.1!re2j.jar, download failed: org.apache.zookeeper#zookeeper;3.5.6!zookeeper.jar, download failed: org.apache.kerby#kerb-client;1.0.1!kerb-client.jar, download failed: com.jcraft#jsch;0.1.55!jsch.jar, download failed: org.apache.curator#curator-recipes;4.2.0!curator-recipes.jar(bundle), download failed: org.apache.commons#commons-compress;1.21!commons-compress.jar, download failed: com.fasterxml.jackson.core#jackson-databind;2.12.7!jackson-databind.jar(bundle), download failed: dnsjava#dnsjava;2.1.7!dnsjava.jar, download failed: org.xerial.snappy#snappy-java;1.1.8.2!snappy-java.jar(bundle)]
+	at org.apache.spark.deploy.SparkSubmitUtils$.resolveMavenCoordinates(SparkSubmit.scala:1608)
+	at org.apache.spark.util.DependencyUtils$.resolveMavenDependencies(DependencyUtils.scala:185)
+	at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:334)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:964)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:194)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:217)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[32m2024-05-31 15:31:47 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 17173 - spark_operator.create_stock_tables[stock_AAGH_path] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_AAGH_path]" failed and has requested a retry in 0.11877036465503249 seconds.
+
+dagster._core.execution.plan.utils.RetryRequestedFromPolicy
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 525, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 203, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 100, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute.py", line 208, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute.py", line 177, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/home/gitpod/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
+    raise RetryRequestedFromPolicy(
+
+The above exception was caused by the following exception:
+pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+
+Stack Trace:
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 141, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 129, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/assets/spark_transformations.py", line 113, in create_stock_tables
+    spark = pyspark.spark_session
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster_pyspark/resources.py", line 134, in spark_session
+    self._init_session()
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster_pyspark/resources.py", line 130, in _init_session
+    self._spark_session = spark_session_from_config(self.spark_config)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster_pyspark/resources.py", line 20, in spark_session_from_config
+    return builder.getOrCreate()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/sql/session.py", line 497, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/context.py", line 515, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/context.py", line 201, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/context.py", line 436, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+                                       ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/java_gateway.py", line 107, in launch_gateway
+    raise PySparkRuntimeError(
+

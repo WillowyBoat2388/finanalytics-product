@@ -1,0 +1,276 @@
+[32m2024-05-31 16:28:36 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - 448113 - LOGS_CAPTURED - Started capturing logs in process (pid: 448113).
+[32m2024-05-31 16:28:36 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - 448113 - spark_operator.create_stock_tables[stock_ABBB_path] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_ABBB_path]".
+[32m2024-05-31 16:28:36 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - spark_operator.create_stock_tables[stock_ABBB_path] - Loading file from: /workspace/practical-data-engineering/finnhub-batch-stock-pipeline/home/storage/29657144-f47b-4730-a719-19652768d51f/spark_operator.stock_tables/result/stock_ABBB_path using PickledObjectFilesystemIOManager...
+[32m2024-05-31 16:28:36 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - 448113 - spark_operator.create_stock_tables[stock_ABBB_path] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-05-31 16:28:36 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - 448113 - spark_operator.create_stock_tables[stock_ABBB_path] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/05/31 16:28:51 WARN Utils: Your hostname, willowyboat-practicalda-8yoi5et7ep7 resolves to a loopback address: 127.0.0.1; using 10.0.5.2 instead (on interface eth0)
+24/05/31 16:28:51 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Ivy Default Cache set to: /home/gitpod/.ivy2/cache
+The jars for the packages stored in: /home/gitpod/.ivy2/jars
+io.delta#delta-spark_2.12 added as a dependency
+org.apache.hadoop#hadoop-aws added as a dependency
+org.apache.hadoop#hadoop-common added as a dependency
+com.amazonaws#aws-java-sdk-bundle added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-62c63e31-9db7-48e5-8481-062299bfcc96;1.0
+	confs: [default]
+	found io.delta#delta-spark_2.12;3.1.0 in spark-list
+	found io.delta#delta-storage;3.1.0 in central
+	found org.antlr#antlr4-runtime;4.9.3 in central
+	found org.apache.hadoop#hadoop-aws;3.3.4 in central
+	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in spark-list
+	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in spark-list
+	found org.apache.hadoop#hadoop-common;3.3.4 in central
+	found org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 in spark-list
+	found org.apache.hadoop#hadoop-annotations;3.3.4 in central
+	found org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 in spark-list
+	found com.google.guava#guava;27.0-jre in central
+	found com.google.guava#failureaccess;1.0 in central
+	found com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava in central
+	found com.google.code.findbugs#jsr305;3.0.2 in central
+	found org.checkerframework#checker-qual;2.5.2 in spark-list
+	found com.google.j2objc#j2objc-annotations;1.1 in spark-list
+	found org.codehaus.mojo#animal-sniffer-annotations;1.17 in central
+	found commons-cli#commons-cli;1.2 in central
+	found org.apache.commons#commons-math3;3.1.1 in central
+	found org.apache.httpcomponents#httpclient;4.5.13 in central
+	found org.apache.httpcomponents#httpcore;4.4.13 in central
+	found commons-logging#commons-logging;1.1.3 in central
+	found commons-codec#commons-codec;1.15 in central
+	found commons-io#commons-io;2.8.0 in central
+	found commons-net#commons-net;3.6 in central
+	found commons-collections#commons-collections;3.2.2 in central
+	found javax.servlet#javax.servlet-api;3.1.0 in central
+	found org.eclipse.jetty#jetty-server;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-http;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-util;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-io;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-security;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-xml;9.4.43.v20210629 in central
+	found com.sun.jersey#jersey-core;1.19 in central
+	found javax.ws.rs#jsr311-api;1.1.1 in central
+	found com.sun.jersey#jersey-servlet;1.19 in central
+	found com.sun.jersey#jersey-server;1.19 in central
+	found com.sun.jersey#jersey-json;1.19 in central
+	found org.codehaus.jettison#jettison;1.1 in spark-list
+	found com.sun.xml.bind#jaxb-impl;2.2.3-1 in central
+	found javax.xml.bind#jaxb-api;2.2.11 in central
+	found org.codehaus.jackson#jackson-core-asl;1.9.13 in spark-list
+	found org.codehaus.jackson#jackson-mapper-asl;1.9.13 in spark-list
+	found org.codehaus.jackson#jackson-jaxrs;1.9.13 in central
+	found org.codehaus.jackson#jackson-xc;1.9.13 in central
+	found ch.qos.reload4j#reload4j;1.2.22 in central
+	found commons-beanutils#commons-beanutils;1.9.4 in central
+	found org.apache.commons#commons-configuration2;2.1.1 in central
+	found org.apache.commons#commons-lang3;3.12.0 in central
+	found org.apache.commons#commons-text;1.4 in central
+	found org.slf4j#slf4j-api;1.7.36 in central
+	found org.slf4j#slf4j-reload4j;1.7.36 in spark-list
+	found org.apache.avro#avro;1.7.7 in central
+	found com.thoughtworks.paranamer#paranamer;2.3 in central
+	found org.xerial.snappy#snappy-java;1.1.8.2 in central
+	found org.apache.commons#commons-compress;1.21 in central
+	found com.google.re2j#re2j;1.1 in central
+	found com.google.protobuf#protobuf-java;2.5.0 in central
+	found com.google.code.gson#gson;2.8.9 in central
+	found org.apache.hadoop#hadoop-auth;3.3.4 in central
+	found com.nimbusds#nimbus-jose-jwt;9.8.1 in central
+	found com.github.stephenc.jcip#jcip-annotations;1.0-1 in central
+	found net.minidev#json-smart;2.4.7 in central
+	found net.minidev#accessors-smart;2.4.7 in central
+	found org.ow2.asm#asm;5.0.4 in central
+	found org.apache.zookeeper#zookeeper;3.5.6 in central
+	found org.apache.zookeeper#zookeeper-jute;3.5.6 in central
+	found org.apache.yetus#audience-annotations;0.5.0 in central
+	found org.apache.curator#curator-framework;4.2.0 in central
+	found org.apache.curator#curator-client;4.2.0 in central
+	found org.apache.kerby#kerb-simplekdc;1.0.1 in central
+	found org.apache.kerby#kerb-client;1.0.1 in central
+	found org.apache.kerby#kerby-config;1.0.1 in central
+	found org.apache.kerby#kerb-core;1.0.1 in central
+	found org.apache.kerby#kerby-pkix;1.0.1 in spark-list
+	found org.apache.kerby#kerby-asn1;1.0.1 in central
+	found org.apache.kerby#kerby-util;1.0.1 in central
+	found org.apache.kerby#kerb-common;1.0.1 in central
+	found org.apache.kerby#kerb-crypto;1.0.1 in central
+	found org.apache.kerby#kerb-util;1.0.1 in central
+	found org.apache.kerby#token-provider;1.0.1 in central
+	found org.apache.kerby#kerb-admin;1.0.1 in central
+	found org.apache.kerby#kerb-server;1.0.1 in central
+	found org.apache.kerby#kerb-identity;1.0.1 in central
+	found org.apache.kerby#kerby-xdr;1.0.1 in central
+	found com.jcraft#jsch;0.1.55 in central
+	found org.apache.curator#curator-recipes;4.2.0 in central
+	found com.fasterxml.jackson.core#jackson-databind;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-annotations;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-core;2.12.7 in spark-list
+	found org.codehaus.woodstox#stax2-api;4.2.1 in central
+	found com.fasterxml.woodstox#woodstox-core;5.3.0 in central
+	found dnsjava#dnsjava;2.1.7 in spark-list
+	found jakarta.activation#jakarta.activation-api;1.2.1 in central
+	found javax.servlet.jsp#jsp-api;2.1 in central
+:: resolution report :: resolve 39679ms :: artifacts dl 2030ms
+	:: modules in use:
+	ch.qos.reload4j#reload4j;1.2.22 from central in [default]
+	com.amazonaws#aws-java-sdk-bundle;1.12.262 from spark-list in [default]
+	com.fasterxml.jackson.core#jackson-annotations;2.12.7 from central in [default]
+	com.fasterxml.jackson.core#jackson-core;2.12.7 from spark-list in [default]
+	com.fasterxml.jackson.core#jackson-databind;2.12.7 from central in [default]
+	com.fasterxml.woodstox#woodstox-core;5.3.0 from central in [default]
+	com.github.stephenc.jcip#jcip-annotations;1.0-1 from central in [default]
+	com.google.code.findbugs#jsr305;3.0.2 from central in [default]
+	com.google.code.gson#gson;2.8.9 from central in [default]
+	com.google.guava#failureaccess;1.0 from central in [default]
+	com.google.guava#guava;27.0-jre from central in [default]
+	com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava from central in [default]
+	com.google.j2objc#j2objc-annotations;1.1 from spark-list in [default]
+	com.google.protobuf#protobuf-java;2.5.0 from central in [default]
+	com.google.re2j#re2j;1.1 from central in [default]
+	com.jcraft#jsch;0.1.55 from central in [default]
+	com.nimbusds#nimbus-jose-jwt;9.8.1 from central in [default]
+	com.sun.jersey#jersey-core;1.19 from central in [default]
+	com.sun.jersey#jersey-json;1.19 from central in [default]
+	com.sun.jersey#jersey-server;1.19 from central in [default]
+	com.sun.jersey#jersey-servlet;1.19 from central in [default]
+	com.sun.xml.bind#jaxb-impl;2.2.3-1 from central in [default]
+	com.thoughtworks.paranamer#paranamer;2.3 from central in [default]
+	commons-beanutils#commons-beanutils;1.9.4 from central in [default]
+	commons-cli#commons-cli;1.2 from central in [default]
+	commons-codec#commons-codec;1.15 from central in [default]
+	commons-collections#commons-collections;3.2.2 from central in [default]
+	commons-io#commons-io;2.8.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	commons-net#commons-net;3.6 from central in [default]
+	dnsjava#dnsjava;2.1.7 from spark-list in [default]
+	io.delta#delta-spark_2.12;3.1.0 from spark-list in [default]
+	io.delta#delta-storage;3.1.0 from central in [default]
+	jakarta.activation#jakarta.activation-api;1.2.1 from central in [default]
+	javax.servlet#javax.servlet-api;3.1.0 from central in [default]
+	javax.servlet.jsp#jsp-api;2.1 from central in [default]
+	javax.ws.rs#jsr311-api;1.1.1 from central in [default]
+	javax.xml.bind#jaxb-api;2.2.11 from central in [default]
+	net.minidev#accessors-smart;2.4.7 from central in [default]
+	net.minidev#json-smart;2.4.7 from central in [default]
+	org.antlr#antlr4-runtime;4.9.3 from central in [default]
+	org.apache.avro#avro;1.7.7 from central in [default]
+	org.apache.commons#commons-compress;1.21 from central in [default]
+	org.apache.commons#commons-configuration2;2.1.1 from central in [default]
+	org.apache.commons#commons-lang3;3.12.0 from central in [default]
+	org.apache.commons#commons-math3;3.1.1 from central in [default]
+	org.apache.commons#commons-text;1.4 from central in [default]
+	org.apache.curator#curator-client;4.2.0 from central in [default]
+	org.apache.curator#curator-framework;4.2.0 from central in [default]
+	org.apache.curator#curator-recipes;4.2.0 from central in [default]
+	org.apache.hadoop#hadoop-annotations;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-auth;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-common;3.3.4 from central in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 from spark-list in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 from spark-list in [default]
+	org.apache.httpcomponents#httpclient;4.5.13 from central in [default]
+	org.apache.httpcomponents#httpcore;4.4.13 from central in [default]
+	org.apache.kerby#kerb-admin;1.0.1 from central in [default]
+	org.apache.kerby#kerb-client;1.0.1 from central in [default]
+	org.apache.kerby#kerb-common;1.0.1 from central in [default]
+	org.apache.kerby#kerb-core;1.0.1 from central in [default]
+	org.apache.kerby#kerb-crypto;1.0.1 from central in [default]
+	org.apache.kerby#kerb-identity;1.0.1 from central in [default]
+	org.apache.kerby#kerb-server;1.0.1 from central in [default]
+	org.apache.kerby#kerb-simplekdc;1.0.1 from central in [default]
+	org.apache.kerby#kerb-util;1.0.1 from central in [default]
+	org.apache.kerby#kerby-asn1;1.0.1 from central in [default]
+	org.apache.kerby#kerby-config;1.0.1 from central in [default]
+	org.apache.kerby#kerby-pkix;1.0.1 from spark-list in [default]
+	org.apache.kerby#kerby-util;1.0.1 from central in [default]
+	org.apache.kerby#kerby-xdr;1.0.1 from central in [default]
+	org.apache.kerby#token-provider;1.0.1 from central in [default]
+	org.apache.yetus#audience-annotations;0.5.0 from central in [default]
+	org.apache.zookeeper#zookeeper;3.5.6 from central in [default]
+	org.apache.zookeeper#zookeeper-jute;3.5.6 from central in [default]
+	org.checkerframework#checker-qual;2.5.2 from spark-list in [default]
+	org.codehaus.jackson#jackson-core-asl;1.9.13 from spark-list in [default]
+	org.codehaus.jackson#jackson-jaxrs;1.9.13 from central in [default]
+	org.codehaus.jackson#jackson-mapper-asl;1.9.13 from spark-list in [default]
+	org.codehaus.jackson#jackson-xc;1.9.13 from central in [default]
+	org.codehaus.jettison#jettison;1.1 from spark-list in [default]
+	org.codehaus.mojo#animal-sniffer-annotations;1.17 from central in [default]
+	org.codehaus.woodstox#stax2-api;4.2.1 from central in [default]
+	org.eclipse.jetty#jetty-http;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-io;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-security;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-server;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-xml;9.4.43.v20210629 from central in [default]
+	org.ow2.asm#asm;5.0.4 from central in [default]
+	org.slf4j#slf4j-api;1.7.36 from central in [default]
+	org.slf4j#slf4j-reload4j;1.7.36 from spark-list in [default]
+	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from spark-list in [default]
+	org.xerial.snappy#snappy-java;1.1.8.2 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   98  |   0   |   0   |   0   ||   98  |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-62c63e31-9db7-48e5-8481-062299bfcc96
+	confs: [default]
+	32 artifacts copied, 66 already retrieved (23304kB/1380ms)
+24/05/31 16:29:42 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/05/31 16:30:01 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+24/05/31 16:30:30 ERROR Inbox: Ignoring error
+java.lang.NullPointerException
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+24/05/31 16:30:30 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)
+	at org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)
+	at org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.NullPointerException
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	... 3 more
+[Stage 0:>                                                         (0 + 0) / 16][Stage 0:>                                                         (0 + 5) / 16][Stage 0:>                                                        (0 + 16) / 16][Stage 0:===>                                                     (1 + 15) / 16][Stage 0:================================>                         (9 + 7) / 16]                                                                                24/05/31 16:31:58 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+[Stage 1:>                                                         (0 + 0) / 16][Stage 1:>                                                         (0 + 1) / 16][Stage 1:>                                                        (0 + 16) / 16][Stage 1:===>                                                     (1 + 15) / 16][Stage 1:=======>                                                 (2 + 14) / 16][Stage 1:==========>                                              (3 + 13) / 16][Stage 1:==============>                                          (4 + 12) / 16][Stage 1:=================>                                       (5 + 11) / 16][Stage 1:=====================>                                   (6 + 10) / 16][Stage 1:=========================>                                (7 + 9) / 16][Stage 1:=======================================>                 (11 + 5) / 16][Stage 1:==========================================>              (12 + 4) / 16][Stage 1:==============================================>          (13 + 3) / 16][Stage 1:=====================================================>   (15 + 1) / 16][Stage 3:>                                                          (0 + 1) / 1]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 4) / 4][Stage 5:=============================>                             (2 + 2) / 4][Stage 5:============================================>              (3 + 1) / 4]                                                                                [Stage 6:>                                                        (0 + 11) / 11][Stage 6:=====>                                                   (1 + 10) / 11][Stage 6:==========>                                               (2 + 9) / 11][Stage 6:===============>                                          (3 + 8) / 11][Stage 6:=====================>                                    (4 + 7) / 11][Stage 6:==========================>                               (5 + 6) / 11][Stage 6:===============================>                          (6 + 5) / 11][Stage 6:====================================>                     (7 + 4) / 11][Stage 6:==========================================>               (8 + 3) / 11][Stage 6:===================================================>     (10 + 1) / 11]                                                                                [32m2024-05-31 16:33:18 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - spark_operator.create_stock_tables[stock_ABBB_path] - Row(10DayAverageTradingVolume=0.00055, 3MonthAverageTradingVolume=0.00051, 52WeekHigh=11, 52WeekHighDate='2023-05-31', 52WeekLow=7.55, 52WeekLowDate='2024-01-18', 5DayPriceReturnDaily=4.5614, beta=0.10298948, bookValuePerShareAnnual=15.64, bookValuePerShareQuarterly=15.64, bookValueShareGrowth5Y=5.16, capexCagr5Y=44.04, cashFlowPerShareAnnual=0.36, currentEv/freeCashFlowAnnual=24.9822, ebitdPerShareAnnual=1.04, ebitdPerShareTTM=0.76, ebitdaCagr5Y=10.9, enterpriseValue=4.4968, epsAnnual=0.58, epsBasicExclExtraItemsAnnual=0.58, epsBasicExclExtraItemsTTM=0.5787, epsExclExtraItemsAnnual=0.58, epsExclExtraItemsTTM=0.5787, epsGrowth3Y=-3.23, epsGrowth5Y=15.21, epsGrowthQuarterlyYoy=-19.93, epsGrowthTTMYoy=20.92, epsInclExtraItemsAnnual=0.58, epsInclExtraItemsTTM=0.5787, epsNormalizedAnnual=0.58, epsTTM=0.5787, focfCagr5Y=-17.11, marketCapitalization=4.49682, monthToDatePriceReturnDaily=3.9535, pbAnnual=0.5915, pbQuarterly=0.5915, pcfShareAnnual=9.1772, peAnnual=15.5063, peBasicExclExtraTTM=15.5063, peExclExtraTTM=15.5063, peInclExtraTTM=15.5063, peNormalizedAnnual=15.5063, peTTM=15.5063, pfcfShareAnnual=24.9823, priceRelativeToS&P5004Week=3.9112, priceRelativeToS&P500Ytd=2.9562, roa5Y=0.38, roaRfy=0.33, roaTTM=0.33999999999999997, roe5Y=4.18, roeRfy=3.71, roeTTM=3.7800000000000002, roi5Y=4.18, roiAnnual=3.71, roiTTM=3.7800000000000002, totalDebt/totalEquityAnnual=0, totalDebt/totalEquityQuarterly=0, yearToDatePriceReturnDaily=7.7108)
+[Stage 7:>                                                         (0 + 7) / 16][Stage 7:>                                                        (0 + 16) / 16][Stage 7:===>                                                     (1 + 15) / 16][Stage 7:=======>                                                 (2 + 14) / 16][Stage 7:==========>                                              (3 + 13) / 16][Stage 7:==============>                                          (4 + 12) / 16][Stage 7:=================>                                       (5 + 11) / 16][Stage 7:=====================>                                   (6 + 10) / 16][Stage 7:=============================>                            (8 + 8) / 16][Stage 7:================================>                         (9 + 7) / 16][Stage 7:===================================>                     (10 + 6) / 16][Stage 7:=======================================>                 (11 + 5) / 16][Stage 7:==========================================>              (12 + 4) / 16][Stage 7:==============================================>          (13 + 3) / 16][Stage 7:=================================================>       (14 + 2) / 16][Stage 7:=====================================================>   (15 + 1) / 16]                                                                                [Stage 8:>                                                         (0 + 0) / 16][Stage 8:>                                                        (0 + 16) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 0) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 2) / 16][Stage 8:=>               (1 + 15) / 16][Stage 9:>                 (0 + 2) / 16][Stage 8:==>              (2 + 14) / 16][Stage 9:>                 (0 + 3) / 16][Stage 8:===>             (3 + 13) / 16][Stage 9:>                 (0 + 3) / 16][Stage 8:===>             (3 + 13) / 16][Stage 9:>                 (0 + 4) / 16][Stage 8:====>            (4 + 12) / 16][Stage 9:>                 (0 + 4) / 16][Stage 8:====>            (4 + 12) / 16][Stage 9:>                 (0 + 7) / 16][Stage 8:===========>     (11 + 5) / 16][Stage 9:>                (0 + 11) / 16][Stage 8:===========>     (11 + 5) / 16][Stage 9:>                (0 + 12) / 16][Stage 8:===========>     (11 + 5) / 16][Stage 9:>                (0 + 13) / 16][Stage 8:============>    (12 + 4) / 16][Stage 9:>                (0 + 13) / 16][Stage 9:>                                                        (0 + 16) / 16][Stage 9:===>                                                     (1 + 15) / 16][Stage 9:=========================>                                (7 + 9) / 16][Stage 9:================================>                         (9 + 7) / 16][Stage 9:===================================>                     (10 + 6) / 16][Stage 9:=======================================>                 (11 + 5) / 16][Stage 9:==========================================>              (12 + 4) / 16][Stage 9:==============================================>          (13 + 3) / 16][Stage 9:=================================================>       (14 + 2) / 16][Stage 9:=====================================================>   (15 + 1) / 16][Stage 12:>                                                         (0 + 1) / 1]                                                                                [Stage 17:>                                                       (0 + 16) / 16][Stage 17:===>                                                    (1 + 15) / 16][Stage 17:=>              (1 + 15) / 16][Stage 18:>                (0 + 1) / 16][Stage 17:===>            (3 + 13) / 16][Stage 18:>                (0 + 3) / 16][Stage 17:====>           (4 + 12) / 16][Stage 18:>                (0 + 4) / 16][Stage 17:=====>          (5 + 11) / 16][Stage 18:>                (0 + 5) / 16][Stage 17:======>         (6 + 10) / 16][Stage 18:>                (0 + 6) / 16][Stage 17:=======>         (7 + 9) / 16][Stage 18:>                (0 + 7) / 16][Stage 17:========>        (8 + 8) / 16][Stage 18:>                (0 + 8) / 16][Stage 17:=========>       (9 + 7) / 16][Stage 18:>                (0 + 9) / 16][Stage 17:==========>     (10 + 6) / 16][Stage 18:>               (0 + 10) / 16][Stage 17:===========>    (11 + 5) / 16][Stage 18:>               (0 + 11) / 16][Stage 17:============>   (12 + 4) / 16][Stage 18:>               (0 + 12) / 16][Stage 17:=============>  (13 + 3) / 16][Stage 18:>               (0 + 13) / 16][Stage 17:=============>  (13 + 3) / 16][Stage 18:=>              (1 + 13) / 16][Stage 17:==============> (14 + 2) / 16][Stage 18:=>              (1 + 14) / 16][Stage 17:==============> (14 + 2) / 16][Stage 18:==>             (2 + 14) / 16][Stage 17:==============> (14 + 2) / 16][Stage 18:===>            (3 + 13) / 16][Stage 17:===============>(15 + 1) / 16][Stage 18:===>            (3 + 13) / 16][Stage 18:==============>                                         (4 + 12) / 16][Stage 18:=================>                                      (5 + 11) / 16][Stage 18:=====================>                                  (6 + 10) / 16][Stage 18:========================>                                (7 + 9) / 16][Stage 18:============================>                            (8 + 8) / 16][Stage 18:================================>                        (9 + 7) / 16][Stage 18:===================================>                    (10 + 6) / 16][Stage 18:======================================>                 (11 + 5) / 16][Stage 18:==========================================>             (12 + 4) / 16][Stage 18:=============================================>          (13 + 3) / 16][Stage 18:=================================================>      (14 + 2) / 16][Stage 18:====================================================>   (15 + 1) / 16][Stage 21:>                                                         (0 + 1) / 1]                                                                                [32m2024-05-31 16:36:20 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - spark_operator.create_stock_tables[stock_ABBB_path] - Row(date='2007-06-30', quarterly.bookValue=None, quarterly.ev=None, quarterly.pb=None, quarterly.peTTM=None, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.bookValue=None, annual.ev=None, annual.pb=None, annual.pe=None, annual.pfcf=None, annual.roa=0.0019, annual.roe=0.027, annual.roic=0.027, annual.totalDebtToEquity=0, annual.totalDebtToTotalAsset=0, annual.totalDebtToTotalCapital=0, annual.totalRatio=1.0748)
+[Stage 22:>                                                       (0 + 16) / 16][Stage 22:===>                                                    (1 + 15) / 16][Stage 22:=======>                                                (2 + 14) / 16][Stage 22:==========>                                             (3 + 13) / 16][Stage 22:==============>                                         (4 + 12) / 16][Stage 22:========================>                                (7 + 9) / 16][Stage 22:============================>                            (8 + 8) / 16][Stage 22:================================>                        (9 + 7) / 16][Stage 22:===================================>                    (10 + 6) / 16][Stage 22:======================================>                 (11 + 5) / 16][Stage 22:==========================================>             (12 + 4) / 16][Stage 22:=============================================>          (13 + 3) / 16][Stage 22:=================================================>      (14 + 2) / 16][Stage 22:====================================================>   (15 + 1) / 16][Stage 23:>                                                       (0 + 16) / 16][Stage 23:=======>                                                (2 + 14) / 16][Stage 23:==========>                                             (3 + 13) / 16][Stage 23:==============>                                         (4 + 12) / 16][Stage 23:=================>                                      (5 + 11) / 16][Stage 23:=====================>                                  (6 + 10) / 16][Stage 23:================================>                        (9 + 7) / 16][Stage 23:===================================>                    (10 + 6) / 16][Stage 23:======================================>                 (11 + 5) / 16][Stage 23:==========================================>             (12 + 4) / 16][Stage 23:=============================================>          (13 + 3) / 16][Stage 23:=================================================>      (14 + 2) / 16][Stage 23:====================================================>   (15 + 1) / 16][Stage 24:>                                                       (0 + 16) / 16][Stage 24:>               (0 + 16) / 16][Stage 25:>                (0 + 0) / 16][Stage 24:=>              (1 + 15) / 16][Stage 25:>                (0 + 1) / 16][Stage 24:==>             (2 + 14) / 16][Stage 25:>                (0 + 2) / 16][Stage 24:===>            (3 + 13) / 16][Stage 25:>                (0 + 3) / 16][Stage 24:====>           (4 + 12) / 16][Stage 25:>                (0 + 4) / 16][Stage 24:=====>          (5 + 11) / 16][Stage 25:>                (0 + 5) / 16][Stage 24:=======>         (7 + 9) / 16][Stage 25:>                (0 + 7) / 16][Stage 24:=========>       (9 + 7) / 16][Stage 25:>                (0 + 9) / 16][Stage 24:==========>     (10 + 6) / 16][Stage 25:>               (0 + 10) / 16][Stage 24:==========>     (10 + 6) / 16][Stage 25:>               (0 + 11) / 16][Stage 24:===========>    (11 + 5) / 16][Stage 25:>               (0 + 11) / 16][Stage 24:============>   (12 + 4) / 16][Stage 25:>               (0 + 12) / 16][Stage 24:=============>  (13 + 3) / 16][Stage 25:>               (0 + 13) / 16][Stage 24:==============> (14 + 2) / 16][Stage 25:>               (0 + 14) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:>               (0 + 15) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:=>              (1 + 15) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:==>             (2 + 14) / 16][Stage 25:=======>                                                (2 + 14) / 16][Stage 25:==========>                                             (3 + 13) / 16][Stage 25:==============>                                         (4 + 12) / 16][Stage 25:=================>                                      (5 + 11) / 16][Stage 25:========================>                                (7 + 9) / 16][Stage 25:============================>                            (8 + 8) / 16][Stage 25:================================>                        (9 + 7) / 16][Stage 25:===================================>                    (10 + 6) / 16][Stage 25:======================================>                 (11 + 5) / 16][Stage 25:==========================================>             (12 + 4) / 16][Stage 25:=============================================>          (13 + 3) / 16][Stage 25:=================================================>      (14 + 2) / 16][Stage 25:====================================================>   (15 + 1) / 16][Stage 26:>                                                       (0 + 16) / 16][Stage 26:>               (0 + 16) / 16][Stage 27:>                (0 + 0) / 16][Stage 26:=>              (1 + 15) / 16][Stage 27:>                (0 + 1) / 16][Stage 26:==>             (2 + 14) / 16][Stage 27:>                (0 + 2) / 16][Stage 26:===>            (3 + 13) / 16][Stage 27:>                (0 + 3) / 16][Stage 26:====>           (4 + 12) / 16][Stage 27:>                (0 + 4) / 16][Stage 26:=====>          (5 + 11) / 16][Stage 27:>                (0 + 5) / 16][Stage 26:======>         (6 + 10) / 16][Stage 27:>                (0 + 6) / 16][Stage 26:======>         (6 + 10) / 16][Stage 27:=>               (1 + 6) / 16][Stage 26:======>         (6 + 10) / 16][Stage 27:==>              (2 + 6) / 16][Stage 26:=======>         (7 + 9) / 16][Stage 27:==>              (2 + 7) / 16][Stage 26:=========>       (9 + 7) / 16][Stage 27:==>              (2 + 9) / 16][Stage 26:==========>     (10 + 6) / 16][Stage 27:==>             (2 + 10) / 16][Stage 26:===========>    (11 + 5) / 16][Stage 27:==>             (2 + 11) / 16][Stage 26:===========>    (11 + 5) / 16][Stage 27:===>            (3 + 11) / 16][Stage 26:============>   (12 + 4) / 16][Stage 27:===>            (3 + 12) / 16][Stage 26:=============>  (13 + 3) / 16][Stage 27:===>            (3 + 13) / 16][Stage 26:===============>(15 + 1) / 16][Stage 27:===>            (3 + 13) / 16][Stage 27:==========>                                             (3 + 13) / 16][Stage 27:==============>                                         (4 + 12) / 16][Stage 27:=================>                                      (5 + 11) / 16][Stage 27:=====================>                                  (6 + 10) / 16][Stage 27:========================>                                (7 + 9) / 16][Stage 27:============================>                            (8 + 8) / 16][Stage 27:==========================================>             (12 + 4) / 16][Stage 27:====================================================>   (15 + 1) / 16][Stage 30:>                                                         (0 + 0) / 1][Stage 30:>                                                         (0 + 1) / 1][Stage 31:>                                                       (0 + 16) / 16][Stage 31:===>                                                    (1 + 15) / 16][Stage 31:=======>                                                (2 + 14) / 16][Stage 31:==========>                                             (3 + 13) / 16][Stage 31:==============>                                         (4 + 12) / 16][Stage 31:=====================>                                  (6 + 10) / 16][Stage 31:========================>                                (7 + 9) / 16][Stage 31:============================>                            (8 + 8) / 16][Stage 31:===================================>                    (10 + 6) / 16][Stage 31:======================================>                 (11 + 5) / 16][Stage 31:==========================================>             (12 + 4) / 16][Stage 31:=============================================>          (13 + 3) / 16][Stage 31:=================================================>      (14 + 2) / 16][Stage 31:====================================================>   (15 + 1) / 16][32m2024-05-31 16:41:05 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - 448113 - spark_operator.create_stock_tables[stock_ABBB_path] - STEP_OUTPUT - Yielded output "metric_and_series" of type "Any". (Type check passed).
+[32m2024-05-31 16:41:23 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - spark_operator.create_stock_tables[stock_ABBB_path] - Writing S3 object at: s3a://dagster-api/staging/2024-05-31/spark_operator.create_stock_tables[stock_ABBB_path]/metric_and_series
+[32m2024-05-31 16:41:24 +0000[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - spark_operator.create_stock_tables[stock_ABBB_path] - Removing existing S3 object: staging/2024-05-31/spark_operator.create_stock_tables[stock_ABBB_path]/metric_and_series
+24/05/31 16:41:29 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[Stage 38:>                                                        (0 + 0) / 17][Stage 38:>                                                       (0 + 16) / 17][Stage 38:>                                                       (0 + 17) / 17][Stage 38:=============>                                          (4 + 13) / 17][Stage 38:==========================>                              (8 + 9) / 17][Stage 38:====================================>                   (11 + 6) / 17][Stage 38:=======================================>                (12 + 5) / 17][Stage 38:==========================================>             (13 + 4) / 17][Stage 38:==============================================>         (14 + 3) / 17]                                                                                [Stage 39:>                                                         (0 + 1) / 1]                                                                                [Stage 40:>                                                         (0 + 1) / 1][Stage 42:>                                                        (0 + 0) / 50][Stage 42:>                                                       (0 + 16) / 50][Stage 42:>                                                       (0 + 18) / 50][Stage 42:===============>                                       (14 + 16) / 50][Stage 42:=================>                                     (16 + 16) / 50][Stage 42:====================>                                  (19 + 17) / 50][Stage 42:==========================>                            (24 + 16) / 50][Stage 42:=================================>                     (30 + 18) / 50][Stage 42:===================================>                   (32 + 16) / 50][Stage 42:====================================>                  (33 + 16) / 50][Stage 42:======================================>                (35 + 15) / 50][Stage 42:=======================================>               (36 + 14) / 50][Stage 42:==================================================>     (45 + 5) / 50][Stage 42:=====================================================>  (48 + 2) / 50]                                                                                [32m2024-05-31 16:43:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - 448113 - spark_operator.create_stock_tables[stock_ABBB_path] - HANDLED_OUTPUT - Handled output "metric_and_series" using IO manager "s3_prqt_io_manager"
+[32m2024-05-31 16:43:10 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 3623b19a-36c5-4240-8347-38e929a71ad9 - 448113 - spark_operator.create_stock_tables[stock_ABBB_path] - STEP_SUCCESS - Finished execution of step "spark_operator.create_stock_tables[stock_ABBB_path]" in 14m33s.

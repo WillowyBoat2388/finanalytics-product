@@ -1,0 +1,434 @@
+[32m2024-05-31 17:38:41 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c550e763-e768-4d2c-b582-1c097d09a325 - 1126732 - LOGS_CAPTURED - Started capturing logs in process (pid: 1126732).
+[32m2024-05-31 17:38:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c550e763-e768-4d2c-b582-1c097d09a325 - 1126732 - spark_operator.create_stock_tables[stock_AAOI_path] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AAOI_path]".
+[32m2024-05-31 17:38:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c550e763-e768-4d2c-b582-1c097d09a325 - spark_operator.create_stock_tables[stock_AAOI_path] - Loading file from: /workspace/practical-data-engineering/finnhub-batch-stock-pipeline/home/storage/6406c73a-2b39-4410-9e84-18c1e42b2f29/spark_operator.stock_tables/result/stock_AAOI_path using PickledObjectFilesystemIOManager...
+[32m2024-05-31 17:38:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c550e763-e768-4d2c-b582-1c097d09a325 - 1126732 - spark_operator.create_stock_tables[stock_AAOI_path] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-05-31 17:38:42 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c550e763-e768-4d2c-b582-1c097d09a325 - 1126732 - spark_operator.create_stock_tables[stock_AAOI_path] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/05/31 17:38:54 WARN Utils: Your hostname, willowyboat-practicalda-8yoi5et7ep7 resolves to a loopback address: 127.0.0.1; using 10.0.5.2 instead (on interface eth0)
+24/05/31 17:38:54 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Ivy Default Cache set to: /home/gitpod/.ivy2/cache
+The jars for the packages stored in: /home/gitpod/.ivy2/jars
+io.delta#delta-spark_2.12 added as a dependency
+org.apache.hadoop#hadoop-aws added as a dependency
+org.apache.hadoop#hadoop-common added as a dependency
+com.amazonaws#aws-java-sdk-bundle added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-a203e4db-3e70-41b5-8a8c-a492e3b400eb;1.0
+	confs: [default]
+	found io.delta#delta-spark_2.12;3.1.0 in spark-list
+	found io.delta#delta-storage;3.1.0 in central
+	found org.antlr#antlr4-runtime;4.9.3 in central
+	found org.apache.hadoop#hadoop-aws;3.3.4 in central
+	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in spark-list
+	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in spark-list
+	found org.apache.hadoop#hadoop-common;3.3.4 in spark-list
+	found org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 in spark-list
+	found org.apache.hadoop#hadoop-annotations;3.3.4 in central
+	found org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 in spark-list
+	found com.google.guava#guava;27.0-jre in spark-list
+	found com.google.guava#failureaccess;1.0 in central
+	found com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava in central
+	found com.google.code.findbugs#jsr305;3.0.2 in spark-list
+	found org.checkerframework#checker-qual;2.5.2 in spark-list
+	found com.google.j2objc#j2objc-annotations;1.1 in spark-list
+	found org.codehaus.mojo#animal-sniffer-annotations;1.17 in central
+	found commons-cli#commons-cli;1.2 in central
+	found org.apache.commons#commons-math3;3.1.1 in central
+	found org.apache.httpcomponents#httpclient;4.5.13 in central
+	found org.apache.httpcomponents#httpcore;4.4.13 in central
+	found commons-logging#commons-logging;1.1.3 in central
+	found commons-codec#commons-codec;1.15 in central
+	found commons-io#commons-io;2.8.0 in central
+	found commons-net#commons-net;3.6 in central
+	found commons-collections#commons-collections;3.2.2 in central
+	found javax.servlet#javax.servlet-api;3.1.0 in central
+	found org.eclipse.jetty#jetty-server;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-http;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-util;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-io;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-security;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 in central
+	found org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 in spark-list
+	found org.eclipse.jetty#jetty-xml;9.4.43.v20210629 in central
+	found com.sun.jersey#jersey-core;1.19 in central
+	found javax.ws.rs#jsr311-api;1.1.1 in central
+	found com.sun.jersey#jersey-servlet;1.19 in central
+	found com.sun.jersey#jersey-server;1.19 in central
+	found com.sun.jersey#jersey-json;1.19 in central
+	found org.codehaus.jettison#jettison;1.1 in spark-list
+	found com.sun.xml.bind#jaxb-impl;2.2.3-1 in central
+	found javax.xml.bind#jaxb-api;2.2.11 in central
+	found org.codehaus.jackson#jackson-core-asl;1.9.13 in spark-list
+	found org.codehaus.jackson#jackson-mapper-asl;1.9.13 in spark-list
+	found org.codehaus.jackson#jackson-jaxrs;1.9.13 in central
+	found org.codehaus.jackson#jackson-xc;1.9.13 in central
+	found ch.qos.reload4j#reload4j;1.2.22 in spark-list
+	found commons-beanutils#commons-beanutils;1.9.4 in central
+	found org.apache.commons#commons-configuration2;2.1.1 in spark-list
+	found org.apache.commons#commons-lang3;3.12.0 in spark-list
+	found org.apache.commons#commons-text;1.4 in central
+	found org.slf4j#slf4j-api;1.7.36 in central
+	found org.slf4j#slf4j-reload4j;1.7.36 in spark-list
+	found org.apache.avro#avro;1.7.7 in central
+	found com.thoughtworks.paranamer#paranamer;2.3 in central
+	found org.xerial.snappy#snappy-java;1.1.8.2 in spark-list
+	found org.apache.commons#commons-compress;1.21 in spark-list
+	found com.google.re2j#re2j;1.1 in spark-list
+	found com.google.protobuf#protobuf-java;2.5.0 in spark-list
+	found com.google.code.gson#gson;2.8.9 in central
+	found org.apache.hadoop#hadoop-auth;3.3.4 in central
+	found com.nimbusds#nimbus-jose-jwt;9.8.1 in central
+	found com.github.stephenc.jcip#jcip-annotations;1.0-1 in spark-list
+	found net.minidev#json-smart;2.4.7 in central
+	found net.minidev#accessors-smart;2.4.7 in central
+	found org.ow2.asm#asm;5.0.4 in spark-list
+	found org.apache.zookeeper#zookeeper;3.5.6 in central
+	found org.apache.zookeeper#zookeeper-jute;3.5.6 in central
+	found org.apache.yetus#audience-annotations;0.5.0 in central
+	found org.apache.curator#curator-framework;4.2.0 in spark-list
+	found org.apache.curator#curator-client;4.2.0 in central
+	found org.apache.kerby#kerb-simplekdc;1.0.1 in central
+	found org.apache.kerby#kerb-client;1.0.1 in spark-list
+	found org.apache.kerby#kerby-config;1.0.1 in central
+	found org.apache.kerby#kerb-core;1.0.1 in central
+	found org.apache.kerby#kerby-pkix;1.0.1 in spark-list
+	found org.apache.kerby#kerby-asn1;1.0.1 in spark-list
+	found org.apache.kerby#kerby-util;1.0.1 in spark-list
+	found org.apache.kerby#kerb-common;1.0.1 in central
+	found org.apache.kerby#kerb-crypto;1.0.1 in central
+	found org.apache.kerby#kerb-util;1.0.1 in spark-list
+	found org.apache.kerby#token-provider;1.0.1 in central
+	found org.apache.kerby#kerb-admin;1.0.1 in central
+	found org.apache.kerby#kerb-server;1.0.1 in central
+	found org.apache.kerby#kerb-identity;1.0.1 in central
+	found org.apache.kerby#kerby-xdr;1.0.1 in spark-list
+	found com.jcraft#jsch;0.1.55 in central
+	found org.apache.curator#curator-recipes;4.2.0 in spark-list
+	found com.fasterxml.jackson.core#jackson-databind;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-annotations;2.12.7 in central
+	found com.fasterxml.jackson.core#jackson-core;2.12.7 in spark-list
+	found org.codehaus.woodstox#stax2-api;4.2.1 in central
+	found com.fasterxml.woodstox#woodstox-core;5.3.0 in central
+	found dnsjava#dnsjava;2.1.7 in spark-list
+	found jakarta.activation#jakarta.activation-api;1.2.1 in central
+	found javax.servlet.jsp#jsp-api;2.1 in central
+:: resolution report :: resolve 26816ms :: artifacts dl 497ms
+	:: modules in use:
+	ch.qos.reload4j#reload4j;1.2.22 from spark-list in [default]
+	com.amazonaws#aws-java-sdk-bundle;1.12.262 from spark-list in [default]
+	com.fasterxml.jackson.core#jackson-annotations;2.12.7 from central in [default]
+	com.fasterxml.jackson.core#jackson-core;2.12.7 from spark-list in [default]
+	com.fasterxml.jackson.core#jackson-databind;2.12.7 from central in [default]
+	com.fasterxml.woodstox#woodstox-core;5.3.0 from central in [default]
+	com.github.stephenc.jcip#jcip-annotations;1.0-1 from spark-list in [default]
+	com.google.code.findbugs#jsr305;3.0.2 from spark-list in [default]
+	com.google.code.gson#gson;2.8.9 from central in [default]
+	com.google.guava#failureaccess;1.0 from central in [default]
+	com.google.guava#guava;27.0-jre from spark-list in [default]
+	com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava from central in [default]
+	com.google.j2objc#j2objc-annotations;1.1 from spark-list in [default]
+	com.google.protobuf#protobuf-java;2.5.0 from spark-list in [default]
+	com.google.re2j#re2j;1.1 from spark-list in [default]
+	com.jcraft#jsch;0.1.55 from central in [default]
+	com.nimbusds#nimbus-jose-jwt;9.8.1 from central in [default]
+	com.sun.jersey#jersey-core;1.19 from central in [default]
+	com.sun.jersey#jersey-json;1.19 from central in [default]
+	com.sun.jersey#jersey-server;1.19 from central in [default]
+	com.sun.jersey#jersey-servlet;1.19 from central in [default]
+	com.sun.xml.bind#jaxb-impl;2.2.3-1 from central in [default]
+	com.thoughtworks.paranamer#paranamer;2.3 from central in [default]
+	commons-beanutils#commons-beanutils;1.9.4 from central in [default]
+	commons-cli#commons-cli;1.2 from central in [default]
+	commons-codec#commons-codec;1.15 from central in [default]
+	commons-collections#commons-collections;3.2.2 from central in [default]
+	commons-io#commons-io;2.8.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	commons-net#commons-net;3.6 from central in [default]
+	dnsjava#dnsjava;2.1.7 from spark-list in [default]
+	io.delta#delta-spark_2.12;3.1.0 from spark-list in [default]
+	io.delta#delta-storage;3.1.0 from central in [default]
+	jakarta.activation#jakarta.activation-api;1.2.1 from central in [default]
+	javax.servlet#javax.servlet-api;3.1.0 from central in [default]
+	javax.servlet.jsp#jsp-api;2.1 from central in [default]
+	javax.ws.rs#jsr311-api;1.1.1 from central in [default]
+	javax.xml.bind#jaxb-api;2.2.11 from central in [default]
+	net.minidev#accessors-smart;2.4.7 from central in [default]
+	net.minidev#json-smart;2.4.7 from central in [default]
+	org.antlr#antlr4-runtime;4.9.3 from central in [default]
+	org.apache.avro#avro;1.7.7 from central in [default]
+	org.apache.commons#commons-compress;1.21 from spark-list in [default]
+	org.apache.commons#commons-configuration2;2.1.1 from spark-list in [default]
+	org.apache.commons#commons-lang3;3.12.0 from spark-list in [default]
+	org.apache.commons#commons-math3;3.1.1 from central in [default]
+	org.apache.commons#commons-text;1.4 from central in [default]
+	org.apache.curator#curator-client;4.2.0 from central in [default]
+	org.apache.curator#curator-framework;4.2.0 from spark-list in [default]
+	org.apache.curator#curator-recipes;4.2.0 from spark-list in [default]
+	org.apache.hadoop#hadoop-annotations;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-auth;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-common;3.3.4 from spark-list in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 from spark-list in [default]
+	org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 from spark-list in [default]
+	org.apache.httpcomponents#httpclient;4.5.13 from central in [default]
+	org.apache.httpcomponents#httpcore;4.4.13 from central in [default]
+	org.apache.kerby#kerb-admin;1.0.1 from central in [default]
+	org.apache.kerby#kerb-client;1.0.1 from spark-list in [default]
+	org.apache.kerby#kerb-common;1.0.1 from central in [default]
+	org.apache.kerby#kerb-core;1.0.1 from central in [default]
+	org.apache.kerby#kerb-crypto;1.0.1 from central in [default]
+	org.apache.kerby#kerb-identity;1.0.1 from central in [default]
+	org.apache.kerby#kerb-server;1.0.1 from central in [default]
+	org.apache.kerby#kerb-simplekdc;1.0.1 from central in [default]
+	org.apache.kerby#kerb-util;1.0.1 from spark-list in [default]
+	org.apache.kerby#kerby-asn1;1.0.1 from spark-list in [default]
+	org.apache.kerby#kerby-config;1.0.1 from central in [default]
+	org.apache.kerby#kerby-pkix;1.0.1 from spark-list in [default]
+	org.apache.kerby#kerby-util;1.0.1 from spark-list in [default]
+	org.apache.kerby#kerby-xdr;1.0.1 from spark-list in [default]
+	org.apache.kerby#token-provider;1.0.1 from central in [default]
+	org.apache.yetus#audience-annotations;0.5.0 from central in [default]
+	org.apache.zookeeper#zookeeper;3.5.6 from central in [default]
+	org.apache.zookeeper#zookeeper-jute;3.5.6 from central in [default]
+	org.checkerframework#checker-qual;2.5.2 from spark-list in [default]
+	org.codehaus.jackson#jackson-core-asl;1.9.13 from spark-list in [default]
+	org.codehaus.jackson#jackson-jaxrs;1.9.13 from central in [default]
+	org.codehaus.jackson#jackson-mapper-asl;1.9.13 from spark-list in [default]
+	org.codehaus.jackson#jackson-xc;1.9.13 from central in [default]
+	org.codehaus.jettison#jettison;1.1 from spark-list in [default]
+	org.codehaus.mojo#animal-sniffer-annotations;1.17 from central in [default]
+	org.codehaus.woodstox#stax2-api;4.2.1 from central in [default]
+	org.eclipse.jetty#jetty-http;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-io;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-security;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-server;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 from central in [default]
+	org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 from spark-list in [default]
+	org.eclipse.jetty#jetty-xml;9.4.43.v20210629 from central in [default]
+	org.ow2.asm#asm;5.0.4 from spark-list in [default]
+	org.slf4j#slf4j-api;1.7.36 from central in [default]
+	org.slf4j#slf4j-reload4j;1.7.36 from spark-list in [default]
+	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from spark-list in [default]
+	org.xerial.snappy#snappy-java;1.1.8.2 from spark-list in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   98  |   0   |   0   |   0   ||   98  |   0   |
+	---------------------------------------------------------------------
+
+:: problems summary ::
+:::: ERRORS
+	unknown resolver null
+
+	unknown resolver null
+
+	unknown resolver null
+
+	unknown resolver null
+
+
+:: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+:: retrieving :: org.apache.spark#spark-submit-parent-a203e4db-3e70-41b5-8a8c-a492e3b400eb
+	confs: [default]
+	37 artifacts copied, 61 already retrieved (31187kB/895ms)
+24/05/31 17:39:28 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/05/31 17:39:38 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+24/05/31 17:39:38 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+24/05/31 17:39:38 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
+24/05/31 17:39:58 ERROR Inbox: Ignoring error
+org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	at org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)
+	at org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)
+	at org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@10.0.5.2:38205
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)
+	at scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)
+	at scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)
+	at scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.complete(Promise.scala:53)
+	at scala.concurrent.Promise.complete$(Promise.scala:52)
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)
+	at scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.complete(Promise.scala:53)
+	at scala.concurrent.Promise.complete$(Promise.scala:52)
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at scala.concurrent.BatchingExecutor$Batch.processBatch$1(BatchingExecutor.scala:67)
+	at scala.concurrent.BatchingExecutor$Batch.$anonfun$run$1(BatchingExecutor.scala:82)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:85)
+	at scala.concurrent.BatchingExecutor$Batch.run(BatchingExecutor.scala:59)
+	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:875)
+	at scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:110)
+	at scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:107)
+	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:873)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.trySuccess(Promise.scala:94)
+	at scala.concurrent.Promise.trySuccess$(Promise.scala:94)
+	at scala.concurrent.impl.Promise$DefaultPromise.trySuccess(Promise.scala:187)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.onSuccess$1(NettyRpcEnv.scala:225)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5(NettyRpcEnv.scala:239)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5$adapted(NettyRpcEnv.scala:238)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)
+	at scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.complete(Promise.scala:53)
+	at scala.concurrent.Promise.complete$(Promise.scala:52)
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)
+	at scala.concurrent.Promise.success(Promise.scala:86)
+	at scala.concurrent.Promise.success$(Promise.scala:86)
+	at scala.concurrent.impl.Promise$DefaultPromise.success(Promise.scala:187)
+	at org.apache.spark.rpc.netty.LocalNettyRpcCallContext.send(NettyRpcCallContext.scala:50)
+	at org.apache.spark.rpc.netty.NettyRpcCallContext.reply(NettyRpcCallContext.scala:32)
+	at org.apache.spark.rpc.netty.RpcEndpointVerifier$$anonfun$receiveAndReply$1.applyOrElse(RpcEndpointVerifier.scala:31)
+	... 8 more
+24/05/31 17:39:58 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)
+	at org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)
+	at org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	at org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)
+	at org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)
+	at org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)
+	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	... 3 more
+Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@10.0.5.2:38205
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)
+	at scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)
+	at scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)
+	at scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.complete(Promise.scala:53)
+	at scala.concurrent.Promise.complete$(Promise.scala:52)
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)
+	at scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.complete(Promise.scala:53)
+	at scala.concurrent.Promise.complete$(Promise.scala:52)
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at scala.concurrent.BatchingExecutor$Batch.processBatch$1(BatchingExecutor.scala:67)
+	at scala.concurrent.BatchingExecutor$Batch.$anonfun$run$1(BatchingExecutor.scala:82)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:85)
+	at scala.concurrent.BatchingExecutor$Batch.run(BatchingExecutor.scala:59)
+	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:875)
+	at scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:110)
+	at scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:107)
+	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:873)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.trySuccess(Promise.scala:94)
+	at scala.concurrent.Promise.trySuccess$(Promise.scala:94)
+	at scala.concurrent.impl.Promise$DefaultPromise.trySuccess(Promise.scala:187)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.onSuccess$1(NettyRpcEnv.scala:225)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5(NettyRpcEnv.scala:239)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5$adapted(NettyRpcEnv.scala:238)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)
+	at scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)
+	at scala.concurrent.Promise.complete(Promise.scala:53)
+	at scala.concurrent.Promise.complete$(Promise.scala:52)
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)
+	at scala.concurrent.Promise.success(Promise.scala:86)
+	at scala.concurrent.Promise.success$(Promise.scala:86)
+	at scala.concurrent.impl.Promise$DefaultPromise.success(Promise.scala:187)
+	at org.apache.spark.rpc.netty.LocalNettyRpcCallContext.send(NettyRpcCallContext.scala:50)
+	at org.apache.spark.rpc.netty.NettyRpcCallContext.reply(NettyRpcCallContext.scala:32)
+	at org.apache.spark.rpc.netty.RpcEndpointVerifier$$anonfun$receiveAndReply$1.applyOrElse(RpcEndpointVerifier.scala:31)
+	... 8 more
+[Stage 0:>                                                         (0 + 0) / 16][Stage 0:>                                                        (0 + 16) / 16][Stage 0:===>                                                     (1 + 15) / 16][Stage 0:=========================>                                (7 + 9) / 16][Stage 0:=============================>                            (8 + 8) / 16][Stage 0:================================>                         (9 + 7) / 16][Stage 0:===================================>                     (10 + 6) / 16][Stage 0:=======================================>                 (11 + 5) / 16][Stage 0:==========================================>              (12 + 4) / 16][Stage 0:==============================================>          (13 + 3) / 16]                                                                                24/05/31 17:40:58 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+[Stage 1:>                                                         (0 + 0) / 16][Stage 1:>                                                        (0 + 16) / 16][Stage 1:===>                                                     (1 + 15) / 16][Stage 1:=================>                                       (5 + 11) / 16][Stage 3:>                                                          (0 + 0) / 1][Stage 3:>                                                          (0 + 1) / 1]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 4) / 4][Stage 5:==============>                                            (1 + 3) / 4][Stage 5:=============================>                             (2 + 2) / 4][Stage 5:============================================>              (3 + 1) / 4]                                                                                [Stage 6:>                                                        (0 + 11) / 11][Stage 6:=====>                                                   (1 + 10) / 11][Stage 6:==========>                                               (2 + 9) / 11][Stage 6:===============>                                          (3 + 8) / 11][Stage 6:==========================>                               (5 + 6) / 11][Stage 6:===============================>                          (6 + 5) / 11][Stage 6:====================================>                     (7 + 4) / 11][Stage 6:==========================================>               (8 + 3) / 11][Stage 6:===============================================>          (9 + 2) / 11][Stage 6:===================================================>     (10 + 1) / 11]                                                                                [32m2024-05-31 17:41:53 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - c550e763-e768-4d2c-b582-1c097d09a325 - spark_operator.create_stock_tables[stock_AAOI_path] - Row(10DayAverageTradingVolume=1.63021, 13WeekPriceReturnDaily=-17.6847, 26WeekPriceReturnDaily=-12.2634, 3MonthADReturnStd=69.74237, 3MonthAverageTradingVolume=2.59066, 52WeekHigh=24.75, 52WeekHighDate='2024-02-16', 52WeekLow=2.0801, 52WeekLowDate='2023-06-01', 52WeekPriceReturnDaily=422.0721, 5DayPriceReturnDaily=-2.605, assetTurnoverAnnual=0.5592, assetTurnoverTTM=0.5581, beta=2.3007398, bookValuePerShareAnnual=5.6325, bookValuePerShareQuarterly=5.0537, bookValueShareGrowth5Y=-19.46, capexCagr5Y=-34.12, cashFlowPerShareAnnual=-0.4613, cashFlowPerShareQuarterly=-1.0813, cashFlowPerShareTTM=-1.38243, cashPerSharePerShareAnnual=1.1892, cashPerSharePerShareQuarterly=0.2177, currentDividendYieldTTM=None, currentRatioAnnual=1.8489, currentRatioQuarterly=1.7911, dividendPerShareTTM=None, ebitdPerShareAnnual=-1.4785, ebitdPerShareTTM=-1.5967, ebitdaCagr5Y=None, ebitdaInterimCagr5Y=None, enterpriseValue=569.2451, epsAnnual=-1.7546, epsBasicExclExtraItemsAnnual=-1.7546, epsBasicExclExtraItemsTTM=-1.8298999999999999, epsExclExtraItemsAnnual=-1.7546, epsExclExtraItemsTTM=-1.8298999999999999, epsGrowth3Y=None, epsGrowth5Y=None, epsGrowthQuarterlyYoy=None, epsGrowthTTMYoy=None, epsInclExtraItemsAnnual=-1.7546, epsInclExtraItemsTTM=-1.8298999999999999, epsNormalizedAnnual=-1.7546, epsTTM=-1.8298999999999999, focfCagr5Y=None, grossMargin5Y=21.14, grossMarginAnnual=27.07, grossMarginTTM=18.66, inventoryTurnoverAnnual=2.2112, inventoryTurnoverTTM=2.3776, longTermDebt/equityAnnual=0.3548, longTermDebt/equityQuarterly=0.39, marketCapitalization=466.5061, monthToDatePriceReturnDaily=17.665, netIncomeEmployeeAnnual=-0.0253, netIncomeEmployeeTTM=-0.0284, netInterestCoverageAnnual=-7.4613, netInterestCoverageTTM=-5.9116, netMarginGrowth5Y=None, netProfitMargin5Y=-28.13, netProfitMarginAnnual=-25.75, netProfitMarginTTM=-56.97, operatingMargin5Y=-23.73, operatingMarginAnnual=-19, operatingMarginTTM=-53.22, pbAnnual=3.1953, pbQuarterly=2.7309, pcfShareAnnual=None, pcfShareTTM=None, peAnnual=None, peBasicExclExtraTTM=None, peExclExtraTTM=None, peInclExtraTTM=None, peNormalizedAnnual=None, peTTM=None, pfcfShareAnnual=27.7517, pfcfShareTTM=32.7603, pretaxMargin5Y=-25.98, pretaxMarginAnnual=-25.75, pretaxMarginTTM=-56.97, priceRelativeToS&P50013Week=-20.9143, priceRelativeToS&P50026Week=-27.1177, priceRelativeToS&P5004Week=8.4997, priceRelativeToS&P50052Week=397.0009, priceRelativeToS&P500Ytd=-49.9618, psAnnual=2.1434, psTTM=2.2731, ptbvAnnual=3.2502, ptbvQuarterly=2.7822, quickRatioAnnual=1.1074, quickRatioQuarterly=1.0084, receivablesTurnoverAnnual=3.9836, receivablesTurnoverTTM=3.5918, revenueEmployeeAnnual=0.0983, revenueEmployeeTTM=0.0927, revenueGrowth3Y=-2.47, revenueGrowth5Y=-4.04, revenueGrowthQuarterlyYoy=-23.26, revenueGrowthTTMYoy=-8.22, revenuePerShareAnnual=6.8133, revenuePerShareTTM=5.3497, revenueShareGrowth5Y=-12.97, roa5Y=-13.78, roaRfy=-14.399999999999999, roaTTM=-17.11, roe5Y=-25.7, roeRfy=-26.08, roeTTM=-33.46, roi5Y=-16.11, roiAnnual=-16.98, roiTTM=-20.46, tangibleBookValuePerShareAnnual=5.5374, tangibleBookValuePerShareQuarterly=4.9605, tbvCagr5Y=-7.93, totalDebt/totalEquityAnnual=0.5361, totalDebt/totalEquityQuarterly=0.568, yearToDatePriceReturnDaily=-40.0104)
+[Stage 7:>                                                        (0 + 16) / 16][Stage 7:===>                                                     (1 + 15) / 16][Stage 7:=======>                                                 (2 + 14) / 16][Stage 7:==========>                                              (3 + 13) / 16][Stage 7:==============>                                          (4 + 12) / 16][Stage 7:=================>                                       (5 + 11) / 16][Stage 7:=============================>                            (8 + 8) / 16][Stage 7:================================>                         (9 + 7) / 16][Stage 7:=======================================>                 (11 + 5) / 16][Stage 7:==========================================>              (12 + 4) / 16][Stage 7:==============================================>          (13 + 3) / 16][Stage 7:=================================================>       (14 + 2) / 16][Stage 7:=====================================================>   (15 + 1) / 16][Stage 7:=========================================================(16 + 0) / 16]                                                                                [Stage 8:>                                                         (0 + 0) / 16][Stage 8:>                                                        (0 + 16) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 0) / 16][Stage 8:=>               (1 + 15) / 16][Stage 9:>                 (0 + 1) / 16][Stage 8:====>            (4 + 12) / 16][Stage 9:>                 (0 + 4) / 16][Stage 8:=====>           (5 + 11) / 16][Stage 9:>                 (0 + 5) / 16][Stage 8:=======>          (7 + 9) / 16][Stage 9:>                 (0 + 7) / 16][Stage 8:=========>        (8 + 8) / 16][Stage 9:>                 (0 + 8) / 16][Stage 8:==========>      (10 + 6) / 16][Stage 9:>                (0 + 10) / 16][Stage 8:===========>     (11 + 5) / 16][Stage 9:>                (0 + 11) / 16][Stage 8:============>    (12 + 4) / 16][Stage 9:>                (0 + 12) / 16][Stage 8:=============>   (13 + 3) / 16][Stage 9:>                (0 + 13) / 16][Stage 8:=============>   (13 + 3) / 16][Stage 9:>                (0 + 14) / 16][Stage 8:==============>  (14 + 2) / 16][Stage 9:>                (0 + 14) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:>                (0 + 15) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:>                (0 + 16) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:=>               (1 + 15) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:==>              (2 + 14) / 16][Stage 9:=======>                                                 (2 + 14) / 16][Stage 9:==========>                                              (3 + 13) / 16][Stage 9:==============>                                          (4 + 12) / 16][Stage 9:=====================>                                   (6 + 10) / 16][Stage 9:=========================>                                (7 + 9) / 16][Stage 9:=============================>                            (8 + 8) / 16][Stage 9:===================================>                     (10 + 6) / 16][Stage 9:==========================================>              (12 + 4) / 16][Stage 9:==============================================>          (13 + 3) / 16][Stage 9:=====================================================>   (15 + 1) / 16][Stage 12:>                                                         (0 + 1) / 1]                                                                                [Stage 17:>                                                        (0 + 0) / 16][Stage 17:>                                                       (0 + 16) / 16][Stage 17:>               (0 + 16) / 16][Stage 18:>                (0 + 0) / 16][Stage 17:>               (0 + 16) / 16][Stage 18:>                (0 + 2) / 16][Stage 17:==>             (2 + 14) / 16][Stage 18:>                (0 + 2) / 16][Stage 17:===>            (3 + 13) / 16][Stage 18:>                (0 + 3) / 16][Stage 17:====>           (4 + 12) / 16][Stage 18:>                (0 + 4) / 16][Stage 17:=====>          (5 + 11) / 16][Stage 18:>                (0 + 5) / 16][Stage 17:======>         (6 + 10) / 16][Stage 18:>                (0 + 6) / 16][Stage 17:=======>         (7 + 9) / 16][Stage 18:>                (0 + 7) / 16][Stage 17:========>        (8 + 8) / 16][Stage 18:>                (0 + 8) / 16][Stage 17:=========>       (9 + 7) / 16][Stage 18:>                (0 + 9) / 16][Stage 17:==========>     (10 + 6) / 16][Stage 18:>               (0 + 10) / 16][Stage 17:===========>    (11 + 5) / 16][Stage 18:>               (0 + 11) / 16][Stage 17:===========>    (11 + 5) / 16][Stage 18:>               (0 + 12) / 16][Stage 17:============>   (12 + 4) / 16][Stage 18:>               (0 + 12) / 16][Stage 17:=============>  (13 + 3) / 16][Stage 18:>               (0 + 13) / 16][Stage 17:=============>  (13 + 3) / 16][Stage 18:=>              (1 + 13) / 16][Stage 17:=============>  (13 + 3) / 16][Stage 18:==>             (2 + 13) / 16][Stage 17:==============> (14 + 2) / 16][Stage 18:==>             (2 + 14) / 16][Stage 17:===============>(15 + 1) / 16][Stage 18:==>             (2 + 14) / 16][Stage 17:===============>(15 + 1) / 16][Stage 18:===>            (3 + 13) / 16][Stage 18:==========>                                             (3 + 13) / 16][Stage 18:==============>                                         (4 + 12) / 16][Stage 18:=================>                                      (5 + 11) / 16][Stage 18:=====================>                                  (6 + 10) / 16][Stage 18:========================>                                (7 + 9) / 16][Stage 18:============================>                            (8 + 8) / 16][Stage 18:================================>                        (9 + 7) / 16][Stage 18:======================================>                 (11 + 5) / 16][Stage 18:==========================================>             (12 + 4) / 16][Stage 18:=============================================>          (13 + 3) / 16][Stage 18:=================================================>      (14 + 2) / 16][Stage 21:>                                                         (0 + 1) / 1]                                                                                [32m2024-05-31 17:45:19 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - c550e763-e768-4d2c-b582-1c097d09a325 - spark_operator.create_stock_tables[stock_AAOI_path] - Row(date='2008-12-31', quarterly.assetTurnoverTTM=None, quarterly.bookValue=None, quarterly.cashRatio=None, quarterly.currentRatio=None, quarterly.ebitPerShare=None, quarterly.eps=None, quarterly.ev=None, quarterly.fcfMargin=None, quarterly.fcfPerShareTTM=None, quarterly.grossMargin=None, quarterly.inventoryTurnoverTTM=None, quarterly.longtermDebtTotalAsset=None, quarterly.longtermDebtTotalCapital=None, quarterly.longtermDebtTotalEquity=None, quarterly.netDebtToTotalCapital=None, quarterly.netDebtToTotalEquity=None, quarterly.netMargin=None, quarterly.operatingMargin=None, quarterly.pb=None, quarterly.peTTM=None, quarterly.pfcfTTM=None, quarterly.pretaxMargin=None, quarterly.psTTM=None, quarterly.ptbv=None, quarterly.quickRatio=None, quarterly.receivablesTurnoverTTM=None, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.rotcTTM=None, quarterly.salesPerShare=None, quarterly.sgaToSale=None, quarterly.tangibleBookValue=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.bookValue=None, annual.cashRatio=None, annual.currentRatio=None, annual.ebitPerShare=-1.4444, annual.eps=-1.4603, annual.ev=None, annual.fcfMargin=None, annual.grossMargin=0.1827, annual.inventoryTurnover=None, annual.longtermDebtTotalAsset=None, annual.longtermDebtTotalCapital=None, annual.longtermDebtTotalEquity=None, annual.netDebtToTotalCapital=None, annual.netDebtToTotalEquity=None, annual.netMargin=-0.5897, annual.operatingMargin=-0.5833, annual.pb=None, annual.pe=None, annual.pfcf=None, annual.pretaxMargin=-0.5897, annual.ps=None, annual.ptbv=None, annual.quickRatio=None, annual.receivablesTurnover=None, annual.roa=None, annual.roe=None, annual.roic=None, annual.rotc=None, annual.salesPerShare=2.4762, annual.sgaToSale=0.8205, annual.tangibleBookValue=None, annual.totalDebtToEquity=None, annual.totalDebtToTotalAsset=None, annual.totalDebtToTotalCapital=None, annual.totalRatio=None)
+[Stage 22:>                                                       (0 + 16) / 16][Stage 22:===>                                                    (1 + 15) / 16][Stage 22:=======>                                                (2 + 14) / 16][Stage 22:==============>                                         (4 + 12) / 16][Stage 22:=================>                                      (5 + 11) / 16][Stage 22:=====================>                                  (6 + 10) / 16][Stage 22:========================>                                (7 + 9) / 16][Stage 22:============================>                            (8 + 8) / 16][Stage 22:================================>                        (9 + 7) / 16][Stage 22:===================================>                    (10 + 6) / 16][Stage 22:======================================>                 (11 + 5) / 16][Stage 22:==========================================>             (12 + 4) / 16][Stage 22:=============================================>          (13 + 3) / 16][Stage 22:=================================================>      (14 + 2) / 16][Stage 22:====================================================>   (15 + 1) / 16][Stage 23:>                                                       (0 + 16) / 16][Stage 23:===>                                                    (1 + 15) / 16][Stage 23:=======>                                                (2 + 14) / 16][Stage 23:==========>                                             (3 + 13) / 16][Stage 23:==============>                                         (4 + 12) / 16][Stage 23:=================>                                      (5 + 11) / 16][Stage 23:=====================>                                  (6 + 10) / 16][Stage 23:============================>                            (8 + 8) / 16][Stage 23:================================>                        (9 + 7) / 16][Stage 23:===================================>                    (10 + 6) / 16][Stage 23:======================================>                 (11 + 5) / 16][Stage 23:==========================================>             (12 + 4) / 16][Stage 23:=============================================>          (13 + 3) / 16][Stage 23:=================================================>      (14 + 2) / 16][Stage 23:====================================================>   (15 + 1) / 16][Stage 24:>                                                       (0 + 16) / 16][Stage 24:>               (0 + 16) / 16][Stage 25:>                (0 + 0) / 16][Stage 24:====>           (4 + 12) / 16][Stage 25:>                (0 + 6) / 16][Stage 24:==============> (14 + 2) / 16][Stage 25:>               (0 + 16) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:===>            (3 + 13) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:========>        (8 + 8) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:===========>    (11 + 5) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:==============> (14 + 2) / 16][Stage 25:=================================================>      (14 + 2) / 16][Stage 25:====================================================>   (15 + 1) / 16][Stage 26:>                                                       (0 + 11) / 16][Stage 26:>                                                       (0 + 16) / 16][Stage 26:>               (0 + 16) / 16][Stage 27:>                (0 + 0) / 16][Stage 26:=>              (1 + 15) / 16][Stage 27:>                (0 + 1) / 16][Stage 26:==>             (2 + 14) / 16][Stage 27:>                (0 + 2) / 16][Stage 26:===>            (3 + 13) / 16][Stage 27:>                (0 + 3) / 16][Stage 26:====>           (4 + 12) / 16][Stage 27:>                (0 + 4) / 16][Stage 26:=======>         (7 + 9) / 16][Stage 27:>                (0 + 7) / 16][Stage 26:=========>       (9 + 7) / 16][Stage 27:>                (0 + 9) / 16][Stage 26:==========>     (10 + 6) / 16][Stage 27:>               (0 + 10) / 16][Stage 26:=============>  (13 + 3) / 16][Stage 27:>               (0 + 13) / 16][Stage 26:=============>  (13 + 3) / 16][Stage 27:>               (0 + 14) / 16][Stage 26:==============> (14 + 2) / 16][Stage 27:=>              (1 + 14) / 16][Stage 26:==============> (14 + 2) / 16][Stage 27:==>             (2 + 14) / 16][Stage 26:===============>(15 + 1) / 16][Stage 27:==>             (2 + 14) / 16][Stage 26:===============>(15 + 1) / 16][Stage 27:====>           (4 + 12) / 16][Stage 26:===============>(15 + 1) / 16][Stage 27:=====>          (5 + 11) / 16][Stage 27:=================>                                      (5 + 11) / 16][Stage 27:======================================>                 (11 + 5) / 16][Stage 27:==========================================>             (12 + 4) / 16][Stage 27:=============================================>          (13 + 3) / 16][Stage 27:=================================================>      (14 + 2) / 16][Stage 27:====================================================>   (15 + 1) / 16][Stage 30:>                                                         (0 + 1) / 1][Stage 31:>                                                       (0 + 16) / 16][Stage 31:===>                                                    (1 + 15) / 16][Stage 31:=======>                                                (2 + 14) / 16][Stage 31:==========>                                             (3 + 13) / 16][Stage 31:==============>                                         (4 + 12) / 16][Stage 31:=================>                                      (5 + 11) / 16][Stage 31:=====================>                                  (6 + 10) / 16][Stage 31:========================>                                (7 + 9) / 16][Stage 31:============================>                            (8 + 8) / 16][Stage 31:================================>                        (9 + 7) / 16][Stage 31:===================================>                    (10 + 6) / 16][Stage 31:======================================>                 (11 + 5) / 16][Stage 31:==========================================>             (12 + 4) / 16][Stage 31:=============================================>          (13 + 3) / 16][Stage 31:=================================================>      (14 + 2) / 16][Stage 31:====================================================>   (15 + 1) / 16]
