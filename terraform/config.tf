@@ -15,9 +15,10 @@ resource "kubernetes_config_map" "pipeline-config" {
   ]
 
   data = {
-        AWS_REGION="eu-west-1"
-        AWS_BUCKET="dagster-api"
-        S3_URI="s3://dagster-api"
-        AWS_S3_ALLOW_UNSAFE_RENAME="True"
+        AWS_REGION=var.AWS_REGION
+        AWS_ENDPOINT=var.AWS_ENDPOINT
+        AWS_BUCKET=var.AWS_BUCKET
+        S3_URI=var.S3_URI
+        AWS_S3_ALLOW_UNSAFE_RENAME=var.AWS_S3_ALLOW_UNSAFE_RENAME
   }
 }

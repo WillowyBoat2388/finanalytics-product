@@ -1,9 +1,9 @@
-resource "kubernetes_deployment" "finnhub_k8s" {
+resource "kubernetes_deployment" "finnhub-k8s" {
   metadata {
-    name = "finnhub_k8s"
+    name = "finnhub-k8s"
     namespace = "${var.namespace}"
     labels = {
-      "k8s.service" = "finnhub_k8s"
+      "k8s.service" = "finnhub-k8s"
     }
   }
 
@@ -12,7 +12,7 @@ resource "kubernetes_deployment" "finnhub_k8s" {
 
     selector {
       match_labels = {
-        "k8s.service" = "finnhub_k8s"
+        "k8s.service" = "finnhub-k8s"
       }
     }
 
@@ -21,14 +21,14 @@ resource "kubernetes_deployment" "finnhub_k8s" {
         labels = {
           "k8s.network/pipeline-network" = "true"
 
-          "k8s.service" = "finnhub_k8s"
+          "k8s.service" = "finnhub-k8s"
         }
       }
 
       spec {
         container {
-          name  = "finnhub_k8s_container"
-          image = "docker.io/library/finnhub-batch-stock-pipeline-finnhub_k8s:v1.0.0"
+          name  = "finnhub-k8s-container"
+          image = "docker.io/library/fnhb-btch-stck-ppln:v1.0.0"
 
           env_from {
             config_map_ref {
@@ -51,17 +51,17 @@ resource "kubernetes_deployment" "finnhub_k8s" {
   }
 }
 
-resource "kubernetes_service" "finnhub_k8s" {
+resource "kubernetes_service" "finnhub-k8s" {
   metadata {
-    name  = "finnhub_k8s"
+    name  = "finnhub-k8s"
     namespace = "${var.namespace}"
     labels = {
-      "k8s.service" = "finnhub_k8s"
+      "k8s.service" = "finnhub-k8s"
     }
   }
 
   depends_on = [
-        kubernetes_deployment.finnhub_k8s
+        kubernetes_deployment.finnhub-k8s
   ]
   
   spec {
@@ -73,7 +73,7 @@ resource "kubernetes_service" "finnhub_k8s" {
     }
 
     selector = {
-      "k8s.service" = "finnhub_k8s"
+      "k8s.service" = "finnhub-k8s"
     }
 
     # cluster_ip = "None"

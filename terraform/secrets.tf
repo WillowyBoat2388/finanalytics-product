@@ -9,10 +9,9 @@ resource "kubernetes_secret" "pipeline-secrets" {
   ]
 
   data = {
-    # username = "admin"
-    # password = "P4ssw0rd"
-    dagster-aws-access-key-id = ""
-    dagster-aws-secret-access-key = ""
+    dagster-aws-access-key-id = var.AWS_ACCESS_KEY_ID
+    dagster-aws-secret-access-key = var.AWS_SECRET_ACCESS_KEY
+    sensitive = true
   }
 
   type = "opaque"
