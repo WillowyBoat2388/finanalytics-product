@@ -28,7 +28,7 @@ dagster-graphql==1.7.6
 dagster-k8s==0.23.6
 dagster-pandas==0.23.6
 dagster-pipes==1.7.6
-dagster-postgres==0.23.7
+dagster-postgres==0.23.6
 dagster-pyspark==0.23.6
 dagster-snowflake==0.23.6
 dagster-snowflake-pandas==0.23.6
