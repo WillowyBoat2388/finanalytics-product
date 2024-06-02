@@ -69,17 +69,21 @@ wait_for_screen "minikubescreen"
 eval $(minikube docker-env)
 
 # create docker image within minikube container
-docker build -t fnhb-btch-stck-ppln .
+docker build -t fnhb-btch-stck-ppln:v1.0.0 .
 
 # minikube cache add <my-docker-image>
 
 # minikube image load <image name>
 
+# make environment variables available in shell to terraform
+source .env && export $(sed '/^#/d' .env | cut -d= -f1)
 
+# go to terraform folder
 cd terraform
 
 # terraform plan
 
 # terraform import kubernetes_secret.pipeline-secrets 
 
-# terraform apply
+# deploy infrastructure to kubernetes using terraform config
+terraform apply
