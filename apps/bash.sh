@@ -61,9 +61,11 @@ wait_for_screen() {
 # Wait for the "minioscreen" to finish
 wait_for_screen "minikubescreen"
 
-# sudo apt install apache2-utils
+docker exec -it minikube bash
 
-# htpasswd -Bc finnhub-batch-stock-pipeline/apps/my-pdr/a2auth/registry.password dagster
+sudo apt update && sudo apt -y upgrade
+
+exit
 
 # set docker-environment to be within minikube
 eval $(minikube docker-env)
@@ -81,9 +83,11 @@ source .env && export $(sed '/^#/d' .env | cut -d= -f1)
 # go to terraform folder
 cd terraform
 
-# terraform plan
-
-# terraform import kubernetes_secret.pipeline-secrets 
-
 # deploy infrastructure to kubernetes using terraform config
 terraform apply
+
+# get dagster-webserver pod name
+DAGSTER_WEBSERVER_POD_NAME=$(kubectl get pods --namespace pipeline -l "app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster-on-k8s,component=dagster-webserver" -o jsonpath="{.items[0].metadata.name}")
+
+# forward dagster-webserver port
+kubectl --namespace pipeline port-forward $DAGSTER_WEBSERVER_POD_NAME 8080:80

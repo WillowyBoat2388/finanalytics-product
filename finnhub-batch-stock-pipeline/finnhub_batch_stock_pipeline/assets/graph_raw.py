@@ -48,7 +48,7 @@ def import_stocks_data(input_list, my_conn: MyConnectionResource):
 
         json_object[stock] = stock_data
 
-        if symbol_count == 1000:
+        if symbol_count == 100:
             break
         count += 1
     
