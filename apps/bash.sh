@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 sudo apt update && sudo apt -y upgrade && sudo apt-get install -y screen 
 
@@ -61,21 +61,13 @@ wait_for_screen() {
 # Wait for the "minioscreen" to finish
 wait_for_screen "minikubescreen"
 
-docker exec -it minikube bash
-
-sudo apt update && sudo apt -y upgrade
-
-exit
+docker exec -it minikube bash -c "sudo apt update && sudo apt -y upgrade && exit"
 
 # set docker-environment to be within minikube
 eval $(minikube docker-env)
 
 # create docker image within minikube container
 docker build -t fnhb-btch-stck-ppln:v1.0.0 .
-
-# minikube cache add <my-docker-image>
-
-# minikube image load <image name>
 
 # make environment variables available in shell to terraform
 source .env && export $(sed '/^#/d' .env | cut -d= -f1)
