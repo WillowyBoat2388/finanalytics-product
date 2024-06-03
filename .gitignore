@@ -2,7 +2,6 @@
 *.ipynb
 data/source/*.json
 /data
-/data/.minio.sys
 /apps/mc
 /apps/minio
 /finnhub-batch-stock-pipeline/data
@@ -10,3 +9,6 @@ data/source/*.json
 finnhub-batch-stock-pipeline/finance_db.duckdb
 minio.txt
 *.tf
+**/__pycache__/
+*.py[cod]
+finnhub-batch-stock-pipeline/home/

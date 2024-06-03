@@ -331,7 +331,7 @@ def merge_and_analyze(context, df_list):
             series.append(srs)
 
             context.log.info(f"srsmetric_col_len:    {len(mtrc.columns)}")
-            context.log.info(item.head())
+            # context.log.info(item.head())
         elif item.filter(item.type == "series").count() == 0:
             mtrc = item.filter(item["type"] == "metric").drop("type")
             

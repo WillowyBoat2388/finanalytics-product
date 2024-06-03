@@ -1,6 +1,0 @@
-[32m2024-05-25 08:51:07 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bb640341-24c0-4e4f-bd65-32116749f9f0 - 40887 - LOGS_CAPTURED - Started capturing logs in process (pid: 40887).
-[32m2024-05-25 08:51:07 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bb640341-24c0-4e4f-bd65-32116749f9f0 - 40887 - spark_operator.stock_tables - STEP_START - Started execution of step "spark_operator.stock_tables".
-[32m2024-05-25 08:51:07 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bb640341-24c0-4e4f-bd65-32116749f9f0 - spark_operator.stock_tables - Loading S3 object from: s3://dagster-api/raw/finnhub_US_stocks
-[32m2024-05-25 08:51:07 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bb640341-24c0-4e4f-bd65-32116749f9f0 - 40887 - spark_operator.stock_tables - LOADED_INPUT - Loaded input "stock_data" using input manager "s3_json_io_manager"
-[32m2024-05-25 08:51:07 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bb640341-24c0-4e4f-bd65-32116749f9f0 - 40887 - spark_operator.stock_tables - STEP_INPUT - Got input "stock_data" of type "Any". (Type check passed).
-[32m2024-05-25 08:51:07 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - bb640341-24c0-4e4f-bd65-32116749f9f0 - 40887 - spark_operator.stock_tables - STEP_SUCCESS - Finished execution of step "spark_operator.stock_tables" in 171ms.

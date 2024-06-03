@@ -1,419 +1,0 @@
-[32m2024-05-31 15:59:33 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 335980 - LOGS_CAPTURED - Started capturing logs in process (pid: 335980).
-[32m2024-05-31 15:59:33 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 335980 - spark_operator.create_stock_tables[stock_ABMC_path] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_ABMC_path]".
-[32m2024-05-31 15:59:33 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_ABMC_path] - Loading file from: /workspace/practical-data-engineering/finnhub-batch-stock-pipeline/home/storage/29657144-f47b-4730-a719-19652768d51f/spark_operator.stock_tables/result/stock_ABMC_path using PickledObjectFilesystemIOManager...
-[32m2024-05-31 15:59:33 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 335980 - spark_operator.create_stock_tables[stock_ABMC_path] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
-[32m2024-05-31 15:59:33 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 335980 - spark_operator.create_stock_tables[stock_ABMC_path] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
-24/05/31 16:00:05 WARN Utils: Your hostname, willowyboat-practicalda-8yoi5et7ep7 resolves to a loopback address: 127.0.0.1; using 10.0.5.2 instead (on interface eth0)
-24/05/31 16:00:05 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-Ivy Default Cache set to: /home/gitpod/.ivy2/cache
-The jars for the packages stored in: /home/gitpod/.ivy2/jars
-io.delta#delta-spark_2.12 added as a dependency
-org.apache.hadoop#hadoop-aws added as a dependency
-org.apache.hadoop#hadoop-common added as a dependency
-com.amazonaws#aws-java-sdk-bundle added as a dependency
-:: resolving dependencies :: org.apache.spark#spark-submit-parent-a1bc7880-bd8f-449f-aa17-e0cfa317d8da;1.0
-	confs: [default]
-	found io.delta#delta-spark_2.12;3.1.0 in spark-list
-	found io.delta#delta-storage;3.1.0 in central
-	found org.antlr#antlr4-runtime;4.9.3 in central
-	found org.apache.hadoop#hadoop-aws;3.3.4 in central
-	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in central
-	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
-	found org.apache.hadoop#hadoop-common;3.3.4 in central
-	found org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 in central
-	found org.apache.hadoop#hadoop-annotations;3.3.4 in central
-	found org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 in spark-list
-	found com.google.guava#guava;27.0-jre in central
-	found com.google.guava#failureaccess;1.0 in central
-	found com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava in central
-	found com.google.code.findbugs#jsr305;3.0.2 in central
-	found org.checkerframework#checker-qual;2.5.2 in spark-list
-	found com.google.j2objc#j2objc-annotations;1.1 in spark-list
-	found org.codehaus.mojo#animal-sniffer-annotations;1.17 in central
-	found commons-cli#commons-cli;1.2 in central
-	found org.apache.commons#commons-math3;3.1.1 in central
-	found org.apache.httpcomponents#httpclient;4.5.13 in central
-	found org.apache.httpcomponents#httpcore;4.4.13 in central
-	found commons-logging#commons-logging;1.1.3 in central
-	found commons-codec#commons-codec;1.15 in central
-	found commons-io#commons-io;2.8.0 in central
-	found commons-net#commons-net;3.6 in central
-	found commons-collections#commons-collections;3.2.2 in central
-	found javax.servlet#javax.servlet-api;3.1.0 in central
-	found org.eclipse.jetty#jetty-server;9.4.43.v20210629 in central
-	found org.eclipse.jetty#jetty-http;9.4.43.v20210629 in central
-	found org.eclipse.jetty#jetty-util;9.4.43.v20210629 in central
-	found org.eclipse.jetty#jetty-io;9.4.43.v20210629 in spark-list
-	found org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 in central
-	found org.eclipse.jetty#jetty-security;9.4.43.v20210629 in spark-list
-	found org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 in central
-	found org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 in central
-	found org.eclipse.jetty#jetty-xml;9.4.43.v20210629 in central
-	found com.sun.jersey#jersey-core;1.19 in central
-	found javax.ws.rs#jsr311-api;1.1.1 in central
-	found com.sun.jersey#jersey-servlet;1.19 in central
-	found com.sun.jersey#jersey-server;1.19 in central
-	found com.sun.jersey#jersey-json;1.19 in central
-	found org.codehaus.jettison#jettison;1.1 in spark-list
-	found com.sun.xml.bind#jaxb-impl;2.2.3-1 in central
-	found javax.xml.bind#jaxb-api;2.2.11 in central
-	found org.codehaus.jackson#jackson-core-asl;1.9.13 in spark-list
-	found org.codehaus.jackson#jackson-mapper-asl;1.9.13 in spark-list
-	found org.codehaus.jackson#jackson-jaxrs;1.9.13 in central
-	found org.codehaus.jackson#jackson-xc;1.9.13 in central
-	found ch.qos.reload4j#reload4j;1.2.22 in central
-	found commons-beanutils#commons-beanutils;1.9.4 in central
-	found org.apache.commons#commons-configuration2;2.1.1 in central
-	found org.apache.commons#commons-lang3;3.12.0 in central
-	found org.apache.commons#commons-text;1.4 in central
-	found org.slf4j#slf4j-api;1.7.36 in central
-	found org.slf4j#slf4j-reload4j;1.7.36 in spark-list
-	found org.apache.avro#avro;1.7.7 in central
-	found com.thoughtworks.paranamer#paranamer;2.3 in central
-	found org.xerial.snappy#snappy-java;1.1.8.2 in central
-	found org.apache.commons#commons-compress;1.21 in central
-	found com.google.re2j#re2j;1.1 in central
-	found com.google.protobuf#protobuf-java;2.5.0 in central
-	found com.google.code.gson#gson;2.8.9 in central
-	found org.apache.hadoop#hadoop-auth;3.3.4 in central
-	found com.nimbusds#nimbus-jose-jwt;9.8.1 in central
-	found com.github.stephenc.jcip#jcip-annotations;1.0-1 in central
-	found net.minidev#json-smart;2.4.7 in central
-	found net.minidev#accessors-smart;2.4.7 in central
-	found org.ow2.asm#asm;5.0.4 in central
-	found org.apache.zookeeper#zookeeper;3.5.6 in central
-	found org.apache.zookeeper#zookeeper-jute;3.5.6 in central
-	found org.apache.yetus#audience-annotations;0.5.0 in central
-	found org.apache.curator#curator-framework;4.2.0 in central
-	found org.apache.curator#curator-client;4.2.0 in central
-	found org.apache.kerby#kerb-simplekdc;1.0.1 in central
-	found org.apache.kerby#kerb-client;1.0.1 in central
-	found org.apache.kerby#kerby-config;1.0.1 in central
-	found org.apache.kerby#kerb-core;1.0.1 in central
-	found org.apache.kerby#kerby-pkix;1.0.1 in spark-list
-	found org.apache.kerby#kerby-asn1;1.0.1 in central
-	found org.apache.kerby#kerby-util;1.0.1 in central
-	found org.apache.kerby#kerb-common;1.0.1 in central
-	found org.apache.kerby#kerb-crypto;1.0.1 in central
-	found org.apache.kerby#kerb-util;1.0.1 in central
-	found org.apache.kerby#token-provider;1.0.1 in central
-	found org.apache.kerby#kerb-admin;1.0.1 in central
-	found org.apache.kerby#kerb-server;1.0.1 in central
-	found org.apache.kerby#kerb-identity;1.0.1 in central
-	found org.apache.kerby#kerby-xdr;1.0.1 in central
-	found com.jcraft#jsch;0.1.55 in central
-	found org.apache.curator#curator-recipes;4.2.0 in central
-	found com.fasterxml.jackson.core#jackson-databind;2.12.7 in central
-	found com.fasterxml.jackson.core#jackson-annotations;2.12.7 in central
-	found com.fasterxml.jackson.core#jackson-core;2.12.7 in spark-list
-	found org.codehaus.woodstox#stax2-api;4.2.1 in central
-	found com.fasterxml.woodstox#woodstox-core;5.3.0 in central
-	found dnsjava#dnsjava;2.1.7 in spark-list
-	found jakarta.activation#jakarta.activation-api;1.2.1 in central
-	found javax.servlet.jsp#jsp-api;2.1 in central
-:: resolution report :: resolve 16014ms :: artifacts dl 659ms
-	:: modules in use:
-	ch.qos.reload4j#reload4j;1.2.22 from central in [default]
-	com.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]
-	com.fasterxml.jackson.core#jackson-annotations;2.12.7 from central in [default]
-	com.fasterxml.jackson.core#jackson-core;2.12.7 from spark-list in [default]
-	com.fasterxml.jackson.core#jackson-databind;2.12.7 from central in [default]
-	com.fasterxml.woodstox#woodstox-core;5.3.0 from central in [default]
-	com.github.stephenc.jcip#jcip-annotations;1.0-1 from central in [default]
-	com.google.code.findbugs#jsr305;3.0.2 from central in [default]
-	com.google.code.gson#gson;2.8.9 from central in [default]
-	com.google.guava#failureaccess;1.0 from central in [default]
-	com.google.guava#guava;27.0-jre from central in [default]
-	com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava from central in [default]
-	com.google.j2objc#j2objc-annotations;1.1 from spark-list in [default]
-	com.google.protobuf#protobuf-java;2.5.0 from central in [default]
-	com.google.re2j#re2j;1.1 from central in [default]
-	com.jcraft#jsch;0.1.55 from central in [default]
-	com.nimbusds#nimbus-jose-jwt;9.8.1 from central in [default]
-	com.sun.jersey#jersey-core;1.19 from central in [default]
-	com.sun.jersey#jersey-json;1.19 from central in [default]
-	com.sun.jersey#jersey-server;1.19 from central in [default]
-	com.sun.jersey#jersey-servlet;1.19 from central in [default]
-	com.sun.xml.bind#jaxb-impl;2.2.3-1 from central in [default]
-	com.thoughtworks.paranamer#paranamer;2.3 from central in [default]
-	commons-beanutils#commons-beanutils;1.9.4 from central in [default]
-	commons-cli#commons-cli;1.2 from central in [default]
-	commons-codec#commons-codec;1.15 from central in [default]
-	commons-collections#commons-collections;3.2.2 from central in [default]
-	commons-io#commons-io;2.8.0 from central in [default]
-	commons-logging#commons-logging;1.1.3 from central in [default]
-	commons-net#commons-net;3.6 from central in [default]
-	dnsjava#dnsjava;2.1.7 from spark-list in [default]
-	io.delta#delta-spark_2.12;3.1.0 from spark-list in [default]
-	io.delta#delta-storage;3.1.0 from central in [default]
-	jakarta.activation#jakarta.activation-api;1.2.1 from central in [default]
-	javax.servlet#javax.servlet-api;3.1.0 from central in [default]
-	javax.servlet.jsp#jsp-api;2.1 from central in [default]
-	javax.ws.rs#jsr311-api;1.1.1 from central in [default]
-	javax.xml.bind#jaxb-api;2.2.11 from central in [default]
-	net.minidev#accessors-smart;2.4.7 from central in [default]
-	net.minidev#json-smart;2.4.7 from central in [default]
-	org.antlr#antlr4-runtime;4.9.3 from central in [default]
-	org.apache.avro#avro;1.7.7 from central in [default]
-	org.apache.commons#commons-compress;1.21 from central in [default]
-	org.apache.commons#commons-configuration2;2.1.1 from central in [default]
-	org.apache.commons#commons-lang3;3.12.0 from central in [default]
-	org.apache.commons#commons-math3;3.1.1 from central in [default]
-	org.apache.commons#commons-text;1.4 from central in [default]
-	org.apache.curator#curator-client;4.2.0 from central in [default]
-	org.apache.curator#curator-framework;4.2.0 from central in [default]
-	org.apache.curator#curator-recipes;4.2.0 from central in [default]
-	org.apache.hadoop#hadoop-annotations;3.3.4 from central in [default]
-	org.apache.hadoop#hadoop-auth;3.3.4 from central in [default]
-	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
-	org.apache.hadoop#hadoop-common;3.3.4 from central in [default]
-	org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 from spark-list in [default]
-	org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 from central in [default]
-	org.apache.httpcomponents#httpclient;4.5.13 from central in [default]
-	org.apache.httpcomponents#httpcore;4.4.13 from central in [default]
-	org.apache.kerby#kerb-admin;1.0.1 from central in [default]
-	org.apache.kerby#kerb-client;1.0.1 from central in [default]
-	org.apache.kerby#kerb-common;1.0.1 from central in [default]
-	org.apache.kerby#kerb-core;1.0.1 from central in [default]
-	org.apache.kerby#kerb-crypto;1.0.1 from central in [default]
-	org.apache.kerby#kerb-identity;1.0.1 from central in [default]
-	org.apache.kerby#kerb-server;1.0.1 from central in [default]
-	org.apache.kerby#kerb-simplekdc;1.0.1 from central in [default]
-	org.apache.kerby#kerb-util;1.0.1 from central in [default]
-	org.apache.kerby#kerby-asn1;1.0.1 from central in [default]
-	org.apache.kerby#kerby-config;1.0.1 from central in [default]
-	org.apache.kerby#kerby-pkix;1.0.1 from spark-list in [default]
-	org.apache.kerby#kerby-util;1.0.1 from central in [default]
-	org.apache.kerby#kerby-xdr;1.0.1 from central in [default]
-	org.apache.kerby#token-provider;1.0.1 from central in [default]
-	org.apache.yetus#audience-annotations;0.5.0 from central in [default]
-	org.apache.zookeeper#zookeeper;3.5.6 from central in [default]
-	org.apache.zookeeper#zookeeper-jute;3.5.6 from central in [default]
-	org.checkerframework#checker-qual;2.5.2 from spark-list in [default]
-	org.codehaus.jackson#jackson-core-asl;1.9.13 from spark-list in [default]
-	org.codehaus.jackson#jackson-jaxrs;1.9.13 from central in [default]
-	org.codehaus.jackson#jackson-mapper-asl;1.9.13 from spark-list in [default]
-	org.codehaus.jackson#jackson-xc;1.9.13 from central in [default]
-	org.codehaus.jettison#jettison;1.1 from spark-list in [default]
-	org.codehaus.mojo#animal-sniffer-annotations;1.17 from central in [default]
-	org.codehaus.woodstox#stax2-api;4.2.1 from central in [default]
-	org.eclipse.jetty#jetty-http;9.4.43.v20210629 from central in [default]
-	org.eclipse.jetty#jetty-io;9.4.43.v20210629 from spark-list in [default]
-	org.eclipse.jetty#jetty-security;9.4.43.v20210629 from spark-list in [default]
-	org.eclipse.jetty#jetty-server;9.4.43.v20210629 from central in [default]
-	org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 from central in [default]
-	org.eclipse.jetty#jetty-util;9.4.43.v20210629 from central in [default]
-	org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 from central in [default]
-	org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 from central in [default]
-	org.eclipse.jetty#jetty-xml;9.4.43.v20210629 from central in [default]
-	org.ow2.asm#asm;5.0.4 from central in [default]
-	org.slf4j#slf4j-api;1.7.36 from central in [default]
-	org.slf4j#slf4j-reload4j;1.7.36 from spark-list in [default]
-	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
-	org.xerial.snappy#snappy-java;1.1.8.2 from central in [default]
-	---------------------------------------------------------------------
-	|                  |            modules            ||   artifacts   |
-	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
-	---------------------------------------------------------------------
-	|      default     |   98  |   0   |   0   |   0   ||   98  |   0   |
-	---------------------------------------------------------------------
-:: retrieving :: org.apache.spark#spark-submit-parent-a1bc7880-bd8f-449f-aa17-e0cfa317d8da
-	confs: [default]
-	38 artifacts copied, 60 already retrieved (305255kB/1674ms)
-24/05/31 16:00:29 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-24/05/31 16:00:37 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
-24/05/31 16:00:37 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
-24/05/31 16:00:37 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
-24/05/31 16:00:37 WARN Utils: Service 'SparkUI' could not bind on port 4043. Attempting port 4044.
-24/05/31 16:00:37 WARN Utils: Service 'SparkUI' could not bind on port 4044. Attempting port 4045.
-24/05/31 16:00:37 WARN Utils: Service 'SparkUI' could not bind on port 4045. Attempting port 4046.
-24/05/31 16:00:37 WARN Utils: Service 'SparkUI' could not bind on port 4046. Attempting port 4047.
-24/05/31 16:01:00 ERROR Inbox: Ignoring error
-java.lang.NullPointerException
-	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
-	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
-	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
-	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
-	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
-	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
-	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-24/05/31 16:01:00 WARN Executor: Issue communicating with driver in heartbeater
-org.apache.spark.SparkException: Exception thrown in awaitResult: 
-	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
-	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
-	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
-	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
-	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)
-	at org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)
-	at org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)
-	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)
-	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
-	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
-	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
-	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: java.lang.NullPointerException
-	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
-	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
-	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
-	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
-	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
-	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
-	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
-	... 3 more
-24/05/31 16:01:10 ERROR Inbox: Ignoring error
-java.lang.NullPointerException
-	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
-	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
-	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
-	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
-	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
-	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
-	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-24/05/31 16:01:10 WARN Executor: Issue communicating with driver in heartbeater
-org.apache.spark.SparkException: Exception thrown in awaitResult: 
-	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
-	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
-	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
-	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
-	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)
-	at org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)
-	at org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)
-	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)
-	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
-	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
-	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
-	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: java.lang.NullPointerException
-	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
-	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
-	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
-	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
-	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
-	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
-	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
-	... 3 more
-[Stage 0:>                                                         (0 + 0) / 16][Stage 0:>                                                         (0 + 5) / 16][Stage 0:>                                                        (0 + 16) / 16][Stage 0:===>                                                     (1 + 15) / 16][Stage 0:=======>                                                 (2 + 14) / 16][Stage 0:==========>                                              (3 + 13) / 16][Stage 0:=================>                                       (5 + 11) / 16][Stage 0:=====================>                                   (6 + 10) / 16][Stage 0:=========================>                                (7 + 9) / 16][Stage 0:=============================>                            (8 + 8) / 16][Stage 0:================================>                         (9 + 7) / 16][Stage 0:===================================>                     (10 + 6) / 16][Stage 0:=======================================>                 (11 + 5) / 16][Stage 0:==========================================>              (12 + 4) / 16][Stage 0:=================================================>       (14 + 2) / 16]                                                                                24/05/31 16:02:09 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
-[Stage 1:>                                                         (0 + 0) / 16][Stage 1:>                                                         (0 + 3) / 16][Stage 1:>                                                        (0 + 16) / 16][Stage 1:==========>                                              (3 + 13) / 16][Stage 1:=====================>                                   (6 + 10) / 16][Stage 1:=============================>                            (8 + 8) / 16][Stage 1:===================================>                     (10 + 6) / 16][Stage 1:=======================================>                 (11 + 5) / 16][Stage 1:==========================================>              (12 + 4) / 16][Stage 1:==============================================>          (13 + 3) / 16][Stage 1:=================================================>       (14 + 2) / 16][Stage 1:=====================================================>   (15 + 1) / 16][Stage 3:>                                                          (0 + 1) / 1]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 4) / 4][Stage 5:==============>                                            (1 + 3) / 4][Stage 5:=============================>                             (2 + 2) / 4]                                                                                [Stage 6:>                                                        (0 + 11) / 11][Stage 6:=====>                                                   (1 + 10) / 11][Stage 6:==========>                                               (2 + 9) / 11][Stage 6:===============>                                          (3 + 8) / 11][Stage 6:=====================>                                    (4 + 7) / 11][Stage 6:==========================>                               (5 + 6) / 11][Stage 6:===============================>                          (6 + 5) / 11][Stage 6:====================================>                     (7 + 4) / 11][Stage 6:==========================================>               (8 + 3) / 11][Stage 6:===============================================>          (9 + 2) / 11]                                                                                [32m2024-05-31 16:02:45 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_ABMC_path] - Row(10DayAverageTradingVolume=0.02797, 13WeekPriceReturnDaily=-98.0769, 26WeekPriceReturnDaily=-96.66667, 3MonthADReturnStd=43477.94, 3MonthAverageTradingVolume=0.09923, 52WeekHigh=0.0168, 52WeekHighDate='2023-07-26', 52WeekLow=1e-06, 52WeekLowDate='2024-01-25', 52WeekPriceReturnDaily=-98.47328, 5DayPriceReturnDaily=-95, assetTurnoverAnnual=0.7195, assetTurnoverTTM=0.665, beta=293.55585, bookValuePerShareAnnual=0.0209, bookValuePerShareQuarterly=0.002, bookValueShareGrowth5Y=-19.62, capexCagr5Y=None, cashFlowPerShareAnnual=-0.016, cashFlowPerShareQuarterly=-0.0232, cashFlowPerShareTTM=0.01863, cashPerSharePerShareAnnual=0.0007, cashPerSharePerShareQuarterly=0.0014, currentDividendYieldTTM=0, currentEv/freeCashFlowTTM=0.13016, currentRatioAnnual=0.2135, currentRatioQuarterly=0.59, dividendPerShareAnnual=0, dividendPerShareTTM=0, ebitdPerShareAnnual=-0.0243, ebitdPerShareTTM=0.0221, ebitdaCagr5Y=None, ebitdaInterimCagr5Y=None, enterpriseValue=0.1118, epsAnnual=-0.0294, epsBasicExclExtraItemsAnnual=-0.0294, epsBasicExclExtraItemsTTM=0.0177, epsExclExtraItemsAnnual=-0.0294, epsExclExtraItemsTTM=0.0177, epsGrowth3Y=None, epsGrowth5Y=None, epsGrowthQuarterlyYoy=None, epsGrowthTTMYoy=None, epsInclExtraItemsAnnual=-0.0294, epsInclExtraItemsTTM=0.0177, epsNormalizedAnnual=-0.0294, epsTTM=0.0177, focfCagr5Y=None, grossMargin5Y=21.79, grossMarginAnnual=-11.28, grossMarginTTM=45.12, inventoryTurnoverAnnual=2.472, inventoryTurnoverTTM=3.7375, longTermDebt/equityAnnual=1.2392, longTermDebt/equityQuarterly=12.2742, marketCapitalization=0.00481, monthToDatePriceReturnDaily=-95, netInterestCoverageAnnual=6.1951, netInterestCoverageTTM=-6.3717, netMarginGrowth5Y=None, netProfitMargin5Y=-47.94, netProfitMarginAnnual=-154.44, netProfitMarginTTM=1146.95, operatingMargin5Y=-45.89, operatingMarginAnnual=-136.04, operatingMarginTTM=-129.27, payoutRatioTTM=None, pbAnnual=4.7026, pbQuarterly=43.9031, pcfShareAnnual=None, pcfShareTTM=None, peAnnual=None, peBasicExclExtraTTM=0.0057, peExclExtraTTM=0.0057, peInclExtraTTM=0.0057, peNormalizedAnnual=None, peTTM=0.0057, pfcfShareAnnual=0.0829, pfcfShareTTM=0.0301, pretaxMargin5Y=-47.88, pretaxMarginAnnual=-154.22, pretaxMarginTTM=1146.95, priceRelativeToS&P50013Week=-101.8585, priceRelativeToS&P50026Week=-96.9254, priceRelativeToS&P5004Week=-5.1464, priceRelativeToS&P50052Week=-98.65145, priceRelativeToS&P500Ytd=9895.956, psAnnual=0.0053, psTTM=0.0066, ptbvAnnual=5.6999, ptbvQuarterly=23.6444, quickRatioAnnual=0.0883, quickRatioQuarterly=0.59, receivablesTurnoverAnnual=4.5086, receivablesTurnoverTTM=6.3877, revenueGrowth3Y=-37.02, revenueGrowth5Y=-28.58, revenueGrowthQuarterlyYoy=-53.28, revenueGrowthTTMYoy=-63.8, revenuePerShareAnnual=0.019, revenuePerShareTTM=0.0151, revenueShareGrowth5Y=-35.35, roa5Y=-50.27, roaRfy=-111.11, roaTTM=77.96, roe5Y=-53.05, roeRfy=-87.48, roeTTM=-279.2, roi5Y=-18.24, roiAnnual=-28.27, roiTTM=-50.33, tangibleBookValuePerShareAnnual=0.0173, tangibleBookValuePerShareQuarterly=0.004, tbvCagr5Y=-17.44, totalDebt/totalEquityAnnual=2.0947, totalDebt/totalEquityQuarterly=25.6935, yearToDatePriceReturnDaily=9900)
-[Stage 7:>                                                        (0 + 16) / 16][Stage 7:===>                                                     (1 + 15) / 16][Stage 7:=======>                                                 (2 + 14) / 16][Stage 7:==========>                                              (3 + 13) / 16][Stage 7:==============>                                          (4 + 12) / 16][Stage 7:=================>                                       (5 + 11) / 16][Stage 7:=========================>                                (7 + 9) / 16][Stage 7:================================>                         (9 + 7) / 16][Stage 7:===================================>                     (10 + 6) / 16][Stage 7:=======================================>                 (11 + 5) / 16][Stage 7:==============================================>          (13 + 3) / 16][Stage 7:=====================================================>   (15 + 1) / 16]                                                                                [Stage 8:>                                                         (0 + 1) / 16][Stage 8:>                                                        (0 + 16) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 0) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 2) / 16][Stage 8:>                (0 + 16) / 16][Stage 9:>                 (0 + 3) / 16][Stage 8:=====>           (5 + 11) / 16][Stage 9:>                 (0 + 9) / 16][Stage 8:==========>       (9 + 7) / 16][Stage 9:>                (0 + 14) / 16][Stage 8:============>    (12 + 4) / 16][Stage 9:>                (0 + 15) / 16][Stage 8:===============> (15 + 1) / 16][Stage 9:>                (0 + 15) / 16][Stage 9:>                                                        (0 + 16) / 16][Stage 9:==========>                                              (3 + 13) / 16][Stage 9:=====================>                                   (6 + 10) / 16][Stage 9:=========================>                                (7 + 9) / 16][Stage 9:=============================>                            (8 + 8) / 16][Stage 9:================================>                         (9 + 7) / 16][Stage 9:==========================================>              (12 + 4) / 16][Stage 9:==============================================>          (13 + 3) / 16][Stage 9:=================================================>       (14 + 2) / 16][Stage 9:=====================================================>   (15 + 1) / 16][Stage 12:>                                                         (0 + 1) / 1]                                                                                [Stage 17:>                                                        (0 + 0) / 16][Stage 17:>                                                       (0 + 10) / 16][Stage 17:>                                                       (0 + 16) / 16][Stage 17:==============>                                         (4 + 12) / 16][Stage 17:=====>          (5 + 11) / 16][Stage 18:>                (0 + 5) / 16][Stage 17:======>         (6 + 10) / 16][Stage 18:>                (0 + 6) / 16][Stage 17:=======>         (7 + 9) / 16][Stage 18:>                (0 + 7) / 16][Stage 17:=======>         (7 + 9) / 16][Stage 18:>                (0 + 8) / 16][Stage 17:==========>     (10 + 6) / 16][Stage 18:>               (0 + 10) / 16][Stage 17:===========>    (11 + 5) / 16][Stage 18:>               (0 + 11) / 16][Stage 17:============>   (12 + 4) / 16][Stage 18:>               (0 + 12) / 16][Stage 17:=============>  (13 + 3) / 16][Stage 18:>               (0 + 13) / 16][Stage 17:=============>  (13 + 3) / 16][Stage 18:=>              (1 + 13) / 16][Stage 17:==============> (14 + 2) / 16][Stage 18:=>              (1 + 14) / 16][Stage 17:===============>(15 + 1) / 16][Stage 18:=>              (1 + 15) / 16][Stage 18:===>                                                    (1 + 15) / 16][Stage 18:=======>                                                (2 + 14) / 16][Stage 18:==========>                                             (3 + 13) / 16][Stage 18:==============>                                         (4 + 12) / 16][Stage 18:=================>                                      (5 + 11) / 16][Stage 18:========================>                                (7 + 9) / 16][Stage 18:============================>                            (8 + 8) / 16][Stage 18:================================>                        (9 + 7) / 16][Stage 18:===================================>                    (10 + 6) / 16][Stage 18:======================================>                 (11 + 5) / 16][Stage 18:==========================================>             (12 + 4) / 16][Stage 18:=============================================>          (13 + 3) / 16][Stage 18:=================================================>      (14 + 2) / 16][Stage 18:====================================================>   (15 + 1) / 16]                                                                                [32m2024-05-31 16:03:58 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - spark_operator.create_stock_tables[stock_ABMC_path] - Row(date='1996-01-31', quarterly.assetTurnoverTTM=None, quarterly.bookValue=None, quarterly.cashRatio=None, quarterly.currentRatio=None, quarterly.ebitPerShare=-0.0278, quarterly.eps=-0.0301, quarterly.ev=None, quarterly.fcfMargin=None, quarterly.fcfPerShareTTM=None, quarterly.grossMargin=0.0, quarterly.inventoryTurnoverTTM=None, quarterly.longtermDebtTotalAsset=None, quarterly.longtermDebtTotalCapital=None, quarterly.longtermDebtTotalEquity=None, quarterly.netDebtToTotalCapital=None, quarterly.netDebtToTotalEquity=None, quarterly.netMargin=-10.0, quarterly.operatingMargin=-9.25, quarterly.pb=None, quarterly.peTTM=None, quarterly.pfcfTTM=None, quarterly.pretaxMargin=-10.0, quarterly.psTTM=None, quarterly.ptbv=None, quarterly.quickRatio=None, quarterly.receivablesTurnoverTTM=None, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.rotcTTM=None, quarterly.salesPerShare=0.003, quarterly.sgaToSale=1.0, quarterly.tangibleBookValue=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.bookValue=None, annual.cashRatio=None, annual.currentRatio=None, annual.ebitPerShare=None, annual.eps=None, annual.ev=None, annual.fcfMargin=None, annual.grossMargin=None, annual.inventoryTurnover=None, annual.longtermDebtTotalAsset=None, annual.longtermDebtTotalCapital=None, annual.longtermDebtTotalEquity=None, annual.netDebtToTotalCapital=None, annual.netDebtToTotalEquity=None, annual.netMargin=None, annual.operatingMargin=None, annual.pb=None, annual.pe=None, annual.pfcf=None, annual.pretaxMargin=None, annual.ps=None, annual.ptbv=None, annual.quickRatio=None, annual.receivablesTurnover=None, annual.roa=None, annual.roe=None, annual.roic=None, annual.rotc=None, annual.salesPerShare=None, annual.sgaToSale=None, annual.tangibleBookValue=None, annual.totalDebtToEquity=None, annual.totalDebtToTotalAsset=None, annual.totalDebtToTotalCapital=None, annual.totalRatio=None)
-[Stage 22:>                                                       (0 + 16) / 16][Stage 22:===>                                                    (1 + 15) / 16][Stage 22:=======>                                                (2 + 14) / 16][Stage 22:=================>                                      (5 + 11) / 16][Stage 22:========================>                                (7 + 9) / 16][Stage 22:============================>                            (8 + 8) / 16][Stage 22:================================>                        (9 + 7) / 16][Stage 22:======================================>                 (11 + 5) / 16][Stage 22:==========================================>             (12 + 4) / 16][Stage 22:=================================================>      (14 + 2) / 16][Stage 22:====================================================>   (15 + 1) / 16][Stage 23:>                                                       (0 + 16) / 16][Stage 23:===>                                                    (1 + 15) / 16][Stage 23:=======>                                                (2 + 14) / 16][Stage 23:==============>                                         (4 + 12) / 16][Stage 23:=================>                                      (5 + 11) / 16][Stage 23:=====================>                                  (6 + 10) / 16][Stage 23:========================>                                (7 + 9) / 16][Stage 23:============================>                            (8 + 8) / 16][Stage 23:================================>                        (9 + 7) / 16][Stage 23:======================================>                 (11 + 5) / 16][Stage 23:==========================================>             (12 + 4) / 16][Stage 23:====================================================>   (15 + 1) / 16][Stage 24:>                                                       (0 + 16) / 16][Stage 24:>               (0 + 16) / 16][Stage 25:>                (0 + 0) / 16][Stage 24:=>              (1 + 15) / 16][Stage 25:>                (0 + 1) / 16][Stage 24:==>             (2 + 14) / 16][Stage 25:>                (0 + 2) / 16][Stage 24:===>            (3 + 13) / 16][Stage 25:>                (0 + 3) / 16][Stage 24:=====>          (5 + 11) / 16][Stage 25:>                (0 + 5) / 16][Stage 24:=========>       (9 + 7) / 16][Stage 25:>                (0 + 9) / 16][Stage 24:=========>       (9 + 7) / 16][Stage 25:>               (0 + 10) / 16][Stage 24:==============> (14 + 2) / 16][Stage 25:>               (0 + 14) / 16][Stage 24:===============>(15 + 1) / 16][Stage 25:>               (0 + 15) / 16][Stage 25:>                                                       (0 + 16) / 16][Stage 25:===>                                                    (1 + 15) / 16][Stage 25:=======>                                                (2 + 14) / 16][Stage 25:==========>                                             (3 + 13) / 16][Stage 25:=================>                                      (5 + 11) / 16][Stage 25:=====================>                                  (6 + 10) / 16][Stage 25:========================>                                (7 + 9) / 16][Stage 25:============================>                            (8 + 8) / 16][Stage 25:================================>                        (9 + 7) / 16][Stage 25:======================================>                 (11 + 5) / 16][Stage 25:=============================================>          (13 + 3) / 16][Stage 25:=================================================>      (14 + 2) / 16][Stage 25:====================================================>   (15 + 1) / 16][Stage 26:>                                                       (0 + 16) / 16][Stage 26:===>                                                    (1 + 15) / 16][Stage 26:=>              (1 + 15) / 16][Stage 27:>                (0 + 1) / 16][Stage 26:==>             (2 + 14) / 16][Stage 27:>                (0 + 2) / 16][Stage 26:====>           (4 + 12) / 16][Stage 27:>                (0 + 4) / 16][Stage 26:=====>          (5 + 11) / 16][Stage 27:>                (0 + 5) / 16][Stage 26:======>         (6 + 10) / 16][Stage 27:>                (0 + 6) / 16][Stage 26:=======>         (7 + 9) / 16][Stage 27:>                (0 + 7) / 16][Stage 26:========>        (8 + 8) / 16][Stage 27:>                (0 + 8) / 16][Stage 26:=========>       (9 + 7) / 16][Stage 27:>                (0 + 9) / 16][Stage 26:==========>     (10 + 6) / 16][Stage 27:>               (0 + 10) / 16][Stage 26:===========>    (11 + 5) / 16][Stage 27:>               (0 + 11) / 16][Stage 26:============>   (12 + 4) / 16][Stage 27:=>              (1 + 12) / 16][Stage 26:==============> (14 + 2) / 16][Stage 27:==>             (2 + 14) / 16][Stage 27:=======>                                                (2 + 14) / 16][Stage 27:==========>                                             (3 + 13) / 16][Stage 27:==============>                                         (4 + 12) / 16][Stage 27:=================>                                      (5 + 11) / 16][Stage 27:=====================>                                  (6 + 10) / 16][Stage 27:============================>                            (8 + 8) / 16][Stage 27:================================>                        (9 + 7) / 16][Stage 27:===================================>                    (10 + 6) / 16][Stage 27:======================================>                 (11 + 5) / 16][Stage 27:==========================================>             (12 + 4) / 16][Stage 27:=================================================>      (14 + 2) / 16][Stage 31:>                                                       (0 + 16) / 16][Stage 31:===>                                                    (1 + 15) / 16][Stage 31:=======>                                                (2 + 14) / 16][Stage 31:==========>                                             (3 + 13) / 16][Stage 31:==============>                                         (4 + 12) / 16][Stage 31:=================>                                      (5 + 11) / 16][Stage 31:=====================>                                  (6 + 10) / 16][Stage 31:========================>                                (7 + 9) / 16][Stage 31:============================>                            (8 + 8) / 16][Stage 31:===================================>                    (10 + 6) / 16][Stage 31:======================================>                 (11 + 5) / 16][Stage 31:==========================================>             (12 + 4) / 16][Stage 31:=============================================>          (13 + 3) / 16][Stage 31:=================================================>      (14 + 2) / 16][Stage 31:====================================================>   (15 + 1) / 16]ERROR:root:Exception while sending command.
-Traceback (most recent call last):
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
-    answer = smart_decode(self.stream.readline()[:-1])
-                          ^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: reentrant call inside <_io.BufferedReader name=9>
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
-    response = connection.send_command(command)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
-    raise Py4JNetworkError(
-py4j.protocol.Py4JNetworkError: Error while sending or receiving
-ERROR:root:Exception while sending command.
-Traceback (most recent call last):
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/clientserver.py", line 511, in send_command
-    answer = smart_decode(self.stream.readline()[:-1])
-                          ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/gitpod/.pyenv/versions/3.12.3/lib/python3.12/socket.py", line 707, in readinto
-    return self._sock.recv_into(b)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/context.py", line 381, in signal_handler
-    self.cancelAllJobs()
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/context.py", line 2446, in cancelAllJobs
-    self._jsc.sc().cancelAllJobs()
-    ^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
-    return_value = get_return_value(
-                   ^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
-    return f(*a, **kw)
-           ^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
-    raise Py4JError(
-py4j.protocol.Py4JError: An error occurred while calling o37.sc
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1038, in send_command
-    response = connection.send_command(command)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/clientserver.py", line 539, in send_command
-    raise Py4JNetworkError(
-py4j.protocol.Py4JNetworkError: Error while sending or receiving
-[32m2024-05-31 16:06:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 29657144-f47b-4730-a719-19652768d51f - 335980 - spark_operator.create_stock_tables[stock_ABMC_path] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_ABMC_path]" failed and has requested a retry in 0.10384727691333251 seconds.
-
-dagster._core.execution.plan.utils.RetryRequestedFromPolicy
-
-Stack Trace:
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
-    for step_event in check.generator(step_events):
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 525, in core_dagster_event_sequence_for_step
-    for user_event in _step_output_error_checked_user_event_sequence(
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 203, in _step_output_error_checked_user_event_sequence
-    for user_event in user_event_sequence:
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 100, in _process_asset_results_to_events
-    for user_event in user_event_sequence:
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute.py", line 208, in execute_core_compute
-    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute.py", line 177, in _yield_compute_results
-    for event in iterate_with_context(
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
-    with context_fn():
-  File "/home/gitpod/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
-    self.gen.throw(value)
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
-    raise RetryRequestedFromPolicy(
-
-The above exception was caused by the following exception:
-py4j.protocol.Py4JError: An error occurred while calling o1498.withColumn
-
-Stack Trace:
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
-    yield
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
-    next_output = next(iterator)
-                  ^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 141, in _coerce_op_compute_fn_to_iterator
-    result = invoke_compute_fn(
-             ^^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 129, in invoke_compute_fn
-    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/assets/spark_transformations.py", line 250, in create_stock_tables
-    df2 = df2.withColumn(col, F.lit(None).cast(StringType()))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/sql/dataframe.py", line 5174, in withColumn
-    return DataFrame(self._jdf.withColumn(colName, col._jc), self.sparkSession)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
-    return_value = get_return_value(
-                   ^^^^^^^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
-    return f(*a, **kw)
-           ^^^^^^^^^^^
-  File "/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/py4j/protocol.py", line 334, in get_return_value
-    raise Py4JError(
-
