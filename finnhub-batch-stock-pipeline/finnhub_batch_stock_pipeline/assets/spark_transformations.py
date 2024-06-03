@@ -31,7 +31,7 @@ def stock_tables(context, stock_data):
     
     mtdt = list(materialization.metadata.keys())
     
-    mping_keys = [i.split(".")[0] for i in mtdt ]
+    mping_keys = [i.split(".")[0] if "." in i else i[:-5] for i in mtdt ]
     
     i = 0
     for data in stock_data:
