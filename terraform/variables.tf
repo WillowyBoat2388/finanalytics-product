@@ -13,6 +13,10 @@ variable "AWS_SECRET_ACCESS_KEY" {
   sensitive = true
 }
 
+variable "EXECUTOR" {
+  type = string
+  default = k8s
+}
 variable "FINNHUBAPIKEY" {
   type = string
   sensitive = true

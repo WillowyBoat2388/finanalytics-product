@@ -1,8 +1,10 @@
 from dagster import (Definitions, 
                     load_assets_from_modules, 
                     EnvVar,
-                    AutoMaterializePolicy)
+                    AutoMaterializePolicy,
+                    multiprocess_executor)
 from dagster_duckdb_pyspark import DuckDBPySparkIOManager
+from dagster_k8s import k8s_job_executor
 from dagster_pyspark import LazyPySparkResource
 from dagster_deltalake import S3Config, DeltaLakePyarrowIOManager
 from dagster_deltalake.config import ClientConfig
@@ -18,6 +20,18 @@ from .jobs import stock_retrieval_job, lake_update_job, warehouse_update_job, sp
 from .schedules import stocks_update_schedule
 import os
 # from .sensors import stocks_sensor
+
+execution = {'multiprocess': multiprocess_executor.configured({ "max_concurrent": 5}),
+            'k8s': k8s_job_executor.configured({
+                "max_concurrent": 5, "step_k8s_config": {
+            "container_config": {
+                "resources": {
+                    "requests": {"cpu": "200m", "memory": "32Mi"},
+                }
+            }
+        }
+            })
+            }
 
 all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw], auto_materialize_policy=AutoMaterializePolicy.eager())
 
@@ -130,7 +144,7 @@ deployment_resources = {
     }
 }
 deployment_name = os.getenv("DAGSTER_DEPLOYMENT", "local")
-
+executor = os.getenv("EXECUTOR", "k8s")
 
 defs = Definitions(
     assets= all_assets,
@@ -138,4 +152,5 @@ defs = Definitions(
     resources= deployment_resources[deployment_name],
     jobs=all_jobs,
     schedules=all_schedules,
+    executor=execution[executor],
 )
