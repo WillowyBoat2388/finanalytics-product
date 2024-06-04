@@ -9,7 +9,7 @@ from datetime import datetime as dt
 import time
 
 @op
-def import_stocks_def(my_conn: MyConnectionResource):
+def import_stocks_def(context, my_conn: MyConnectionResource):
     """
         Operation for loading data from FinnHub API to get stock symbols
     """
@@ -20,11 +20,11 @@ def import_stocks_def(my_conn: MyConnectionResource):
     stock_list = [i['symbol'] for i in stocks]
     stock_list = sorted(stock_list)
 
-    # context.add_output_metadata(
-    #     metadata={
-    #         "num_records": len(stock_list),
-    #     }
-    # )
+    context.add_output_metadata(
+        metadata={
+            "num_records": len(stock_list),
+        }
+    )
     return stock_list
 
 
@@ -48,7 +48,7 @@ def import_stocks_data(input_list, my_conn: MyConnectionResource):
 
         json_object[stock] = stock_data
 
-        if symbol_count == 5:
+        if symbol_count == 100:
             break
         count += 1
     
@@ -57,6 +57,7 @@ def import_stocks_data(input_list, my_conn: MyConnectionResource):
     
 @graph_asset(
     group_name="raw",
+    # auto_materialize_policy=AutoMaterializePolicy.eager
 )
 def finnhub_US_stocks() -> Dict:
     """

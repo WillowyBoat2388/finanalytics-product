@@ -1,5 +1,0 @@
-.env
-*.ipynb
-data/source/*.json
-/data
-/data/.minio.sys

@@ -1,0 +1,14 @@
+.env
+*.ipynb
+data/source/*.json
+/data
+/apps/mc
+/apps/minio
+/finnhub-batch-stock-pipeline/data
+*.duckdb
+finnhub-batch-stock-pipeline/finance_db.duckdb
+minio.txt
+*.tf
+**/__pycache__/
+*.py[cod]
+finnhub-batch-stock-pipeline/home/

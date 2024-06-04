@@ -14,7 +14,8 @@ from dagster import (
                 )
 from typing import Dict, List
 from dagster_deltalake import DeltaLakePyarrowIOManager, S3Config
-from ..resources import MyPysparkResource
+# from ..resources import MyPysparkResource
+from dagster_pyspark import PySparkResource
 from datetime import datetime as dt
 import json
 from pyspark.sql import DataFrame, Row
@@ -30,7 +31,7 @@ def stock_tables(context, stock_data):
     
     mtdt = list(materialization.metadata.keys())
     
-    mping_keys = [i[:-5] for i in mtdt]
+    mping_keys = [i.split(".")[0] if "." in i else i[:-5] for i in mtdt ]
     
     i = 0
     for data in stock_data:
@@ -40,7 +41,7 @@ def stock_tables(context, stock_data):
 @op()
 def get_result_dataframe(dataframe, symbol, spark):
     # Repartition the DataFrames to have the same number of partitions
-    num_partitions = max(dataframe.rdd.getNumPartitions(), symbol.rdd.getNumPartitions())
+    num_partitions = min(dataframe.rdd.getNumPartitions(), symbol.rdd.getNumPartitions())
     df = dataframe.repartition(num_partitions)
     df_s = symbol.repartition(num_partitions)
     schema = StructType(dataframe.schema.fields + symbol.schema.fields)
@@ -96,7 +97,7 @@ def get_array_element_names(schema, parent_name=''):
 
 
 @op(
-    required_resource_keys= {"pyspark": MyPysparkResource()},
+    required_resource_keys= {"pyspark": PySparkResource},
     out={'metric_and_series': Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
         },
     retry_policy=RetryPolicy(
@@ -109,16 +110,13 @@ def get_array_element_names(schema, parent_name=''):
 def create_stock_tables(context:OpExecutionContext, input_fn):
   
     pyspark = context.resources.pyspark
-    spark = pyspark.spark
-    sc = pyspark.sc
+    spark = pyspark.spark_session
+    sc = pyspark.spark_session.sparkContext
     metric_and_series_list = []
     mtrc_and_srs = []
     symbols = []
     dct = {}
     for key,value in input_fn.items():
-        # if key == 'metric':
-        #     df = spark.read.json(sc.parallelize([value]))
-        #     break
         read_options = {
             "multiline": True,
             "mode": "PERMISSIVE",
@@ -271,7 +269,7 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
     return chained_df
 
 @op(
-    required_resource_keys= {"pyspark": MyPysparkResource()},
+    required_resource_keys= {"pyspark": PySparkResource},
     out={"metric": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
          "series": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager")
     },
@@ -288,6 +286,7 @@ def merge_and_analyze(context, df_list):
 
 
     pyspark = context.resources.pyspark
+    spark = pyspark.spark_session
     metric = []
     series = []
     
@@ -332,20 +331,20 @@ def merge_and_analyze(context, df_list):
             series.append(srs)
 
             context.log.info(f"srsmetric_col_len:    {len(mtrc.columns)}")
-            context.log.info(item.head())
+            # context.log.info(item.head())
         elif item.filter(item.type == "series").count() == 0:
             mtrc = item.filter(item["type"] == "metric").drop("type")
-            # schemas['mtrc'] = mtrc.schema
+            
             metric.append(mtrc)
             context.log.info(f"metric_col_len:    {len(mtrc.columns)}")
-            context.log.info(item.head())
+            # context.log.info(item.head())
         else:
             context.log.info(item.head())
 
     # Create an empty dataframe with empty schema
-    mrgd_df_mtrc = pyspark.spark.createDataFrame(data = [],
+    mrgd_df_mtrc = spark.createDataFrame(data = [],
                            schema = schemas['mtrc'])
-    mrgd_df_srs = pyspark.spark.createDataFrame(data = [],
+    mrgd_df_srs = spark.createDataFrame(data = [],
                            schema = schemas['srs'])
     
     for value in metric:
@@ -378,28 +377,3 @@ def spark_operator(finnhub_US_stocks: List) -> tuple[DataFrame, DataFrame]:
     # return metric, series
     return merge_and_analyze(collected.collect())
     
-    # return 1
-
-# @asset(
-#     group_name= "resource_transformations"
-# )
-# def pyspark_operator(metrics_paths: Dict, series_paths: Dict):
-#     """
-    
-#     """
-#     # s3.get_object(Bucket=bucket, Key=path.as_posix())["Body"].read()
-#     df = None
-#     pass
-
-# @asset(
-#     group_name = "io_transformations",
-# )
-# def pyspark_operator_2(finnhub_stocks_US: List):
-#     """
-#     I don't even know at this point
-#     """
-#     for stock_data in finnhub_stocks_US:
-#         print(stock_data)
-#         break
-    
-#     pass

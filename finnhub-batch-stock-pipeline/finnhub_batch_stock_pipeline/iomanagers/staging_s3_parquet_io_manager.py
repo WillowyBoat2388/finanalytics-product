@@ -17,12 +17,13 @@ from upath import UPath
 from dagster_aws.s3 import S3Resource
 from pydantic import Field
 from dagster._utils.cached_method import cached_method
-from ..resources import MyPysparkResource
+# from ..resources import MyPysparkResource
+from dagster_pyspark import LazyPySparkResource
 
 class S3PandasParquetIOInternalManager(UPathIOManager):
     def __init__(
         self,
-        pyspark: MyPysparkResource,
+        pyspark: LazyPySparkResource,
         s3_bucket: str,
         s3_session: Any,
         s3_prefix: Optional[str] = None,
@@ -33,7 +34,7 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
         self.s3 = s3_session
         self.s3.list_objects(Bucket=s3_bucket, Prefix=s3_prefix, MaxKeys=1)
         # self.extension = extension
-        self.pyspark = pyspark
+        self.pyspark = pyspark.spark_session
         base_path = UPath(s3_prefix) if s3_prefix else None
         super().__init__(base_path=base_path)
 
@@ -69,7 +70,7 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
             # s3_obj = io.BytesIO(self.s3.get_object(Bucket=self.bucket, Key=str(path))["Body"].read())
             # return pd.read_parquet(s3_obj)
             pathe = self._uri_for_path(path)
-            return self.pyspark.load_s3(pathe)
+            return self.pyspark.read.format("delta").load(pathe)
         except self.s3.exceptions.NoSuchKey:
             raise FileNotFoundError(f"Could not find file {path} in S3 bucket {self.bucket}")
 
@@ -118,7 +119,7 @@ class S3PandasParquetIOInternalManager(UPathIOManager):
     
 
 class S3PandasParquetIOManager(ConfigurableIOManager):
-    pyspark: ResourceDependency[MyPysparkResource]
+    pyspark: ResourceDependency[LazyPySparkResource]
     s3_resource: ResourceDependency[S3Resource]
     s3_bucket: str = Field(description="S3 bucket to use for the file manager.")
     s3_prefix: str = Field(

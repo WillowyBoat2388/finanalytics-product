@@ -11,28 +11,30 @@ import pyarrow.parquet as pq
 
 
 
-class MyPysparkResource():
-    def __init__(self) -> None:
-        builder = SparkSession.builder.appName("Dagster_FinnHub") \
-            .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
-            .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
-            .config("spark.hadoop.fs.s3a.endpoint", os.getenv("AWS_ENDPOINT")) \
-            .config("spark.hadoop.fs.s3a.endpoint.region", os.getenv('AWS_REGION')) \
-            .config("spark.hadoop.fs.s3a.connection.ssl.enabled", "true") \
-            .config("spark.hadoop.fs.s3a.path.style.access", "true") \
-            .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
-            .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")   
-            # .config('spark.hadoop.fs.s3a.access.key', EnvVar("AWS_ACCESS_KEY").get_value()).config('spark.hadoop.fs.s3a.secret.key', os.getenv("AWS_SECRET_KEY"))
+# class MyPysparkResource():
+#     def __init__(self) -> None:
+#         builder = SparkSession.builder.appName("Dagster_FinnHub") \
+#             .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
+#             .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
+#             .config("spark.hadoop.fs.s3a.endpoint", os.getenv("AWS_ENDPOINT")) \
+#             .config("spark.hadoop.fs.s3a.endpoint.region", os.getenv('AWS_REGION')) \
+#             .config("spark.hadoop.fs.s3a.connection.ssl.enabled", "true") \
+#             .config("spark.hadoop.fs.s3a.path.style.access", "true") \
+#             .config("spark.executor.memory", "4g") \
+#             .config("spark.driver.memory", "4g") \
+#             .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
+#             .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")   
+#             # .config('spark.hadoop.fs.s3a.access.key', EnvVar("AWS_ACCESS_KEY").get_value()).config('spark.hadoop.fs.s3a.secret.key', os.getenv("AWS_SECRET_KEY"))
 
-        self.spark = configure_spark_with_delta_pip(builder, extra_packages=["org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262"]).getOrCreate()
-        # self.conf = sparkConf
-        #     .setMaster(EnvVar("SPARK_MASTER"))
-        self.sc = self.spark.sparkContext
-        # self.sc.setLogLevel("ERROR")
+#         self.spark = configure_spark_with_delta_pip(builder, extra_packages=["org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262"]).getOrCreate()
+#         # self.conf = sparkConf
+#         #     .setMaster(EnvVar("SPARK_MASTER"))
+#         self.sc = self.spark.sparkContext
+#         # self.sc.setLogLevel("ERROR")
 
 
-    def load_s3(self, path) -> None:
-        return self.spark.read.format("delta").load(path)
+#     def load_s3(self, path) -> None:
+#         return self.spark.read.format("delta").load(path)
 
 class FinnhubClientResource(ConfigurableResource):
     access_token: str
@@ -60,10 +62,10 @@ class MyConnectionResource(ConfigurableResource):
         return data
     
 s3_rsrce = S3Resource(use_unsigned_session=True,
-                    region_name="eu-west-1",
-                    endpoint_url="http://127.0.0.1:9000", 
+                    region_name=EnvVar("AWS_REGION"),
+                    endpoint_url=EnvVar("AWS_ENDPOINT"), 
                     use_ssl= False, 
-                    aws_access_key_id = EnvVar("access_id"),
-    aws_secret_access_key= EnvVar("access_key"),)
+                    aws_access_key_id = EnvVar("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key= EnvVar("AWS_SECRET_ACCESS_KEY"),)
 
 
