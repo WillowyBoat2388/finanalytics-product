@@ -21,5 +21,6 @@ resource "kubernetes_config_map" "pipeline-config" {
         S3_URI=var.S3_URI
         AWS_S3_ALLOW_UNSAFE_RENAME=var.AWS_S3_ALLOW_UNSAFE_RENAME
         DAGSTER_HOME="/home"
+        EXECUTOR=var.EXECUTOR
   }
 }
