@@ -45,7 +45,7 @@ $SCRIPT_DIR/mc admin info minio > minio.txt
 $SCRIPT_DIR/mc mb minio/dagster-api
 
 # assign minikube start command to variable
-minikube_startcommand="minikube start"
+minikube_startcommand="minikube start --cpu=3 --memory=10240"
 
 # Create a new screen session named "minikubescreen" and run a command
 screen -dmS minikubescreen bash -c "$minikube_startcommand"
