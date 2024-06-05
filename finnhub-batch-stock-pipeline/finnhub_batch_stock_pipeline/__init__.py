@@ -21,6 +21,7 @@ import os
 
 execution = {'multiprocess': multiprocess_executor.configured({ "max_concurrent": 5}),
             'k8s': k8s_job_executor.configured({
+                "job_image": "spark:python3-java17",
                 "max_concurrent": 5, "step_k8s_config": {
             "container_config": {
                 "resources": {

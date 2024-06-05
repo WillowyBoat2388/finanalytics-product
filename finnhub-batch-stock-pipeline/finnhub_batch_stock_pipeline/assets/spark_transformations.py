@@ -105,7 +105,14 @@ def get_array_element_names(schema, parent_name=''):
         delay=0.2,  # 200ms
         backoff=Backoff.EXPONENTIAL,
         jitter=Jitter.PLUS_MINUS,
-    )
+    ),
+    tags = {
+        'dagster-k8s/config': {
+            'job_spec_config': {
+                'ttl_seconds_after_finished': 60
+            }
+        }
+    }
 )
 def create_stock_tables(context:OpExecutionContext, input_fn):
   
