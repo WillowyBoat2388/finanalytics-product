@@ -11,6 +11,4 @@ dagster-snowflake-pyspark==0.23.6
 delta-spark==3.1.0
 deltalake==0.15.3
 duckdb==0.10.3
-pyarrow==16.1.0
-pyspark==3.5.1
 pytest==8.0.2

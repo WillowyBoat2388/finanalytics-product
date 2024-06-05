@@ -67,8 +67,7 @@
 eval $(minikube docker-env)
 
 # create docker image within minikube container
-docker build -t fnhb-btch-stck-ppln:v1.0.0 Dockerfile
-docker build -t step-image:v1.0.0 step_Dockerfile
+docker build -t fnhb-btch-stck-ppln:v1.0.0 -f ./Dockerfile .
 
 # make environment variables available in shell to terraform
 source .env && export $(sed '/^#/d' .env | cut -d= -f1)

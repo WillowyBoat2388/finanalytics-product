@@ -266,6 +266,7 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
         chained_df = metric.withColumn("type", F.lit("metric"))
 
     # context.get_step_execution_context().step.key(f"create_tables_stock_{symbol}")
+    chained_df.coalesce()
     return chained_df
 
 @op(

@@ -36,7 +36,7 @@ runLauncher:
   config:
     k8sRunLauncher:
       job_image: "docker.io/library/step-image:v1.0.0"
-      image_pull_policy: Never
+      image_pull_policy: IfNotPresent
       runK8sConfig:
         containerConfig: # raw config for the pod's main container
           resources:
