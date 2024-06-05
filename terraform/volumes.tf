@@ -49,7 +49,7 @@ resource "terraform_data" "nfs-ip" {
 }
 
 data "local_file" "provisioner_output" {
-  depends_on = [ kubernetes_pod.nfs-server ]
+  depends_on = [ kubernetes_pod.nfs-server, terraform_data.nfs-ip ]
   filename = "${path.module}/nfs_ip.txt"
 }
 

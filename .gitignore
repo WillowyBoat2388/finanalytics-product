@@ -8,6 +8,7 @@ data/source/*.json
 *.duckdb
 finnhub-batch-stock-pipeline/finance_db.duckdb
 *.txt
+!env.txt
 *.tf/
 **/__pycache__/
 *.py[cod]
