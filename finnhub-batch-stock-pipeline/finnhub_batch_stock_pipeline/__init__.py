@@ -19,14 +19,14 @@ from .assets import (spark_transformations,
 from .jobs import stock_retrieval_job, lake_update_job, warehouse_update_job, spark_transformation_job
 from .schedules import stocks_update_schedule
 import os
-# from .sensors import stocks_sensor
 
 execution = {'multiprocess': multiprocess_executor.configured({ "max_concurrent": 5}),
             'k8s': k8s_job_executor.configured({
                 "max_concurrent": 5, "step_k8s_config": {
             "container_config": {
                 "resources": {
-                    "requests": {"cpu": "200m", "memory": "32Mi"},
+                    "requests": {"cpu": "100m", "memory": "512Mi"},
+                    "limits": {"cpu": "400m", "memory": "1024Mi"},
                 }
             }
         }
@@ -35,13 +35,11 @@ execution = {'multiprocess': multiprocess_executor.configured({ "max_concurrent"
 
 all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw], auto_materialize_policy=AutoMaterializePolicy.eager())
 
-# all_sensors = [stocks_sensor]
 
 all_jobs = [stock_retrieval_job, lake_update_job, warehouse_update_job, spark_transformation_job]
 
 all_schedules = [stocks_update_schedule]
 
-# config = S3Config(endpoint=EnvVar("AWS_ENDPOINT"), allow_unsafe_rename=True)
 config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"), 
                                     secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY"), region=os.getenv("AWS_REGION"), 
                                     endpoint=os.getenv("AWS_ENDPOINT"),
@@ -148,7 +146,6 @@ executor = os.getenv("EXECUTOR", "k8s")
 
 defs = Definitions(
     assets= all_assets,
-    # sensors= all_sensors,
     resources= deployment_resources[deployment_name],
     jobs=all_jobs,
     schedules=all_schedules,

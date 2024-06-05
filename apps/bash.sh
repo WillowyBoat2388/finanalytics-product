@@ -79,7 +79,7 @@ cd terraform
 terraform apply
 
 # get dagster-webserver pod name
-DAGSTER_WEBSERVER_POD_NAME=$(kubectl get pods --namespace pipeline -l "app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster-on-k8s,component=dagster-webserver" -o jsonpath="{.items[0].metadata.name}")
+DAGSTER_WEBSERVER_POD_NAME=$(kubectl get pods --namespace dagster -l "app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster-on-k8s,component=dagster-webserver" -o jsonpath="{.items[0].metadata.name}")
 
 # forward dagster-webserver port
-kubectl --namespace pipeline port-forward $DAGSTER_WEBSERVER_POD_NAME 8080:80
+kubectl --namespace dagster port-forward $DAGSTER_WEBSERVER_POD_NAME 8080:80
