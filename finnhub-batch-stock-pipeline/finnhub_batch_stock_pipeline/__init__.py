@@ -8,7 +8,6 @@ from dagster_k8s import k8s_job_executor
 from dagster_pyspark import LazyPySparkResource
 from dagster_deltalake import S3Config, DeltaLakePyarrowIOManager
 from dagster_deltalake.config import ClientConfig
-from dagster_deltalake_pandas import DeltaLakePandasIOManager
 from dagster_snowflake_pyspark import SnowflakePySparkIOManager
 from .iomanagers import (raw_s3_json_io_manager as s3j, 
                          staging_s3_parquet_io_manager as s3p,)
