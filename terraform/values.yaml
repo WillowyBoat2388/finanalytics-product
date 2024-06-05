@@ -35,6 +35,17 @@ runLauncher:
   type: K8sRunLauncher
   config:
     k8sRunLauncher:
+      job_image: "docker.io/library/step-image:v1.0.0"
+      image_pull_policy: Never
+      runK8sConfig:
+        containerConfig: # raw config for the pod's main container
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 5120Mi
+            requests:
+              cpu: 200m
+              memory: 1024Mi
       envSecrets:
         - name: pipeline-secrets
 
