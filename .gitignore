@@ -7,8 +7,8 @@ data/source/*.json
 /finnhub-batch-stock-pipeline/data
 *.duckdb
 finnhub-batch-stock-pipeline/finance_db.duckdb
-minio.txt
-*.tf
+*.txt
+*.tf/
 **/__pycache__/
 *.py[cod]
 finnhub-batch-stock-pipeline/home/
