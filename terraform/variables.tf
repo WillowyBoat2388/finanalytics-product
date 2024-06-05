@@ -18,6 +18,10 @@ variable "EXECUTOR" {
   default = "k8s"
 }
 
+variable "DAGSTER_HOME" {
+  type = string
+}
+
 variable "FINNHUBAPIKEY" {
   type = string
   sensitive = true

@@ -4,10 +4,10 @@ resource "helm_release" "dagster-on-k8s" {
   chart      = "dagster"
   namespace  = "${var.namespace}"
   
+  depends_on = [ kubernetes_persistent_volume_claim.nfs-pvc ]
+  
   values = [
     file("${path.module}/values.yaml")
   ]
   
-  # Increase the apply timeout to 10 minutes
-  timeout = "10000"
 }

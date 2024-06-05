@@ -14,6 +14,13 @@ dagster-user-deployments:
         - name: pipeline-config
       envSecrets:
         - name: pipeline-secrets
+      volumes:
+        - name: nfs-mount
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+      volumeMounts:
+        - name: nfs-mount
+          mountPath: /opt/dagster/dagster_home
       resources:
         limits:
           cpu: 1000m
