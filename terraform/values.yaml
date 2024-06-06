@@ -23,11 +23,11 @@ dagster-user-deployments:
           mountPath: /opt/dagster/dagster_home
       resources:
         limits:
-          cpu: 1000m
-          memory: 5120Mi
+          cpu: 2500m
+          memory: 8192Mi
         requests:
-          cpu: 200m
-          memory: 1024Mi  
+          cpu: 400m
+          memory: 2048Mi
       includeConfigInLaunchedRuns:
         enabled: true
 
