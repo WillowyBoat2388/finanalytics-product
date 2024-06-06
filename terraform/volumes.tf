@@ -68,7 +68,7 @@ resource "kubernetes_persistent_volume" "nfs-pv" {
     name = "nfs-pv"
   }
 
-  depends_on = [ kubernetes_pod.nfs-server ]
+  depends_on = [ kubernetes_pod.nfs-server, terraform_data.nfs-ip, data.local_file.provisioner_output ]
 
   spec {
     capacity = {

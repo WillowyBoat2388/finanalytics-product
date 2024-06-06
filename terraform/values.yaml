@@ -14,20 +14,13 @@ dagster-user-deployments:
         - name: pipeline-config
       envSecrets:
         - name: pipeline-secrets
-      volumes:
-        - name: nfs-mount
-          persistentVolumeClaim:
-            claimName: nfs-pvc
-      volumeMounts:
-        - name: nfs-mount
-          mountPath: /opt/dagster/dagster_home
       resources:
         limits:
-          cpu: 2500m
-          memory: 8192Mi
-        requests:
-          cpu: 400m
+          cpu: 500m
           memory: 2048Mi
+        requests:
+          cpu: 200m
+          memory: 1024Mi
       includeConfigInLaunchedRuns:
         enabled: true
 
@@ -35,15 +28,25 @@ runLauncher:
   type: K8sRunLauncher
   config:
     k8sRunLauncher:
+      imagePullPolicy: IfNotPresent
+      volumes:
+        - name: nfs-mount
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+      volumeMounts:
+        - name: nfs-mount
+          mountPath: /opt/dagster/dagster_home
       runK8sConfig:
         containerConfig: # raw config for the pod's main container
           resources:
             limits:
-              cpu: 2500m
-              memory: 8192Mi
+              cpu: 1500m
+              memory: 7168Mi
             requests:
-              cpu: 400m
+              cpu: 500m
               memory: 2048Mi
+      envConfigMaps:
+        - name: pipeline-config
       envSecrets:
         - name: pipeline-secrets
 
