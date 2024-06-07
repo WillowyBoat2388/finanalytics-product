@@ -25,7 +25,7 @@ import uuid
 uuidgen = uuid.uuid4()
 ivy_cache_dir=f"/home/spark/.ivy2/cache/{uuidgen}"
 
-execution = {'inprocess': in_process_executor(),
+execution = {'inprocess': in_process_executor,
             'multiprocess': multiprocess_executor.configured({ "max_concurrent": 4}),
             'k8s': k8s_job_executor.configured({
                 "job_image": "spark:python3-java17",
