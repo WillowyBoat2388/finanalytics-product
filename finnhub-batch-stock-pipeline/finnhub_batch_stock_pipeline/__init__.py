@@ -57,11 +57,14 @@ client_config = ClientConfig(allow_http=True)
 
 jars = [
     "/jars/delta-spark_2.12-3.1.0.jar",
+    "/jars/delta-core_2.12-2.4.0.jar",
+    "/jars/delta-storage-3.1.0.jar",
     "/jars/hadoop-aws-3.3.4.jar",
     "/jars/hadoop-common-3.3.4.jar",
-    "/jars/aws-java-sdk-bundle-1.12.262.jar"
-    "/jars/delta-core_2.12-2.4.0.jar"
-    "/jars/delta-storage-3.2.0.jar"
+    "/jars/aws-java-sdk-bundle-1.12.262.jar",
+    # "/jars/hadoop-aws-3.4.0.jar",
+    # "/jars/hadoop-common-3.4.0.jar",
+    # ".jars/bundle-2.23.19.jar"
 ]
 
 # Join the paths with a comma separator
