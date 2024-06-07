@@ -17,7 +17,7 @@ dagster-user-deployments:
       resources:
         limits:
           cpu: 500m
-          memory: 4096Mi
+          memory: 2048Mi
       includeConfigInLaunchedRuns:
         enabled: false
 
@@ -38,10 +38,10 @@ runLauncher:
           image: docker.io/library/fnhb-btch-stck-ppln:v1.0.0
           resources:
             limits:
-              cpu: 800m
-              memory: 3276Mi
+              cpu: 1000m
+              memory: 8192Mi
             requests:
-              cpu: 400m
+              cpu: 500m
               memory: 2048Mi
       envConfigMaps:
         - name: pipeline-config

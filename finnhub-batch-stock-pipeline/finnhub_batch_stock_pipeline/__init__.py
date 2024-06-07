@@ -26,15 +26,15 @@ uuidgen = uuid.uuid4()
 ivy_cache_dir=f"/home/spark/.ivy2/cache/{uuidgen}"
 
 execution = {'inprocess': in_process_executor(),
-            'multiprocess': multiprocess_executor.configured({ "max_concurrent": 8}),
+            'multiprocess': multiprocess_executor.configured({ "max_concurrent": 4}),
             'k8s': k8s_job_executor.configured({
                 "job_image": "spark:python3-java17",
                 "image_pull_policy": "IfNotPresent",
                 "max_concurrent": 4, "step_k8s_config": {
             "container_config": {
                 "resources": {
-                    "requests": {"cpu": "1000m", "memory": "5120Mi"},
-                    "limits": {"cpu": "2000m", "memory": "10240Mi"},
+                    "requests": {"cpu": "150m", "memory": "1024Mi"},
+                    "limits": {"cpu": "400m", "memory": "1024Mi"},
                 }
             }
         }
