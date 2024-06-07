@@ -16,13 +16,13 @@ dagster-user-deployments:
         - name: pipeline-secrets
       resources:
         limits:
+          cpu: 1000m
+          memory: 4096Mi
+        requests:
           cpu: 500m
           memory: 2048Mi
-        requests:
-          cpu: 200m
-          memory: 1024Mi
       includeConfigInLaunchedRuns:
-        enabled: true
+        enabled: false
 
 runLauncher:
   type: K8sRunLauncher
@@ -38,13 +38,14 @@ runLauncher:
           mountPath: /opt/dagster/dagster_home
       runK8sConfig:
         containerConfig: # raw config for the pod's main container
+          image: docker.io/library/fnhb-btch-stck-ppln:v1.0.0
           resources:
             limits:
-              cpu: 1500m
-              memory: 7168Mi
+              cpu: 8000m
+              memory: 32768Mi
             requests:
-              cpu: 500m
-              memory: 2048Mi
+              cpu: 4000m
+              memory: 20480Mi
       envConfigMaps:
         - name: pipeline-config
       envSecrets:

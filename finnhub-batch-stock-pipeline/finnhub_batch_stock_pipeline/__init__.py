@@ -19,15 +19,15 @@ from .jobs import stock_retrieval_job, lake_update_job, warehouse_update_job, sp
 from .schedules import stocks_update_schedule
 import os
 
-execution = {'multiprocess': multiprocess_executor.configured({ "max_concurrent": 4}),
+execution = {'multiprocess': multiprocess_executor.configured({ "max_concurrent": 8}),
             'k8s': k8s_job_executor.configured({
                 "job_image": "spark:python3-java17",
                 "image_pull_policy": "IfNotPresent",
                 "max_concurrent": 4, "step_k8s_config": {
             "container_config": {
                 "resources": {
-                    "requests": {"cpu": "100m", "memory": "512Mi"},
-                    "limits": {"cpu": "400m", "memory": "1024Mi"},
+                    "requests": {"cpu": "1000m", "memory": "5120Mi"},
+                    "limits": {"cpu": "2000m", "memory": "10240Mi"},
                 }
             }
         }

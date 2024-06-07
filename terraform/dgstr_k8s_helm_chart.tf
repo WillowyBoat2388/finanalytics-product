@@ -10,18 +10,18 @@ resource "helm_release" "dagster-on-k8s" {
     file("${path.module}/values.yaml")
   ]
 
-  set {
-    name  = "run_launcher.config.job_image"
-    value = "spark:python3-java17"
-  }
+  # set {
+  #   name  = "run_launcher.config.job_image"
+  #   value = "spark:python3-java17"
+  # }
 
   # set {
   #   name  = "k8sRunLauncher.image.tag"
   #   value = ""
   # }
 
-  set {
-    name  = "run_launcher.config.image_pull_policy"
-    value = "IfNotPresent"
-  }
+  # set {
+  #   name  = "run_launcher.config.image_pull_policy"
+  #   value = "IfNotPresent"
+  # }
 }
