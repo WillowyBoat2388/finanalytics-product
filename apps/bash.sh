@@ -45,7 +45,7 @@ $SCRIPT_DIR/mc admin info minio > minio.txt
 $SCRIPT_DIR/mc mb minio/dagster-api
 
 # assign minikube start command to variable
-minikube_startcommand="minikube start --kvm-gpu=true --cpus=3 --memory=10240"
+minikube_startcommand="minikube start --kvm-gpu=true --cpus=8 --memory=30720"
 
 # Create a new screen session named "minikubescreen" and run a command
 screen -dmS minikubescreen bash -c "$minikube_startcommand"
@@ -67,8 +67,8 @@ docker exec -it minikube bash -c "sudo apt update && sudo apt -y upgrade && exit
 eval $(minikube docker-env)
 
 # create docker image within minikube container
-docker build -t fnhb-btch-stck-ppln:v1.0.0 -f ./Dockerfile .
-docker build -t fnhb-btch-stck-ppln:v1.0.0 -f ./job_Dockerfile .
+docker build -t fnhb-btch-stck-ppln:v1.0.0 -f ./Dockerfile_test .
+# docker build -t fnhb-btch-stck-ppln:v1.0.1 -f ./job_Dockerfile .
 
 # make environment variables available in shell to terraform
 source .env && export $(sed '/^#/d' .env | cut -d= -f1)

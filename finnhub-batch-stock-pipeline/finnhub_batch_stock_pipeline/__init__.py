@@ -2,7 +2,8 @@ from dagster import (Definitions,
                     load_assets_from_modules, 
                     EnvVar,
                     AutoMaterializePolicy,
-                    multiprocess_executor)
+                    multiprocess_executor,
+                    in_process_executor)
 from dagster_duckdb_pyspark import DuckDBPySparkIOManager
 from dagster_k8s import k8s_job_executor
 from dagster_pyspark import LazyPySparkResource
@@ -18,8 +19,14 @@ from .assets import (spark_transformations,
 from .jobs import stock_retrieval_job, lake_update_job, warehouse_update_job, spark_transformation_job
 from .schedules import stocks_update_schedule
 import os
+import uuid
 
-execution = {'multiprocess': multiprocess_executor.configured({ "max_concurrent": 8}),
+
+uuidgen = uuid.uuid4()
+ivy_cache_dir=f"/home/spark/.ivy2/cache/{uuidgen}"
+
+execution = {'inprocess': in_process_executor(),
+            'multiprocess': multiprocess_executor.configured({ "max_concurrent": 8}),
             'k8s': k8s_job_executor.configured({
                 "job_image": "spark:python3-java17",
                 "image_pull_policy": "IfNotPresent",
@@ -49,6 +56,8 @@ config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
 client_config = ClientConfig(allow_http=True)
 
 pyspark_config = {
+                "spark.driver.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
+                "spark.executor.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
                 "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
@@ -56,13 +65,30 @@ pyspark_config = {
                 "spark.hadoop.fs.s3a.endpoint.region": os.getenv('AWS_REGION'),
                 "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
                 "spark.hadoop.fs.s3a.path.style.access": "true",
-                # "spark.executor.memory": "2g",
+                "spark.dynamicAllocation.enabled": "true",
+                "spark.shuffle.service.enabled": "true",
+                "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension",
+                "spark.sql.catalog.spark_catalog": "org.apache.spark.sql.delta.catalog.DeltaCatalog",
+            }
+pyspark_config_inprocess = {
+                "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
+                "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
+                "spark.sql.execution.arrow.pyspark.enabled": "true",
+                "spark.hadoop.fs.s3a.endpoint": os.getenv("AWS_ENDPOINT"),
+                "spark.hadoop.fs.s3a.endpoint.region": os.getenv('AWS_REGION'),
+                "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
+                "spark.hadoop.fs.s3a.path.style.access": "true",
                 "spark.dynamicAllocation.enabled": "true",
                 "spark.shuffle.service.enabled": "true",
                 "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension",
                 "spark.sql.catalog.spark_catalog": "org.apache.spark.sql.delta.catalog.DeltaCatalog",
             }
 
+spark_config = {
+    "inprocess": pyspark_config_inprocess,
+    "multiprocess": pyspark_config,
+    "k8s": pyspark_config
+}
 deployment_resources = {
        "prod":  {
         "my_conn": MyConnectionResource(access_token=EnvVar("FINNHUBAPIKEY")),
@@ -123,7 +149,7 @@ deployment_resources = {
         "s3": s3_rsrce,
         # "pyspark": MyPysparkResource(),
         "pyspark": LazyPySparkResource(
-            spark_config=pyspark_config
+            spark_config=spark_config[os.getenv("EXECUTOR")]
         ),
         "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
             pyspark=LazyPySparkResource(spark_config=pyspark_config), s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="staging"
