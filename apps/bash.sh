@@ -63,12 +63,12 @@
 
 # docker exec -it minikube bash -c "sudo apt update && sudo apt -y upgrade && exit"
 
-# # set docker-environment to be within minikube
-# eval $(minikube docker-env)
+# set docker-environment to be within minikube
+eval $(minikube docker-env)
 
-# # create docker image within minikube container
-# docker build -t fnhb-btch-stck-ppln:v1.0.0 -f ./Dockerfile .
-# # docker build -t fnhb-btch-stck-ppln:v1.0.1 -f ./job_Dockerfile .
+# create docker image within minikube container
+docker build -t fnhb-btch-stck-ppln:v1.0.0 -f ./Dockerfile .
+# docker build -t fnhb-btch-stck-ppln:v1.0.1 -f ./job_Dockerfile .
 
 # make environment variables available in shell to terraform
 source .env && export $(sed '/^#/d' .env | cut -d= -f1)
