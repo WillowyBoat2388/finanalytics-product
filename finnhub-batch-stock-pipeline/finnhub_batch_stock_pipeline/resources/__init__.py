@@ -5,7 +5,7 @@ from dagster_aws.s3 import S3Resource
 from dagster import ConfigurableResource, EnvVar
 from pyspark.sql import SparkSession
 from pyspark import SparkConf, SparkContext
-from delta import *
+# from delta import *
 import pyarrow
 import pyarrow.parquet as pq
 

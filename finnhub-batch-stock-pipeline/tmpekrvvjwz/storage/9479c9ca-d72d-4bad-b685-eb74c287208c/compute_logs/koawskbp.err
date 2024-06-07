@@ -1,0 +1,183 @@
+[32m2024-06-07 02:28:01 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9479c9ca-d72d-4bad-b685-eb74c287208c - 20074 - LOGS_CAPTURED - Started capturing logs in process (pid: 20074).
+[32m2024-06-07 02:28:01 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9479c9ca-d72d-4bad-b685-eb74c287208c - 20074 - spark_operator.create_stock_tables[stock_AACS] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AACS]".
+[32m2024-06-07 02:28:01 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9479c9ca-d72d-4bad-b685-eb74c287208c - spark_operator.create_stock_tables[stock_AACS] - Loading file from: /workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/tmpekrvvjwz/storage/9479c9ca-d72d-4bad-b685-eb74c287208c/spark_operator.stock_tables/result/stock_AACS using PickledObjectFilesystemIOManager...
+[32m2024-06-07 02:28:01 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9479c9ca-d72d-4bad-b685-eb74c287208c - 20074 - spark_operator.create_stock_tables[stock_AACS] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-06-07 02:28:01 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9479c9ca-d72d-4bad-b685-eb74c287208c - 20074 - spark_operator.create_stock_tables[stock_AACS] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/06/07 02:28:08 WARN Utils: Your hostname, codespaces-5ecfaf resolves to a loopback address: 127.0.0.1; using 172.16.5.4 instead (on interface eth0)
+24/06/07 02:28:08 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Ivy Default Cache set to: /home/codespace/.ivy2/cache
+The jars for the packages stored in: /home/codespace/.ivy2/jars
+io.delta#delta-spark_2.12 added as a dependency
+org.apache.hadoop#hadoop-aws added as a dependency
+org.apache.hadoop#hadoop-common added as a dependency
+com.amazonaws#aws-java-sdk-bundle added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-2f4d6624-bcc0-4f88-9033-5c5191c328e2;1.0
+	confs: [default]
+	found io.delta#delta-spark_2.12;3.1.0 in spark-list
+	found io.delta#delta-storage;3.1.0 in central
+	found org.antlr#antlr4-runtime;4.9.3 in central
+	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in central
+downloading https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.1.0/delta-spark_2.12-3.1.0.jar ...
+	[SUCCESSFUL ] io.delta#delta-spark_2.12;3.1.0!delta-spark_2.12.jar (509ms)
+downloading https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar ...
+	[SUCCESSFUL ] com.amazonaws#aws-java-sdk-bundle;1.12.262!aws-java-sdk-bundle.jar (3192ms)
+:: resolution report :: resolve 5721ms :: artifacts dl 3755ms
+	:: modules in use:
+	com.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]
+	io.delta#delta-spark_2.12;3.1.0 from spark-list in [default]
+	io.delta#delta-storage;3.1.0 from central in [default]
+	org.antlr#antlr4-runtime;4.9.3 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   6   |   3   |   2   |   0   ||   4   |   2   |
+	---------------------------------------------------------------------
+
+:: problems summary ::
+:::: WARNINGS
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.pom: Downloaded file size (0) doesn't match expected Content Length (25377) for https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.pom. Please retry. (52ms)
+
+		module not found: org.apache.hadoop#hadoop-aws;3.3.4
+
+	==== local-m2-cache: tried
+
+	  file:/home/codespace/.m2/repository/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.pom
+
+	  -- artifact org.apache.hadoop#hadoop-aws;3.3.4!hadoop-aws.jar:
+
+	  file:/home/codespace/.m2/repository/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/codespace/.ivy2/local/org.apache.hadoop/hadoop-aws/3.3.4/ivys/ivy.xml
+
+	  -- artifact org.apache.hadoop#hadoop-aws;3.3.4!hadoop-aws.jar:
+
+	  /home/codespace/.ivy2/local/org.apache.hadoop/hadoop-aws/3.3.4/jars/hadoop-aws.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.pom
+
+	  -- artifact org.apache.hadoop#hadoop-aws;3.3.4!hadoop-aws.jar:
+
+	  https://repos.spark-packages.org/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar
+
+	problem while downloading module descriptor: https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.pom: Downloaded file size (0) doesn't match expected Content Length (41668) for https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.pom. Please retry. (71ms)
+
+		module not found: org.apache.hadoop#hadoop-common;3.3.4
+
+	==== local-m2-cache: tried
+
+	  file:/home/codespace/.m2/repository/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.pom
+
+	  -- artifact org.apache.hadoop#hadoop-common;3.3.4!hadoop-common.jar:
+
+	  file:/home/codespace/.m2/repository/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.jar
+
+	==== local-ivy-cache: tried
+
+	  /home/codespace/.ivy2/local/org.apache.hadoop/hadoop-common/3.3.4/ivys/ivy.xml
+
+	  -- artifact org.apache.hadoop#hadoop-common;3.3.4!hadoop-common.jar:
+
+	  /home/codespace/.ivy2/local/org.apache.hadoop/hadoop-common/3.3.4/jars/hadoop-common.jar
+
+	==== central: tried
+
+	  https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.pom
+
+	==== spark-packages: tried
+
+	  https://repos.spark-packages.org/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.pom
+
+	  -- artifact org.apache.hadoop#hadoop-common;3.3.4!hadoop-common.jar:
+
+	  https://repos.spark-packages.org/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.jar
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		::          UNRESOLVED DEPENDENCIES         ::
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		:: org.apache.hadoop#hadoop-aws;3.3.4: not found
+
+		:: org.apache.hadoop#hadoop-common;3.3.4: not found
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+:: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+Exception in thread "main" java.lang.RuntimeException: [unresolved dependency: org.apache.hadoop#hadoop-aws;3.3.4: not found, unresolved dependency: org.apache.hadoop#hadoop-common;3.3.4: not found]
+	at org.apache.spark.deploy.SparkSubmitUtils$.resolveMavenCoordinates(SparkSubmit.scala:1608)
+	at org.apache.spark.util.DependencyUtils$.resolveMavenDependencies(DependencyUtils.scala:185)
+	at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:334)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:964)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:194)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:217)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[32m2024-06-07 02:28:19 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9479c9ca-d72d-4bad-b685-eb74c287208c - 20074 - spark_operator.create_stock_tables[stock_AACS] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_AACS]" failed and has requested a retry in 0.1647168461237045 seconds.
+
+dagster._core.execution.plan.utils.RetryRequestedFromPolicy
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 525, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 203, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 100, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/compute.py", line 208, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/compute.py", line 177, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/usr/local/python/3.10.13/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
+    raise RetryRequestedFromPolicy(
+
+The above exception was caused by the following exception:
+pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 141, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 129, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/assets/spark_transformations.py", line 120, in create_stock_tables
+    spark = pyspark.spark_session
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster_pyspark/resources.py", line 134, in spark_session
+    self._init_session()
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster_pyspark/resources.py", line 130, in _init_session
+    self._spark_session = spark_session_from_config(self.spark_config)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster_pyspark/resources.py", line 20, in spark_session_from_config
+    return builder.getOrCreate()
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/sql/session.py", line 497, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/context.py", line 515, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/context.py", line 201, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/context.py", line 436, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/java_gateway.py", line 107, in launch_gateway
+    raise PySparkRuntimeError(
+
