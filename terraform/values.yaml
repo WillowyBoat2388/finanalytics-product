@@ -1,0 +1,54 @@
+dagster-user-deployments:
+  enabled: true
+  deployments:
+    - name: "k8s-deployment"
+      image:
+        repository: "docker.io/library/fnhb-btch-stck-ppln"
+        tag: v1.0.0
+        pullPolicy: Never
+      dagsterApiGrpcArgs:
+        - "--module-name"
+        - "finnhub_batch_stock_pipeline"
+      port: 3030
+      envConfigMaps:
+        - name: pipeline-config
+      envSecrets:
+        - name: pipeline-secrets
+      resources:
+        limits:
+          cpu: 500m
+          memory: 2048Mi
+        requests:
+          cpu: 200m
+          memory: 1024Mi
+      includeConfigInLaunchedRuns:
+        enabled: false
+
+runLauncher:
+  type: K8sRunLauncher
+  config:
+    k8sRunLauncher:
+      imagePullPolicy: IfNotPresent
+      volumes:
+        - name: nfs-mount
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+      volumeMounts:
+        - name: nfs-mount
+          mountPath: /opt/dagster/dagster_home
+      runK8sConfig:
+        containerConfig: # raw config for the pod's main container
+          image: docker.io/library/fnhb-btch-stck-ppln:v1.0.0
+          resources:
+            limits:
+              cpu: 800m
+              memory: 8192Mi
+            requests:
+              cpu: 400m
+              memory: 2048Mi
+      envConfigMaps:
+        - name: pipeline-config
+      envSecrets:
+        - name: pipeline-secrets
+
+
