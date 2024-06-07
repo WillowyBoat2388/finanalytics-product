@@ -14,3 +14,4 @@ finnhub-batch-stock-pipeline/finance_db.duckdb
 **/__pycache__/
 *.py[cod]
 finnhub-batch-stock-pipeline/home/
+**/jars/

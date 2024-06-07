@@ -1,1 +1,0 @@
-:: loading settings :: url = jar:file:/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
