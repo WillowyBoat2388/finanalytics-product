@@ -38,7 +38,7 @@ runLauncher:
           mountPath: /opt/dagster/dagster_home
       runK8sConfig:
         containerConfig: # raw config for the pod's main container
-          image: docker.io/library/fnhb-btch-stck-ppln:v1.1.0
+          image: docker.io/library/fnhb-btch-stck-ppln:v1.0.0
           resources:
             limits:
               cpu: 8000m

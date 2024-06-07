@@ -16,5 +16,8 @@ COPY requirements.txt .
 #Install all requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Clear Ivy cache
+RUN rm -rf /root/.ivy2/cache && rm -rf /root/.ivy2/jars
+
 #Get pipeline code-location
 COPY ./finnhub-batch-stock-pipeline/ .
