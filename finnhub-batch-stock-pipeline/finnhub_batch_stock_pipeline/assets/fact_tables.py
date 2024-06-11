@@ -30,43 +30,59 @@ from pyspark.sql import functions as F
     can_subset=True
 )
 def fact_tables(context, metric:DataFrame, series:DataFrame) -> tuple[pa.Table, pa.Table, DataFrame, DataFrame]:
+    """
+    Multi asset for defining assets which populate data warehouse and data lake while incorporating 
+    quality checks for datasets.
+    """
 
+    # Iterate over each column in the series DataFrame
     for cols in series.columns:
         if cols == "date":
-            series =  series.withColumn(cols, F.col(cols).cast(DateType()))
+            # Cast 'date' column to DateType
+            series = series.withColumn(cols, F.col(cols).cast(DateType()))
         elif cols == "symbol":
+            # Cast 'symbol' column to StringType
             series = series.withColumn(cols, F.cast(StringType(), F.col(cols)))
         else:
+            # Cast all other columns to FloatType
             series = series.withColumn(cols, F.col(f"`{cols}`").cast(FloatType()))
+
+    # Iterate over each column in the metric DataFrame
     for cols in metric.columns:
         if cols == "symbol":
+            # Cast 'symbol' column to StringType
             metric = metric.withColumn(cols, F.cast(StringType(), F.col(cols)))
         else:
-            metric = metric.withColumn(cols, F.col(cols).cast(FloatType())) 
-    
+            # Cast all other columns to FloatType
+            metric = metric.withColumn(cols, F.col(cols).cast(FloatType()))
 
-    # context.log.info(metric.schema.simpleString)
-    # context.log.info(series.schema.simpleString)
-
+    # Create a list of metric DataFrame columns
     metric_fact_cols = list(metric.columns)
 
+    # Move 'symbol' column to the end of the list
     metric_fact_cols.remove("symbol")
     metric_fact_cols.append("symbol")
 
+    # Assign metric DataFrame to metric_fact
     metric_fact = metric
 
+    # Select columns in the specified order (with 'symbol' at the end)
     metric_fact = metric_fact.select(*metric_fact_cols)
 
+    # Assign series DataFrame to series_fact
     series_fact = series
 
+    # Create warehouse versions of the DataFrames
     metric_fact_wrh = metric_fact
-
     series_fact_wrh = series_fact
 
+    # Convert metric DataFrame to an Arrow Table for the data lake
     metric_fact_lake = metric._collect_as_arrow()
     metric_fact_lake = pa.Table.from_batches(metric_fact_lake)
 
+    # Convert series DataFrame to an Arrow Table for the data lake
     series_fact_lake = series._collect_as_arrow()
     series_fact_lake = pa.Table.from_batches(series_fact_lake)
 
+    # Return the DataFrames for both warehouse and data lake
     return metric_fact_lake, series_fact_lake, metric_fact_wrh, series_fact_wrh
