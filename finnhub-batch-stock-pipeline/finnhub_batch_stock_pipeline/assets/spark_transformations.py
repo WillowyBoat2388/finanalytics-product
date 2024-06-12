@@ -304,63 +304,77 @@ def merge_and_analyze(context, df_list):
     mtrcschema = None
     srsschema = None
     
-    
-    for item in df_list:
-        if item.filter(item.type == "series").count() > 0:
+    try:
+        for item in df_list:
+            from pyspark.sql.functions import col, count
+
+            if 'type' in item.columns:
+                count_df = item.select(count(when(col('type') == "series", 1)).alias('series_count'))
+                count = count_df.collect()[0]['series_count']
+                if count > 0:
+                    # Your code here
             
-            mtrc = item.filter(item["type"] == "metric")
-            srs = item.filter(item["type"] == "series")
+            # if item.filter(item.type == "series").count() > 0:
+                    
+                    mtrc = item.filter(item["type"] == "metric")
+                    srs = item.filter(item["type"] == "series")
 
-            # Get the list of column names
-            all_columns = item.columns
-            
-            # Find the index of the column to keep
-            keep_column_index = all_columns.index("type")
-            
-            # Slice the list of columns to keep only the column to keep and its surrounding columns
-            srscolumns_to_keep = all_columns[keep_column_index - 1:-1]
-            mtrccolumns_to_keep = all_columns[:keep_column_index]
-            
-            # Select only the columns to keep
-            mtrc = mtrc.select(*[f"`{value}`" for value in mtrccolumns_to_keep])
-            srs = srs.select(*[f"`{value}`" for value in srscolumns_to_keep])
+                    # Get the list of column names
+                    all_columns = item.columns
+                    
+                    # Find the index of the column to keep
+                    keep_column_index = all_columns.index("type")
+                    
+                    # Slice the list of columns to keep only the column to keep and its surrounding columns
+                    srscolumns_to_keep = all_columns[keep_column_index - 1:-1]
+                    mtrccolumns_to_keep = all_columns[:keep_column_index]
+                    
+                    # Select only the columns to keep
+                    mtrc = mtrc.select(*[f"`{value}`" for value in mtrccolumns_to_keep])
+                    srs = srs.select(*[f"`{value}`" for value in srscolumns_to_keep])
 
-            srs = srs.drop("type")
+                    srs = srs.drop("type")
 
-            schemas['mtrc'] = mtrc.schema
-            mtrcschema = mtrc.schema
+                    schemas['mtrc'] = mtrc.schema
+                    mtrcschema = mtrc.schema
 
 
-            schemas['srs'] = srs.schema
-            srsschema = srs.schema
+                    schemas['srs'] = srs.schema
+                    srsschema = srs.schema
 
-            metric.append(mtrc)
-            
-            series.append(srs)
+                    metric.append(mtrc)
+                    
+                    series.append(srs)
 
-            context.log.info(f"srsmetric_col_len:    {len(mtrc.columns)}")
-            # context.log.info(item.head())
-        elif item.filter(item.type == "series").count() == 0:
-            mtrc = item.filter(item["type"] == "metric").drop("type")
-            
-            metric.append(mtrc)
-            context.log.info(f"metric_col_len:    {len(mtrc.columns)}")
-            # context.log.info(item.head())
-        else:
-            context.log.info(item.head())
+                    context.log.info(f"srsmetric_col_len:    {len(mtrc.columns)}")
+                    # context.log.info(item.head())
+                else:
+                    mtrc = item.filter(item["type"] == "metric").drop("type")
+                    
+                    metric.append(mtrc)
+                    context.log.info(f"metric_col_len:    {len(mtrc.columns)}")
+                    # context.log.info(item.head())
+                # else:
+                #     context.log.info(item.head())
+            else:
+                print("Column 'type' does not exist in the DataFrame")
+
+    except Exception as e:
+        context.log.info(f"Pyspark Error while attempting to split dataframes: {e}")
 
     # Create an empty dataframe with empty schema
     mrgd_df_mtrc = spark.createDataFrame(data = [],
                            schema = schemas['mtrc'])
     mrgd_df_srs = spark.createDataFrame(data = [],
                            schema = schemas['srs'])
-    
-    for value in metric:
-        mrgd_df_mtrc = mrgd_df_mtrc.unionByName(value, allowMissingColumns=True)
+    try:
+        for value in metric:
+            mrgd_df_mtrc = mrgd_df_mtrc.unionByName(value, allowMissingColumns=True)
 
-    for value in series:
-        mrgd_df_srs = mrgd_df_srs.unionByName(value, allowMissingColumns=True)
-
+        for value in series:
+            mrgd_df_srs = mrgd_df_srs.unionByName(value, allowMissingColumns=True)
+    except Exception as e:
+        context.log.info(f"Pyspark Error while attempting to merge dataframes: {e}")
     
     return mrgd_df_mtrc, mrgd_df_srs
 
