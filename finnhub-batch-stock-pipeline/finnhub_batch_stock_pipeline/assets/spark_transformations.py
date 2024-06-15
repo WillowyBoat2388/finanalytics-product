@@ -381,8 +381,9 @@ def merge_and_analyze(context, df_list):
     except Exception as e:
         context.log.info(f"Pyspark Error while attempting to merge dataframes: {e}")
     
-    return mrgd_df_mtrc, mrgd_df_srs
+    mrgd_df_mtrc, mrgd_df_srs = mrgd_df_mtrc.coalesce(1), mrgd_df_srs.coalesce(1)
 
+    return mrgd_df_mtrc, mrgd_df_srs
 
 
 @graph_multi_asset(

@@ -80,6 +80,7 @@ pyspark_config = {
                 "spark.hadoop.fs.s3a.endpoint.region": os.getenv('AWS_REGION'),
                 "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
                 "spark.hadoop.fs.s3a.path.style.access": "true",
+                # "spark.driver.memory": "4g",
                 "spark.dynamicAllocation.enabled": "true",
                 "spark.shuffle.service.enabled": "true",
                 "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension",
