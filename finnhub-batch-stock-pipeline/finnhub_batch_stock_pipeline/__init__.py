@@ -70,6 +70,7 @@ jars = [
 jars_paths = ",".join(jars)
 
 pyspark_config = {
+                # "spark.jars": jars_paths,
                 "spark.driver.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
                 "spark.executor.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
                 "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
@@ -86,7 +87,8 @@ pyspark_config = {
             }
 # config for pyspark resource using inprocess executor
 pyspark_config_inprocess = {
-                "spark.jars": jars_paths,
+                # "spark.jars": jars_paths,
+                "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
                 "spark.hadoop.fs.s3a.endpoint": os.getenv("AWS_ENDPOINT"),
