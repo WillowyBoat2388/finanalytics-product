@@ -1,99 +1,0 @@
-[32m2024-06-15 13:47:08 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185800 - LOGS_CAPTURED - Started capturing logs in process (pid: 185800).
-[32m2024-06-15 13:47:08 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185800 - spark_operator.create_stock_tables[stock_AAGH] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AAGH]".
-[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGH] - Loading file from: /workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/tmpoagzo_ny/storage/0dfb4247-a2ad-4642-9874-036c87f7f86d/spark_operator.stock_tables/result/stock_AAGH using PickledObjectFilesystemIOManager...
-[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185800 - spark_operator.create_stock_tables[stock_AAGH] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
-[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185800 - spark_operator.create_stock_tables[stock_AAGH] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
-24/06/15 13:47:18 WARN Utils: Your hostname, codespaces-e7c8c2 resolves to a loopback address: 127.0.0.1; using 172.16.5.4 instead (on interface eth0)
-24/06/15 13:47:18 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-24/06/15 13:47:21 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-24/06/15 13:47:28 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
-24/06/15 13:47:28 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
-24/06/15 13:47:28 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
-24/06/15 13:47:28 WARN Utils: Service 'SparkUI' could not bind on port 4043. Attempting port 4044.
-24/06/15 13:47:41 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
-[Stage 0:>                                                          (0 + 0) / 4][Stage 0:>                                                          (0 + 4) / 4][Stage 0:===========================================================(4 + 0) / 4]                                                                                24/06/15 13:48:15 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
-[Stage 1:>                                                          (0 + 4) / 4][Stage 1:==============>                                            (1 + 3) / 4][Stage 3:>                                                          (0 + 1) / 1]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 3) / 3][Stage 5:===================>                                       (1 + 2) / 3][Stage 5:=======================================>                   (2 + 1) / 3]                                                                                [32m2024-06-15 13:48:22 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGH] - Row(10DayAverageTradingVolume=0.7329, 13WeekPriceReturnDaily=-49.1228, 26WeekPriceReturnDaily=-35.5556, 3MonthADReturnStd=4957.3203, 3MonthAverageTradingVolume=5.83916, 52WeekHigh=0.025, 52WeekHighDate='2023-06-22', 52WeekLow=0.0001, 52WeekLowDate='2024-05-31', 52WeekPriceReturnDaily=45.45455, 5DayPriceReturnDaily=11.5385, assetTurnoverAnnual=0.683, assetTurnoverTTM=0.8879, beta=29.721094, bookValuePerShareAnnual=-0.00021, bookValuePerShareQuarterly=-0.00022, capexCagr5Y=None, cashFlowPerShareAnnual=0, cashFlowPerShareQuarterly=0, cashFlowPerShareTTM=-3e-05, cashPerSharePerShareAnnual=0, cashPerSharePerShareQuarterly=0, currentDividendYieldTTM=None, currentRatioAnnual=0.058, currentRatioQuarterly=0.0818, dividendPerShareTTM=None, ebitdPerShareAnnual=0, ebitdPerShareTTM=0, ebitdaCagr5Y=None, ebitdaInterimCagr5Y=None, enterpriseValue=56.8771, epsAnnual=0, epsBasicExclExtraItemsAnnual=0, epsBasicExclExtraItemsTTM=0, epsExclExtraItemsAnnual=0, epsExclExtraItemsTTM=0, epsGrowth3Y=None, epsGrowth5Y=None, epsGrowthQuarterlyYoy=None, epsGrowthTTMYoy=None, epsInclExtraItemsAnnual=0, epsInclExtraItemsTTM=0, epsNormalizedAnnual=0, epsTTM=0, focfCagr5Y=None, grossMargin5Y=-261.49, grossMarginAnnual=82.52, grossMarginTTM=87.32, inventoryTurnoverAnnual=0.3183, inventoryTurnoverTTM=0.1674, marketCapitalization=55.09137, monthToDatePriceReturnDaily=2800, netIncomeEmployeeAnnual=-0.1088, netIncomeEmployeeTTM=-0.1247, netInterestCoverageAnnual=-1.4582, netInterestCoverageTTM=-1.4316, netProfitMargin5Y=-1519.09, netProfitMarginAnnual=-372.68, netProfitMarginTTM=-240.93, operatingMargin5Y=-1451.04, operatingMarginAnnual=-241.12, operatingMarginTTM=-142.78, pcfShareAnnual=None, pcfShareTTM=None, peAnnual=None, peBasicExclExtraTTM=None, peExclExtraTTM=None, peInclExtraTTM=None, peNormalizedAnnual=None, peTTM=None, pretaxMargin5Y=-1536.13, pretaxMarginAnnual=-380.47, pretaxMarginTTM=-243.02, priceRelativeToS&P50013Week=-54.2549, priceRelativeToS&P50026Week=-53.935, priceRelativeToS&P5004Week=104.5402, priceRelativeToS&P50052Week=28.47984, priceRelativeToS&P500Ytd=-94.774, psAnnual=269.646, psTTM=201.2764, quickRatioAnnual=0.0175, quickRatioQuarterly=0.0373, receivablesTurnoverAnnual=444.1522, receivablesTurnoverTTM=7.7069, revenueEmployeeAnnual=0.0292, revenueEmployeeTTM=0.0391, revenueGrowth3Y=234.27, revenueGrowth5Y=None, revenueGrowthQuarterlyYoy=138.35, revenueGrowthTTMYoy=16.84, revenuePerShareAnnual=0, revenuePerShareTTM=0, revenueShareGrowth5Y=None, roa5Y=-13624.02, roaRfy=-254.54, roaTTM=-283.21, roeTTM=-235.0087, tangibleBookValuePerShareAnnual=-0.00021, tangibleBookValuePerShareQuarterly=-0.00022, yearToDatePriceReturnDaily=-83.8889)
-[Stage 6:>                                                          (0 + 4) / 4][Stage 6:==============>                                            (1 + 3) / 4]                                                                                [Stage 7:>                                                          (0 + 4) / 4][Stage 7:>                  (0 + 4) / 4][Stage 8:>                  (0 + 0) / 4][Stage 7:==============>    (3 + 1) / 4][Stage 8:>                  (0 + 3) / 4][Stage 8:>                                                          (0 + 4) / 4][Stage 8:============================================>              (3 + 1) / 4][Stage 11:>                                                         (0 + 1) / 1][Stage 11:==========================================================(1 + 0) / 1]                                                                                [Stage 16:>                                                         (0 + 4) / 4][Stage 16:>                 (0 + 4) / 4][Stage 17:>                 (0 + 0) / 4][Stage 16:====>             (1 + 3) / 4][Stage 17:>                 (0 + 1) / 4][Stage 16:=============>    (3 + 1) / 4][Stage 17:>                 (0 + 3) / 4][Stage 17:>                                                         (0 + 4) / 4][Stage 17:==============>                                           (1 + 3) / 4][Stage 17:=============================>                            (2 + 2) / 4][Stage 17:===========================================>              (3 + 1) / 4][Stage 20:>                                                         (0 + 1) / 1]                                                                                [32m2024-06-15 13:48:50 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGH] - Row(date='2014-06-30', quarterly.assetTurnoverTTM=None, quarterly.cashRatio=None, quarterly.currentRatio=None, quarterly.ebitPerShare=None, quarterly.eps=None, quarterly.ev=None, quarterly.fcfMargin=None, quarterly.fcfPerShareTTM=None, quarterly.grossMargin=None, quarterly.inventoryTurnoverTTM=None, quarterly.longtermDebtTotalAsset=None, quarterly.longtermDebtTotalCapital=None, quarterly.netDebtToTotalCapital=None, quarterly.netMargin=None, quarterly.operatingMargin=None, quarterly.pretaxMargin=None, quarterly.psTTM=None, quarterly.quickRatio=None, quarterly.receivablesTurnoverTTM=None, quarterly.roaTTM=None, quarterly.salesPerShare=None, quarterly.sgaToSale=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.cashRatio=0.0, annual.currentRatio=0.0, annual.ebitPerShare=0.0, annual.eps=0.0, annual.ev=None, annual.grossMargin=None, annual.inventoryTurnover=None, annual.longtermDebtTotalAsset=None, annual.longtermDebtTotalCapital=None, annual.netDebtToTotalCapital=None, annual.netMargin=None, annual.operatingMargin=None, annual.pe=None, annual.pretaxMargin=None, annual.ps=None, annual.quickRatio=0.0, annual.receivablesTurnover=None, annual.roa=None, annual.salesPerShare=0, annual.sgaToSale=None, annual.totalDebtToTotalAsset=None, annual.totalDebtToTotalCapital=None, annual.totalRatio=0.0)
-[Stage 21:>                                                         (0 + 4) / 4][Stage 21:===========================================>              (3 + 1) / 4][Stage 22:>                                                         (0 + 4) / 4][Stage 22:==============>                                           (1 + 3) / 4][Stage 23:>                                                         (0 + 4) / 4][Stage 23:>                 (0 + 4) / 4][Stage 24:>                 (0 + 0) / 4][Stage 23:====>             (1 + 3) / 4][Stage 24:>                 (0 + 1) / 4][Stage 23:=============>    (3 + 1) / 4][Stage 24:>                 (0 + 3) / 4][Stage 24:>                                                         (0 + 4) / 4][Stage 24:==============>                                           (1 + 3) / 4][Stage 24:=============================>                            (2 + 2) / 4][Stage 25:>                                                         (0 + 4) / 4][Stage 25:>                 (0 + 4) / 4][Stage 26:>                 (0 + 0) / 4][Stage 25:====>             (1 + 3) / 4][Stage 26:>                 (0 + 1) / 4][Stage 26:>                                                         (0 + 4) / 4][Stage 26:==============>                                           (1 + 3) / 4][Stage 26:=============================>                            (2 + 2) / 4]ERROR:root:Exception while sending command.
-Traceback (most recent call last):
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/clientserver.py", line 511, in send_command
-    answer = smart_decode(self.stream.readline()[:-1])
-RuntimeError: reentrant call inside <_io.BufferedReader name=9>
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/java_gateway.py", line 1038, in send_command
-    response = connection.send_command(command)
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/clientserver.py", line 539, in send_command
-    raise Py4JNetworkError(
-py4j.protocol.Py4JNetworkError: Error while sending or receiving
-ERROR:root:Exception while sending command.
-Traceback (most recent call last):
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/clientserver.py", line 511, in send_command
-    answer = smart_decode(self.stream.readline()[:-1])
-  File "/usr/local/python/3.10.13/lib/python3.10/socket.py", line 705, in readinto
-    return self._sock.recv_into(b)
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/context.py", line 381, in signal_handler
-    self.cancelAllJobs()
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/context.py", line 2446, in cancelAllJobs
-    self._jsc.sc().cancelAllJobs()
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/java_gateway.py", line 1322, in __call__
-    return_value = get_return_value(
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
-    return f(*a, **kw)
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/protocol.py", line 334, in get_return_value
-    raise Py4JError(
-py4j.protocol.Py4JError: An error occurred while calling o35.sc
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/java_gateway.py", line 1038, in send_command
-    response = connection.send_command(command)
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/clientserver.py", line 539, in send_command
-    raise Py4JNetworkError(
-py4j.protocol.Py4JNetworkError: Error while sending or receiving
-[32m2024-06-15 13:49:05 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGH] - Pyspark Error: An error occurred while calling o433.javaToPython
-[32m2024-06-15 13:49:05 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185800 - spark_operator.create_stock_tables[stock_AAGH] - STEP_OUTPUT - Yielded output "metric_and_series" of type "Any". (Type check passed).
-[32m2024-06-15 13:49:07 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGH] - Writing S3 object at: s3a://dagster-api/staging/2024-06-15/spark_operator.create_stock_tables[stock_AAGH]/metric_and_series
-[32m2024-06-15 13:49:07 +0000[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGH] - Removing existing S3 object: staging/2024-06-15/spark_operator.create_stock_tables[stock_AAGH]/metric_and_series
-[32m2024-06-15 13:49:08 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185800 - spark_operator.create_stock_tables[stock_AAGH] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_AAGH]" failed and has requested a retry in 0.1572647374981366 seconds.
-
-dagster._core.execution.plan.utils.RetryRequestedFromPolicy
-
-Stack Trace:
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
-    for step_event in check.generator(step_events):
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
-    for evt in _type_check_and_store_output(step_context, user_event):
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
-    for evt in _store_output(step_context, step_output_handle, output):
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
-    for elt in iterate_with_context(
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
-    with context_fn():
-  File "/usr/local/python/3.10.13/lib/python3.10/contextlib.py", line 153, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
-    raise RetryRequestedFromPolicy(
-
-The above exception was caused by the following exception:
-AttributeError: 'NoneType' object has no attribute 'write'
-
-Stack Trace:
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
-    yield
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
-    next_output = next(iterator)
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
-    gen_output = output_manager.handle_output(output_context, output.value)
-  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 151, in handle_output
-    return self.inner_io_manager().handle_output(context, obj)
-  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/storage/upath_io_manager.py", line 446, in handle_output
-    self.dump_to_path(context=context, obj=obj, path=path)
-  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 83, in dump_to_path
-    obj.write.format("delta").mode('overwrite').save(pathe)
-
