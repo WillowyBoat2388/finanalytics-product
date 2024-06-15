@@ -15,3 +15,4 @@ finnhub-batch-stock-pipeline/finance_db.duckdb
 *.py[cod]
 finnhub-batch-stock-pipeline/home/
 finnhub-batch-stock-pipeline/jars/
+/finnhub-batch-stock-pipeline/tmpc70401vp
