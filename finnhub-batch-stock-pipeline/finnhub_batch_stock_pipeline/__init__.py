@@ -22,11 +22,11 @@ import os
 import uuid
 
 
-uuidgen = uuid.uuid4()
-ivy_cache_dir=f"/home/spark/.ivy2/cache/{uuidgen}"
+# uuidgen = uuid.uuid4()
+# ivy_cache_dir=f"/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/jars/.ivy2/cache/{uuidgen}"
 
 # dictionary to configure job executors and their specific required configs
-execution = {'inprocess': in_process_executor(),
+execution = {'inprocess': in_process_executor,
             'multiprocess': multiprocess_executor.configured({ "max_concurrent": 8}),
             'k8s': k8s_job_executor.configured({
                 "job_image": "spark:python3-java17",
@@ -58,22 +58,22 @@ config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
 client_config = ClientConfig(allow_http=True)
 
 jars = [
-    "/jars/delta-spark_2.12-3.1.0.jar",
-    "/jars/delta-core_2.12-2.4.0.jar",
-    "/jars/delta-storage-3.1.0.jar",
-    "/jars/hadoop-aws-3.3.4.jar",
-    "/jars/hadoop-common-3.3.4.jar",
-    "/jars/aws-java-sdk-bundle-1.12.262.jar"
+    "jars/delta-spark_2.12-3.1.0.jar",
+    "jars/delta-core_2.12-2.4.0.jar",
+    "jars/delta-storage-3.1.0.jar",
+    "jars/hadoop-aws-3.3.4.jar",
+    "jars/hadoop-common-3.3.4.jar",
+    "jars/aws-java-sdk-bundle-1.12.262.jar"
 ]
 
 # Join the paths with a comma separator
 jars_paths = ",".join(jars)
 
 pyspark_config = {
-                # "spark.jars": jars_paths,
-                "spark.driver.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
-                "spark.executor.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
-                "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
+                "spark.jars": jars_paths,
+                # "spark.driver.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
+                # "spark.executor.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
+                # "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
                 "spark.hadoop.fs.s3a.endpoint": os.getenv("AWS_ENDPOINT"),

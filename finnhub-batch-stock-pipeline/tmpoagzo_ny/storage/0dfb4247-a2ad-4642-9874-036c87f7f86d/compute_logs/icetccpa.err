@@ -1,0 +1,73 @@
+[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185994 - LOGS_CAPTURED - Started capturing logs in process (pid: 185994).
+[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185994 - spark_operator.create_stock_tables[stock_AAGR] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AAGR]".
+[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGR] - Loading file from: /workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/tmpoagzo_ny/storage/0dfb4247-a2ad-4642-9874-036c87f7f86d/spark_operator.stock_tables/result/stock_AAGR using PickledObjectFilesystemIOManager...
+[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185994 - spark_operator.create_stock_tables[stock_AAGR] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-06-15 13:47:09 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185994 - spark_operator.create_stock_tables[stock_AAGR] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/06/15 13:47:17 WARN Utils: Your hostname, codespaces-e7c8c2 resolves to a loopback address: 127.0.0.1; using 172.16.5.4 instead (on interface eth0)
+24/06/15 13:47:17 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+24/06/15 13:47:20 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/06/15 13:47:27 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+24/06/15 13:47:39 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
+[Stage 0:>                                                          (0 + 0) / 4][Stage 0:>                                                          (0 + 4) / 4]                                                                                24/06/15 13:48:11 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+[Stage 1:>                                                          (0 + 4) / 4][Stage 1:============================================>              (3 + 1) / 4]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 3) / 3]                                                                                [32m2024-06-15 13:48:17 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGR] - Row(10DayAverageTradingVolume=0.0133, 13WeekPriceReturnDaily=-30.2756, 26WeekPriceReturnDaily=-92.1637, 3MonthADReturnStd=129.3985, 3MonthAverageTradingVolume=0.04074, 52WeekHigh=10.93, 52WeekHighDate='2023-12-05', 52WeekLow=0.291, 52WeekLowDate='2024-04-05', 5DayPriceReturnDaily=2.6667, beta=-0.6174685, cashFlowPerShareAnnual=-0.1367, cashPerSharePerShareAnnual=0.0026, cashPerSharePerShareQuarterly=0.0016, currentRatioAnnual=0.0168, currentRatioQuarterly=0.0079, ebitdPerShareAnnual=-0.2972, ebitdPerShareTTM=-0.3738, epsAnnual=-0.2454, epsBasicExclExtraItemsAnnual=-0.2454, epsBasicExclExtraItemsTTM=-0.2436, epsExclExtraItemsAnnual=-0.2454, epsExclExtraItemsTTM=-0.2436, epsGrowthQuarterlyYoy=None, epsInclExtraItemsAnnual=-0.2454, epsInclExtraItemsTTM=-0.2436, epsNormalizedAnnual=-0.2454, epsTTM=-0.2436, marketCapitalization=20.49643, monthToDatePriceReturnDaily=-7.4713, pcfShareAnnual=None, peAnnual=None, peBasicExclExtraTTM=None, peExclExtraTTM=None, peInclExtraTTM=None, peNormalizedAnnual=None, peTTM=None, priceRelativeToS&P50013Week=-35.4077, priceRelativeToS&P50026Week=-110.5431, priceRelativeToS&P5004Week=-10.3391, priceRelativeToS&P500Ytd=-85.7895, quickRatioAnnual=0.0035, quickRatioQuarterly=0.0012, roaRfy=-18.3, roaTTM=-12.920000000000002, roeRfy=-29.160000000000004, roeTTM=-28.9, roiAnnual=-28.58, roiTTM=-26.8, totalDebt/totalEquityAnnual=0.0202, totalDebt/totalEquityQuarterly=1.0581, yearToDatePriceReturnDaily=-71.664)
+[Stage 6:>                                                          (0 + 4) / 4][Stage 6:==============>                                            (1 + 3) / 4][Stage 6:============================================>              (3 + 1) / 4]                                                                                [Stage 7:>                                                          (0 + 4) / 4][Stage 7:============================================>              (3 + 1) / 4][Stage 8:>                                                          (0 + 4) / 4][Stage 8:==============>                                            (1 + 3) / 4][Stage 8:============================================>              (3 + 1) / 4][Stage 11:>                                                         (0 + 1) / 1]                                                                                [Stage 16:>                                                         (0 + 4) / 4][Stage 16:==============>                                           (1 + 3) / 4][Stage 17:>                                                         (0 + 4) / 4][Stage 17:===========================================>              (3 + 1) / 4]                                                                                [32m2024-06-15 13:48:38 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AAGR] - Row(date='2021-12-31', quarterly.cashRatio=None, quarterly.currentRatio=None, quarterly.netDebtToTotalCapital=None, quarterly.netDebtToTotalEquity=None, quarterly.quickRatio=None, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.rotcTTM=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.cashRatio=1.1384257009267484, annual.currentRatio=1.2924, annual.netDebtToTotalCapital=-0.007, annual.netDebtToTotalEquity=-0.007, annual.quickRatio=1.1384, annual.roa=-0.0076, annual.roe=-0.008, annual.roic=-0.008, annual.rotc=-0.008, annual.totalDebtToEquity=0.0, annual.totalDebtToTotalAsset=0.0, annual.totalDebtToTotalCapital=0.0, annual.totalRatio=24.5987)
+[Stage 21:>                                                         (0 + 4) / 4][Stage 21:==============>                                           (1 + 3) / 4][Stage 21:=============================>                            (2 + 2) / 4][Stage 22:>                                                         (0 + 4) / 4][Stage 23:>                                                         (0 + 4) / 4][Stage 23:>                 (0 + 4) / 4][Stage 24:>                 (0 + 0) / 4][Stage 23:====>             (1 + 3) / 4][Stage 24:>                 (0 + 1) / 4][Stage 23:=============>    (3 + 1) / 4][Stage 24:>                 (0 + 3) / 4][Stage 24:>                                                         (0 + 4) / 4][Stage 24:==============>                                           (1 + 3) / 4][Stage 24:=============================>                            (2 + 2) / 4][Stage 25:>                                                         (0 + 4) / 4][Stage 25:>                 (0 + 4) / 4][Stage 26:>                 (0 + 0) / 4][Stage 25:====>             (1 + 3) / 4][Stage 26:>                 (0 + 1) / 4][Stage 25:=========>        (2 + 2) / 4][Stage 26:>                 (0 + 2) / 4][Stage 26:>                                                         (0 + 4) / 4][Stage 26:==============>                                           (1 + 3) / 4][Stage 30:>                                                         (0 + 4) / 4][Stage 30:===========================================>              (3 + 1) / 4][32m2024-06-15 13:49:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185994 - spark_operator.create_stock_tables[stock_AAGR] - STEP_OUTPUT - Yielded output "metric_and_series" of type "Any". (Type check passed).
+[32m2024-06-15 13:49:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 185994 - spark_operator.create_stock_tables[stock_AAGR] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_AAGR]" failed and has requested a retry in 0.1587228729726946 seconds.
+
+dagster._core.definitions.events.RetryRequested
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
+    for evt in _store_output(step_context, step_output_handle, output):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
+    for elt in iterate_with_context(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/usr/local/python/3.10.13/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 94, in op_execution_error_boundary
+    raise RetryRequested(
+
+The above exception was caused by the following exception:
+dagster._core.errors.DagsterExecutionInterruptedError
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 151, in handle_output
+    return self.inner_io_manager().handle_output(context, obj)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/cached_method.py", line 104, in _cached_method_wrapper
+    result = method(self, *args, **kwargs)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 142, in inner_io_manager
+    s3_session=self.s3_resource.get_client(),
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster_aws/s3/resources.py", line 89, in get_client
+    return construct_s3_client(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster_aws/s3/utils.py", line 50, in construct_s3_client
+    s3_client = client_session.resource(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/boto3/session.py", line 396, in resource
+    resource_model = self._loader.load_service_model(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/botocore/loaders.py", line 142, in _wrapper
+    data = func(self, *args, **kwargs)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/botocore/loaders.py", line 406, in load_service_model
+    known_services = self.list_available_services(type_name)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/botocore/loaders.py", line 142, in _wrapper
+    data = func(self, *args, **kwargs)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/botocore/loaders.py", line 304, in list_available_services
+    possible_services = [
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/botocore/loaders.py", line 307, in <listcomp>
+    if os.path.isdir(os.path.join(possible_path, d))
+  File "/usr/local/python/3.10.13/lib/python3.10/genericpath.py", line 42, in isdir
+    st = os.stat(s)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/interrupts.py", line 82, in _new_signal_handler
+    raise error_cls()
+

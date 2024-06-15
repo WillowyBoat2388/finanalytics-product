@@ -115,166 +115,171 @@ def get_array_element_names(schema, parent_name=''):
     }
 )
 def create_stock_tables(context:OpExecutionContext, input_fn):
-  
-    pyspark = context.resources.pyspark
-    spark = pyspark.spark_session
-    sc = pyspark.spark_session.sparkContext
-    metric_and_series_list = []
-    mtrc_and_srs = []
-    symbols = []
-    dct = {}
-    for key,value in input_fn.items():
-        read_options = {
-            "multiline": True,
-            "mode": "PERMISSIVE",
-            "dateFormat": "yyyy-MM-dd",
-            "allowSingleQuotes": True
-        }
-        if key == 'metric':
-            df = spark.read.options(**read_options).json(sc.parallelize([json.dumps(value)]))
-            
-            mtrc_and_srs.append(df)
-            
-            dct['mtrc'] = df.count()
+    try:
+        pyspark = context.resources.pyspark
+        spark = pyspark.spark_session
+        sc = pyspark.spark_session.sparkContext
+        metric_and_series_list = []
+        mtrc_and_srs = []
+        symbols = []
+        dct = {}
+        for key,value in input_fn.items():
+            read_options = {
+                "multiline": True,
+                "mode": "PERMISSIVE",
+                "dateFormat": "yyyy-MM-dd",
+                "allowSingleQuotes": True
+            }
+            if key == 'metric':
+                df = spark.read.options(**read_options).json(sc.parallelize([json.dumps(value)]))
+                
+                mtrc_and_srs.append(df)
+                
+                dct['mtrc'] = df.count()
 
-            context.log.info(df.head())
-            # context.log.info(df.count())
-            # break
+                context.log.info(df.head())
+                # context.log.info(df.count())
+                # break
+            
+            elif key == 'series' and value:
+                df = spark.read.options(**read_options).json(sc.parallelize([json.dumps(value)]))
+                
+                annual_schema = df.schema["annual"].dataType
+                quarterly_schema = df.schema["quarterly"].dataType
+                quarterly_f_columns = get_array_element_names(quarterly_schema, "quarterly")
+                annual_f_columns = get_array_element_names(annual_schema, "annual")
+                quarterly_columns = get_array_names_in_struct(quarterly_schema, "quarterly")
+                annual_columns = get_array_names_in_struct(annual_schema, "annual")
+
+                annual_zipped = F.arrays_zip(*[column for column in annual_columns])
+                quarterly_zipped = F.arrays_zip(*[column for column in quarterly_columns])
+
+
+                # Explode the annual zipped array to create rows for each period with all 'v' values
+                df_annual_exploded = df.select(
+                    F.explode(annual_zipped).alias("annual")
+                ).select([F.col(cols).alias(f"{'.'.join(str.split(cols, '.')[:-1])}") if "period" not in cols else F.col(cols) for cols in annual_f_columns])
+
+                
+                df_annual_cols = df_annual_exploded.columns
+
+                # Explode the quarterly zipped array to create rows for each period with all 'v' values
+                df_quarterly_exploded = df.select(
+                    F.explode(quarterly_zipped).alias("quarterly")
+                ).select([F.col(cols).alias(f"{'.'.join(str.split(cols, '.')[:-1])}") if "period" not in cols else F.col(cols) for cols in quarterly_f_columns])
+
+                df_quarterly_cols = df_quarterly_exploded.columns
+
+                df_a_dupli_col_idx = [idx for idx, val in enumerate(df_annual_cols) if val == 'period']
+
+                for i in df_a_dupli_col_idx:
+                    df_annual_cols[i] = df_annual_cols[i] + '_duplicate_'+ str(i)
+
+                df_q_dupli_col_idx = [idx for idx, val in enumerate(df_quarterly_cols) if val == 'period']
+
+                for i in df_q_dupli_col_idx:
+                    df_quarterly_cols[i] = df_quarterly_cols[i] + '_duplicate_'+ str(i)
+
+                # Rename the duplicate columns in data frame
+                df_a_e = df_annual_exploded.toDF(*df_annual_cols)
+
+                a_date_columns = [c for c in df_a_e.columns if 'period' in c]
+                a_non_date_columns = [c for c in df_a_e.columns if c not in a_date_columns]
+
+
+                # Rename the duplicate columns in data frame
+                df_q_e = df_quarterly_exploded.toDF(*df_quarterly_cols)
+
+                q_date_columns = [c for c in df_q_e.columns if 'period' in c]
+                q_non_date_columns = [c for c in df_q_e.columns if c not in q_date_columns]
+
+                # Use coalesce to merge the date columns into a single consistent date column
+                df_a_with_single_date = df_a_e.withColumn("date", F.coalesce(*[df_a_e[col] for col in df_a_e.columns if 'period' in col]))
+                df_a_with_single_date = df_a_with_single_date.drop(*[col for col in a_date_columns])
+
+                # Use coalesce to merge the date columns into a single consistent date column
+                df_q_with_single_date = df_q_e.withColumn("date", F.coalesce(*[df_q_e[col] for col in df_q_e.columns if 'period' in col]))
+                df_q_with_single_date = df_q_with_single_date.drop(*[col for col in q_date_columns])
+
+                df = df_q_with_single_date.join(df_a_with_single_date, on='date', how='full')
+
+                mtrc_and_srs.append(df)
+                dct['srs'] = df.count()
+
+                context.log.info(df.head())
+                # context.log.info(df.count())
+
+            elif key == 'symbol':
+                
+                if 'mtrc' in dct.keys():
+                    mtrcsymbl = [[value]] * dct['mtrc']
+                    symbols.append(mtrcsymbl)
+
+                if 'srs' in dct.keys():
+                    srssymbl = [[value]] * dct['srs']
+
+                    symbols.append(srssymbl)
+
+
         
-        elif key == 'series' and value:
-            df = spark.read.options(**read_options).json(sc.parallelize([json.dumps(value)]))
+        # Create an empty schema
+        # Define the schema
+        schema = StructType([
+            StructField("symbol", StringType(), True)
+        ])
+        
+        if len(mtrc_and_srs) == 2:
+            mtrc = mtrc_and_srs[0]
+            mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
+            srs = mtrc_and_srs[1]
+            srssymbol = spark.createDataFrame(sc.parallelize(symbols[-1]), schema)
             
-            annual_schema = df.schema["annual"].dataType
-            quarterly_schema = df.schema["quarterly"].dataType
-            quarterly_f_columns = get_array_element_names(quarterly_schema, "quarterly")
-            annual_f_columns = get_array_element_names(annual_schema, "annual")
-            quarterly_columns = get_array_names_in_struct(quarterly_schema, "quarterly")
-            annual_columns = get_array_names_in_struct(annual_schema, "annual")
+            metric = get_result_dataframe(mtrc, mtrcsymbol, spark)
+            # context.log.info(srs.count())
+            # context.log.info(srssymbol.count())
+            series = get_result_dataframe(srs, srssymbol, spark)
+        
+            # Add a distinguishing column to each DataFrame
+            df1_with_marker = metric.withColumn("type", F.lit("metric"))
+            df2_with_marker = series.withColumn("type", F.lit("series"))
 
-            annual_zipped = F.arrays_zip(*[column for column in annual_columns])
-            quarterly_zipped = F.arrays_zip(*[column for column in quarterly_columns])
+            # Get the list of all columns in both DataFrames
+            metric_columns = df1_with_marker.columns
+            series_columns = df2_with_marker.columns
+            all_columns = metric_columns + [item for item in series_columns if item not in metric_columns]
 
+            df1 = df1_with_marker
+            df2 = df2_with_marker
 
-            # Explode the annual zipped array to create rows for each period with all 'v' values
-            df_annual_exploded = df.select(
-                F.explode(annual_zipped).alias("annual")
-            ).select([F.col(cols).alias(f"{'.'.join(str.split(cols, '.')[:-1])}") if "period" not in cols else F.col(cols) for cols in annual_f_columns])
-
+            # Add missing columns with null values to each DataFrame
+            for col in metric_columns:
+                if col not in series_columns:
+                    df2 = df2.withColumn(col, F.lit(None).cast(StringType()))
+            for col in series_columns:
+                if col not in metric_columns:
+                    df1 = df1.withColumn(col, F.lit(None).cast(StringType()))
             
-            df_annual_cols = df_annual_exploded.columns
+            # Ensure the columns are in the same order
+            df1 = df1.select(*[f"`{col}`" for col in all_columns])
+            df2 = df2.select(*[f"`{col}`" for col in all_columns])
 
-            # Explode the quarterly zipped array to create rows for each period with all 'v' values
-            df_quarterly_exploded = df.select(
-                F.explode(quarterly_zipped).alias("quarterly")
-            ).select([F.col(cols).alias(f"{'.'.join(str.split(cols, '.')[:-1])}") if "period" not in cols else F.col(cols) for cols in quarterly_f_columns])
+            # Union the DataFrames together
+            chained_df = df1.unionByName(df2)
+        else:
+            mtrc = mtrc_and_srs[0]
+            mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
+            metric = get_result_dataframe(mtrc, mtrcsymbol, spark)
 
-            df_quarterly_cols = df_quarterly_exploded.columns
+            chained_df = metric.withColumn("type", F.lit("metric"))
 
-            df_a_dupli_col_idx = [idx for idx, val in enumerate(df_annual_cols) if val == 'period']
+        # context.get_step_execution_context().step.key(f"create_tables_stock_{symbol}")
+        chained_df.coalesce(1)
 
-            for i in df_a_dupli_col_idx:
-                df_annual_cols[i] = df_annual_cols[i] + '_duplicate_'+ str(i)
-
-            df_q_dupli_col_idx = [idx for idx, val in enumerate(df_quarterly_cols) if val == 'period']
-
-            for i in df_q_dupli_col_idx:
-                df_quarterly_cols[i] = df_quarterly_cols[i] + '_duplicate_'+ str(i)
-
-            # Rename the duplicate columns in data frame
-            df_a_e = df_annual_exploded.toDF(*df_annual_cols)
-
-            a_date_columns = [c for c in df_a_e.columns if 'period' in c]
-            a_non_date_columns = [c for c in df_a_e.columns if c not in a_date_columns]
-
-
-            # Rename the duplicate columns in data frame
-            df_q_e = df_quarterly_exploded.toDF(*df_quarterly_cols)
-
-            q_date_columns = [c for c in df_q_e.columns if 'period' in c]
-            q_non_date_columns = [c for c in df_q_e.columns if c not in q_date_columns]
-
-            # Use coalesce to merge the date columns into a single consistent date column
-            df_a_with_single_date = df_a_e.withColumn("date", F.coalesce(*[df_a_e[col] for col in df_a_e.columns if 'period' in col]))
-            df_a_with_single_date = df_a_with_single_date.drop(*[col for col in a_date_columns])
-
-            # Use coalesce to merge the date columns into a single consistent date column
-            df_q_with_single_date = df_q_e.withColumn("date", F.coalesce(*[df_q_e[col] for col in df_q_e.columns if 'period' in col]))
-            df_q_with_single_date = df_q_with_single_date.drop(*[col for col in q_date_columns])
-
-            df = df_q_with_single_date.join(df_a_with_single_date, on='date', how='full')
-
-            mtrc_and_srs.append(df)
-            dct['srs'] = df.count()
-
-            context.log.info(df.head())
-            # context.log.info(df.count())
-
-        elif key == 'symbol':
-            
-            if 'mtrc' in dct.keys():
-                mtrcsymbl = [[value]] * dct['mtrc']
-                symbols.append(mtrcsymbl)
-
-            if 'srs' in dct.keys():
-                srssymbl = [[value]] * dct['srs']
-
-                symbols.append(srssymbl)
-
+        return chained_df
+    except Exception as e:
+        context.log.info(f"Pyspark Error: {e}")
 
     
-    # Create an empty schema
-    # Define the schema
-    schema = StructType([
-        StructField("symbol", StringType(), True)
-    ])
-    
-    if len(mtrc_and_srs) == 2:
-        mtrc = mtrc_and_srs[0]
-        mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
-        srs = mtrc_and_srs[1]
-        srssymbol = spark.createDataFrame(sc.parallelize(symbols[-1]), schema)
-        
-        metric = get_result_dataframe(mtrc, mtrcsymbol, spark)
-        # context.log.info(srs.count())
-        # context.log.info(srssymbol.count())
-        series = get_result_dataframe(srs, srssymbol, spark)
-    
-        # Add a distinguishing column to each DataFrame
-        df1_with_marker = metric.withColumn("type", F.lit("metric"))
-        df2_with_marker = series.withColumn("type", F.lit("series"))
-
-        # Get the list of all columns in both DataFrames
-        metric_columns = df1_with_marker.columns
-        series_columns = df2_with_marker.columns
-        all_columns = metric_columns + [item for item in series_columns if item not in metric_columns]
-
-        df1 = df1_with_marker
-        df2 = df2_with_marker
-
-        # Add missing columns with null values to each DataFrame
-        for col in metric_columns:
-            if col not in series_columns:
-                df2 = df2.withColumn(col, F.lit(None).cast(StringType()))
-        for col in series_columns:
-            if col not in metric_columns:
-                df1 = df1.withColumn(col, F.lit(None).cast(StringType()))
-        
-        # Ensure the columns are in the same order
-        df1 = df1.select(*[f"`{col}`" for col in all_columns])
-        df2 = df2.select(*[f"`{col}`" for col in all_columns])
-
-        # Union the DataFrames together
-        chained_df = df1.unionByName(df2)
-    else:
-        mtrc = mtrc_and_srs[0]
-        mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
-        metric = get_result_dataframe(mtrc, mtrcsymbol, spark)
-
-        chained_df = metric.withColumn("type", F.lit("metric"))
-
-    # context.get_step_execution_context().step.key(f"create_tables_stock_{symbol}")
-    chained_df.coalesce(1)
-    return chained_df
 
 @op(
     required_resource_keys= {"pyspark": PySparkResource},
@@ -309,7 +314,7 @@ def merge_and_analyze(context, df_list):
             from pyspark.sql.functions import col, count
 
             if 'type' in item.columns:
-                count_df = item.select(count(when(col('type') == "series", 1)).alias('series_count'))
+                count_df = item.select(count(F.when(col('type') == "series", 1)).alias('series_count'))
                 count = count_df.collect()[0]['series_count']
                 if count > 0:
                     # Your code here

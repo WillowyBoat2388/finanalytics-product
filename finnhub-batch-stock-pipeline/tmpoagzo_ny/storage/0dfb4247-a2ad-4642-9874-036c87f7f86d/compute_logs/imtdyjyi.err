@@ -1,0 +1,259 @@
+[32m2024-06-15 13:45:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 175040 - LOGS_CAPTURED - Started capturing logs in process (pid: 175040).
+[32m2024-06-15 13:45:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 175040 - spark_operator.create_stock_tables[stock_AACTF] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AACTF]".
+[32m2024-06-15 13:45:02 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACTF] - Loading file from: /workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/tmpoagzo_ny/storage/0dfb4247-a2ad-4642-9874-036c87f7f86d/spark_operator.stock_tables/result/stock_AACTF using PickledObjectFilesystemIOManager...
+[32m2024-06-15 13:45:03 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 175040 - spark_operator.create_stock_tables[stock_AACTF] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-06-15 13:45:03 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 175040 - spark_operator.create_stock_tables[stock_AACTF] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/06/15 13:45:16 WARN Utils: Your hostname, codespaces-e7c8c2 resolves to a loopback address: 127.0.0.1; using 172.16.5.4 instead (on interface eth0)
+24/06/15 13:45:16 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+24/06/15 13:45:19 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/06/15 13:45:24 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+24/06/15 13:45:24 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+24/06/15 13:45:42 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
+[Stage 0:>                                                          (0 + 0) / 4][Stage 0:>                                                          (0 + 4) / 4][Stage 0:=============================>                             (2 + 2) / 4]                                                                                24/06/15 13:46:04 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+[Stage 1:>                                                          (0 + 4) / 4]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 3) / 3]                                                                                [32m2024-06-15 13:46:11 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACTF] - Row(10DayAverageTradingVolume=0.15488, 13WeekPriceReturnDaily=0, 26WeekPriceReturnDaily=100, 3MonthADReturnStd=120.051445, 3MonthAverageTradingVolume=0.15237, 52WeekHigh=0.06, 52WeekHighDate='2024-06-05', 52WeekLow=0.015, 52WeekLowDate='2023-11-08', 52WeekPriceReturnDaily=-61.53846, 5DayPriceReturnDaily=0, assetTurnoverAnnual=0.5846, assetTurnoverTTM=1.0046, beta=1.3885392, bookValuePerShareAnnual=0.0252, bookValuePerShareQuarterly=0.0266, bookValueShareGrowth5Y=-7.79, capexCagr5Y=13.3, cashFlowPerShareAnnual=-0.0113, cashFlowPerShareQuarterly=0.0069, cashFlowPerShareTTM=-0.01403, cashPerSharePerShareAnnual=0.0126, cashPerSharePerShareQuarterly=0.0196, currentDividendYieldTTM=None, currentEv/freeCashFlowTTM=4.7042, currentRatioAnnual=2.0231, currentRatioQuarterly=1.7589, dividendPerShareTTM=None, ebitdPerShareAnnual=-0.0219, ebitdPerShareTTM=-0.0049, ebitdaCagr5Y=None, ebitdaInterimCagr5Y=None, enterpriseValue=7.1745, epsAnnual=-0.0234, epsBasicExclExtraItemsAnnual=-0.0234, epsBasicExclExtraItemsTTM=-0.0097, epsExclExtraItemsAnnual=-0.0234, epsExclExtraItemsTTM=-0.0097, epsGrowth3Y=None, epsGrowth5Y=None, epsGrowthQuarterlyYoy=None, epsGrowthTTMYoy=None, epsInclExtraItemsAnnual=-0.0234, epsInclExtraItemsTTM=-0.0097, epsNormalizedAnnual=-0.0234, epsTTM=-0.0097, focfCagr5Y=None, grossMargin5Y=43.01, grossMarginAnnual=44.4, grossMarginTTM=61.03, inventoryTurnoverAnnual=1.7223, inventoryTurnoverTTM=1.5052, longTermDebt/equityAnnual=0, longTermDebt/equityQuarterly=0, marketCapitalization=11.109704, monthToDatePriceReturnDaily=0, netInterestCoverageAnnual=-6.3585, netMarginGrowth5Y=None, netProfitMargin5Y=-165.97, netProfitMarginAnnual=-81.32, netProfitMarginTTM=11.99, operatingMargin5Y=-169.4, operatingMarginAnnual=-84.97, operatingMarginTTM=24.74, pbAnnual=1.7844, pbQuarterly=1.0178, pcfShareAnnual=None, pcfShareTTM=6.5767, peAnnual=None, peBasicExclExtraTTM=None, peExclExtraTTM=None, peInclExtraTTM=None, peNormalizedAnnual=None, peTTM=None, pfcfShareTTM=5.9352, pretaxMargin5Y=-166.67, pretaxMarginAnnual=-84.82, pretaxMarginTTM=19.74, priceRelativeToS&P50013Week=-5.1321, priceRelativeToS&P50026Week=81.6206, priceRelativeToS&P5004Week=-2.6027, priceRelativeToS&P50052Week=-61.07745, priceRelativeToS&P500Ytd=52.8238, psAnnual=2.0167, psTTM=1.0399, ptbvAnnual=2.1197, ptbvQuarterly=1.1767, quickRatioAnnual=1.1117, quickRatioQuarterly=1.1384, receivablesTurnoverAnnual=8.5587, receivablesTurnoverTTM=7.9779, revenueGrowth3Y=18.65, revenueGrowth5Y=17.05, revenueGrowthQuarterlyYoy=26.41, revenueGrowthTTMYoy=182.62, revenuePerShareAnnual=0.0288, revenuePerShareTTM=0.0481, revenueShareGrowth5Y=-9.94, roa5Y=-82.61, roaRfy=-47.54, roaTTM=-16.220000000000002, roe5Y=-107.43, roeRfy=-79.95, roeTTM=-31.36, roi5Y=-99.78, roiAnnual=-75.72, roiTTM=-29.03, tangibleBookValuePerShareAnnual=0.0212, tangibleBookValuePerShareQuarterly=0.023, tbvCagr5Y=19.84, totalDebt/totalEquityAnnual=0.0559, totalDebt/totalEquityQuarterly=0.0712, yearToDatePriceReturnDaily=66.6667)
+[Stage 6:>                                                          (0 + 4) / 4][Stage 6:=============================>                             (2 + 2) / 4][Stage 6:============================================>              (3 + 1) / 4]                                                                                [Stage 7:>                                                          (0 + 4) / 4][Stage 7:>                  (0 + 4) / 4][Stage 8:>                  (0 + 0) / 4][Stage 7:==============>    (3 + 1) / 4][Stage 8:>                  (0 + 3) / 4][Stage 8:>                                                          (0 + 4) / 4][Stage 8:============================================>              (3 + 1) / 4][Stage 11:>                                                         (0 + 1) / 1]                                                                                [Stage 16:>                                                         (0 + 4) / 4][Stage 16:=============>    (3 + 1) / 4][Stage 17:>                 (0 + 3) / 4][Stage 17:>                                                         (0 + 4) / 4][Stage 17:=============================>                            (2 + 2) / 4][Stage 17:===========================================>              (3 + 1) / 4]                                                                                [32m2024-06-15 13:46:41 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACTF] - Row(date='2007-03-31', quarterly.assetTurnoverTTM=None, quarterly.bookValue=None, quarterly.cashRatio=None, quarterly.currentRatio=None, quarterly.ebitPerShare=None, quarterly.eps=None, quarterly.ev=None, quarterly.fcfMargin=None, quarterly.fcfPerShareTTM=None, quarterly.grossMargin=None, quarterly.inventoryTurnoverTTM=None, quarterly.longtermDebtTotalAsset=None, quarterly.longtermDebtTotalCapital=None, quarterly.longtermDebtTotalEquity=None, quarterly.netDebtToTotalCapital=None, quarterly.netDebtToTotalEquity=None, quarterly.netMargin=None, quarterly.operatingMargin=None, quarterly.pb=None, quarterly.peTTM=None, quarterly.pfcfTTM=None, quarterly.pretaxMargin=None, quarterly.psTTM=None, quarterly.ptbv=None, quarterly.quickRatio=None, quarterly.receivablesTurnoverTTM=None, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.rotcTTM=None, quarterly.salesPerShare=None, quarterly.sgaToSale=None, quarterly.tangibleBookValue=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=None, quarterly.totalDebtToTotalCapital=None, quarterly.totalRatio=None, annual.bookValue=None, annual.cashRatio=9.0, annual.currentRatio=9.5, annual.ebitPerShare=-0.0423, annual.eps=-0.0423, annual.ev=None, annual.grossMargin=None, annual.inventoryTurnover=None, annual.longtermDebtTotalAsset=None, annual.longtermDebtTotalCapital=None, annual.longtermDebtTotalEquity=None, annual.netDebtToTotalCapital=-1.0588, annual.netDebtToTotalEquity=-1.0588, annual.netMargin=None, annual.operatingMargin=None, annual.pb=None, annual.pe=None, annual.pretaxMargin=None, annual.ps=None, annual.ptbv=None, annual.quickRatio=9.5, annual.receivablesTurnover=None, annual.roa=-0.3158, annual.roe=-0.3529, annual.roic=-0.3529, annual.rotc=-0.3529, annual.salesPerShare=None, annual.sgaToSale=None, annual.tangibleBookValue=None, annual.totalDebtToEquity=0.0, annual.totalDebtToTotalAsset=0.0, annual.totalDebtToTotalCapital=0.0, annual.totalRatio=9.5)
+[Stage 21:>                                                         (0 + 4) / 4][Stage 21:==============>                                           (1 + 3) / 4][Stage 21:===========================================>              (3 + 1) / 4][Stage 22:>                                                         (0 + 4) / 4][Stage 22:==============>                                           (1 + 3) / 4][Stage 23:>                                                         (0 + 4) / 4][Stage 23:>                 (0 + 4) / 4][Stage 24:>                 (0 + 0) / 4][Stage 23:====>             (1 + 3) / 4][Stage 24:>                 (0 + 1) / 4][Stage 23:=========>        (2 + 2) / 4][Stage 24:>                 (0 + 2) / 4][Stage 24:>                                                         (0 + 4) / 4][Stage 24:=============================>                            (2 + 2) / 4][Stage 25:>                                                         (0 + 4) / 4][Stage 25:>                 (0 + 4) / 4][Stage 26:>                 (0 + 0) / 4][Stage 25:=============>    (3 + 1) / 4][Stage 26:>                 (0 + 3) / 4][Stage 26:>                                                         (0 + 4) / 4][Stage 26:===========================================>              (3 + 1) / 4][Stage 30:>                                                         (0 + 4) / 4][Stage 30:===========================================>              (3 + 1) / 4][32m2024-06-15 13:47:37 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 175040 - spark_operator.create_stock_tables[stock_AACTF] - STEP_OUTPUT - Yielded output "metric_and_series" of type "Any". (Type check passed).
+[32m2024-06-15 13:47:39 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACTF] - Writing S3 object at: s3a://dagster-api/staging/2024-06-15/spark_operator.create_stock_tables[stock_AACTF]/metric_and_series
+[32m2024-06-15 13:47:39 +0000[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACTF] - Removing existing S3 object: staging/2024-06-15/spark_operator.create_stock_tables[stock_AACTF]/metric_and_series
+24/06/15 13:47:41 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[Stage 37:>                                                         (0 + 4) / 5][Stage 37:===========>                                              (1 + 4) / 5][Stage 37:=======================>                                  (2 + 3) / 5][Stage 37:==================================>                       (3 + 2) / 5]                                                                                [Stage 38:>                                                         (0 + 1) / 1]                                                                                [Stage 41:>                                                        (0 + 4) / 50][Stage 41:=====>                                                   (5 + 4) / 50][Stage 41:======>                                                  (6 + 4) / 50][Stage 41:==========>                                              (9 + 4) / 50][Stage 41:============>                                           (11 + 4) / 50][Stage 41:===============>                                        (14 + 4) / 50][Stage 41:================>                                       (15 + 4) / 50][Stage 41:====================>                                   (18 + 4) / 50][Stage 41:=====================>                                  (19 + 4) / 50][Stage 41:========================>                               (22 + 4) / 50][Stage 41:=========================>                              (23 + 4) / 50][Stage 41:==============================>                         (27 + 4) / 50]24/06/15 13:48:24 ERROR TaskSchedulerImpl: Exception in statusUpdate
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.scheduler.TaskResultGetter$$anon$3@190a0981 rejected from java.util.concurrent.ThreadPoolExecutor@a352588[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 99]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.scheduler.TaskResultGetter.enqueueSuccessfulTask(TaskResultGetter.scala:61)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.liftedTree2$1(TaskSchedulerImpl.scala:836)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.statusUpdate(TaskSchedulerImpl.scala:811)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:71)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24/06/15 13:48:24 ERROR Inbox: Ignoring error
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.executor.Executor$TaskRunner@eef3cd6 rejected from java.util.concurrent.ThreadPoolExecutor@1a95a067[Shutting down, pool size = 4, active threads = 4, queued tasks = 0, completed tasks = 99]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.executor.Executor.launchTask(Executor.scala:363)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1(LocalSchedulerBackend.scala:93)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1$adapted(LocalSchedulerBackend.scala:91)
+	at scala.collection.Iterator.foreach(Iterator.scala:943)
+	at scala.collection.Iterator.foreach$(Iterator.scala:943)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1431)
+	at scala.collection.IterableLike.foreach(IterableLike.scala:74)
+	at scala.collection.IterableLike.foreach$(IterableLike.scala:73)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:56)
+	at org.apache.spark.scheduler.local.LocalEndpoint.reviveOffers(LocalSchedulerBackend.scala:91)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:74)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24/06/15 13:48:24 ERROR TaskSchedulerImpl: Exception in statusUpdate
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.scheduler.TaskResultGetter$$anon$3@412ae6b2 rejected from java.util.concurrent.ThreadPoolExecutor@a352588[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 99]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.scheduler.TaskResultGetter.enqueueSuccessfulTask(TaskResultGetter.scala:61)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.liftedTree2$1(TaskSchedulerImpl.scala:836)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.statusUpdate(TaskSchedulerImpl.scala:811)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:71)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24/06/15 13:48:24 ERROR Inbox: Ignoring error
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.executor.Executor$TaskRunner@42b795b0 rejected from java.util.concurrent.ThreadPoolExecutor@1a95a067[Shutting down, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 101]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.executor.Executor.launchTask(Executor.scala:363)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1(LocalSchedulerBackend.scala:93)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1$adapted(LocalSchedulerBackend.scala:91)
+	at scala.collection.Iterator.foreach(Iterator.scala:943)
+	at scala.collection.Iterator.foreach$(Iterator.scala:943)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1431)
+	at scala.collection.IterableLike.foreach(IterableLike.scala:74)
+	at scala.collection.IterableLike.foreach$(IterableLike.scala:73)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:56)
+	at org.apache.spark.scheduler.local.LocalEndpoint.reviveOffers(LocalSchedulerBackend.scala:91)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:74)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24/06/15 13:48:24 ERROR TaskSchedulerImpl: Exception in statusUpdate
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.scheduler.TaskResultGetter$$anon$3@2007c700 rejected from java.util.concurrent.ThreadPoolExecutor@a352588[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 99]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.scheduler.TaskResultGetter.enqueueSuccessfulTask(TaskResultGetter.scala:61)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.liftedTree2$1(TaskSchedulerImpl.scala:836)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.statusUpdate(TaskSchedulerImpl.scala:811)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:71)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24/06/15 13:48:24 ERROR Inbox: Ignoring error
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.executor.Executor$TaskRunner@d61d231 rejected from java.util.concurrent.ThreadPoolExecutor@1a95a067[Shutting down, pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 102]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.executor.Executor.launchTask(Executor.scala:363)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1(LocalSchedulerBackend.scala:93)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1$adapted(LocalSchedulerBackend.scala:91)
+	at scala.collection.Iterator.foreach(Iterator.scala:943)
+	at scala.collection.Iterator.foreach$(Iterator.scala:943)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1431)
+	at scala.collection.IterableLike.foreach(IterableLike.scala:74)
+	at scala.collection.IterableLike.foreach$(IterableLike.scala:73)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:56)
+	at org.apache.spark.scheduler.local.LocalEndpoint.reviveOffers(LocalSchedulerBackend.scala:91)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:74)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24/06/15 13:48:24 ERROR TaskSchedulerImpl: Exception in statusUpdate
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.scheduler.TaskResultGetter$$anon$3@6d471125 rejected from java.util.concurrent.ThreadPoolExecutor@a352588[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 99]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.scheduler.TaskResultGetter.enqueueSuccessfulTask(TaskResultGetter.scala:61)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.liftedTree2$1(TaskSchedulerImpl.scala:836)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.statusUpdate(TaskSchedulerImpl.scala:811)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:71)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24/06/15 13:48:24 ERROR Inbox: Ignoring error
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.executor.Executor$TaskRunner@5d517a7a rejected from java.util.concurrent.ThreadPoolExecutor@1a95a067[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 103]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.executor.Executor.launchTask(Executor.scala:363)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1(LocalSchedulerBackend.scala:93)
+	at org.apache.spark.scheduler.local.LocalEndpoint.$anonfun$reviveOffers$1$adapted(LocalSchedulerBackend.scala:91)
+	at scala.collection.Iterator.foreach(Iterator.scala:943)
+	at scala.collection.Iterator.foreach$(Iterator.scala:943)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1431)
+	at scala.collection.IterableLike.foreach(IterableLike.scala:74)
+	at scala.collection.IterableLike.foreach$(IterableLike.scala:73)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:56)
+	at org.apache.spark.scheduler.local.LocalEndpoint.reviveOffers(LocalSchedulerBackend.scala:91)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:74)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[32m2024-06-15 13:48:24 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 175040 - spark_operator.create_stock_tables[stock_AACTF] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_AACTF]" failed and has requested a retry in 0.2917464761225681 seconds.
+
+dagster._core.execution.plan.utils.RetryRequestedFromPolicy
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
+    for evt in _store_output(step_context, step_output_handle, output):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
+    for elt in iterate_with_context(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/usr/local/python/3.10.13/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
+    raise RetryRequestedFromPolicy(
+
+The above exception was caused by the following exception:
+py4j.protocol.Py4JJavaError: An error occurred while calling o2609.save.
+: org.apache.spark.SparkException: Job 25 cancelled because SparkContext was shut down
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$cleanUpAfterSchedulerStop$1(DAGScheduler.scala:1253)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$cleanUpAfterSchedulerStop$1$adapted(DAGScheduler.scala:1251)
+	at scala.collection.mutable.HashSet.foreach(HashSet.scala:79)
+	at org.apache.spark.scheduler.DAGScheduler.cleanUpAfterSchedulerStop(DAGScheduler.scala:1251)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onStop(DAGScheduler.scala:3087)
+	at org.apache.spark.util.EventLoop.stop(EventLoop.scala:84)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$stop$3(DAGScheduler.scala:2973)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1375)
+	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:2973)
+	at org.apache.spark.SparkContext.$anonfun$stop$12(SparkContext.scala:2263)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1375)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2263)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2216)
+	at org.apache.spark.SparkContext.$anonfun$new$34(SparkContext.scala:686)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:214)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$2(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$1(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.util.Try$.apply(Try.scala:213)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:178)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 151, in handle_output
+    return self.inner_io_manager().handle_output(context, obj)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/storage/upath_io_manager.py", line 446, in handle_output
+    self.dump_to_path(context=context, obj=obj, path=path)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 83, in dump_to_path
+    obj.write.format("delta").mode('overwrite').save(pathe)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/sql/readwriter.py", line 1463, in save
+    self._jwrite.save(path)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+

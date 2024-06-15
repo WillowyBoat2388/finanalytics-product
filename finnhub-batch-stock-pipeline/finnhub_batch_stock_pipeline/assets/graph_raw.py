@@ -36,7 +36,7 @@ def import_stocks_def(context, my_conn: MyConnectionResource):
 @op(
     out=Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_json_io_manager"),
     )
-def import_stocks_data(input_list, my_conn: MyConnectionResource):
+def import_stocks_data(context, input_list, my_conn: MyConnectionResource):
     """
     Dagster op which automates the retrieval of stock data using their retrieved symbols
     and then concatenating into a list for downstream processing.
@@ -56,18 +56,19 @@ def import_stocks_data(input_list, my_conn: MyConnectionResource):
             count = 0
             time.sleep(65)
         
-            # Finnhub API endpoint from which stock symbols data are to be retrieved
-            endpoint = f"stock/metric?symbol={stock}&metric=all"
+        # Finnhub API endpoint from which stock symbols data are to be retrieved
+        endpoint = f"stock/metric?symbol={stock}&metric=all"
 
-            # Calling the connection resource which specifies the api token to use for retrieval
-            stock_data = my_conn.request(endpoint)
-            # store stock data in dictionary using stock symbol as key
-            json_object[stock] = stock_data
+        # Calling the connection resource which specifies the api token to use for retrieval
+        stock_data = my_conn.request(endpoint)
+        # store stock data in dictionary using stock symbol as key
+        json_object[stock] = stock_data
 
         if symbol_count == 100:
             break
         # increase counter
         count += 1
+    
     # return nested json dictionary to S3 using json IO manager
     return json_object
     

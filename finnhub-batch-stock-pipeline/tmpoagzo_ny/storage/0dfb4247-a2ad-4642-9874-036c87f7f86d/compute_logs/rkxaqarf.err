@@ -1,0 +1,162 @@
+[32m2024-06-15 13:42:48 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 166562 - LOGS_CAPTURED - Started capturing logs in process (pid: 166562).
+[32m2024-06-15 13:42:48 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 166562 - spark_operator.create_stock_tables[stock_AACT] - STEP_START - Started execution of step "spark_operator.create_stock_tables[stock_AACT]".
+[32m2024-06-15 13:42:48 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACT] - Loading file from: /workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/tmpoagzo_ny/storage/0dfb4247-a2ad-4642-9874-036c87f7f86d/spark_operator.stock_tables/result/stock_AACT using PickledObjectFilesystemIOManager...
+[32m2024-06-15 13:42:48 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 166562 - spark_operator.create_stock_tables[stock_AACT] - LOADED_INPUT - Loaded input "input_fn" using input manager "io_manager", from output "result" of step "spark_operator.stock_tables"
+[32m2024-06-15 13:42:48 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 166562 - spark_operator.create_stock_tables[stock_AACT] - STEP_INPUT - Got input "input_fn" of type "Any". (Type check passed).
+24/06/15 13:42:56 WARN Utils: Your hostname, codespaces-e7c8c2 resolves to a loopback address: 127.0.0.1; using 172.16.5.4 instead (on interface eth0)
+24/06/15 13:42:56 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+24/06/15 13:42:58 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/06/15 13:43:04 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+24/06/15 13:43:04 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+24/06/15 13:43:04 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
+24/06/15 13:43:23 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
+[Stage 0:>                                                          (0 + 0) / 4][Stage 0:>                                                          (0 + 4) / 4][Stage 0:==============>                                            (1 + 3) / 4][Stage 0:=============================>                             (2 + 2) / 4][Stage 0:============================================>              (3 + 1) / 4]                                                                                24/06/15 13:43:46 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+[Stage 1:>                                                          (0 + 4) / 4][Stage 1:=============================>                             (2 + 2) / 4][Stage 1:============================================>              (3 + 1) / 4][Stage 3:>                                                          (0 + 1) / 1]                                                                                [Stage 4:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 3) / 3][Stage 5:===================>                                       (1 + 2) / 3][Stage 5:=======================================>                   (2 + 1) / 3]                                                                                [32m2024-06-15 13:43:59 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACT] - Row(10DayAverageTradingVolume=0.28029, 13WeekPriceReturnDaily=0.947, 26WeekPriceReturnDaily=2.6975, 3MonthADReturnStd=1.9766337, 3MonthAverageTradingVolume=0.22815, 52WeekHigh=10.755, 52WeekHighDate='2023-12-18', 52WeekLow=10.095, 52WeekLowDate='2023-06-14', 5DayPriceReturnDaily=-0.0469, assetTurnoverAnnual=None, beta=0.016587624, bookValuePerShareAnnual=8.0428, bookValuePerShareQuarterly=8.1451, cashFlowPerShareAnnual=-0.0216, cashFlowPerShareQuarterly=-0.0258, cashPerSharePerShareAnnual=0.0305, cashPerSharePerShareQuarterly=0.0263, currentRatioAnnual=8.6521, currentRatioQuarterly=4.8934, dividendPerShareAnnual=None, ebitdPerShareAnnual=-0.024, ebitdPerShareTTM=-0.0275, enterpriseValue=669.6067, epsAnnual=0.3608, epsBasicExclExtraItemsAnnual=0.3608, epsBasicExclExtraItemsTTM=0.4164, epsExclExtraItemsAnnual=0.3608, epsExclExtraItemsTTM=0.4164, epsGrowthQuarterlyYoy=None, epsInclExtraItemsAnnual=0.3608, epsInclExtraItemsTTM=0.4164, epsNormalizedAnnual=0.3608, epsTTM=0.4164, longTermDebt/equityAnnual=0.0099, longTermDebt/equityQuarterly=0.0098, marketCapitalization=666.25, monthToDatePriceReturnDaily=0.188, pbAnnual=1.0384, pbQuarterly=1.2965, pcfShareAnnual=None, pcfShareTTM=None, peAnnual=39.387, peBasicExclExtraTTM=28.5782, peExclExtraTTM=28.5782, peInclExtraTTM=28.5782, peNormalizedAnnual=39.387, peTTM=28.5782, priceRelativeToS&P50013Week=-4.4574, priceRelativeToS&P50026Week=-15.2469, priceRelativeToS&P5004Week=-2.1411, priceRelativeToS&P500Ytd=-12.7303, ptbvAnnual=72195.87, ptbvQuarterly=1.30491, quickRatioAnnual=6.8252, quickRatioQuarterly=3.8075, revenuePerShareAnnual=None, roaRfy=3.2199999999999998, roaTTM=4.47, roeRfy=3.37, roeTTM=4.67, roiAnnual=3.3300000000000005, roiTTM=4.62, tangibleBookValuePerShareAnnual=0.00016, tangibleBookValuePerShareQuarterly=7.93159, totalDebt/totalEquityAnnual=0.0099, totalDebt/totalEquityQuarterly=0.0098, yearToDatePriceReturnDaily=2.1073)
+[Stage 6:>                                                          (0 + 4) / 4][Stage 6:==============>                                            (1 + 3) / 4][Stage 6:============================================>              (3 + 1) / 4]                                                                                [Stage 7:>                                                          (0 + 4) / 4][Stage 7:============================================>              (3 + 1) / 4][Stage 8:>                                                          (0 + 4) / 4][Stage 8:============================================>              (3 + 1) / 4][Stage 11:>                                                         (0 + 1) / 1]                                                                                [Stage 16:>                                                         (0 + 4) / 4][Stage 16:===========================================>              (3 + 1) / 4][Stage 17:>                                                         (0 + 4) / 4][Stage 17:=============================>                            (2 + 2) / 4]                                                                                [32m2024-06-15 13:44:28 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACT] - Row(date='2021-06-30', quarterly.bookValue=None, quarterly.cashRatio=None, quarterly.currentRatio=1.0, quarterly.ev=None, quarterly.fcfPerShareTTM=None, quarterly.longtermDebtTotalAsset=None, quarterly.longtermDebtTotalCapital=None, quarterly.longtermDebtTotalEquity=None, quarterly.netDebtToTotalCapital=None, quarterly.netDebtToTotalEquity=None, quarterly.pb=None, quarterly.peTTM=None, quarterly.quickRatio=0.0, quarterly.roaTTM=None, quarterly.roeTTM=None, quarterly.roicTTM=None, quarterly.rotcTTM=None, quarterly.totalDebtToEquity=None, quarterly.totalDebtToTotalAsset=0.5, quarterly.totalDebtToTotalCapital=1.0, quarterly.totalRatio=1.0, annual.bookValue=None, annual.cashRatio=None, annual.currentRatio=None, annual.ev=None, annual.longtermDebtTotalAsset=None, annual.longtermDebtTotalCapital=None, annual.longtermDebtTotalEquity=None, annual.netDebtToTotalCapital=None, annual.netDebtToTotalEquity=None, annual.pb=None, annual.pe=None, annual.quickRatio=None, annual.roa=None, annual.roe=None, annual.roic=None, annual.rotc=None, annual.totalDebtToEquity=None, annual.totalDebtToTotalAsset=None, annual.totalDebtToTotalCapital=None, annual.totalRatio=None)
+[Stage 21:>                                                         (0 + 4) / 4][Stage 21:=============================>                            (2 + 2) / 4][Stage 21:===========================================>              (3 + 1) / 4][Stage 22:>                                                         (0 + 4) / 4][Stage 22:===========================================>              (3 + 1) / 4][Stage 23:>                                                         (0 + 4) / 4][Stage 23:>                 (0 + 4) / 4][Stage 24:>                 (0 + 0) / 4][Stage 23:====>             (1 + 3) / 4][Stage 24:>                 (0 + 1) / 4][Stage 23:=========>        (2 + 2) / 4][Stage 24:>                 (0 + 2) / 4][Stage 24:>                                                         (0 + 4) / 4][Stage 24:==============>                                           (1 + 3) / 4][Stage 24:===========================================>              (3 + 1) / 4][Stage 25:>                                                         (0 + 4) / 4][Stage 25:>                 (0 + 4) / 4][Stage 26:>                 (0 + 0) / 4][Stage 25:====>             (1 + 3) / 4][Stage 26:>                 (0 + 1) / 4][Stage 25:=========>        (2 + 2) / 4][Stage 26:>                 (0 + 2) / 4][Stage 26:>                                                         (0 + 4) / 4][Stage 26:==============>                                           (1 + 3) / 4][Stage 30:>                                                         (0 + 4) / 4][Stage 30:==============>                                           (1 + 3) / 4][Stage 30:===========================================>              (3 + 1) / 4][32m2024-06-15 13:45:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 166562 - spark_operator.create_stock_tables[stock_AACT] - STEP_OUTPUT - Yielded output "metric_and_series" of type "Any". (Type check passed).
+[32m2024-06-15 13:45:06 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACT] - Writing S3 object at: s3a://dagster-api/staging/2024-06-15/spark_operator.create_stock_tables[stock_AACT]/metric_and_series
+[32m2024-06-15 13:45:06 +0000[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - spark_operator.create_stock_tables[stock_AACT] - Removing existing S3 object: staging/2024-06-15/spark_operator.create_stock_tables[stock_AACT]/metric_and_series
+24/06/15 13:45:07 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[Stage 37:>                                                         (0 + 4) / 5][Stage 37:===========>                                              (1 + 4) / 5][Stage 37:=======================>                                  (2 + 3) / 5]                                                                                [Stage 38:>                                                         (0 + 1) / 1]                                                                                [Stage 41:>                                                        (0 + 4) / 50][Stage 41:====>                                                    (4 + 4) / 50][Stage 41:=======>                                                 (7 + 4) / 50][Stage 41:=========>                                               (8 + 4) / 50][Stage 41:=============>                                          (12 + 4) / 50][Stage 41:================>                                       (15 + 4) / 50][Stage 41:====================>                                   (18 + 4) / 50][Stage 41:======================>                                 (20 + 4) / 50][Stage 41:========================>                               (22 + 4) / 50][Stage 41:==========================>                             (24 + 4) / 50][Stage 41:==============================>                         (27 + 4) / 50][Stage 41:===============================>                        (28 + 4) / 50][Stage 41:===================================>                    (32 + 4) / 50][Stage 41:========================================>               (36 + 4) / 50][Stage 41:==========================================>             (38 + 4) / 50][Stage 41:=============================================>          (41 + 4) / 50][Stage 41:==================================================>     (45 + 4) / 50][Stage 41:====================================================>   (47 + 3) / 50]24/06/15 13:45:45 ERROR TaskSchedulerImpl: Exception in statusUpdate
+java.util.concurrent.RejectedExecutionException: Task org.apache.spark.scheduler.TaskResultGetter$$anon$3@6b0cf774 rejected from java.util.concurrent.ThreadPoolExecutor@793ba5cb[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 122]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at org.apache.spark.scheduler.TaskResultGetter.enqueueSuccessfulTask(TaskResultGetter.scala:61)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.liftedTree2$1(TaskSchedulerImpl.scala:836)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.statusUpdate(TaskSchedulerImpl.scala:811)
+	at org.apache.spark.scheduler.local.LocalEndpoint$$anonfun$receive$1.applyOrElse(LocalSchedulerBackend.scala:71)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 40462)
+Traceback (most recent call last):
+  File "/usr/local/python/3.10.13/lib/python3.10/socketserver.py", line 316, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/local/python/3.10.13/lib/python3.10/socketserver.py", line 347, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/local/python/3.10.13/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/python/3.10.13/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/accumulators.py", line 295, in handle
+    poll(accum_updates)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/accumulators.py", line 267, in poll
+    if self.rfile in r and func():
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/accumulators.py", line 271, in accum_updates
+    num_updates = read_int(self.rfile)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/serializers.py", line 596, in read_int
+    raise EOFError
+EOFError
+----------------------------------------
+ERROR:root:Exception while sending command.
+Traceback (most recent call last):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 151, in handle_output
+    return self.inner_io_manager().handle_output(context, obj)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/storage/upath_io_manager.py", line 446, in handle_output
+    self.dump_to_path(context=context, obj=obj, path=path)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 83, in dump_to_path
+    obj.write.format("delta").mode('overwrite').save(pathe)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/sql/readwriter.py", line 1463, in save
+    self._jwrite.save(path)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: <exception str() failed>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
+    for evt in _store_output(step_context, step_output_handle, output):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
+    for elt in iterate_with_context(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/usr/local/python/3.10.13/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
+    raise RetryRequestedFromPolicy(
+dagster._core.execution.plan.utils.RetryRequestedFromPolicy
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/clientserver.py", line 516, in send_command
+    raise Py4JNetworkError("Answer from Java side is empty")
+py4j.protocol.Py4JNetworkError: Answer from Java side is empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[32m2024-06-15 13:45:47 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0dfb4247-a2ad-4642-9874-036c87f7f86d - 166562 - spark_operator.create_stock_tables[stock_AACT] - STEP_UP_FOR_RETRY - Execution of step "spark_operator.create_stock_tables[stock_AACT]" failed and has requested a retry in 0.3901419733193674 seconds.
+
+dagster._core.execution.plan.utils.RetryRequestedFromPolicy
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 532, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 587, in _type_check_and_store_output
+    for evt in _store_output(step_context, step_output_handle, output):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 810, in _store_output
+    for elt in iterate_with_context(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 466, in iterate_with_context
+    with context_fn():
+  File "/usr/local/python/3.10.13/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 72, in op_execution_error_boundary
+    raise RetryRequestedFromPolicy(
+
+The above exception was caused by the following exception:
+py4j.protocol.Py4JJavaError: <exception str() failed>
+
+Stack Trace:
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 468, in iterate_with_context
+    next_output = next(iterator)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 800, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 151, in handle_output
+    return self.inner_io_manager().handle_output(context, obj)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/dagster/_core/storage/upath_io_manager.py", line 446, in handle_output
+    self.dump_to_path(context=context, obj=obj, path=path)
+  File "/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/finnhub_batch_stock_pipeline/iomanagers/staging_s3_parquet_io_manager.py", line 83, in dump_to_path
+    obj.write.format("delta").mode('overwrite').save(pathe)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/sql/readwriter.py", line 1463, in save
+    self._jwrite.save(path)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/py4j/protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+
