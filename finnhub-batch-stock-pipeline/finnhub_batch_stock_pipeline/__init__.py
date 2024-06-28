@@ -68,7 +68,6 @@ jars_paths = ",".join(jars)
 
 pyspark_config = {
                 "spark.jars": jars_paths,
-                # "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
                 "spark.hadoop.fs.s3a.endpoint": os.getenv("AWS_ENDPOINT"),
@@ -84,13 +83,14 @@ pyspark_config = {
 # config for pyspark resource using inprocess executor
 pyspark_config_inprocess = {
                 # "spark.jars": jars_paths,
-                "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
+                "spark.jars.packages": "io.delta:delta-storage:3.1.0,io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
                 "spark.hadoop.fs.s3a.endpoint": os.getenv("AWS_ENDPOINT"),
                 "spark.hadoop.fs.s3a.endpoint.region": os.getenv('AWS_REGION'),
                 "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
                 "spark.hadoop.fs.s3a.path.style.access": "true",
+                "spark.driver.memory": "4g",
                 "spark.dynamicAllocation.enabled": "true",
                 "spark.shuffle.service.enabled": "true",
                 "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension",
@@ -99,6 +99,7 @@ pyspark_config_inprocess = {
 # Dictionary for determining config for pyspark resource using environment variable
 spark_config = {
     "inprocess": pyspark_config_inprocess,
+    "multiprocess_in": pyspark_config_inprocess,
     "multiprocess": pyspark_config,
     "k8s": pyspark_config
 }
@@ -110,7 +111,7 @@ deployment_resources = {
             spark_config=spark_config[os.getenv("EXECUTOR")]
         ),
         "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
-            pyspark=LazyPySparkResource(spark_config=pyspark_config), 
+            pyspark=LazyPySparkResource(spark_config=spark_config[os.getenv("EXECUTOR")]), 
             s3_resource=s3_rsrce, # required
             s3_bucket="dagster-api", # required
             s3_prefix="staging" # required
@@ -142,7 +143,7 @@ deployment_resources = {
             spark_config=spark_config[os.getenv("EXECUTOR")]
         ),
         "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
-            pyspark=LazyPySparkResource(spark_config=pyspark_config), 
+            pyspark=LazyPySparkResource(spark_config=spark_config[os.getenv("EXECUTOR")]), 
             s3_resource=s3_rsrce, # required
             s3_bucket="dagster-api", # required
             s3_prefix="staging" # required
@@ -172,7 +173,7 @@ deployment_resources = {
             spark_config=spark_config[os.getenv("EXECUTOR")]
         ),
         "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
-            pyspark=LazyPySparkResource(spark_config=pyspark_config), 
+            pyspark=LazyPySparkResource(spark_config=spark_config[os.getenv("EXECUTOR")]), 
             s3_resource=s3_rsrce, # required
             s3_bucket="dagster-api", # required
             s3_prefix="staging" # required
@@ -206,5 +207,5 @@ defs = Definitions(
     resources= deployment_resources[deployment_name],
     jobs=all_jobs,
     schedules=all_schedules,
-    executor=execution[executor],
+    executor=execution[executor if executor != "multiprocess_in" else "multiprocess"],
 )

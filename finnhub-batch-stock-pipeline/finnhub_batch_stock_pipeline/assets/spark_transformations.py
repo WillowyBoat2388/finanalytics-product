@@ -313,7 +313,8 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
 @op(
     required_resource_keys= {"pyspark": PySparkResource},
     out={"metric": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
-         "series": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager")
+         "quarterly_metric": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
+         "annual_metric": Out(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager")
     },
     retry_policy=RetryPolicy(
         max_retries=2,
@@ -330,7 +331,8 @@ def merge_and_analyze(context, df_list):
     pyspark = context.resources.pyspark
     spark = pyspark.spark_session
     metric = []
-    series = []
+    quarterly = []
+    annual = []
     
     # Create an empty schema
     schemas = {}
@@ -392,7 +394,8 @@ def merge_and_analyze(context, df_list):
 
                     metric.append(mtrc)
                     
-                    series.append(srs)
+                    quarterly.append(quarterly_metric)
+                    annual.append(annual_metric)
 
                     context.log.info(f"srsmetric_col_len:    {len(mtrc.columns)}")
                     # context.log.info(item.head())
@@ -409,33 +412,41 @@ def merge_and_analyze(context, df_list):
 
     except Exception as e:
         context.log.info(f"Pyspark Error while attempting to split dataframes: {e}")
+        return
 
     # Create an empty dataframe with empty schema
     mrgd_df_mtrc = spark.createDataFrame(data = [],
                            schema = schemas['mtrc'])
-    mrgd_df_srs = spark.createDataFrame(data = [],
-                           schema = schemas['srs'])
+    mrgd_df_qrtrly = spark.createDataFrame(data = [],
+                           schema = schemas['quarterly'])
+    mrgd_df_annual = spark.createDataFrame(data = [],
+                           schema = schemas['annual'])
     try:
         for value in metric:
             mrgd_df_mtrc = mrgd_df_mtrc.unionByName(value, allowMissingColumns=True)
 
-        for value in series:
-            mrgd_df_srs = mrgd_df_srs.unionByName(value, allowMissingColumns=True)
+        for value in quarterly:
+            mrgd_df_qrtrly = mrgd_df_qrtrly.unionByName(value, allowMissingColumns=True)
+
+        for value in annual:
+            mrgd_df_annual = mrgd_df_annual.unionByName(value, allowMissingColumns=True)
     except Exception as e:
         context.log.info(f"Pyspark Error while attempting to merge dataframes: {e}")
+        return
     
-    mrgd_df_mtrc, mrgd_df_srs = mrgd_df_mtrc.coalesce(1), mrgd_df_srs.coalesce(1)
+    mrgd_df_mtrc, mrgd_df_qrtrly, mrgd_df_annual = mrgd_df_mtrc.coalesce(1), mrgd_df_qrtrly.coalesce(1), mrgd_df_annual.coalesce(1)
 
-    return mrgd_df_mtrc, mrgd_df_srs
+    return mrgd_df_mtrc, mrgd_df_qrtrly, mrgd_df_annual
 
 
 @graph_multi_asset(
     group_name="staging",
     outs={"metric": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
-         "series": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager")
+         "quarterly_metric": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
+         "annual_metric": AssetOut(metadata= {"date": dt.now().strftime("%Y-%m-%d")}, io_manager_key="s3_prqt_io_manager"),
     }
 )
-def spark_operator(finnhub_US_stocks: List) -> tuple[DataFrame, DataFrame]:
+def spark_operator(finnhub_US_stocks: List) -> tuple[DataFrame, DataFrame, DataFrame]:
     """
     Graph asset to map and collect transformation steps for each stock 
     into series and metric dataframes.
@@ -444,7 +455,7 @@ def spark_operator(finnhub_US_stocks: List) -> tuple[DataFrame, DataFrame]:
     mapped = stock_tables(finnhub_US_stocks)
     
     collected = mapped.map(create_stock_tables)
-    # metric, series = merge_and_analyze(collected.collect())
-    # return metric, series
+    # metric, quarterly, annual = merge_and_analyze(collected.collect())
+    # return metric, quarterly, annual
     return merge_and_analyze(collected.collect())
     

@@ -15,37 +15,54 @@ from pyspark.sql import functions as F
 
 @multi_asset(
     ins = {"metric": AssetIn(key = AssetKey("metric"), input_manager_key="s3_prqt_io_manager"),
-           "series": AssetIn(key = AssetKey("series"), input_manager_key="s3_prqt_io_manager")},
+           "quarterly_metric": AssetIn(key = AssetKey("quarterly_metric"), input_manager_key="s3_prqt_io_manager"),
+           "annual_metric": AssetIn(key = AssetKey("annual_metric"), input_manager_key="s3_prqt_io_manager")},
     outs = {"metric_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
-            "series_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "quarterly_metric_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
+            "annual_metric_fact_lake": AssetOut(is_required=False, group_name= "fact_lakehouse", metadata={ "mode": "append"}, io_manager_key="delta_lake_arrow_io_manager"),
             "metric_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
-            "series_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
+            "quarterly_metric_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
+            "annual_metric_fact_wrh": AssetOut(is_required=False, group_name= "fact_warehouse", io_manager_key="warehouse_io_manager"),
     },
     internal_asset_deps={
         "metric_fact_lake": {AssetKey(["metric"])},
-        "series_fact_lake": {AssetKey(["series"])},
+        "quarterly_metric_fact_lake": {AssetKey(["quarterly_metric"])},
+        "annual_metric_fact_lake": {AssetKey(["annual_metric"])},
         "metric_fact_wrh": {AssetKey(["metric"])},
-        "series_fact_wrh": {AssetKey(["series"])},
+        "quarterly_metric_fact_wrh": {AssetKey(["quarterly_metric"])},
+        "annual_metric_fact_wrh": {AssetKey(["annual_metric"])}
     },
     can_subset=True
 )
-def fact_tables(context, metric:DataFrame, series:DataFrame) -> tuple[pa.Table, pa.Table, DataFrame, DataFrame]:
+def fact_tables(context, metric:DataFrame, quarterly_metric:DataFrame, annual_metric:DataFrame) -> tuple[pa.Table, pa.Table, pa.Table, DataFrame, DataFrame, DataFrame]:
     """
     Multi asset for defining assets which populate data warehouse and data lake while incorporating 
     quality checks for datasets.
     """
 
     # Iterate over each column in the series DataFrame
-    for cols in series.columns:
+    for cols in quarterly_metric.columns:
         if cols == "date":
             # Cast 'date' column to DateType
-            series = series.withColumn(cols, F.col(cols).cast(DateType()))
+            quarterly_metric = quarterly_metric.withColumn(cols, F.col(cols).cast(DateType()))
         elif cols == "symbol":
             # Cast 'symbol' column to StringType
-            series = series.withColumn(cols, F.cast(StringType(), F.col(cols)))
+            quarterly_metric = quarterly_metric.withColumn(cols, F.cast(StringType(), F.col(cols)))
         else:
             # Cast all other columns to FloatType
-            series = series.withColumn(cols, F.col(f"`{cols}`").cast(FloatType()))
+            quarterly_metric = quarterly_metric.withColumn(cols.split(".")[-1], F.col(f"`{cols}`").cast(FloatType()))
+
+    # Iterate over each column in the series DataFrame
+    for cols in annual_metric.columns:
+        if cols == "date":
+            # Cast 'date' column to DateType
+            annual_metric = annual_metric.withColumn(cols, F.col(cols).cast(DateType()))
+        elif cols == "symbol":
+            # Cast 'symbol' column to StringType
+            annual_metric = annual_metric.withColumn(cols, F.cast(StringType(), F.col(cols)))
+        else:
+            # Cast all other columns to FloatType
+            annual_metric = annual_metric.withColumn(cols.split(".")[-1], F.col(f"`{cols}`").cast(FloatType()))
 
     # Iterate over each column in the metric DataFrame
     for cols in metric.columns:
@@ -56,33 +73,28 @@ def fact_tables(context, metric:DataFrame, series:DataFrame) -> tuple[pa.Table, 
             # Cast all other columns to FloatType
             metric = metric.withColumn(cols, F.col(cols).cast(FloatType()))
 
-    # Create a list of metric DataFrame columns
-    metric_fact_cols = list(metric.columns)
-
-    # Move 'symbol' column to the end of the list
-    metric_fact_cols.remove("symbol")
-    metric_fact_cols.append("symbol")
 
     # Assign metric DataFrame to metric_fact
     metric_fact = metric
 
-    # Select columns in the specified order (with 'symbol' at the end)
-    metric_fact = metric_fact.select(*metric_fact_cols)
-
     # Assign series DataFrame to series_fact
-    series_fact = series
+    quarterly_metric_fact = quarterly_metric
+    annual_metric_fact = annual_metric
 
     # Create warehouse versions of the DataFrames
     metric_fact_wrh = metric_fact
-    series_fact_wrh = series_fact
+    quarterly_metric_fact_wrh = quarterly_metric_fact
+    annual_metric_fact_wrh = annual_metric_fact
 
     # Convert metric DataFrame to an Arrow Table for the data lake
     metric_fact_lake = metric._collect_as_arrow()
     metric_fact_lake = pa.Table.from_batches(metric_fact_lake)
 
     # Convert series DataFrame to an Arrow Table for the data lake
-    series_fact_lake = series._collect_as_arrow()
-    series_fact_lake = pa.Table.from_batches(series_fact_lake)
+    quarterly_metric_fact_lake = quarterly_metric._collect_as_arrow()
+    quarterly_metric_fact_lake = pa.Table.from_batches(quarterly_metric_fact_lake)
+    annual_metric_fact_lake = annual_metric._collect_as_arrow()
+    annual_metric_fact_lake = pa.Table.from_batches(annual_metric_fact_lake)
 
     # Return the DataFrames for both warehouse and data lake
-    return metric_fact_lake, series_fact_lake, metric_fact_wrh, series_fact_wrh
+    return metric_fact_lake, quarterly_metric_fact_lake, annual_metric_fact_lake, metric_fact_wrh, quarterly_metric_fact_wrh, annual_metric_fact_wrh

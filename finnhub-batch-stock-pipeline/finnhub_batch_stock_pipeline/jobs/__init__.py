@@ -2,8 +2,8 @@ from dagster import define_asset_job, AssetSelection, job, load_assets_from_modu
 from ..assets import graph_raw, spark_transformations
 
 # load assets from module name and using dagster's inbuilt assetselection method
-warehouse_tables = AssetSelection.assets("metric_fact_wrh", "series_fact_wrh")
-lake_tables = AssetSelection.assets("metric_fact_lake", "series_fact_lake")
+warehouse_tables = AssetSelection.assets("metric_fact_wrh", "quarterly_metric_fact_wrh", "annual_metric_fact_wrh")
+lake_tables = AssetSelection.assets("metric_fact_lake", "quarterly_metric_fact_lake", "annual_metric_fact_lake")
 stock_retrieval_assets = load_assets_from_modules(modules=[graph_raw])
 pyspark_transformations = load_assets_from_modules(modules=[spark_transformations])
 
