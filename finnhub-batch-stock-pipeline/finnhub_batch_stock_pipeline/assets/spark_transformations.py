@@ -41,9 +41,13 @@ def stock_tables(context, stock_data):
 @op()
 def get_result_dataframe(dataframe, symbol, spark):
     # Repartition the DataFrames to have the same number of partitions
-    num_partitions = min(dataframe.rdd.getNumPartitions(), symbol.rdd.getNumPartitions())
-    df = dataframe.repartition(num_partitions)
-    df_s = symbol.repartition(num_partitions)
+    if dataframe.rdd.getNumPartitions() != symbol.rdd.getNumPartitions():
+        num_partitions = min(dataframe.rdd.getNumPartitions(), symbol.rdd.getNumPartitions())
+        df = dataframe.repartition(num_partitions)
+        df_s = symbol.repartition(num_partitions)
+    else:
+        df = dataframe.repartition(1)
+        df_s = symbol.repartition(1)
     schema = StructType(dataframe.schema.fields + symbol.schema.fields)
     
     df1df2 = df.rdd.zip(df_s.rdd).map(lambda x: x[0]+x[1])
@@ -119,7 +123,6 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
         pyspark = context.resources.pyspark
         spark = pyspark.spark_session
         sc = pyspark.spark_session.sparkContext
-        metric_and_series_list = []
         mtrc_and_srs = []
         symbols = []
         dct = {}
@@ -201,12 +204,17 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
                 df_q_with_single_date = df_q_e.withColumn("date", F.coalesce(*[df_q_e[col] for col in df_q_e.columns if 'period' in col]))
                 df_q_with_single_date = df_q_with_single_date.drop(*[col for col in q_date_columns])
 
-                df = df_q_with_single_date.join(df_a_with_single_date, on='date', how='full')
+                # df = df_q_with_single_date.join(df_a_with_single_date, on='date', how='full')
+                quarterly_metrics = df_q_with_single_date
+                annual_metrics = df_a_with_single_date
 
-                mtrc_and_srs.append(df)
-                dct['srs'] = df.count()
+                mtrc_and_srs.append(quarterly_metrics)
+                mtrc_and_srs.append(annual_metrics)
+                dct['quarterly'] = quarterly_metrics.count()
+                dct['annual'] = annual_metrics.count()
 
-                context.log.info(df.head())
+                context.log.info(quarterly_metrics.head())
+                context.log.info(annual_metrics.head())
                 # context.log.info(df.count())
 
             elif key == 'symbol':
@@ -215,10 +223,12 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
                     mtrcsymbl = [[value]] * dct['mtrc']
                     symbols.append(mtrcsymbl)
 
-                if 'srs' in dct.keys():
-                    srssymbl = [[value]] * dct['srs']
+                if 'quarterly' in dct.keys() and 'annual' in dct.keys():
+                    quarterlysymbl = [[value]] * dct['quarterly']
+                    annualsymbl = [[value]] * dct['annual']
 
-                    symbols.append(srssymbl)
+                    symbols.append(quarterlysymbl)
+                    symbols.append(annualsymbl)
 
 
         
@@ -228,33 +238,50 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
             StructField("symbol", StringType(), True)
         ])
         
-        if len(mtrc_and_srs) == 2:
+        if len(mtrc_and_srs) >= 2:
             mtrc = mtrc_and_srs[0]
             mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
-            srs = mtrc_and_srs[1]
-            srssymbol = spark.createDataFrame(sc.parallelize(symbols[-1]), schema)
+            qrtrly_mtrc = mtrc_and_srs[1]
+            annual_mtrc = mtrc_and_srs[-1]
+            qrtrlysymbol = spark.createDataFrame(sc.parallelize(symbols[1]), schema)
+            annlsymbol = spark.createDataFrame(sc.parallelize(symbols[-1]), schema)
+            
+            mtrc.collect()
+            qrtrly_mtrc.collect()
+            annual_mtrc.collect()
             
             metric = get_result_dataframe(mtrc, mtrcsymbol, spark)
             # context.log.info(srs.count())
             # context.log.info(srssymbol.count())
-            series = get_result_dataframe(srs, srssymbol, spark)
+            quarterly_metrics = get_result_dataframe(qrtrly_mtrc, qrtrlysymbol, spark)
+            annual_metrics = get_result_dataframe(annual_mtrc, annlsymbol, spark)
         
             # Add a distinguishing column to each DataFrame
             df1_with_marker = metric.withColumn("type", F.lit("metric"))
-            df2_with_marker = series.withColumn("type", F.lit("series"))
+            df2_with_marker = quarterly_metrics.withColumn("type", F.lit("quarterly_metric"))
+            df3_with_marker = annual_metrics.withColumn("type", F.lit("annual_metric"))
 
-            # Get the list of all columns in both DataFrames
+            # Get the list of all columns in all DataFrames
             metric_columns = df1_with_marker.columns
-            series_columns = df2_with_marker.columns
+            quarterly_columns = df2_with_marker.columns
+            annual_columns = df3_with_marker.columns
+            series_columns = quarterly_columns + ["srs_sep"] + [item for item in annual_columns if item not in quarterly_columns]
             all_columns = metric_columns + [item for item in series_columns if item not in metric_columns]
 
             df1 = df1_with_marker
             df2 = df2_with_marker
+            df3 = df3_with_marker
 
             # Add missing columns with null values to each DataFrame
             for col in metric_columns:
-                if col not in series_columns:
+                if col not in series_columns or col == "srs_sep":
                     df2 = df2.withColumn(col, F.lit(None).cast(StringType()))
+                    df3 = df3.withColumn(col, F.lit(None).cast(StringType()))
+            for col in series_columns:
+                if col not in df2.columns:
+                    df2 = df2.withColumn(col, F.lit(None).cast(StringType()))
+                if col not in df3.columns:
+                    df3 = df3.withColumn(col, F.lit(None).cast(StringType()))
             for col in series_columns:
                 if col not in metric_columns:
                     df1 = df1.withColumn(col, F.lit(None).cast(StringType()))
@@ -262,9 +289,11 @@ def create_stock_tables(context:OpExecutionContext, input_fn):
             # Ensure the columns are in the same order
             df1 = df1.select(*[f"`{col}`" for col in all_columns])
             df2 = df2.select(*[f"`{col}`" for col in all_columns])
+            df3 = df3.select(*[f"`{col}`" for col in all_columns])
 
             # Union the DataFrames together
             chained_df = df1.unionByName(df2)
+            chained_df = chained_df.unionByName(df3)
         else:
             mtrc = mtrc_and_srs[0]
             mtrcsymbol = spark.createDataFrame(sc.parallelize(symbols[0]), schema)
@@ -314,38 +343,52 @@ def merge_and_analyze(context, df_list):
             from pyspark.sql.functions import col, count
 
             if 'type' in item.columns:
-                count_df = item.select(count(F.when(col('type') == "series", 1)).alias('series_count'))
-                count = count_df.collect()[0]['series_count']
-                if count > 0:
-                    # Your code here
-            
+                quarterly_count_df = item.select(count(F.when(col('type') == "quarterly_metric", 1)).alias('quarterly_count'))
+                annual_count_df = item.select(count(F.when(col('type') == "annual_metric", 1)).alias('annual_count'))
+                quarterly_count = quarterly_count_df.collect()[0]['quarterly_count']
+                annual_count = annual_count_df.collect()[0]['annual_count']
+                if annual_count > 0 and quarterly_count > 0:
             # if item.filter(item.type == "series").count() > 0:
-                    
                     mtrc = item.filter(item["type"] == "metric")
-                    srs = item.filter(item["type"] == "series")
+                    quarterly_metric = item.filter(item["type"] == "quarterly_metric")
+                    annual_metric = item.filter(item["type"] == "annual_metric")
 
                     # Get the list of column names
                     all_columns = item.columns
                     
                     # Find the index of the column to keep
                     keep_column_index = all_columns.index("type")
+                    srs_sep_column_index = all_columns.index("srs_sep")
                     
                     # Slice the list of columns to keep only the column to keep and its surrounding columns
                     srscolumns_to_keep = all_columns[keep_column_index - 1:-1]
                     mtrccolumns_to_keep = all_columns[:keep_column_index]
                     
+                    # Find the index of the column to keep
+                    srs_sep_column_index = srscolumns_to_keep.index("srs_sep")
+
+                    # Slice the list of columns to keep only the column to keep and its surrounding columns
+                    qrtrlycolumns_to_keep = srscolumns_to_keep[:srs_sep_column_index]
+                    annlcolumns_to_keep = srscolumns_to_keep[srs_sep_column_index+1:-1]
+
+                    mtrccolumns_to_keep = ["symbol"] + [col for col in mtrccolumns_to_keep if col != "symbol"]
+                    qrtrlycolumns_to_keep = ["date", "symbol"] + [col for col in qrtrlycolumns_to_keep if col not in ["date", "symbol"]]
+                    annlcolumns_to_keep = ["date", "symbol"] + annlcolumns_to_keep
+
                     # Select only the columns to keep
                     mtrc = mtrc.select(*[f"`{value}`" for value in mtrccolumns_to_keep])
-                    srs = srs.select(*[f"`{value}`" for value in srscolumns_to_keep])
+                    quarterly_metric = quarterly_metric.select(*[f"`{value}`" for value in qrtrlycolumns_to_keep])
+                    annual_metric = annual_metric.select(*[f"`{value}`" for value in annlcolumns_to_keep])
 
-                    srs = srs.drop("type")
+                    quarterly_metric = quarterly_metric.drop("type")
 
                     schemas['mtrc'] = mtrc.schema
-                    mtrcschema = mtrc.schema
+                    # mtrcschema = mtrc.schema
 
 
-                    schemas['srs'] = srs.schema
-                    srsschema = srs.schema
+                    schemas['quarterly'] = quarterly_metric.schema
+                    schemas['annual'] = annual_metric.schema
+                    # srsschema = srs.schema
 
                     metric.append(mtrc)
                     

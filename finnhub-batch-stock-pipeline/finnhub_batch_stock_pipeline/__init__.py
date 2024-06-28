@@ -22,9 +22,6 @@ import os
 import uuid
 
 
-# uuidgen = uuid.uuid4()
-# ivy_cache_dir=f"/workspaces/practical-data-engineering/finnhub-batch-stock-pipeline/jars/.ivy2/cache/{uuidgen}"
-
 # dictionary to configure job executors and their specific required configs
 execution = {'inprocess': in_process_executor,
             'multiprocess': multiprocess_executor.configured({ "max_concurrent": 8}),
@@ -71,8 +68,6 @@ jars_paths = ",".join(jars)
 
 pyspark_config = {
                 "spark.jars": jars_paths,
-                # "spark.driver.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
-                # "spark.executor.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
                 # "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
