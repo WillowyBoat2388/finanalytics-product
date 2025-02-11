@@ -22,11 +22,9 @@ import os
 import uuid
 
 
-uuidgen = uuid.uuid4()
-ivy_cache_dir=f"/home/spark/.ivy2/cache/{uuidgen}"
-
+# dictionary to configure job executors and their specific required configs
 execution = {'inprocess': in_process_executor,
-            'multiprocess': multiprocess_executor.configured({ "max_concurrent": 4}),
+            'multiprocess': multiprocess_executor.configured({ "max_concurrent": 8}),
             'k8s': k8s_job_executor.configured({
                 "job_image": "spark:python3-java17",
                 "image_pull_policy": "IfNotPresent",
@@ -40,40 +38,35 @@ execution = {'inprocess': in_process_executor,
         }
             })
             }
-
+# variable which contains all jobs for code location definition
 all_assets = load_assets_from_modules([fact_tables, spark_transformations, graph_raw], auto_materialize_policy=AutoMaterializePolicy.eager())
 
-
+# variable which contains all jobs for code location definition
 all_jobs = [stock_retrieval_job, lake_update_job, warehouse_update_job, spark_transformation_job]
-
+# variable which contains all schedules for code location definition
 all_schedules = [stocks_update_schedule]
-
+# config for delta lake arrow iomanager to use S3
 config = S3Config(access_key_id=os.getenv("AWS_ACCESS_KEY_ID"), 
                                     secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY"), region=os.getenv("AWS_REGION"), 
                                     endpoint=os.getenv("AWS_ENDPOINT"),
                                     bucket=os.getenv("AWS_BUCKET"),
                                     allow_unsafe_rename=True)
+# config for deltalake arrow iomanager client
 client_config = ClientConfig(allow_http=True)
 
 jars = [
-    "/jars/delta-spark_2.12-3.1.0.jar",
-    "/jars/delta-core_2.12-2.4.0.jar",
-    "/jars/delta-storage-3.1.0.jar",
-    "/jars/hadoop-aws-3.3.4.jar",
-    "/jars/hadoop-common-3.3.4.jar",
-    "/jars/aws-java-sdk-bundle-1.12.262.jar",
-    # "/jars/hadoop-aws-3.4.0.jar",
-    # "/jars/hadoop-common-3.4.0.jar",
-    # ".jars/bundle-2.23.19.jar"
+    "jars/delta-spark_2.12-3.1.0.jar",
+    "jars/delta-core_2.12-2.4.0.jar",
+    "jars/delta-storage-3.1.0.jar",
+    "jars/hadoop-aws-3.3.4.jar",
+    "jars/hadoop-common-3.3.4.jar",
+    "jars/aws-java-sdk-bundle-1.12.262.jar"
 ]
 
 # Join the paths with a comma separator
 jars_paths = ",".join(jars)
 
 pyspark_config = {
-                # "spark.driver.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
-                # "spark.executor.extraJavaOptions": "-Divy.cache.dir={ivy_cache_dir}",
-                # "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.jars": jars_paths,
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
@@ -81,27 +74,32 @@ pyspark_config = {
                 "spark.hadoop.fs.s3a.endpoint.region": os.getenv('AWS_REGION'),
                 "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
                 "spark.hadoop.fs.s3a.path.style.access": "true",
+                # "spark.driver.memory": "4g",
                 "spark.dynamicAllocation.enabled": "true",
                 "spark.shuffle.service.enabled": "true",
                 "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension",
                 "spark.sql.catalog.spark_catalog": "org.apache.spark.sql.delta.catalog.DeltaCatalog",
             }
+# config for pyspark resource using inprocess executor
 pyspark_config_inprocess = {
-                "spark.jars.packages": "io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
+                # "spark.jars": jars_paths,
+                "spark.jars.packages": "io.delta:delta-storage:3.1.0,io.delta:delta-spark_2.12:3.1.0,org.apache.hadoop:hadoop-aws:3.3.4,org.apache.hadoop:hadoop-common:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262",
                 "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
                 "spark.sql.execution.arrow.pyspark.enabled": "true",
                 "spark.hadoop.fs.s3a.endpoint": os.getenv("AWS_ENDPOINT"),
                 "spark.hadoop.fs.s3a.endpoint.region": os.getenv('AWS_REGION'),
                 "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
                 "spark.hadoop.fs.s3a.path.style.access": "true",
+                "spark.driver.memory": "4g",
                 "spark.dynamicAllocation.enabled": "true",
                 "spark.shuffle.service.enabled": "true",
                 "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension",
                 "spark.sql.catalog.spark_catalog": "org.apache.spark.sql.delta.catalog.DeltaCatalog",
             }
-
+# Dictionary for determining config for pyspark resource using environment variable
 spark_config = {
     "inprocess": pyspark_config_inprocess,
+    "multiprocess_in": pyspark_config_inprocess,
     "multiprocess": pyspark_config,
     "k8s": pyspark_config
 }
@@ -109,15 +107,19 @@ deployment_resources = {
        "prod":  {
         "my_conn": MyConnectionResource(access_token=EnvVar("FINNHUBAPIKEY")),
         "s3": s3_rsrce,
-        # "pyspark": MyPysparkResource(),
         "pyspark": LazyPySparkResource(
-            spark_config=pyspark_config
+            spark_config=spark_config[os.getenv("EXECUTOR")]
         ),
         "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
-            pyspark=LazyPySparkResource(spark_config=pyspark_config), s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="staging"
+            pyspark=LazyPySparkResource(spark_config=spark_config[os.getenv("EXECUTOR")]), 
+            s3_resource=s3_rsrce, # required
+            s3_bucket="dagster-api", # required
+            s3_prefix="staging" # required
         ),
         "s3_json_io_manager": s3j.S3JSONIOManager(
-            s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="raw"
+            s3_resource=s3_rsrce, # required
+            s3_bucket="dagster-api", # required
+            s3_prefix="raw" # required
         ),
         "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
             root_uri=EnvVar("S3_URI"),  # required
@@ -137,15 +139,19 @@ deployment_resources = {
     "staging": {
         "my_conn": MyConnectionResource(access_token=EnvVar("FINNHUBAPIKEY")),
         "s3": s3_rsrce,
-        # "pyspark": MyPysparkResource(),
         "pyspark": LazyPySparkResource(
-            spark_config=pyspark_config
+            spark_config=spark_config[os.getenv("EXECUTOR")]
         ),
         "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
-            pyspark=LazyPySparkResource(spark_config=pyspark_config), s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="staging"
+            pyspark=LazyPySparkResource(spark_config=spark_config[os.getenv("EXECUTOR")]), 
+            s3_resource=s3_rsrce, # required
+            s3_bucket="dagster-api", # required
+            s3_prefix="staging" # required
         ),
         "s3_json_io_manager": s3j.S3JSONIOManager(
-            s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="raw"
+            s3_resource=s3_rsrce, # required
+            s3_bucket="dagster-api", # required
+            s3_prefix="raw" # required
         ),
         "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
             root_uri="s3://dagster-api",  # required
@@ -163,15 +169,19 @@ deployment_resources = {
     "local": {
         "my_conn": MyConnectionResource(access_token=EnvVar("FINNHUBAPIKEY")),
         "s3": s3_rsrce,
-        # "pyspark": MyPysparkResource(),
         "pyspark": LazyPySparkResource(
             spark_config=spark_config[os.getenv("EXECUTOR")]
         ),
         "s3_prqt_io_manager": s3p.S3PandasParquetIOManager(
-            pyspark=LazyPySparkResource(spark_config=pyspark_config), s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="staging"
+            pyspark=LazyPySparkResource(spark_config=spark_config[os.getenv("EXECUTOR")]), 
+            s3_resource=s3_rsrce, # required
+            s3_bucket="dagster-api", # required
+            s3_prefix="staging" # required
         ),
         "s3_json_io_manager": s3j.S3JSONIOManager(
-            s3_resource=s3_rsrce, s3_bucket="dagster-api", s3_prefix="raw"
+            s3_resource=s3_rsrce, # required
+            s3_bucket="dagster-api", # required
+            s3_prefix="raw" # required
         ),
         "delta_lake_arrow_io_manager": DeltaLakePyarrowIOManager(
             root_uri="s3://dagster-api",  # required
@@ -180,17 +190,22 @@ deployment_resources = {
             schema="core",  # optional, defaults to "public"
         ),
         "warehouse_io_manager": DuckDBPySparkIOManager(
-            database="finance_db.duckdb", schema="core"
+            database="finance_db.duckdb", 
+            schema="core"
         )
     }
 }
+# Environment variable to determine deployment environment
 deployment_name = os.getenv("DAGSTER_DEPLOYMENT", "local")
+
+# Dagster job executor environment variable
 executor = os.getenv("EXECUTOR", "k8s")
 
+# Dagster code location definitions
 defs = Definitions(
     assets= all_assets,
     resources= deployment_resources[deployment_name],
     jobs=all_jobs,
     schedules=all_schedules,
-    executor=execution[executor],
+    executor=execution[executor if executor != "multiprocess_in" else "multiprocess"],
 )

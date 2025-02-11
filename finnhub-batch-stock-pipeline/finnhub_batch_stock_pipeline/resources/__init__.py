@@ -9,6 +9,51 @@ from pyspark import SparkConf, SparkContext
 import pyarrow
 import pyarrow.parquet as pq
 
+class FinnhubClientResource(ConfigurableResource):
+    """
+    A class definition for dealing with the api key
+    for the project. Takes in the api key in its instantiation
+    And when the api_token method is called, it returns said
+    value.
+    """
+    access_token: str
+    
+    def api_token(self):
+        return self.access_token
+
+class MyConnectionResource(ConfigurableResource):
+    """
+    A class definition for dealing with the api key
+    for the project. Takes in the api key in its instantiation
+    And when the request method is called along with the endpoint
+    that data is to be retrieved from, it returns the output of
+    calling requests.get on the endpoint using the token
+    """
+    access_token: str
+
+    def request(self, endpoint: str) -> Response:
+
+        #Finnhub dynamic API URL for extracting data
+
+        response = requests.get(
+            f"https://finnhub.io/api/v1/{endpoint}",
+            headers={"X-Finnhub-Token" : self.access_token},
+        )
+        
+        if response.status_code != 200:
+            return response.raise_for_status()
+        else:
+            data = response.json()
+
+        return data
+    
+# Resource variable for dealing with S3 connection using boto3 under the hood
+s3_rsrce = S3Resource(use_unsigned_session=True,
+                    region_name=EnvVar("AWS_REGION"),
+                    endpoint_url=EnvVar("AWS_ENDPOINT"), 
+                    use_ssl= False, 
+                    aws_access_key_id = EnvVar("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key= EnvVar("AWS_SECRET_ACCESS_KEY"),)
 
 
 # class MyPysparkResource():
@@ -35,37 +80,3 @@ import pyarrow.parquet as pq
 
 #     def load_s3(self, path) -> None:
 #         return self.spark.read.format("delta").load(path)
-
-class FinnhubClientResource(ConfigurableResource):
-    access_token: str
-
-    def api_token(self):
-        return self.access_token
-
-class MyConnectionResource(ConfigurableResource):
-    access_token: str
-
-    def request(self, endpoint: str) -> Response:
-
-        #Finnhub dynamic API URL for extracting data
-
-        response = requests.get(
-            f"https://finnhub.io/api/v1/{endpoint}",
-            headers={"X-Finnhub-Token" : self.access_token},
-        )
-        
-        if response.status_code != 200:
-            return response.raise_for_status()
-        else:
-            data = response.json()
-
-        return data
-    
-s3_rsrce = S3Resource(use_unsigned_session=True,
-                    region_name=EnvVar("AWS_REGION"),
-                    endpoint_url=EnvVar("AWS_ENDPOINT"), 
-                    use_ssl= False, 
-                    aws_access_key_id = EnvVar("AWS_ACCESS_KEY_ID"),
-    aws_secret_access_key= EnvVar("AWS_SECRET_ACCESS_KEY"),)
-
-
